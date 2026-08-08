@@ -43,8 +43,9 @@ body {
 .search-bar input { flex: 1 1 240px; min-width: 200px; }
 
 .summary-line {
-    font-size: 0.8rem; color: #666; margin-bottom: 10px;
+    font-size: 0.8rem; color: #14213D; margin-bottom: 10px;
 }
+.summary-datetime { color: #2F5FA3; font-weight: 600; }
 
 .list-wrap {
     background: #fff;
@@ -79,12 +80,13 @@ body {
     flex: 2 1 160px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.sr-source { flex: 0 0 56px; font-size: 11px; text-align: center; color: #888; }
 .sr-sector { flex: 0 0 64px; font-size: 11px; color: #666; text-align: center; }
 .sr-mktcap { flex: 0 0 64px; text-align: center; color: #888; font-variant-numeric: tabular-nums; }
 .sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-yoy { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-opm { flex: 0 0 60px; text-align: center; }
+.sr-price { flex: 0 0 74px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
+.sr-daychg { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-chg { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
 .sr-mdd { flex: 0 0 60px; text-align: center; font-variant-numeric: tabular-nums; color: #2F5FA3; }
 
@@ -103,6 +105,8 @@ body {
     border: 1px solid #D7E0EC;
     border-radius: 3px;
     padding: 12px;
+    max-width: 100%;
+    overflow: hidden;
 }
 .graph-wrap canvas { height: 260px !important; }
 
@@ -113,8 +117,35 @@ body {
 }
 
 @media (max-width: 700px) {
+    .search-bar select, .search-bar input { flex: 1 1 100%; min-width: 0; }
+
     .sr-header { display: none; }
-    .sr-row { flex-wrap: wrap; }
-    .sr-sector, .sr-mktcap, .sr-source { display: none; }
+    .sr-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 10px;
+        padding: 10px 12px;
+    }
+    .sr-row .sr-arrow { display: none; }
+    .sr-row .sr-name {
+        grid-column: 1 / -1;
+        white-space: normal;
+        font-size: 13px;
+        margin-bottom: 2px;
+    }
+    .sr-row > span:not(.sr-name) {
+        flex: none;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        font-size: 11px;
+    }
+    .sr-row > span:not(.sr-name)::before {
+        content: attr(data-label);
+        color: #999;
+        font-weight: 400;
+        margin-right: 6px;
+    }
+
     .screen-chart-row { flex-direction: column; }
 }

@@ -15,6 +15,10 @@ function fmtMktcap(v) {
     if (v == null) return "-";
     return (v / 10000).toFixed(2) + "조";
 }
+function fmtPrice(v) {
+    if (v == null) return "-";
+    return v.toLocaleString();
+}
 
 // ── 상태 ──────────────────────────────────────────
 let listData = null;       // list.json 원본
@@ -47,8 +51,8 @@ async function loadList() {
         return;
     }
 
-    document.getElementById("summary-line").textContent =
-        `[${listData.generated_at}] ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
+    document.getElementById("summary-line").innerHTML =
+        `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
     populateLargeFilter(listData.sectors);
     populateMidFilter();
@@ -106,16 +110,17 @@ function renderList(sectors) {
         <div class="sr-row" data-code="${s.code}">
             <span class="sr-arrow">▶</span>
             <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
-            <span class="sr-source" style="color:${s.source === "정기공시" ? "#2F6B4F" : "#888"};">${s.source}</span>
-            <span class="sr-sector">${s.sector_large}</span>
-            <span class="sr-mktcap">${fmtMktcap(s.mktcap)}</span>
-            <span class="sr-num">${fmtEok(s.revenue)}</span>
-            <span class="sr-yoy" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
-            <span class="sr-num">${fmtEok(s.op_income)}</span>
-            <span class="sr-yoy" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
-            <span class="sr-opm">${s.opm ?? "-"}%</span>
-            <span class="sr-chg" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
-            <span class="sr-mdd">${s.mdd ?? "-"}%</span>
+            <span class="sr-sector" data-label="섹터">${s.sector_large}</span>
+            <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
+            <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
+            <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
+            <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
+            <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
+            <span class="sr-opm" data-label="OPM">${s.opm ?? "-"}%</span>
+            <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
+            <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
+            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
+            <span class="sr-mdd" data-label="MDD">${s.mdd ?? "-"}%</span>
         </div>
         <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
             <div class="screen-chart-status">차트 불러오는 중...</div>
@@ -265,6 +270,7 @@ async function loadStockCharts(code, detail) {
             const maxHigh = p.high[maxHighIdx];
 
             const priceDiv = document.getElementById(`chart-price-${code}`);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
             const priceChart = echarts.init(priceDiv);
             chartInstances[priceDiv.id] = priceChart;
             priceChart.setOption({
@@ -300,7 +306,12 @@ async function loadStockCharts(code, detail) {
                 legend: {
                     top: 0, left: "center",
                     textStyle: { fontSize: 10 },
-                    data: ["종가", "MA20", "MA50"],
+                    itemWidth: 14, itemHeight: 8,
+                    data: [
+                        { name: "종가", icon: "roundRect" },
+                        { name: "MA20", icon: "line" },
+                        { name: "MA50", icon: "line" },
+                    ],
                 },
                 series: [
                     {
@@ -350,6 +361,7 @@ async function loadStockCharts(code, detail) {
                 ],
             });
             requestAnimationFrame(() => priceChart.resize());
+            }));
         }
     } catch (e) {
         statusEl.textContent = "차트 데이터를 불러올 수 없습니다.";
