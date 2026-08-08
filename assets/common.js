@@ -284,8 +284,8 @@ async function loadStockCharts(code, detail) {
             chartInstances[priceDiv.id] = priceChart;
             priceChart.setOption({
                 grid: [
-                    { left: 55, right: 70, top: "16%", bottom: "32%" },
-                    { left: 55, right: 70, top: "72%", bottom: "6%" },
+                    { left: 15, right: 55, top: "16%", bottom: "26%" },
+                    { left: 15, right: 55, top: "78%", bottom: "6%" },
                 ],
                 tooltip: {
                     trigger: "axis",
@@ -309,7 +309,7 @@ async function loadStockCharts(code, detail) {
                     { type: "category", data: p.dates, gridIndex: 1, axisLabel: { fontSize: 8, rotate: 90 }, splitLine: { show: false } },
                 ],
                 yAxis: [
-                    { scale: true, gridIndex: 0, axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
+                    { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
                     { scale: true, gridIndex: 1, axisLabel: { show: false }, splitLine: { show: false } },
                 ],
                 legend: {
@@ -317,9 +317,8 @@ async function loadStockCharts(code, detail) {
                     textStyle: { fontSize: 10 },
                     itemWidth: 14, itemHeight: 8,
                     data: [
-                        { name: "종가", icon: "roundRect" },
-                        { name: "MA20", icon: "line" },
-                        { name: "MA50", icon: "line" },
+                        { name: "MA20", icon: "line", textStyle: { color: "#29B6F6" } },
+                        { name: "MA50", icon: "line", textStyle: { color: "#F5A623" } },
                     ],
                 },
                 series: [
@@ -331,12 +330,7 @@ async function loadStockCharts(code, detail) {
                             silent: true,
                             data: [{
                                 yAxis: lastClose,
-                                label: {
-                                    formatter: "현재 " + lastClose.toLocaleString(),
-                                    color: "#fff", backgroundColor: "#A9843F",
-                                    padding: [3, 8], borderRadius: 10, fontSize: 10,
-                                    fontWeight: 600, position: "end",
-                                },
+                                label: { show: false },
                                 lineStyle: { color: "#A9843F", type: "dashed", width: 1.4 },
                             }],
                         },
