@@ -83,6 +83,9 @@ body {
 }
 .sr-row:hover { background: #F5F8FC; }
 .sr-row.active { background: #EDF2F8; }
+.unreported-noclick .sr-row { cursor: default; }
+.unreported-noclick .sr-row:hover { background: none; }
+.unreported-noclick .sr-arrow { visibility: hidden; }
 .sr-arrow { flex: 0 0 14px; color: #14315C; font-size: 11px; text-align: center; }
 .sr-name {
     flex: 2 1 160px; font-weight: 500; color: #14213D;

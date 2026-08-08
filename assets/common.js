@@ -213,6 +213,9 @@ function onLargeFilterChange() {
 }
 
 function onUnreportedToggleChange() {
+    document.getElementById("list-body").classList.toggle(
+        "unreported-noclick", document.getElementById("unreported-toggle").checked
+    );
     populateLargeFilter();
     populateMidFilter();
     applyFilter();
@@ -254,6 +257,9 @@ function detailMarkup(code) {
 // "닫히는 행 1개 + 열리는 행 1개"만 건드린다 (행이 수천 개일 때 클릭이 느려지는 것 방지)
 function openRow(index) {
     if (!rowEls.length) return;
+    // 미발표 기업 포함 체크 시에는 행이 2500개를 넘어가면서 차트를 여는 비용이 커져
+    // 눈에 띄게 느려진다. 이 모드에서는 아예 클릭 동작을 막고 목록만 보여준다.
+    if (document.getElementById("unreported-toggle").checked) return;
     index = Math.max(0, Math.min(rowEls.length - 1, index));
     if (index === activeIndex) return;
 
@@ -272,15 +278,7 @@ function openRow(index) {
     row.classList.add("active");
     if (detail) {
         detail.style.display = "block";
-        // 미발표 기업 포함 체크 시에는 행이 2500개를 넘어가면서 차트 하나 여는 데도
-        // 전체 문서가 커진 만큼 비용이 붙어 눈에 띄게 느려진다. 리스트/필터 자체는
-        // 문제 없이 빠르므로, 이 모드에서는 차트만 생략하고 안내 문구로 대체한다.
-        if (document.getElementById("unreported-toggle").checked) {
-            if (!detail.dataset.disabledNote) {
-                detail.dataset.disabledNote = "1";
-                detail.innerHTML = '<div class="screen-chart-status">실적 미발표 기업 포함 상태에서는 속도 문제로 차트를 표시하지 않습니다.<br>체크 해제 후 다시 눌러주세요.</div>';
-            }
-        } else if (!detail.dataset.built) {
+        if (!detail.dataset.built) {
             detail.dataset.built = "1";
             detail.innerHTML = detailMarkup(row.dataset.code);
             detail.dataset.loaded = "1";
