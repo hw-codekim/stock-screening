@@ -259,12 +259,17 @@ async function loadStockCharts(code, detail) {
                 p.close[i] >= (i > 0 ? p.close[i - 1] : p.close[i]) ? "rgba(180,52,42,0.6)" : "rgba(46,95,163,0.6)"
             );
 
+            const lastClose = p.close[p.close.length - 1];
+            let maxHighIdx = 0;
+            p.high.forEach((v, i) => { if (v > p.high[maxHighIdx]) maxHighIdx = i; });
+            const maxHigh = p.high[maxHighIdx];
+
             const priceDiv = document.getElementById(`chart-price-${code}`);
             const priceChart = echarts.init(priceDiv);
             chartInstances[priceDiv.id] = priceChart;
             priceChart.setOption({
                 grid: [
-                    { left: 55, right: 15, top: "6%",  bottom: "32%" },
+                    { left: 55, right: 15, top: "16%", bottom: "32%" },
                     { left: 55, right: 15, top: "72%", bottom: "6%" },
                 ],
                 tooltip: {
@@ -292,10 +297,47 @@ async function loadStockCharts(code, detail) {
                     { scale: true, gridIndex: 0, axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
                     { scale: true, gridIndex: 1, axisLabel: { show: false }, splitLine: { show: false } },
                 ],
+                legend: {
+                    top: 0, left: "center",
+                    textStyle: { fontSize: 10 },
+                    data: ["종가", "MA20", "MA50"],
+                },
                 series: [
                     {
                         name: "종가", type: "candlestick", xAxisIndex: 0, yAxisIndex: 0, data: candleData,
                         itemStyle: { color: "#B4342A", color0: "#2E5FA3", borderColor: "#B4342A", borderColor0: "#2E5FA3" },
+                        markLine: {
+                            symbol: "none",
+                            silent: true,
+                            data: [{
+                                yAxis: lastClose,
+                                label: {
+                                    formatter: "현재 " + lastClose.toLocaleString(),
+                                    color: "#fff", backgroundColor: "#A9843F",
+                                    padding: [3, 8], borderRadius: 10, fontSize: 10,
+                                    fontWeight: 600, position: "end",
+                                },
+                                lineStyle: { color: "#A9843F", type: "dashed", width: 1.4 },
+                            }],
+                        },
+                        markPoint: {
+                            data: [{
+                                name: "최고점", coord: [maxHighIdx, maxHigh],
+                                symbol: "pin", symbolSize: 42,
+                                itemStyle: { color: "#B4342A" },
+                                label: { formatter: () => maxHigh.toLocaleString(), fontSize: 9, color: "#fff" },
+                            }],
+                        },
+                    },
+                    {
+                        name: "MA20", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma20,
+                        smooth: true, symbol: "none", showSymbol: false,
+                        lineStyle: { color: "#29B6F6", width: 1.5 },
+                    },
+                    {
+                        name: "MA50", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma50,
+                        smooth: true, symbol: "none", showSymbol: false,
+                        lineStyle: { color: "#F5A623", width: 1.5 },
                     },
                     {
                         name: "거래량", type: "bar", xAxisIndex: 1, yAxisIndex: 1, data: p.volume,

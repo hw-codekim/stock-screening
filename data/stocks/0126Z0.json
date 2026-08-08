@@ -1,1 +1,1 @@
-{"code":"0126Z0","rep_type":"연결","financial":{"quarters":["20254Q","20261Q","20262Q"],"revenue":[2517,4539,3919],"opm":[-25.27,19.94,14.98],"yoy_quarters":[],"rev_yoy":[],"op_yoy":[],"opm_at_yoy":[]},"price":{"dates":[],"open":[],"high":[],"low":[],"close":[],"volume":[]}}
+{"code":"0126Z0","rep_type":"연결","financial":{"quarters":["20254Q","20261Q","20262Q"],"revenue":[2517,4539,3919],"opm":[-25.27,19.94,14.98],"yoy_quarters":[],"rev_yoy":[],"op_yoy":[],"opm_at_yoy":[]},"price":{"dates":[],"open":[],"high":[],"low":[],"close":[],"volume":[],"ma20":[],"ma50":[]}}

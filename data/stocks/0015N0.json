@@ -1,1 +1,1 @@
-{"code":"0015N0","rep_type":"연결","financial":{"quarters":["20261Q","20262Q"],"revenue":[140,177],"opm":[9.29,12.43],"yoy_quarters":[],"rev_yoy":[],"op_yoy":[],"opm_at_yoy":[]},"price":{"dates":[],"open":[],"high":[],"low":[],"close":[],"volume":[]}}
+{"code":"0015N0","rep_type":"연결","financial":{"quarters":["20261Q","20262Q"],"revenue":[140,177],"opm":[9.29,12.43],"yoy_quarters":[],"rev_yoy":[],"op_yoy":[],"opm_at_yoy":[]},"price":{"dates":[],"open":[],"high":[],"low":[],"close":[],"volume":[],"ma20":[],"ma50":[]}}
