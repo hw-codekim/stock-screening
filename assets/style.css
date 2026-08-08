@@ -87,7 +87,10 @@ body {
     flex: 2 1 160px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.sr-sector { flex: 0 0 64px; font-size: 11px; color: #666; text-align: center; }
+.sr-sector {
+    flex: 0 0 70px; font-size: 11px; color: #666; text-align: center;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .sr-mktcap { flex: 0 0 64px; text-align: center; color: #888; font-variant-numeric: tabular-nums; }
 .sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-yoy { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; }
@@ -101,11 +104,6 @@ body {
     font-size: 12px; font-weight: 700; color: #14315C;
     background: #F5F8FC; padding: 6px 12px; border-bottom: 1px solid #D7E0EC;
 }
-.sr-mid-group-title {
-    font-size: 11px; font-weight: 600; color: #5A6B85;
-    background: #FAFBFD; padding: 4px 12px 4px 24px; border-bottom: 1px solid #EEF1F6;
-}
-
 .sr-detail { padding: 10px 12px 16px; background: #FAFBFD; border-bottom: 1px solid #EEF1F6; }
 .screen-chart-status { font-size: 0.8rem; color: #888; padding: 20px 0; text-align: center; }
 .screen-chart-wrap { display: none; }

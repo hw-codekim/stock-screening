@@ -33,24 +33,17 @@ function activeItems() {
     return includeUnreported ? reportedItems.concat(unreportedItems) : reportedItems;
 }
 
-// 대분류 > 중분류 > 종목(시총 내림차순) 구조로 묶기
+// 대분류 > 종목(시총 내림차순) 구조로 묶기 (섹터 컬럼에는 중분류를 그대로 표시)
 function groupBySector(items) {
     const largeMap = {};
     items.forEach(s => {
-        const mids = largeMap[s.sector_large] || (largeMap[s.sector_large] = {});
-        (mids[s.sector_mid] = mids[s.sector_mid] || []).push(s);
+        (largeMap[s.sector_large] = largeMap[s.sector_large] || []).push(s);
     });
 
     const sectors = Object.keys(largeMap).map(large => {
-        const midMap = largeMap[large];
-        const midSectors = Object.keys(midMap).map(mid => {
-            const midItems = midMap[mid].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
-            const total = midItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
-            return { mid, items: midItems, total };
-        });
-        midSectors.sort((a, b) => b.total - a.total);
-        const total = midSectors.reduce((sum, m) => sum + m.total, 0);
-        return { sector: large, midSectors, total };
+        const sortedItems = largeMap[large].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+        const total = sortedItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+        return { sector: large, items: sortedItems, total };
     });
     sectors.sort((a, b) => b.total - a.total);
     return sectors;
@@ -106,7 +99,7 @@ function populateLargeFilter() {
     const prev = sel.value;
     sel.innerHTML = '<option value="">전체 대분류</option>';
     groupBySector(activeItems()).forEach(g => {
-        const count = g.midSectors.reduce((sum, m) => sum + m.items.length, 0);
+        const count = g.items.length;
         const opt = document.createElement("option");
         opt.value = g.sector;
         opt.textContent = `${g.sector} (${count})`;
@@ -146,35 +139,32 @@ function renderList(sectors) {
     }
 
     listBody.innerHTML = sectors.map(g => `
-        <div class="sr-sector-group-title">${g.sector} (${g.midSectors.reduce((sum, m) => sum + m.items.length, 0)})</div>
-        ${g.midSectors.map(m => `
-            <div class="sr-mid-group-title">${m.mid} (${m.items.length})</div>
-            ${m.items.map((s, i) => `
-            <div class="sr-row" data-code="${s.code}">
-                <span class="sr-arrow">▶</span>
-                <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
-                <span class="sr-sector" data-label="섹터">${s.sector_mid}</span>
-                <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
-                <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
-                <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
-                <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
-                <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
-                <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm + "%" : "-"}</span>
-                <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
-                <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
-                <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
-                <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd + "%" : "-"}</span>
-            </div>
-            <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
-                <div class="screen-chart-status">차트 불러오는 중...</div>
-                <div class="screen-chart-wrap">
-                    <div class="screen-chart-row">
-                        <div class="graph-wrap"><canvas id="chart-opm-${s.code}"></canvas></div>
-                        <div class="graph-wrap"><div id="chart-price-${s.code}" style="height:260px;"></div></div>
-                    </div>
+        <div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>
+        ${g.items.map((s, i) => `
+        <div class="sr-row" data-code="${s.code}">
+            <span class="sr-arrow">▶</span>
+            <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
+            <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${s.sector_mid}</span>
+            <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
+            <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
+            <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
+            <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
+            <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
+            <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm + "%" : "-"}</span>
+            <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
+            <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
+            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
+            <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd + "%" : "-"}</span>
+        </div>
+        <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
+            <div class="screen-chart-status">차트 불러오는 중...</div>
+            <div class="screen-chart-wrap">
+                <div class="screen-chart-row">
+                    <div class="graph-wrap"><canvas id="chart-opm-${s.code}"></canvas></div>
+                    <div class="graph-wrap"><div id="chart-price-${s.code}" style="height:260px;"></div></div>
                 </div>
             </div>
-            `).join("")}
+        </div>
         `).join("")}
     `).join("");
 
