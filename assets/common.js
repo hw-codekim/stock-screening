@@ -174,15 +174,7 @@ function renderList(sectors) {
             <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
             <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd + "%" : "-"}</span>
         </div>
-        <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
-            <div class="screen-chart-status">차트 불러오는 중...</div>
-            <div class="screen-chart-wrap">
-                <div class="screen-chart-row">
-                    <div class="graph-wrap"><canvas id="chart-opm-${s.code}"></canvas></div>
-                    <div class="graph-wrap"><div id="chart-price-${s.code}" style="height:260px;"></div></div>
-                </div>
-            </div>
-        </div>
+        <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;"></div>
         `).join("")}
     `).join("");
 
@@ -243,6 +235,21 @@ function disposeRowCharts(code) {
     }
 }
 
+// 차트 영역(canvas/echarts 컨테이너)은 실제로 펼칠 때만 DOM에 생성한다.
+// 2500개가 넘는 행 전체에 미리 깔아두면 빈 컨테이너만으로도 문서 전체 노드 수가
+// 크게 늘어나 echarts.init() 등이 강제로 유발하는 레이아웃 계산 비용이 커진다.
+function detailMarkup(code) {
+    return `
+        <div class="screen-chart-status">차트 불러오는 중...</div>
+        <div class="screen-chart-wrap">
+            <div class="screen-chart-row">
+                <div class="graph-wrap"><canvas id="chart-opm-${code}"></canvas></div>
+                <div class="graph-wrap"><div id="chart-price-${code}" style="height:260px;"></div></div>
+            </div>
+        </div>
+    `;
+}
+
 // 아코디언은 한 번에 하나만 열리므로, 매번 전체 행을 훑지 않고
 // "닫히는 행 1개 + 열리는 행 1개"만 건드린다 (행이 수천 개일 때 클릭이 느려지는 것 방지)
 function openRow(index) {
@@ -265,7 +272,20 @@ function openRow(index) {
     row.classList.add("active");
     if (detail) {
         detail.style.display = "block";
-        if (!detail.dataset.loaded) {
+        // 미발표 기업 포함 체크 시에는 행이 2500개를 넘어가면서 차트 하나 여는 데도
+        // 전체 문서가 커진 만큼 비용이 붙어 눈에 띄게 느려진다. 리스트/필터 자체는
+        // 문제 없이 빠르므로, 이 모드에서는 차트만 생략하고 안내 문구로 대체한다.
+        if (document.getElementById("unreported-toggle").checked) {
+            if (!detail.dataset.disabledNote) {
+                detail.dataset.disabledNote = "1";
+                detail.innerHTML = '<div class="screen-chart-status">실적 미발표 기업 포함 상태에서는 속도 문제로 차트를 표시하지 않습니다.<br>체크 해제 후 다시 눌러주세요.</div>';
+            }
+        } else if (!detail.dataset.built) {
+            detail.dataset.built = "1";
+            detail.innerHTML = detailMarkup(row.dataset.code);
+            detail.dataset.loaded = "1";
+            loadStockCharts(row.dataset.code, detail);
+        } else if (!detail.dataset.loaded) {
             detail.dataset.loaded = "1";
             loadStockCharts(row.dataset.code, detail);
         }
