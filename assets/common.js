@@ -39,7 +39,8 @@ function activeItems() {
     return includeUnreported ? reportedItems.concat(unreportedItems) : reportedItems;
 }
 
-// 대분류 > 종목(시총 내림차순) 구조로 묶기 (섹터 컬럼에는 중분류를 그대로 표시)
+// 대분류 그룹 안에서 다시 중분류(섹터 컬럼)별로 묶어 인접하게 정렬하고, 같은 중분류 안에서는 시총 내림차순.
+// 소제목 없이 정렬 순서로만 묶어서 보여준다.
 function groupBySector(items) {
     const largeMap = {};
     items.forEach(s => {
@@ -47,8 +48,18 @@ function groupBySector(items) {
     });
 
     const sectors = Object.keys(largeMap).map(large => {
-        const sortedItems = largeMap[large].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
-        const total = sortedItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+        const midMap = {};
+        largeMap[large].forEach(s => {
+            (midMap[s.sector_mid] = midMap[s.sector_mid] || []).push(s);
+        });
+        const midGroups = Object.keys(midMap).map(mid => {
+            const midItems = midMap[mid].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+            const total = midItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+            return { items: midItems, total };
+        });
+        midGroups.sort((a, b) => b.total - a.total);
+        const sortedItems = midGroups.flatMap(g => g.items);
+        const total = midGroups.reduce((sum, g) => sum + g.total, 0);
         return { sector: large, items: sortedItems, total };
     });
     sectors.sort((a, b) => b.total - a.total);
@@ -149,7 +160,7 @@ function renderList(sectors) {
         ${g.items.map((s, i) => `
         <div class="sr-row" data-code="${s.code}">
             <span class="sr-arrow">▶</span>
-            <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
+            <span class="sr-name">${i + 1}. ${s.name}</span>
             <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
             <span class="sr-market" data-label="시장">${s.market || "-"}</span>
             <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
