@@ -321,12 +321,16 @@ async function loadStockCharts(code, detail) {
                             }],
                         },
                         markPoint: {
-                            data: [{
-                                name: "최고점", coord: [maxHighIdx, maxHigh],
-                                symbol: "pin", symbolSize: 42,
-                                itemStyle: { color: "#B4342A" },
-                                label: { formatter: () => maxHigh.toLocaleString(), fontSize: 9, color: "#fff" },
-                            }],
+                            symbol: "none",
+                            label: {
+                                show: true,
+                                formatter: () => maxHigh.toLocaleString(),
+                                position: "top",
+                                fontSize: 10,
+                                fontWeight: 600,
+                                color: "#B4342A",
+                            },
+                            data: [{ name: "최고점", coord: [maxHighIdx, maxHigh] }],
                         },
                     },
                     {
