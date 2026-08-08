@@ -21,10 +21,40 @@ function fmtPrice(v) {
 }
 
 // ── 상태 ──────────────────────────────────────────
-let listData = null;       // list.json 원본
-let rowEls = [];           // 현재 렌더링된 .sr-row 목록 (필터 반영 후)
+let listData = null;         // list.json 원본
+let reportedItems = [];      // 이번 분기 발표 기업 (평탄화된 목록)
+let unreportedItems = [];    // 이번 분기 미발표 기업 (평탄화된 목록)
+let rowEls = [];             // 현재 렌더링된 .sr-row 목록 (필터 반영 후)
 let activeIndex = -1;
 const chartInstances = {};
+
+function activeItems() {
+    const includeUnreported = document.getElementById("unreported-toggle").checked;
+    return includeUnreported ? reportedItems.concat(unreportedItems) : reportedItems;
+}
+
+// 대분류 > 중분류 > 종목(시총 내림차순) 구조로 묶기
+function groupBySector(items) {
+    const largeMap = {};
+    items.forEach(s => {
+        const mids = largeMap[s.sector_large] || (largeMap[s.sector_large] = {});
+        (mids[s.sector_mid] = mids[s.sector_mid] || []).push(s);
+    });
+
+    const sectors = Object.keys(largeMap).map(large => {
+        const midMap = largeMap[large];
+        const midSectors = Object.keys(midMap).map(mid => {
+            const midItems = midMap[mid].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+            const total = midItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+            return { mid, items: midItems, total };
+        });
+        midSectors.sort((a, b) => b.total - a.total);
+        const total = midSectors.reduce((sum, m) => sum + m.total, 0);
+        return { sector: large, midSectors, total };
+    });
+    sectors.sort((a, b) => b.total - a.total);
+    return sectors;
+}
 
 // ── 방문자 카운터 (GoatCounter) ────────────────────
 async function loadVisitorCount() {
@@ -51,6 +81,9 @@ async function loadList() {
         return;
     }
 
+    reportedItems   = listData.items || [];
+    unreportedItems = listData.unreported_items || [];
+
     document.getElementById("summary-line").innerHTML =
         `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
@@ -63,22 +96,23 @@ async function loadList() {
         document.getElementById("daychg-header").textContent = `${Number(lm)}/${Number(ld)}일등락`;
     }
 
-    populateLargeFilter(listData.sectors);
+    populateLargeFilter();
     populateMidFilter();
-    renderList(listData.sectors);
+    applyFilter();
 }
 
-function populateLargeFilter(sectors) {
+function populateLargeFilter() {
     const sel = document.getElementById("large-filter");
-    sectors
-        .slice()
-        .sort((a, b) => b.items.length - a.items.length)
-        .forEach(g => {
-            const opt = document.createElement("option");
-            opt.value = g.sector;
-            opt.textContent = `${g.sector} (${g.items.length})`;
-            sel.appendChild(opt);
-        });
+    const prev = sel.value;
+    sel.innerHTML = '<option value="">전체 대분류</option>';
+    groupBySector(activeItems()).forEach(g => {
+        const count = g.midSectors.reduce((sum, m) => sum + m.items.length, 0);
+        const opt = document.createElement("option");
+        opt.value = g.sector;
+        opt.textContent = `${g.sector} (${count})`;
+        sel.appendChild(opt);
+    });
+    sel.value = prev;
 }
 
 // 대분류 선택에 따라 중분류 옵션을 다시 구성 (없으면 전체 종목 기준)
@@ -88,11 +122,9 @@ function populateMidFilter() {
     midSel.innerHTML = '<option value="">전체 중분류</option>';
 
     const counts = {};
-    listData.sectors
-        .filter(g => !largeVal || g.sector === largeVal)
-        .forEach(g => g.items.forEach(s => {
-            counts[s.sector_mid] = (counts[s.sector_mid] || 0) + 1;
-        }));
+    activeItems()
+        .filter(s => !largeVal || s.sector_large === largeVal)
+        .forEach(s => { counts[s.sector_mid] = (counts[s.sector_mid] || 0) + 1; });
 
     Object.keys(counts)
         .sort((a, b) => counts[b] - counts[a])
@@ -114,32 +146,35 @@ function renderList(sectors) {
     }
 
     listBody.innerHTML = sectors.map(g => `
-        <div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>
-        ${g.items.map((s, i) => `
-        <div class="sr-row" data-code="${s.code}">
-            <span class="sr-arrow">▶</span>
-            <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
-            <span class="sr-sector" data-label="섹터">${s.sector_large}</span>
-            <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
-            <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
-            <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
-            <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
-            <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
-            <span class="sr-opm" data-label="OPM">${s.opm ?? "-"}%</span>
-            <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
-            <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
-            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
-            <span class="sr-mdd" data-label="MDD">${s.mdd ?? "-"}%</span>
-        </div>
-        <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
-            <div class="screen-chart-status">차트 불러오는 중...</div>
-            <div class="screen-chart-wrap">
-                <div class="screen-chart-row">
-                    <div class="graph-wrap"><canvas id="chart-opm-${s.code}"></canvas></div>
-                    <div class="graph-wrap"><div id="chart-price-${s.code}" style="height:260px;"></div></div>
+        <div class="sr-sector-group-title">${g.sector} (${g.midSectors.reduce((sum, m) => sum + m.items.length, 0)})</div>
+        ${g.midSectors.map(m => `
+            <div class="sr-mid-group-title">${m.mid} (${m.items.length})</div>
+            ${m.items.map((s, i) => `
+            <div class="sr-row" data-code="${s.code}">
+                <span class="sr-arrow">▶</span>
+                <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
+                <span class="sr-sector" data-label="섹터">${s.sector_mid}</span>
+                <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
+                <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
+                <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
+                <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
+                <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
+                <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm + "%" : "-"}</span>
+                <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
+                <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
+                <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
+                <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd + "%" : "-"}</span>
+            </div>
+            <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;">
+                <div class="screen-chart-status">차트 불러오는 중...</div>
+                <div class="screen-chart-wrap">
+                    <div class="screen-chart-row">
+                        <div class="graph-wrap"><canvas id="chart-opm-${s.code}"></canvas></div>
+                        <div class="graph-wrap"><div id="chart-price-${s.code}" style="height:260px;"></div></div>
+                    </div>
                 </div>
             </div>
-        </div>
+            `).join("")}
         `).join("")}
     `).join("");
 
@@ -151,25 +186,30 @@ function renderList(sectors) {
 // ── 필터 ──────────────────────────────────────────
 function applyFilter() {
     if (!listData) return;
+    // 리스트가 다시 그려지기 전에 펼쳐진 카드가 있으면 차트부터 정리 (재렌더링 후 DOM만 사라지고
+    // 차트 인스턴스는 메모리에 남아있는 걸 방지)
+    rowEls.forEach(row => { if (row.classList.contains("active")) disposeRowCharts(row.dataset.code); });
+
     const largeVal = document.getElementById("large-filter").value;
     const midVal   = document.getElementById("mid-filter").value;
     const query    = document.getElementById("stock-search").value.trim().toLowerCase();
 
-    const filtered = listData.sectors
-        .filter(g => !largeVal || g.sector === largeVal)
-        .map(g => ({
-            sector: g.sector,
-            items: g.items.filter(s =>
-                (!midVal || s.sector_mid === midVal) &&
-                (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
-            ),
-        }))
-        .filter(g => g.items.length > 0);
+    const filteredItems = activeItems().filter(s =>
+        (!largeVal || s.sector_large === largeVal) &&
+        (!midVal || s.sector_mid === midVal) &&
+        (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
+    );
 
-    renderList(filtered);
+    renderList(groupBySector(filteredItems));
 }
 
 function onLargeFilterChange() {
+    populateMidFilter();
+    applyFilter();
+}
+
+function onUnreportedToggleChange() {
+    populateLargeFilter();
     populateMidFilter();
     applyFilter();
 }
@@ -407,6 +447,7 @@ async function loadStockCharts(code, detail) {
 document.getElementById("large-filter").addEventListener("change", onLargeFilterChange);
 document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
+document.getElementById("unreported-toggle").addEventListener("change", onUnreportedToggleChange);
 
 loadList();
 loadVisitorCount();
