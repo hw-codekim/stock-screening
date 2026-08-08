@@ -175,6 +175,22 @@ function onLargeFilterChange() {
 }
 
 // ── 카드 펼치기 / 차트 로드 ─────────────────────────
+// 아코디언 구조상 한 번에 하나만 열려 있으므로, 닫히는 카드의 차트 인스턴스는 즉시 정리해서
+// 여러 종목을 계속 눌러봐도 누적된 차트가 쌓여 느려지지 않게 한다.
+function disposeRowCharts(code) {
+    const opmId   = `chart-opm-${code}`;
+    const priceId = `chart-price-${code}`;
+    const opmChart = chartInstances[opmId];
+    if (opmChart) { opmChart.destroy(); delete chartInstances[opmId]; }
+    const priceChart = chartInstances[priceId];
+    if (priceChart) { priceChart.dispose(); delete chartInstances[priceId]; }
+    const detail = document.getElementById(`sr-detail-${code}`);
+    if (detail) {
+        delete detail.dataset.loaded;
+        delete detail.dataset.loadToken;
+    }
+}
+
 function openRow(index) {
     if (!rowEls.length) return;
     index = Math.max(0, Math.min(rowEls.length - 1, index));
@@ -191,6 +207,7 @@ function openRow(index) {
                 loadStockCharts(row.dataset.code, detail);
             }
         } else {
+            if (row.classList.contains("active")) disposeRowCharts(row.dataset.code);
             row.classList.remove("active");
             detail.style.display = "none";
             arrow.textContent = "▶";
@@ -207,6 +224,7 @@ function selectRow(rowEl) {
         rowEl.classList.remove("active");
         document.getElementById(`sr-detail-${rowEl.dataset.code}`).style.display = "none";
         rowEl.querySelector(".sr-arrow").textContent = "▶";
+        disposeRowCharts(rowEl.dataset.code);
         activeIndex = -1;
     } else {
         openRow(idx);
@@ -229,8 +247,12 @@ document.addEventListener("keydown", (e) => {
 });
 
 const smallScale = { ticks: { maxRotation: 90, minRotation: 90, font: { size: 9 } } };
+let loadCounter = 0;
 
 async function loadStockCharts(code, detail) {
+    const myToken = ++loadCounter;
+    detail.dataset.loadToken = myToken;
+
     const statusEl = detail.querySelector(".screen-chart-status");
     const wrapEl   = detail.querySelector(".screen-chart-wrap");
 
@@ -238,6 +260,7 @@ async function loadStockCharts(code, detail) {
         const res = await fetch(`data/stocks/${code}.json`);
         if (!res.ok) throw new Error("not found");
         const data = await res.json();
+        if (detail.dataset.loadToken != myToken) return; // 그 사이 카드가 닫혔거나 다시 열림 - 폐기
 
         statusEl.style.display = "none";
         wrapEl.style.display   = "block";
@@ -254,7 +277,7 @@ async function loadStockCharts(code, detail) {
                     ]
                 },
                 options: {
-                    responsive: true, maintainAspectRatio: false,
+                    responsive: true, maintainAspectRatio: false, animation: false,
                     interaction: { mode: "index", intersect: false },
                     plugins: { legend: { position: "top", labels: { boxWidth: 10, font: { size: 10 } } } },
                     scales: {
@@ -280,9 +303,11 @@ async function loadStockCharts(code, detail) {
 
             const priceDiv = document.getElementById(`chart-price-${code}`);
             setTimeout(() => {
+            if (detail.dataset.loadToken != myToken) return; // 그 사이 카드가 닫혔거나 다시 열림 - 폐기
             const priceChart = echarts.init(priceDiv);
             chartInstances[priceDiv.id] = priceChart;
             priceChart.setOption({
+                animation: false,
                 grid: [
                     { left: 15, right: 55, top: "16%", bottom: "26%" },
                     { left: 15, right: 55, top: "78%", bottom: "6%" },
@@ -364,7 +389,7 @@ async function loadStockCharts(code, detail) {
                 ],
             });
             priceChart.resize();
-            }, 50);
+            }, 0);
         }
     } catch (e) {
         statusEl.textContent = "차트 데이터를 불러올 수 없습니다.";
