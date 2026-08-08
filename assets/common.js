@@ -487,5 +487,11 @@ document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
 document.getElementById("unreported-toggle").addEventListener("change", onUnreportedToggleChange);
 
+const scrollTopBtn = document.getElementById("scroll-top-btn");
+scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+window.addEventListener("scroll", () => {
+    scrollTopBtn.classList.toggle("visible", window.scrollY > 400);
+});
+
 loadList();
 loadVisitorCount();
