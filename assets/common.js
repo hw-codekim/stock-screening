@@ -50,12 +50,13 @@ async function loadList() {
     document.getElementById("summary-line").textContent =
         `[${listData.generated_at}] ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
-    populateSectorFilter(listData.sectors);
+    populateLargeFilter(listData.sectors);
+    populateMidFilter();
     renderList(listData.sectors);
 }
 
-function populateSectorFilter(sectors) {
-    const sel = document.getElementById("sector-filter");
+function populateLargeFilter(sectors) {
+    const sel = document.getElementById("large-filter");
     sectors
         .slice()
         .sort((a, b) => b.items.length - a.items.length)
@@ -64,6 +65,29 @@ function populateSectorFilter(sectors) {
             opt.value = g.sector;
             opt.textContent = `${g.sector} (${g.items.length})`;
             sel.appendChild(opt);
+        });
+}
+
+// 대분류 선택에 따라 중분류 옵션을 다시 구성 (없으면 전체 종목 기준)
+function populateMidFilter() {
+    const largeVal = document.getElementById("large-filter").value;
+    const midSel = document.getElementById("mid-filter");
+    midSel.innerHTML = '<option value="">전체 중분류</option>';
+
+    const counts = {};
+    listData.sectors
+        .filter(g => !largeVal || g.sector === largeVal)
+        .forEach(g => g.items.forEach(s => {
+            counts[s.sector_mid] = (counts[s.sector_mid] || 0) + 1;
+        }));
+
+    Object.keys(counts)
+        .sort((a, b) => counts[b] - counts[a])
+        .forEach(mid => {
+            const opt = document.createElement("option");
+            opt.value = mid;
+            opt.textContent = `${mid} (${counts[mid]})`;
+            midSel.appendChild(opt);
         });
 }
 
@@ -113,20 +137,27 @@ function renderList(sectors) {
 // ── 필터 ──────────────────────────────────────────
 function applyFilter() {
     if (!listData) return;
-    const sectorVal = document.getElementById("sector-filter").value;
-    const query = document.getElementById("stock-search").value.trim().toLowerCase();
+    const largeVal = document.getElementById("large-filter").value;
+    const midVal   = document.getElementById("mid-filter").value;
+    const query    = document.getElementById("stock-search").value.trim().toLowerCase();
 
     const filtered = listData.sectors
-        .filter(g => !sectorVal || g.sector === sectorVal)
+        .filter(g => !largeVal || g.sector === largeVal)
         .map(g => ({
             sector: g.sector,
             items: g.items.filter(s =>
-                !query || s.name.toLowerCase().includes(query) || s.code.includes(query)
+                (!midVal || s.sector_mid === midVal) &&
+                (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
             ),
         }))
         .filter(g => g.items.length > 0);
 
     renderList(filtered);
+}
+
+function onLargeFilterChange() {
+    populateMidFilter();
+    applyFilter();
 }
 
 // ── 카드 펼치기 / 차트 로드 ─────────────────────────
@@ -280,7 +311,8 @@ async function loadStockCharts(code, detail) {
 }
 
 // ── 초기화 ────────────────────────────────────────
-document.getElementById("sector-filter").addEventListener("change", applyFilter);
+document.getElementById("large-filter").addEventListener("change", onLargeFilterChange);
+document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
 
 loadList();
