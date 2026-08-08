@@ -187,8 +187,10 @@ function renderList(sectors) {
 function applyFilter() {
     if (!listData) return;
     // 리스트가 다시 그려지기 전에 펼쳐진 카드가 있으면 차트부터 정리 (재렌더링 후 DOM만 사라지고
-    // 차트 인스턴스는 메모리에 남아있는 걸 방지)
-    rowEls.forEach(row => { if (row.classList.contains("active")) disposeRowCharts(row.dataset.code); });
+    // 차트 인스턴스는 메모리에 남아있는 걸 방지). 활성 행은 최대 1개라 인덱스로 바로 찾는다.
+    if (activeIndex !== -1 && rowEls[activeIndex]) {
+        disposeRowCharts(rowEls[activeIndex].dataset.code);
+    }
 
     const largeVal = document.getElementById("large-filter").value;
     const midVal   = document.getElementById("mid-filter").value;
@@ -231,31 +233,38 @@ function disposeRowCharts(code) {
     }
 }
 
+// 아코디언은 한 번에 하나만 열리므로, 매번 전체 행을 훑지 않고
+// "닫히는 행 1개 + 열리는 행 1개"만 건드린다 (행이 수천 개일 때 클릭이 느려지는 것 방지)
 function openRow(index) {
     if (!rowEls.length) return;
     index = Math.max(0, Math.min(rowEls.length - 1, index));
+    if (index === activeIndex) return;
 
-    rowEls.forEach((row, i) => {
-        const detail = document.getElementById(`sr-detail-${row.dataset.code}`);
-        const arrow  = row.querySelector(".sr-arrow");
-        if (i === index) {
-            row.classList.add("active");
-            detail.style.display = "block";
-            arrow.textContent = "▼";
-            if (!detail.dataset.loaded) {
-                detail.dataset.loaded = "1";
-                loadStockCharts(row.dataset.code, detail);
-            }
-        } else {
-            if (row.classList.contains("active")) disposeRowCharts(row.dataset.code);
-            row.classList.remove("active");
-            detail.style.display = "none";
-            arrow.textContent = "▶";
+    if (activeIndex !== -1 && rowEls[activeIndex]) {
+        const prevRow = rowEls[activeIndex];
+        disposeRowCharts(prevRow.dataset.code);
+        prevRow.classList.remove("active");
+        const prevDetail = document.getElementById(`sr-detail-${prevRow.dataset.code}`);
+        if (prevDetail) prevDetail.style.display = "none";
+        const prevArrow = prevRow.querySelector(".sr-arrow");
+        if (prevArrow) prevArrow.textContent = "▶";
+    }
+
+    const row    = rowEls[index];
+    const detail = document.getElementById(`sr-detail-${row.dataset.code}`);
+    row.classList.add("active");
+    if (detail) {
+        detail.style.display = "block";
+        if (!detail.dataset.loaded) {
+            detail.dataset.loaded = "1";
+            loadStockCharts(row.dataset.code, detail);
         }
-    });
+    }
+    const arrow = row.querySelector(".sr-arrow");
+    if (arrow) arrow.textContent = "▼";
 
     activeIndex = index;
-    rowEls[index].scrollIntoView({ block: "center", behavior: "smooth" });
+    row.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
 function selectRow(rowEl) {
