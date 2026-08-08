@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>실적 스크리닝</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div>
+        <h1>실적 스크리닝</h1>
+        <div class="sub">국내 상장사 분기 실적 발표 현황</div>
+    </div>
+    <div class="visitor-badge"><span class="dot"></span>방문자 <span id="visitor-count">-</span>명</div>
+</header>
+
+<div class="container">
+    <div class="search-bar">
+        <select id="sector-filter">
+            <option value="">전체 섹터</option>
+        </select>
+        <input type="text" id="stock-search" placeholder="종목명 또는 코드 검색">
+    </div>
+
+    <div class="summary-line" id="summary-line">불러오는 중...</div>
+
+    <div class="list-wrap">
+        <div class="sr-header">
+            <span class="sr-arrow"></span>
+            <span class="sr-name">종목명</span>
+            <span class="sr-source">출처</span>
+            <span class="sr-sector">섹터</span>
+            <span class="sr-mktcap">시가총액</span>
+            <span class="sr-num">매출</span>
+            <span class="sr-yoy">YoY</span>
+            <span class="sr-num">영업이익</span>
+            <span class="sr-yoy">YoY</span>
+            <span class="sr-opm">OPM</span>
+            <span class="sr-chg">기간등락률</span>
+            <span class="sr-mdd">MDD</span>
+        </div>
+        <div id="list-body">
+            <p class="placeholder">불러오는 중...</p>
+        </div>
+    </div>
+
+    <div class="site-footer">데이터는 매 영업일 장마감 후 갱신됩니다.</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/common.js"></script>
+</body>
+</html>
