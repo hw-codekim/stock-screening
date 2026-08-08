@@ -329,9 +329,16 @@ async function loadStockCharts(code, detail) {
                             `거래량: ${(p.volume[idx] || 0).toLocaleString()}`;
                     },
                 },
+                dataZoom: [
+                    { type: "inside", xAxisIndex: [0, 1], start: 60, end: 100 },
+                ],
                 xAxis: [
-                    { type: "category", data: p.dates, gridIndex: 0, axisLabel: { show: false }, splitLine: { show: false } },
-                    { type: "category", data: p.dates, gridIndex: 1, axisLabel: { fontSize: 8, rotate: 90 }, splitLine: { show: false } },
+                    { type: "category", data: p.dates, gridIndex: 0, boundaryGap: true, axisLabel: { show: false }, splitLine: { show: false } },
+                    {
+                        type: "category", data: p.dates, gridIndex: 1, boundaryGap: true,
+                        axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
+                        splitLine: { show: false },
+                    },
                 ],
                 yAxis: [
                     { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
