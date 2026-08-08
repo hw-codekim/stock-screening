@@ -54,6 +54,15 @@ async function loadList() {
     document.getElementById("summary-line").innerHTML =
         `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
+    if (listData.base_date) {
+        const [, bm, bd] = listData.base_date.split("-");
+        document.getElementById("chg-header").textContent = `${Number(bm)}/${Number(bd)}일 이후`;
+    }
+    if (listData.latest_date) {
+        const [, lm, ld] = listData.latest_date.split("-");
+        document.getElementById("daychg-header").textContent = `${Number(lm)}/${Number(ld)}일등락`;
+    }
+
     populateLargeFilter(listData.sectors);
     populateMidFilter();
     renderList(listData.sectors);
@@ -270,13 +279,13 @@ async function loadStockCharts(code, detail) {
             const maxHigh = p.high[maxHighIdx];
 
             const priceDiv = document.getElementById(`chart-price-${code}`);
-            requestAnimationFrame(() => requestAnimationFrame(() => {
+            setTimeout(() => {
             const priceChart = echarts.init(priceDiv);
             chartInstances[priceDiv.id] = priceChart;
             priceChart.setOption({
                 grid: [
-                    { left: 55, right: 15, top: "16%", bottom: "32%" },
-                    { left: 55, right: 15, top: "72%", bottom: "6%" },
+                    { left: 55, right: 70, top: "16%", bottom: "32%" },
+                    { left: 55, right: 70, top: "72%", bottom: "6%" },
                 ],
                 tooltip: {
                     trigger: "axis",
@@ -360,8 +369,8 @@ async function loadStockCharts(code, detail) {
                     },
                 ],
             });
-            requestAnimationFrame(() => priceChart.resize());
-            }));
+            priceChart.resize();
+            }, 50);
         }
     } catch (e) {
         statusEl.textContent = "차트 데이터를 불러올 수 없습니다.";
