@@ -18,6 +18,11 @@
 
 <div class="container">
     <div class="search-bar">
+        <select id="market-filter">
+            <option value="">전체 시장</option>
+            <option value="코스피">코스피</option>
+            <option value="코스닥">코스닥</option>
+        </select>
         <select id="large-filter">
             <option value="">전체 대분류</option>
         </select>
@@ -37,6 +42,7 @@
             <span class="sr-arrow"></span>
             <span class="sr-name">종목명</span>
             <span class="sr-sector">섹터</span>
+            <span class="sr-market">시장</span>
             <span class="sr-mktcap">시가총액</span>
             <span class="sr-num">매출</span>
             <span class="sr-yoy">YoY</span>

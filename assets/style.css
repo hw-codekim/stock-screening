@@ -88,10 +88,11 @@ body {
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .sr-sector {
-    flex: 0 0 70px; font-size: 11px; color: #666; text-align: center;
+    flex: 0 0 84px; font-size: 11px; color: #14213D; text-align: center;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.sr-mktcap { flex: 0 0 64px; text-align: center; color: #888; font-variant-numeric: tabular-nums; }
+.sr-market { flex: 0 0 48px; font-size: 11px; color: #14213D; text-align: center; }
+.sr-mktcap { flex: 0 0 64px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
 .sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-yoy { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-opm { flex: 0 0 60px; text-align: center; }

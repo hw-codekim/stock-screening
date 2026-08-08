@@ -19,6 +19,12 @@ function fmtPrice(v) {
     if (v == null) return "-";
     return v.toLocaleString();
 }
+// 중분류가 "대분류_세부명"처럼 앞에 상위 분류를 접두어로 달고 있으면(예: 반도체_PCB),
+// 같은 대분류 그룹 안에서는 중복 정보라 잘리기 쉬우므로 접두어를 떼고 세부명만 보여준다.
+function stripMidPrefix(mid) {
+    if (!mid || !mid.includes("_")) return mid;
+    return mid.split("_").slice(1).join("_");
+}
 
 // ── 상태 ──────────────────────────────────────────
 let listData = null;         // list.json 원본
@@ -124,7 +130,7 @@ function populateMidFilter() {
         .forEach(mid => {
             const opt = document.createElement("option");
             opt.value = mid;
-            opt.textContent = `${mid} (${counts[mid]})`;
+            opt.textContent = `${stripMidPrefix(mid)} (${counts[mid]})`;
             midSel.appendChild(opt);
         });
 }
@@ -144,7 +150,8 @@ function renderList(sectors) {
         <div class="sr-row" data-code="${s.code}">
             <span class="sr-arrow">▶</span>
             <span class="sr-name">${i + 1}. ${s.name} <span style="color:#aaa;font-weight:400;">${s.code}</span></span>
-            <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${s.sector_mid}</span>
+            <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
+            <span class="sr-market" data-label="시장">${s.market || "-"}</span>
             <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
             <span class="sr-num" data-label="매출">${fmtEok(s.revenue)}</span>
             <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
@@ -182,11 +189,13 @@ function applyFilter() {
         disposeRowCharts(rowEls[activeIndex].dataset.code);
     }
 
-    const largeVal = document.getElementById("large-filter").value;
-    const midVal   = document.getElementById("mid-filter").value;
-    const query    = document.getElementById("stock-search").value.trim().toLowerCase();
+    const marketVal = document.getElementById("market-filter").value;
+    const largeVal  = document.getElementById("large-filter").value;
+    const midVal    = document.getElementById("mid-filter").value;
+    const query     = document.getElementById("stock-search").value.trim().toLowerCase();
 
     const filteredItems = activeItems().filter(s =>
+        (!marketVal || s.market === marketVal) &&
         (!largeVal || s.sector_large === largeVal) &&
         (!midVal || s.sector_mid === midVal) &&
         (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
@@ -443,6 +452,7 @@ async function loadStockCharts(code, detail) {
 }
 
 // ── 초기화 ────────────────────────────────────────
+document.getElementById("market-filter").addEventListener("change", applyFilter);
 document.getElementById("large-filter").addEventListener("change", onLargeFilterChange);
 document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
