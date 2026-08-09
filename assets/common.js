@@ -350,13 +350,28 @@ async function loadStockCharts(code, detail) {
                     labels: d.quarters,
                     datasets: [
                         { type: "bar",  label: "매출 (억원)", data: d.revenue, backgroundColor: "rgba(74,144,217,0.7)", yAxisID: "y",  order: 2 },
-                        { type: "line", label: "OPM (%)",    data: d.opm,     borderColor: "#B4342A", backgroundColor: "#B4342A", borderWidth: 2, pointRadius: 3, yAxisID: "y2", order: 1 }
+                        {
+                            type: "line", label: "OPM (%)", data: d.opm, yAxisID: "y2", order: 1,
+                            borderWidth: 2, pointRadius: 3,
+                            borderColor: "#B4342A", backgroundColor: "#B4342A",
+                        },
+                        {
+                            type: "line", label: "0", data: d.quarters.map(() => 0), yAxisID: "y2", order: 3,
+                            borderColor: "#2F5FA3", borderWidth: 1, borderDash: [], pointRadius: 0, fill: false,
+                        }
                     ]
                 },
                 options: {
                     responsive: true, maintainAspectRatio: false, animation: false,
                     interaction: { mode: "index", intersect: false },
-                    plugins: { legend: { position: "top", labels: { boxWidth: 10, font: { size: 10 } } } },
+                    plugins: {
+                        legend: {
+                            position: "top", labels: {
+                                boxWidth: 10, font: { size: 10 },
+                                filter: item => item.text !== "0"
+                            }
+                        }
+                    },
                     scales: {
                         x: smallScale,
                         y:  { position: "left",  title: { display: true, text: "매출(억)", font: { size: 10 } } },
