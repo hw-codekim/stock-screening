@@ -5,7 +5,11 @@ function fmtEok(v) {
 }
 function fmtYoy(v) {
     if (v == null) return "-";
-    return (v >= 0 ? "+" : "") + v + "%";
+    return (v >= 0 ? "+" : "") + Math.round(v) + "%";
+}
+function fmtPct1(v) {
+    if (v == null) return "-";
+    return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
 }
 function yoyColor(v) {
     if (v == null) return "#888";
@@ -175,11 +179,11 @@ function renderList(sectors) {
             <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
             <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
             <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
-            <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm + "%" : "-"}</span>
+            <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm.toFixed(1) + "%" : "-"}</span>
             <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
-            <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtYoy(s.day_change_rate)}</span>
-            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
-            <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd + "%" : "-"}</span>
+            <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtPct1(s.day_change_rate)}</span>
+            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtPct1(s.price_change)}</span>
+            <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd.toFixed(1) + "%" : "-"}</span>
         </div>
         <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;"></div>
         `).join("")}

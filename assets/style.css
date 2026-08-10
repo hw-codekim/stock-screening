@@ -105,7 +105,7 @@ body {
 }
 .sr-arrow { flex: 0 0 14px; color: #14315C; font-size: 11px; text-align: center; }
 .sr-name {
-    flex: 2 1 160px; font-weight: 500; color: #14213D;
+    flex: 2 1 200px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .sr-sector {
@@ -115,7 +115,7 @@ body {
 .sr-market { flex: 0 0 48px; font-size: 11px; color: #14213D; text-align: center; }
 .sr-mktcap { flex: 0 0 64px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
 .sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
-.sr-yoy { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-yoy { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-opm { flex: 0 0 60px; text-align: center; }
 .sr-price { flex: 0 0 74px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 .sr-daychg { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; }
