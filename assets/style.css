@@ -58,6 +58,34 @@ body {
 }
 .summary-datetime { color: #2F5FA3; font-weight: 600; }
 
+.index-box {
+    background: #fff;
+    border: 1px solid #D7E0EC;
+    border-radius: 4px;
+    margin-bottom: 14px;
+}
+.index-scroll { overflow-x: auto; }
+.index-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.index-table th, .index-table td {
+    padding: 8px 10px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+.index-table thead th {
+    font-weight: 600;
+    color: #888;
+    background: #FAFBFD;
+    border-bottom: 1px solid #D7E0EC;
+}
+.index-table tbody tr:not(:last-child) td { border-bottom: 1px solid #EEF1F6; }
+.index-table td.index-name { text-align: left; font-weight: 700; color: #14315C; }
+.index-table td.index-loading { color: #999; padding: 16px; }
+
 .list-wrap {
     background: #fff;
     border: 1px solid #D7E0EC;
