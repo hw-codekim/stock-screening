@@ -196,6 +196,7 @@ function renderList(sectors) {
 
 // ── 빠른 필터 ─────────────────────────────────────
 const QUICK_FILTER_PREDICATES = {
+    newtoday: s => s.report_date === TODAY_KST,
     op100:   s => s.op_income_yoy != null && s.op_income_yoy >= 100,
     opgtrev: s => s.op_income_yoy != null && s.revenue_yoy != null && s.op_income_yoy > s.revenue_yoy,
     opm10:   s => s.opm != null && s.opm >= 10,
