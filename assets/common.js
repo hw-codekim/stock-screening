@@ -194,6 +194,17 @@ function renderList(sectors) {
     activeIndex = -1;
 }
 
+// ── 빠른 필터 ─────────────────────────────────────
+const QUICK_FILTER_PREDICATES = {
+    op100:   s => s.op_income_yoy != null && s.op_income_yoy >= 100,
+    opgtrev: s => s.op_income_yoy != null && s.revenue_yoy != null && s.op_income_yoy > s.revenue_yoy,
+    opm10:   s => s.opm != null && s.opm >= 10,
+    opm20:   s => s.opm != null && s.opm >= 20,
+    mdd10:   s => s.mdd != null && s.mdd >= -10,
+    price50: s => s.price_change != null && s.price_change >= 50,
+};
+const TOP_GAINER_COUNT = 30;
+
 // ── 필터 ──────────────────────────────────────────
 function applyFilter() {
     if (!listData) return;
@@ -206,14 +217,26 @@ function applyFilter() {
     const marketVal = document.getElementById("market-filter").value;
     const largeVal  = document.getElementById("large-filter").value;
     const midVal    = document.getElementById("mid-filter").value;
+    const quickVal  = document.getElementById("quick-filter").value;
     const query     = document.getElementById("stock-search").value.trim().toLowerCase();
 
-    const filteredItems = activeItems().filter(s =>
+    let filteredItems = activeItems().filter(s =>
         (!marketVal || s.market === marketVal) &&
         (!largeVal || s.sector_large === largeVal) &&
         (!midVal || s.sector_mid === midVal) &&
         (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
     );
+
+    // "당일 급등 상위"는 특정 조건이 아니라 순위이므로, 나머지 필터를 통과한 항목 중에서
+    // 등락률 상위 N개만 남긴다 (남은 종목들은 그룹핑 시 기존처럼 시총순으로 다시 정렬됨).
+    if (quickVal === "topgain") {
+        filteredItems = filteredItems
+            .filter(s => s.day_change_rate != null)
+            .sort((a, b) => b.day_change_rate - a.day_change_rate)
+            .slice(0, TOP_GAINER_COUNT);
+    } else if (QUICK_FILTER_PREDICATES[quickVal]) {
+        filteredItems = filteredItems.filter(QUICK_FILTER_PREDICATES[quickVal]);
+    }
 
     renderList(groupBySector(filteredItems));
 }
@@ -510,6 +533,7 @@ async function loadStockCharts(code, detail) {
 document.getElementById("market-filter").addEventListener("change", applyFilter);
 document.getElementById("large-filter").addEventListener("change", onLargeFilterChange);
 document.getElementById("mid-filter").addEventListener("change", applyFilter);
+document.getElementById("quick-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
 document.getElementById("unreported-toggle").addEventListener("change", onUnreportedToggleChange);
 
