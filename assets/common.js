@@ -25,6 +25,13 @@ function stripMidPrefix(mid) {
     if (!mid || !mid.includes("_")) return mid;
     return mid.split("_").slice(1).join("_");
 }
+// 데이터 기준 시간대(KST)로 "오늘" 날짜를 구한다. list.json의 report_date도
+// 서버(KST)에서 생성되므로, 브라우저 로컬 시간대와 무관하게 이 기준으로 비교해야
+// "하루 지나면 하이라이트가 사라진다"는 조건이 정확히 맞아떨어진다.
+function todayKST() {
+    return new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Seoul" });
+}
+const TODAY_KST = todayKST();
 
 // ── 상태 ──────────────────────────────────────────
 let listData = null;         // list.json 원본
@@ -158,9 +165,9 @@ function renderList(sectors) {
     listBody.innerHTML = sectors.map(g => `
         <div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>
         ${g.items.map((s, i) => `
-        <div class="sr-row" data-code="${s.code}">
+        <div class="sr-row${s.report_date === TODAY_KST ? " sr-row-today" : ""}" data-code="${s.code}">
             <span class="sr-arrow">▶</span>
-            <span class="sr-name">${i + 1}. ${s.name}</span>
+            <span class="sr-name">${i + 1}. ${s.name}${s.report_date === TODAY_KST ? '<span class="new-badge">NEW</span>' : ""}</span>
             <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
             <span class="sr-market" data-label="시장">${s.market || "-"}</span>
             <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>

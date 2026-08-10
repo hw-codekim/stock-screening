@@ -89,6 +89,20 @@ body {
 .unreported-noclick .sr-row { cursor: default; }
 .unreported-noclick .sr-row:hover { background: none; }
 .unreported-noclick .sr-arrow { visibility: hidden; }
+.sr-row-today { background: #FFF8E6; }
+.sr-row-today:hover { background: #FFF1CC; }
+.sr-row-today.active { background: #FFEFC2; }
+.new-badge {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #E8702A;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    vertical-align: middle;
+}
 .sr-arrow { flex: 0 0 14px; color: #14315C; font-size: 11px; text-align: center; }
 .sr-name {
     flex: 2 1 160px; font-weight: 500; color: #14213D;
