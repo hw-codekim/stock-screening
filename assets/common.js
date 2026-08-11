@@ -221,7 +221,7 @@ function renderList(sectors) {
     listBody.innerHTML = sectors.map(g => `
         ${g.sector != null ? `<div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>` : ""}
         ${g.items.map((s, i) => `
-        <div class="sr-row${s.report_date === TODAY_KST ? " sr-row-today" : ""}" data-code="${s.code}">
+        <div class="sr-row${s.report_date === TODAY_KST ? " sr-row-today" : ""}" data-code="${s.code}" data-name="${s.name}">
             <span class="sr-arrow">▶</span>
             <span class="sr-name">${i + 1}. ${s.name}${s.report_date === TODAY_KST ? '<span class="new-badge">NEW</span>' : ""}</span>
             <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
@@ -379,13 +379,19 @@ function disposeRowCharts(code) {
 // 차트 영역(canvas/echarts 컨테이너)은 실제로 펼칠 때만 DOM에 생성한다.
 // 2500개가 넘는 행 전체에 미리 깔아두면 빈 컨테이너만으로도 문서 전체 노드 수가
 // 크게 늘어나 echarts.init() 등이 강제로 유발하는 레이아웃 계산 비용이 커진다.
-function detailMarkup(code) {
+function detailMarkup(code, name) {
     return `
         <div class="screen-chart-status">차트 불러오는 중...</div>
         <div class="screen-chart-wrap">
             <div class="screen-chart-row">
-                <div class="graph-wrap"><canvas id="chart-opm-${code}"></canvas></div>
-                <div class="graph-wrap"><div id="chart-price-${code}" style="height:260px;"></div></div>
+                <div class="graph-wrap">
+                    <div class="graph-title">${name} · 매출/OPM</div>
+                    <canvas id="chart-opm-${code}"></canvas>
+                </div>
+                <div class="graph-wrap">
+                    <div class="graph-title">${name} · 주가</div>
+                    <div id="chart-price-${code}" style="height:260px;"></div>
+                </div>
             </div>
         </div>
     `;
@@ -418,7 +424,7 @@ function openRow(index) {
         detail.style.display = "block";
         if (!detail.dataset.built) {
             detail.dataset.built = "1";
-            detail.innerHTML = detailMarkup(row.dataset.code);
+            detail.innerHTML = detailMarkup(row.dataset.code, row.dataset.name);
             detail.dataset.loaded = "1";
             loadStockCharts(row.dataset.code, detail);
         } else if (!detail.dataset.loaded) {

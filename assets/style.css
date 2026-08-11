@@ -176,6 +176,10 @@ body {
     overflow: hidden;
 }
 .graph-wrap canvas { height: 260px !important; }
+.graph-title {
+    font-size: 12px; font-weight: 700; color: #14315C;
+    margin-bottom: 8px; text-align: center;
+}
 
 .placeholder { color: #999; font-size: 0.85rem; padding: 24px; text-align: center; }
 
