@@ -16,8 +16,18 @@ body {
 }
 .site-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
 .site-header .sub { font-size: 0.75rem; color: #9FB3D1; margin-top: 2px; }
-.site-header .sub .nav-link { color: #9FB3D1; }
-.site-header .sub .nav-link:hover { color: #fff; }
+
+.header-btn {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #14315C;
+    background: #fff;
+    padding: 6px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.header-btn:hover { background: #D7E0EC; }
 
 .visitor-badge {
     display: flex; align-items: center; gap: 6px;
