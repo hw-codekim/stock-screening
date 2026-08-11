@@ -39,9 +39,16 @@ function adrColor(v) {
 }
 // 중분류가 "대분류_세부명"처럼 앞에 상위 분류를 접두어로 달고 있으면(예: 반도체_PCB),
 // 같은 대분류 그룹 안에서는 중복 정보라 잘리기 쉬우므로 접두어를 떼고 세부명만 보여준다.
+// 중분류 데이터 중 "게임_KOSDAQ"/"게임_KOSPI"처럼 실제 업종이 아니라
+// 시장명을 세부명 자리에 그대로 넣어둔 경우가 있음(sector_info 데이터 이슈).
+// 이런 경우는 접두어를 떼면 "KOSDAQ"만 남아 의미가 없으므로, 대분류 이름을 그대로 보여준다.
+const MID_PSEUDO_SUFFIXES = new Set(["KOSPI", "KOSDAQ"]);
 function stripMidPrefix(mid) {
     if (!mid || !mid.includes("_")) return mid;
-    return mid.split("_").slice(1).join("_");
+    const [prefix, ...rest] = mid.split("_");
+    const suffix = rest.join("_");
+    if (MID_PSEUDO_SUFFIXES.has(suffix)) return prefix;
+    return suffix;
 }
 // 데이터 기준 시간대(KST)로 "오늘" 날짜를 구한다. list.json의 report_date도
 // 서버(KST)에서 생성되므로, 브라우저 로컬 시간대와 무관하게 이 기준으로 비교해야
