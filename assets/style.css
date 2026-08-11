@@ -108,6 +108,11 @@ body {
     position: sticky;
     top: 0;
 }
+.sr-header .sortable { cursor: pointer; user-select: none; }
+.sr-header .sortable:hover { color: #14315C; }
+.sr-header .sortable.sort-active { color: #14315C; }
+.sr-header .sortable.sort-asc::after  { content: " \25B2"; font-size: 9px; }
+.sr-header .sortable.sort-desc::after { content: " \25BC"; font-size: 9px; }
 .sr-row {
     border-bottom: 1px solid #EEF1F6;
     cursor: pointer;

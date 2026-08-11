@@ -212,7 +212,7 @@ function renderList(sectors) {
     }
 
     listBody.innerHTML = sectors.map(g => `
-        <div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>
+        ${g.sector != null ? `<div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>` : ""}
         ${g.items.map((s, i) => `
         <div class="sr-row${s.report_date === TODAY_KST ? " sr-row-today" : ""}" data-code="${s.code}">
             <span class="sr-arrow">▶</span>
@@ -284,7 +284,58 @@ function applyFilter() {
         filteredItems = filteredItems.filter(QUICK_FILTER_PREDICATES[quickVal]);
     }
 
-    renderList(groupBySector(filteredItems));
+    // 컬럼 정렬이 켜져 있으면 대분류 그룹핑 없이 전체를 그 기준으로 한 줄로 정렬해서 보여주고,
+    // 꺼져 있으면 기존처럼 대분류 > 중분류 > 시총순 그룹 구조로 보여준다.
+    if (sortField) {
+        renderList([{ sector: null, items: sortItems(filteredItems, sortField, sortDir) }]);
+    } else {
+        renderList(groupBySector(filteredItems));
+    }
+}
+
+// ── 컬럼 정렬 ─────────────────────────────────────
+const TEXT_SORT_FIELDS = new Set(["name", "sector_mid", "market"]);
+let sortField = null;
+let sortDir = null; // "asc" | "desc"
+
+function sortItems(items, field, dir) {
+    const mult = dir === "asc" ? 1 : -1;
+    return items.slice().sort((a, b) => {
+        const av = a[field], bv = b[field];
+        if (av == null && bv == null) return 0;
+        if (av == null) return 1;  // null은 정렬 방향과 무관하게 항상 맨 뒤
+        if (bv == null) return -1;
+        if (typeof av === "string") return av.localeCompare(bv) * mult;
+        return (av - bv) * mult;
+    });
+}
+
+function updateSortHeaderUI() {
+    document.querySelectorAll(".sr-header .sortable").forEach(el => {
+        el.classList.remove("sort-active", "sort-asc", "sort-desc");
+        if (el.dataset.sort === sortField) {
+            el.classList.add("sort-active", sortDir === "asc" ? "sort-asc" : "sort-desc");
+        }
+    });
+}
+
+function onSortHeaderClick(e) {
+    const field = e.currentTarget.dataset.sort;
+    const defaultDir = TEXT_SORT_FIELDS.has(field) ? "asc" : "desc";
+    const oppositeDir = defaultDir === "asc" ? "desc" : "asc";
+
+    if (sortField !== field) {
+        sortField = field;
+        sortDir = defaultDir;
+    } else if (sortDir === defaultDir) {
+        sortDir = oppositeDir;
+    } else {
+        sortField = null;
+        sortDir = null;
+    }
+
+    updateSortHeaderUI();
+    applyFilter();
 }
 
 function onLargeFilterChange() {
@@ -582,6 +633,7 @@ document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("quick-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
 document.getElementById("unreported-toggle").addEventListener("change", onUnreportedToggleChange);
+document.querySelectorAll(".sr-header .sortable").forEach(el => el.addEventListener("click", onSortHeaderClick));
 
 const scrollTopBtn = document.getElementById("scroll-top-btn");
 scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
