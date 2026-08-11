@@ -390,11 +390,15 @@ function detailMarkup(code, name) {
                 </div>
                 <div class="graph-wrap">
                     <div class="graph-title">${name} · 주가</div>
-                    <div id="chart-price-${code}" style="height:260px;"></div>
+                    <div id="chart-price-${code}" class="price-chart-container"></div>
                 </div>
             </div>
         </div>
     `;
+}
+
+function isMobileView() {
+    return window.innerWidth <= 700;
 }
 
 // 아코디언은 한 번에 하나만 열리므로, 매번 전체 행을 훑지 않고
@@ -537,34 +541,46 @@ async function loadStockCharts(code, detail) {
             p.high.forEach((v, i) => { if (v > p.high[maxHighIdx]) maxHighIdx = i; });
             const maxHigh = p.high[maxHighIdx];
 
-            const priceDiv = document.getElementById(`chart-price-${code}`);
-            setTimeout(() => {
-            if (detail.dataset.loadToken != myToken) return; // 그 사이 카드가 닫혔거나 다시 열림 - 폐기
-            const priceChart = echarts.init(priceDiv);
-            chartInstances[priceDiv.id] = priceChart;
-            priceChart.setOption({
+            const tooltipFormatter = (params) => {
+                if (!params || !params.length) return "";
+                const idx = params[0].dataIndex;
+                const close = p.close[idx];
+                const prevClose = idx > 0 ? p.close[idx - 1] : close;
+                const changeRate = prevClose ? (close - prevClose) / prevClose * 100 : 0;
+                const color = changeRate >= 0 ? "#B4342A" : "#2E5FA3";
+                return `${p.dates[idx]}<br/>` +
+                    `종가: ${close.toLocaleString()}<br/>` +
+                    `등락률: <span style="color:${color};font-weight:600;">${changeRate >= 0 ? "+" : ""}${changeRate.toFixed(2)}%</span><br/>` +
+                    `거래량: ${(p.volume[idx] || 0).toLocaleString()}`;
+            };
+
+            // 모바일에서는 캔들+거래량+MA+데이터줌까지 다 보여주면 좁은 화면에 짓눌려서
+            // 봉이 찌그러지거나 축이 겹치는 문제가 있었음 - 종가 라인 하나로 단순화해서 보여준다.
+            const mobileOption = {
+                animation: false,
+                grid: { left: 45, right: 15, top: 20, bottom: 36 },
+                tooltip: { trigger: "axis", textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
+                dataZoom: [{ type: "inside", start: 60, end: 100 }],
+                xAxis: {
+                    type: "category", data: p.dates, boundaryGap: false,
+                    axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
+                },
+                yAxis: { scale: true, axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() } },
+                series: [{
+                    name: "종가", type: "line", data: p.close,
+                    smooth: true, symbol: "none",
+                    lineStyle: { color: "#B4342A", width: 2 },
+                    areaStyle: { color: "rgba(180,52,42,0.08)" },
+                }],
+            };
+
+            const desktopOption = {
                 animation: false,
                 grid: [
                     { left: 15, right: 55, top: "16%", bottom: "26%" },
                     { left: 15, right: 55, top: "78%", bottom: "6%" },
                 ],
-                tooltip: {
-                    trigger: "axis",
-                    axisPointer: { type: "cross" },
-                    textStyle: { fontSize: 11 },
-                    formatter: (params) => {
-                        if (!params || !params.length) return "";
-                        const idx = params[0].dataIndex;
-                        const close = p.close[idx];
-                        const prevClose = idx > 0 ? p.close[idx - 1] : close;
-                        const changeRate = prevClose ? (close - prevClose) / prevClose * 100 : 0;
-                        const color = changeRate >= 0 ? "#B4342A" : "#2E5FA3";
-                        return `${p.dates[idx]}<br/>` +
-                            `종가: ${close.toLocaleString()}<br/>` +
-                            `등락률: <span style="color:${color};font-weight:600;">${changeRate >= 0 ? "+" : ""}${changeRate.toFixed(2)}%</span><br/>` +
-                            `거래량: ${(p.volume[idx] || 0).toLocaleString()}`;
-                    },
-                },
+                tooltip: { trigger: "axis", axisPointer: { type: "cross" }, textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
                 dataZoom: [
                     { type: "inside", xAxisIndex: [0, 1], start: 60, end: 100 },
                 ],
@@ -630,7 +646,14 @@ async function loadStockCharts(code, detail) {
                         itemStyle: { color: (pr) => volColors[pr.dataIndex] },
                     },
                 ],
-            });
+            };
+
+            const priceDiv = document.getElementById(`chart-price-${code}`);
+            setTimeout(() => {
+            if (detail.dataset.loadToken != myToken) return; // 그 사이 카드가 닫혔거나 다시 열림 - 폐기
+            const priceChart = echarts.init(priceDiv);
+            chartInstances[priceDiv.id] = priceChart;
+            priceChart.setOption(isMobileView() ? mobileOption : desktopOption);
             priceChart.resize();
             }, 0);
         }

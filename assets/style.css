@@ -176,6 +176,7 @@ body {
     overflow: hidden;
 }
 .graph-wrap canvas { height: 260px !important; }
+.price-chart-container { height: 260px; }
 .graph-title {
     font-size: 12px; font-weight: 700; color: #14315C;
     margin-bottom: 8px; text-align: center;
@@ -241,4 +242,7 @@ body {
     }
 
     .screen-chart-row { flex-direction: column; }
+    .graph-wrap { padding: 8px; }
+    .graph-wrap canvas { height: 180px !important; }
+    .price-chart-container { height: 200px; }
 }
