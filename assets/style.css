@@ -17,17 +17,27 @@ body {
 .site-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
 .site-header .sub { font-size: 0.75rem; color: #9FB3D1; margin-top: 2px; }
 
+/* 링크의 방문(visited) 상태는 브라우저 기본 스타일(a:visited)이 클래스 선택자보다
+   우선순위가 높아서 color가 무시되기 쉽다 - :link/:visited를 명시해서 클릭 전후
+   색이 안 바뀌게 고정한다. */
 .header-btn {
+    display: inline-block;
     font-size: 1.2rem;
     font-weight: 700;
-    color: #14315C;
-    background: #fff;
+    background: #2F5FA3;
     padding: 6px 18px;
     border-radius: 6px;
     text-decoration: none;
     white-space: nowrap;
 }
-.header-btn:hover { background: #D7E0EC; }
+.header-btn,
+.header-btn:link,
+.header-btn:visited,
+.header-btn:hover,
+.header-btn:active {
+    color: #fff;
+}
+.header-btn:hover { background: #3A6FBA; }
 
 .visitor-badge {
     display: flex; align-items: center; gap: 6px;
