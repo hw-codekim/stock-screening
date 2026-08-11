@@ -90,7 +90,8 @@ body {
     background: #fff;
     border: 1px solid #D7E0EC;
     border-radius: 4px;
-    overflow: hidden;
+    /* overflow:hidden을 쓰면 이 박스가 sticky의 기준 스크롤 컨테이너가 돼버려서
+       헤더 고정이 깨지므로 대신 헤더 자체 모서리만 둥글게 처리한다. */
 }
 
 .sr-header, .sr-row {
@@ -105,8 +106,10 @@ body {
     color: #888;
     background: #FAFBFD;
     border-bottom: 1px solid #D7E0EC;
+    border-radius: 4px 4px 0 0;
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 .sr-header .sortable { cursor: pointer; user-select: none; }
 .sr-header .sortable:hover { color: #14315C; }
