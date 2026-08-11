@@ -1,0 +1,51 @@
+.back-link {
+    color: #D7E0EC;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+.back-link:hover { color: #fff; text-decoration: underline; }
+
+.uc-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 14px;
+}
+
+.uc-sector { margin-bottom: 28px; }
+.uc-sector-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #14315C;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D7E0EC;
+}
+.uc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+}
+.uc-card {
+    background: #ffffff;
+    border: 1px solid #D7E0EC;
+    border-radius: 3px;
+    padding: 8px;
+}
+.uc-card-label {
+    font-size: 0.82rem;
+    color: #14213D;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+.uc-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    background: #F5F7FA;
+    min-height: 120px;
+}
+
+@media (max-width: 700px) {
+    .uc-grid { grid-template-columns: 1fr; }
+}
