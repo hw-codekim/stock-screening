@@ -141,6 +141,10 @@ body {
 .sr-row {
     border-bottom: 1px solid #EEF1F6;
     cursor: pointer;
+    /* 화면 밖 행은 렌더링(레이아웃/페인트)을 건너뛰어 종목수가 많아져도 반응성을 유지한다.
+       contain-intrinsic-size는 처음 측정 전까지 쓸 스크롤 높이 추정값(auto는 실제 측정 후 그 값을 기억). */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 31px;
 }
 .sr-row:hover { background: #F5F8FC; }
 .sr-row.active { background: #EDF2F8; }
@@ -241,6 +245,7 @@ body {
         grid-template-columns: 1fr 1fr;
         gap: 4px 10px;
         padding: 10px 12px;
+        contain-intrinsic-size: auto 174px;
     }
     .sr-row .sr-arrow { display: none; }
     .sr-row .sr-name {
