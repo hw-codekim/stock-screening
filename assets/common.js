@@ -256,7 +256,6 @@ const QUICK_FILTER_PREDICATES = {
     mdd10:   s => s.mdd != null && s.mdd >= -10,
     price50: s => s.price_change != null && s.price_change >= 50,
 };
-const TOP_GAINER_COUNT = 30;
 
 // ── 필터 ──────────────────────────────────────────
 function applyFilter() {
@@ -280,14 +279,7 @@ function applyFilter() {
         (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
     );
 
-    // "당일 급등 상위"는 특정 조건이 아니라 순위이므로, 나머지 필터를 통과한 항목 중에서
-    // 등락률 상위 N개만 남긴다 (남은 종목들은 그룹핑 시 기존처럼 시총순으로 다시 정렬됨).
-    if (quickVal === "topgain") {
-        filteredItems = filteredItems
-            .filter(s => s.day_change_rate != null)
-            .sort((a, b) => b.day_change_rate - a.day_change_rate)
-            .slice(0, TOP_GAINER_COUNT);
-    } else if (QUICK_FILTER_PREDICATES[quickVal]) {
+    if (QUICK_FILTER_PREDICATES[quickVal]) {
         filteredItems = filteredItems.filter(QUICK_FILTER_PREDICATES[quickVal]);
     }
 
