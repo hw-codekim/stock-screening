@@ -12,7 +12,8 @@ body {
     justify-content: space-between;
     background: #14315C;
     color: #fff;
-    padding: 16px 24px;
+    padding: 18px 24px;
+    box-shadow: 0 2px 8px rgba(20, 33, 61, 0.15);
 }
 .site-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
 .site-header .sub { font-size: 0.75rem; color: #9FB3D1; margin-top: 2px; }
@@ -49,15 +50,17 @@ body {
 .site-nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 32px;
 }
 .site-nav a {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
     text-decoration: none;
     white-space: nowrap;
-    padding-bottom: 2px;
+    padding-bottom: 6px;
     border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 .site-nav a,
 .site-nav a:link,
@@ -70,7 +73,8 @@ body {
 }
 .site-nav a.active {
     color: #fff;
-    border-bottom: 2px solid #fff;
+    font-weight: 700;
+    border-bottom: 2px solid #5B9BFF;
 }
 
 .visitor-badge {
@@ -88,14 +92,30 @@ body {
 .container { max-width: 1100px; margin: 0 auto; padding: 20px 16px 60px; }
 
 .page-note {
-    background: #EDF2F8;
+    background: linear-gradient(135deg, #EAF0FA 0%, #F7FAFF 100%);
     border: 1px solid #D7E0EC;
-    border-radius: 4px;
-    padding: 12px 16px;
-    margin-bottom: 14px;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+}
+.page-note-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #2F5FA3;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.page-note-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #14213D;
+    margin-bottom: 10px;
+}
+.page-note-body {
     font-size: 0.82rem;
     line-height: 1.6;
-    color: #14213D;
+    color: #3A4A63;
 }
 
 .search-bar {
