@@ -196,7 +196,7 @@ function renderForwardTable() {
             <th colspan="2" class="fw-group-border">OPM(%)</th>
             <th colspan="2" class="fw-group-border">영업이익YoY(%)</th>
             <th rowspan="2" class="fw-group-border">MDD</th>
-            <th rowspan="2">배당</th>
+            <th rowspan="2" class="fw-group-border">배당</th>
         </tr>
         <tr>
             <th ${sortAttr("qlast")} class="fw-group-border">${lastQLabel}</th>
@@ -231,12 +231,12 @@ function renderForwardTable() {
             <td>${fwFmtNum(aArr[1])}</td>
             <td class="fw-group-border">${fwFmtPer((r.per || [])[0])}</td>
             <td>${fwFmtPer((r.per || [])[1])}</td>
-            <td style="${fwOpmStyle((r.opm || [])[0])}">${fwFmtPct1((r.opm || [])[0])}</td>
+            <td class="fw-group-border" style="${fwOpmStyle((r.opm || [])[0])}">${fwFmtPct1((r.opm || [])[0])}</td>
             <td style="${fwOpmStyle((r.opm || [])[1])}">${fwFmtPct1((r.opm || [])[1])}</td>
-            <td style="${fwYoyStyle((r.yoy || [])[0])}">${fwFmtSigned((r.yoy || [])[0], "%")}</td>
+            <td class="fw-group-border" style="${fwYoyStyle((r.yoy || [])[0])}">${fwFmtSigned((r.yoy || [])[0], "%")}</td>
             <td style="${fwYoyStyle((r.yoy || [])[1])}">${fwFmtSigned((r.yoy || [])[1], "%")}</td>
             <td class="fw-group-border" style="${fwMddStyle(r.mdd)}">${fwFmtPct(r.mdd)}</td>
-            <td>${fwFmtPct1(r.dvr)}</td>
+            <td class="fw-group-border">${fwFmtPct1(r.dvr)}</td>
         </tr>`;
     };
 

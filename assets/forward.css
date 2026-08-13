@@ -10,7 +10,7 @@
 }
 .fw-table th, .fw-table td {
     padding: 4px 2px;
-    text-align: right;
+    text-align: center;
     font-variant-numeric: tabular-nums;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -31,8 +31,10 @@
 .fw-table tbody tr:hover { background: #F5F8FC; }
 .fw-table td.fw-name-cell, .fw-table th.fw-name-th { text-align: left; }
 .fw-table td.fw-name-cell { font-weight: 600; color: #14315C; }
-.fw-sector-cell { text-align: left; font-size: 10.5px; color: #666; }
+.fw-sector-cell { font-size: 10.5px; color: #666; }
+/* 헤더 그룹(지표/PER/OPM/YoY/MDD/배당) 영역 경계를 본문까지 세로선으로 이어서 그린다 */
 .fw-group-border { border-left: 1px solid #d9dee6; }
+.fw-table tbody td.fw-group-border { border-left: 1px solid #EEF1F6; }
 .fw-prelim { background: #FFF6D6; }
 .fw-th-sortable { cursor: pointer; user-select: none; }
 .fw-th-sortable:hover { color: #14315C; }
@@ -70,11 +72,12 @@
 .fw-rank-box th {
     padding: 6px 8px; color: #888; font-weight: 400;
     border-bottom: 1px solid #D7E0EC; background: #F5F8FC;
-    text-align: right;
+    text-align: center;
 }
-.fw-rank-box th:first-child, .fw-rank-box td:first-child { text-align: center; width: 24px; }
+.fw-rank-box th:first-child, .fw-rank-box td:first-child { width: 24px; }
 .fw-rank-box th:nth-child(2), .fw-rank-box td:nth-child(2) { text-align: left; }
-.fw-rank-box td { padding: 6px 8px; text-align: right; border-bottom: 1px solid #EEF1F6; }
+.fw-rank-box th:nth-child(3), .fw-rank-box td:nth-child(3) { border-left: 1px solid #EEF1F6; }
+.fw-rank-box td { padding: 6px 8px; text-align: center; border-bottom: 1px solid #EEF1F6; }
 
 .fw-section-title {
     font-size: 1rem; font-weight: 700; color: #14213D;
