@@ -1,14 +1,20 @@
-.fw-table-wrap { overflow-x: auto; background: #fff; border: 1px solid #D7E0EC; border-radius: 4px; }
+/* 헤더/본문 모두 좌우 스크롤 없이 한 화면에 들어오도록 컬럼 수를 최소화하고 폭을 좁게 잡는다 */
 .fw-table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
-    font-size: 12px;
-    white-space: nowrap;
+    font-size: 11.5px;
+    background: #fff;
+    border: 1px solid #D7E0EC;
+    border-radius: 4px;
 }
 .fw-table th, .fw-table td {
-    padding: 7px 10px;
+    padding: 6px 4px;
     text-align: right;
     font-variant-numeric: tabular-nums;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .fw-table thead th {
     font-weight: 600;
@@ -19,14 +25,11 @@
     top: 0;
     z-index: 5;
 }
-.fw-table thead tr:first-child th { top: 0; }
-.fw-table thead tr:last-child th { top: 29px; }
 .fw-table tbody tr:not(:last-child) td { border-bottom: 1px solid #EEF1F6; }
 .fw-table tbody tr:hover { background: #F5F8FC; }
 .fw-table td.fw-name-cell, .fw-table th.fw-name-th { text-align: left; }
 .fw-table td.fw-name-cell { font-weight: 600; color: #14315C; }
-.fw-code { font-size: 10px; color: #aaa; font-weight: 400; margin-left: 4px; }
-.fw-sector-cell { text-align: left; font-size: 11px; color: #666; }
+.fw-sector-cell { text-align: left; font-size: 10.5px; color: #666; }
 .fw-group-border { border-left: 1px solid #d9dee6; }
 .fw-prelim { background: #FFF6D6; }
 .fw-th-sortable { cursor: pointer; user-select: none; }
@@ -34,6 +37,28 @@
 .fw-th-sortable.sort-active { color: #14315C; }
 .fw-th-sortable.sort-asc::after  { content: " \25B2"; font-size: 8px; }
 .fw-th-sortable.sort-desc::after { content: " \25BC"; font-size: 8px; }
+
+.fw-group-title-row td {
+    font-size: 12px; font-weight: 700; color: #14315C;
+    background: #F5F8FC; padding: 6px 8px; border-bottom: 1px solid #D7E0EC;
+    text-align: left;
+}
+
+/* table-layout:fixed 기준 14개 컬럼 폭 배분 - 좌우 스크롤 없이 한 화면에 들어오도록 */
+.fw-table th:nth-child(1),  .fw-table td:nth-child(1)  { width: 15%; }
+.fw-table th:nth-child(2),  .fw-table td:nth-child(2)  { width: 8%; }
+.fw-table th:nth-child(3),  .fw-table td:nth-child(3)  { width: 7%; }
+.fw-table th:nth-child(4),  .fw-table td:nth-child(4)  { width: 8%; }
+.fw-table th:nth-child(5),  .fw-table td:nth-child(5)  { width: 8%; }
+.fw-table th:nth-child(6),  .fw-table td:nth-child(6)  { width: 8%; }
+.fw-table th:nth-child(7),  .fw-table td:nth-child(7)  { width: 7%; }
+.fw-table th:nth-child(8),  .fw-table td:nth-child(8)  { width: 7%; }
+.fw-table th:nth-child(9),  .fw-table td:nth-child(9)  { width: 6%; }
+.fw-table th:nth-child(10), .fw-table td:nth-child(10) { width: 6%; }
+.fw-table th:nth-child(11), .fw-table td:nth-child(11) { width: 6.5%; }
+.fw-table th:nth-child(12), .fw-table td:nth-child(12) { width: 6.5%; }
+.fw-table th:nth-child(13), .fw-table td:nth-child(13) { width: 6%; }
+.fw-table th:nth-child(14), .fw-table td:nth-child(14) { width: 6%; }
 
 .fw-count-line { font-size: 0.8rem; color: #14213D; margin-bottom: 10px; }
 

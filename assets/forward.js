@@ -1,5 +1,5 @@
 let fwData = null;
-let fwSort = { key: "mktcap", dir: "desc" };
+let fwSort = null; // null이면 대분류로 묶어서 표시, 값이 있으면 헤더 클릭으로 전체를 그 컬럼 기준 정렬
 
 function fwFmtMktcap(v) { return v == null ? "-" : v.toLocaleString() + "억"; }
 function fwFmtNum(v) { return v == null ? "-" : Math.round(v).toLocaleString(); }
@@ -81,43 +81,66 @@ function populateMidFilter() {
     });
 }
 
-function getFilteredSortedRows() {
+function getFilteredRows() {
     const market = document.getElementById("fw-market-filter").value;
     const large  = document.getElementById("fw-large-filter").value;
     const mid    = document.getElementById("fw-mid-filter").value;
     const query  = document.getElementById("fw-stock-search").value.trim().toLowerCase();
 
-    let rows = (fwData.rows || []).filter(r => {
+    return (fwData.rows || []).filter(r => {
         if (market && r.market !== market) return false;
         if (large && r.sector_large !== large) return false;
         if (mid && r.sector_mid !== mid) return false;
-        if (query && !(r.name.toLowerCase().includes(query) || r.code.includes(query))) return false;
+        if (query && !r.name.toLowerCase().includes(query)) return false;
         return true;
     });
+}
 
-    const aEstLen = (fwData.annual_estimate_periods || []).length;
-    const keyFns = {
-        mktcap: r => r.mktcap,
-        per0:   r => aEstLen > 0 ? r.per[0] : null,
-        per1:   r => aEstLen > 1 ? r.per[1] : null,
-        yoy0:   r => aEstLen > 0 ? r.yoy[0] : null,
-        yoy1:   r => aEstLen > 1 ? r.yoy[1] : null,
-        mdd:    r => r.mdd,
-        dvr:    r => r.dvr,
-    };
-    const fn = keyFns[fwSort.key] || keyFns.mktcap;
-    rows.sort((a, b) => {
+// 대분류 > (대분류 내 시가총액 내림차순)로 묶는다. 2Q26실적 페이지의 groupBySector와 같은 방식.
+function groupByLarge(rows) {
+    const map = {};
+    rows.forEach(r => {
+        const key = r.sector_large || "미분류";
+        (map[key] = map[key] || []).push(r);
+    });
+    const groups = Object.keys(map).map(large => {
+        const items = map[large].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+        const total = items.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+        return { large, items, total };
+    });
+    groups.sort((a, b) => b.total - a.total);
+    return groups;
+}
+
+const SORT_KEY_FNS = {
+    mktcap: r => r.mktcap,
+    qlast:  r => { const arr = r._qArr || []; return arr.length ? arr[arr.length - 1] : null; },
+    a26:    r => { const arr = r._aArr || []; return arr.length > 0 ? arr[0] : null; },
+    a27:    r => { const arr = r._aArr || []; return arr.length > 1 ? arr[1] : null; },
+    per0:   r => (r.per || [])[0],
+    per1:   r => (r.per || [])[1],
+    opm0:   r => (r.opm || [])[0],
+    opm1:   r => (r.opm || [])[1],
+    yoy0:   r => (r.yoy || [])[0],
+    yoy1:   r => (r.yoy || [])[1],
+    mdd:    r => r.mdd,
+    dvr:    r => r.dvr,
+};
+
+function sortRows(rows, key, dir) {
+    const fn = SORT_KEY_FNS[key] || SORT_KEY_FNS.mktcap;
+    const sorted = rows.slice().sort((a, b) => {
         const va = fn(a), vb = fn(b);
         if (va == null && vb == null) return 0;
         if (va == null) return 1;
         if (vb == null) return -1;
-        return fwSort.dir === "asc" ? va - vb : vb - va;
+        return dir === "asc" ? va - vb : vb - va;
     });
-    return rows;
+    return sorted;
 }
 
 function setSort(key) {
-    if (fwSort.key === key) {
+    if (fwSort && fwSort.key === key) {
         fwSort.dir = fwSort.dir === "desc" ? "asc" : "desc";
     } else {
         fwSort = { key, dir: "desc" };
@@ -132,66 +155,79 @@ function renderForwardTable() {
     const aKey = FW_METRIC_AKEY[metric];
 
     const qPeriods = fwData.quarter_periods || [];
-    const aPeriods = fwData.annual_periods || [];
     const aEst     = fwData.annual_estimate_periods || [];
+    const lastQ    = qPeriods[qPeriods.length - 1];
 
-    const rows = getFilteredSortedRows();
+    let rows = getFilteredRows();
+    // 정렬 키 계산용으로 현재 선택된 지표의 최근분기/26E 값을 임시로 캐시
+    rows.forEach(r => {
+        r._qArr = r[qKey] || [];
+        r._aArr = r[aKey] || [];
+    });
+
     document.getElementById("fw-count-line").textContent = `${rows.length}개 종목`;
 
-    const gb = 'class="fw-group-border"';
-    const sortCls = k => `fw-th-sortable${fwSort.key === k ? " sort-active " + (fwSort.dir === "asc" ? "sort-asc" : "sort-desc") : ""}`;
+    const sortCls = k => `fw-th-sortable${fwSort && fwSort.key === k ? " sort-active " + (fwSort.dir === "asc" ? "sort-asc" : "sort-desc") : ""}`;
+    const sortAttr = k => `class="${sortCls(k)}" onclick="setSort('${k}')"`;
 
     const thead = document.getElementById("fw-thead");
     thead.innerHTML = `
         <tr>
-            <th rowspan="2" class="fw-name-th">종목</th>
-            <th rowspan="2" class="fw-sector-cell">섹터</th>
-            <th rowspan="2" class="${sortCls("mktcap")}" onclick="setSort('mktcap')">시가총액</th>
-            ${qPeriods.length ? `<th colspan="${qPeriods.length}" class="fw-group-border">${metricLabel} (분기,억)</th>` : ""}
-            ${qPeriods.length ? `<th colspan="${qPeriods.length}" class="fw-group-border">OPM (분기,%)</th>` : ""}
-            ${aPeriods.length ? `<th colspan="${aPeriods.length}" class="fw-group-border">${metricLabel} (연간,억)</th>` : ""}
-            ${aEst.length ? `<th colspan="${aEst.length}" class="fw-group-border">PER(배)</th>` : ""}
-            ${aEst.length ? `<th colspan="${aEst.length}" class="fw-group-border">OPM(%)</th>` : ""}
-            ${aEst.length ? `<th colspan="${aEst.length}" class="fw-group-border">영업이익YOY(%)</th>` : ""}
-            <th rowspan="2" class="${sortCls("mdd")} fw-group-border" onclick="setSort('mdd')">MDD</th>
-            <th rowspan="2" class="${sortCls("dvr")}" onclick="setSort('dvr')">배당</th>
-        </tr>
-        <tr>
-            ${qPeriods.map((p, i) => `<th class="${i === 0 ? "fw-group-border" : ""}">${fwShortPeriod(p)}</th>`).join("")}
-            ${qPeriods.map((p, i) => `<th class="${i === 0 ? "fw-group-border" : ""}">${fwShortPeriod(p)}</th>`).join("")}
-            ${aPeriods.map((p, i) => `<th class="${i === 0 ? "fw-group-border" : ""}">${fwShortYear(p)}</th>`).join("")}
-            ${aEst.map((p, i) => `<th class="${sortCls("per" + i)}${i === 0 ? " fw-group-border" : ""}" onclick="setSort('per${i}')">${fwShortYear(p)}</th>`).join("")}
-            ${aEst.map((p, i) => `<th class="${i === 0 ? "fw-group-border" : ""}">${fwShortYear(p)}</th>`).join("")}
-            ${aEst.map((p, i) => `<th class="${sortCls("yoy" + i)}${i === 0 ? " fw-group-border" : ""}" onclick="setSort('yoy${i}')">${fwShortYear(p)}</th>`).join("")}
+            <th class="fw-name-th">종목</th>
+            <th class="fw-sector-cell">섹터</th>
+            <th ${sortAttr("mktcap")}>시총</th>
+            <th ${sortAttr("qlast")} class="fw-group-border">${metricLabel}${lastQ ? " " + fwShortPeriod(lastQ) : ""}</th>
+            <th ${sortAttr("a26")}>${metricLabel}${aEst[0] ? " " + fwShortYear(aEst[0]) : "26E"}</th>
+            <th ${sortAttr("a27")}>${metricLabel}${aEst[1] ? " " + fwShortYear(aEst[1]) : "27E"}</th>
+            <th ${sortAttr("per0")} class="fw-group-border">PER26E</th>
+            <th ${sortAttr("per1")}>PER27E</th>
+            <th ${sortAttr("opm0")}>OPM26E</th>
+            <th ${sortAttr("opm1")}>OPM27E</th>
+            <th ${sortAttr("yoy0")}>YoY26E</th>
+            <th ${sortAttr("yoy1")}>YoY27E</th>
+            <th ${sortAttr("mdd")} class="fw-group-border">MDD</th>
+            <th ${sortAttr("dvr")}>배당</th>
         </tr>
     `;
 
     const tbody = document.getElementById("fw-tbody");
     if (!rows.length) {
-        tbody.innerHTML = '<tr><td colspan="20" style="text-align:center;color:#aaa;padding:20px;">데이터 없음</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="14" style="text-align:center;color:#aaa;padding:20px;">데이터 없음</td></tr>';
         return;
     }
 
-    tbody.innerHTML = rows.map(r => {
-        const qVals = r[qKey] || [];
-        const qOpm  = r.quarter_opm || [];
-        const aVals = r[aKey] || [];
+    const rowHtml = r => {
+        const qArr = r._qArr, aArr = r._aArr;
         const status = r.quarter_report_status || [];
+        const lastStatus = status[status.length - 1];
         return `
         <tr>
-            <td class="fw-name-cell">${r.name}<span class="fw-code">${r.code}</span></td>
+            <td class="fw-name-cell">${r.name}</td>
             <td class="fw-sector-cell">${r.sector_mid || "-"}</td>
             <td>${fwFmtMktcap(r.mktcap)}</td>
-            ${qVals.map((v, i) => `<td class="${i === 0 ? "fw-group-border " : ""}${status[i] === "P" ? "fw-prelim" : ""}">${fwFmtNum(v)}</td>`).join("")}
-            ${qOpm.map((v, i) => `<td class="${i === 0 ? "fw-group-border " : ""}${status[i] === "P" ? "fw-prelim " : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
-            ${aVals.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
-            ${(r.per || []).map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtPer(v)}</td>`).join("")}
-            ${(r.opm || []).map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
-            ${(r.yoy || []).map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}" style="${fwYoyStyle(v)}">${fwFmtSigned(v, "%")}</td>`).join("")}
+            <td class="fw-group-border ${lastStatus === "P" ? "fw-prelim" : ""}">${fwFmtNum(qArr[qArr.length - 1])}</td>
+            <td>${fwFmtNum(aArr[0])}</td>
+            <td>${fwFmtNum(aArr[1])}</td>
+            <td class="fw-group-border">${fwFmtPer((r.per || [])[0])}</td>
+            <td>${fwFmtPer((r.per || [])[1])}</td>
+            <td style="${fwOpmStyle((r.opm || [])[0])}">${fwFmtPct1((r.opm || [])[0])}</td>
+            <td style="${fwOpmStyle((r.opm || [])[1])}">${fwFmtPct1((r.opm || [])[1])}</td>
+            <td style="${fwYoyStyle((r.yoy || [])[0])}">${fwFmtSigned((r.yoy || [])[0], "%")}</td>
+            <td style="${fwYoyStyle((r.yoy || [])[1])}">${fwFmtSigned((r.yoy || [])[1], "%")}</td>
             <td class="fw-group-border" style="${fwMddStyle(r.mdd)}">${fwFmtPct(r.mdd)}</td>
             <td>${fwFmtPct1(r.dvr)}</td>
         </tr>`;
-    }).join("");
+    };
+
+    if (fwSort) {
+        tbody.innerHTML = sortRows(rows, fwSort.key, fwSort.dir).map(rowHtml).join("");
+    } else {
+        const groups = groupByLarge(rows);
+        tbody.innerHTML = groups.map(g => `
+            <tr class="fw-group-title-row"><td colspan="14">${g.large} (${g.items.length})</td></tr>
+            ${g.items.map(rowHtml).join("")}
+        `).join("");
+    }
 }
 
 function exportForwardCsv() {
@@ -200,33 +236,31 @@ function exportForwardCsv() {
     const qKey = FW_METRIC_QKEY[metric];
     const aKey = FW_METRIC_AKEY[metric];
     const qPeriods = fwData.quarter_periods || [];
-    const aPeriods = fwData.annual_periods || [];
     const aEst     = fwData.annual_estimate_periods || [];
+    const lastQ    = qPeriods[qPeriods.length - 1];
 
-    const rows = getFilteredSortedRows();
+    let rows = getFilteredRows();
     if (!rows.length) { alert("내보낼 종목이 없습니다."); return; }
+    rows.forEach(r => { r._qArr = r[qKey] || []; r._aArr = r[aKey] || []; });
+    if (fwSort) rows = sortRows(rows, fwSort.key, fwSort.dir);
 
     const header = [
-        "종목명", "종목코드", "시장", "섹터중분류", "시가총액(억)",
-        ...qPeriods.map(p => `${metricLabel}(분기) ${fwShortPeriod(p)}`),
-        ...qPeriods.map(p => `OPM(분기) ${fwShortPeriod(p)}`),
-        ...aPeriods.map(p => `${metricLabel}(연간) ${fwShortYear(p)}`),
-        ...aEst.map(p => `PER ${fwShortYear(p)}`),
-        ...aEst.map(p => `OPM ${fwShortYear(p)}`),
-        ...aEst.map(p => `영업이익YOY ${fwShortYear(p)}`),
-        "MDD", "배당",
+        "종목명", "시장", "대분류", "섹터중분류", "시가총액(억)",
+        `${metricLabel}${lastQ ? " " + fwShortPeriod(lastQ) : ""}`,
+        `${metricLabel}${aEst[0] ? " " + fwShortYear(aEst[0]) : "26E"}`,
+        `${metricLabel}${aEst[1] ? " " + fwShortYear(aEst[1]) : "27E"}`,
+        "PER26E", "PER27E", "OPM26E", "OPM27E", "영업이익YoY26E", "영업이익YoY27E", "MDD", "배당",
     ];
     const raw = v => v == null ? "" : v;
     const lines = [header];
     rows.forEach(r => {
+        const qArr = r._qArr, aArr = r._aArr;
         lines.push([
-            r.name, r.code, r.market, r.sector_mid || "", raw(r.mktcap),
-            ...(r[qKey] || []).map(raw),
-            ...(r.quarter_opm || []).map(raw),
-            ...(r[aKey] || []).map(raw),
-            ...(r.per || []).map(raw),
-            ...(r.opm || []).map(raw),
-            ...(r.yoy || []).map(raw),
+            r.name, r.market, r.sector_large || "", r.sector_mid || "", raw(r.mktcap),
+            raw(qArr[qArr.length - 1]), raw(aArr[0]), raw(aArr[1]),
+            raw((r.per || [])[0]), raw((r.per || [])[1]),
+            raw((r.opm || [])[0]), raw((r.opm || [])[1]),
+            raw((r.yoy || [])[0]), raw((r.yoy || [])[1]),
             raw(r.mdd), raw(r.dvr),
         ]);
     });
@@ -256,7 +290,7 @@ function fwRenderRankRows(elId, items, formatter) {
     el.innerHTML = items.map((it, idx) => `
         <tr>
             <td>${idx + 1}</td>
-            <td style="text-align:left;">${it.name}<span class="fw-code">${it.code}</span></td>
+            <td style="text-align:left;">${it.name}</td>
             <td>${formatter(it.value)}</td>
             <td>${fwFmtMktcap(it.mktcap)}</td>
         </tr>
