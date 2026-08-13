@@ -37,6 +37,7 @@ async function loadToday() {
 
     document.getElementById("today-updated").innerHTML =
         `<strong>[${data.date}]</strong> 기준 · ${data.generated_at} 생성`;
+    document.getElementById("index-cards-date").textContent = `[ ${shortDate(data.date)} ]`;
 
     renderIndices(data.indices);
     renderIndexSummary(data.index_summary);
