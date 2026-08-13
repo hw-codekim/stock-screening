@@ -23,20 +23,6 @@ function fmtPrice(v) {
     if (v == null) return "-";
     return v.toLocaleString();
 }
-function fmtIndexValue(v) {
-    if (v == null) return "-";
-    return v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-// 52주 신저~신고 구간에서 현재 지수가 몇 %쯤 위치하는지(0=신저, 100=신고) - 50을 기준으로 색 구분
-function positionColor(v) {
-    if (v == null) return "#888";
-    return v >= 50 ? "#B4342A" : "#2F5FA3";
-}
-// ADR(상승/하락 종목수 비율) - 100%를 기준으로 색 구분
-function adrColor(v) {
-    if (v == null) return "#888";
-    return v >= 100 ? "#B4342A" : "#2F5FA3";
-}
 // 중분류가 "대분류_세부명"처럼 앞에 상위 분류를 접두어로 달고 있으면(예: 반도체_PCB),
 // 같은 대분류 그룹 안에서는 중복 정보라 잘리기 쉬우므로 접두어를 떼고 세부명만 보여준다.
 // 중분류 데이터 중 "게임_KOSDAQ"/"게임_KOSPI"처럼 실제 업종이 아니라
@@ -138,40 +124,9 @@ async function loadList() {
         document.getElementById("daychg-header").textContent = `${Number(lm)}/${Number(ld)}일등락`;
     }
 
-    renderIndexSummary(listData.index_summary || []);
-
     populateLargeFilter();
     populateMidFilter();
     applyFilter();
-}
-
-// ── 코스피/코스닥 지수 요약 박스 ─────────────────────
-function renderIndexSummary(indexRows) {
-    const tbody = document.getElementById("index-summary-body");
-    if (!indexRows.length) {
-        tbody.innerHTML = '<tr><td colspan="14" class="index-loading">지수 데이터를 불러오지 못했습니다.</td></tr>';
-        return;
-    }
-
-    const nameMap = { KOSPI: "코스피", KOSDAQ: "코스닥" };
-    tbody.innerHTML = indexRows.map(r => `
-        <tr>
-            <td class="index-name">${nameMap[r.market] || r.market}</td>
-            <td>${fmtIndexValue(r.index_value)}<br><span style="color:${yoyColor(r.change_rate)};">${fmtPct1(r.change_rate)}</span></td>
-            <td style="color:${yoyColor(r.w1)};">${fmtPct1(r.w1)}</td>
-            <td style="color:${yoyColor(r.m1)};">${fmtPct1(r.m1)}</td>
-            <td style="color:${yoyColor(r.m3)};">${fmtPct1(r.m3)}</td>
-            <td style="color:${yoyColor(r.ytd)};">${fmtPct1(r.ytd)}</td>
-            <td>${fmtIndexValue(r.high_52w)}</td>
-            <td>${fmtIndexValue(r.low_52w)}</td>
-            <td style="color:${positionColor(r.position_52w)};">${r.position_52w != null ? r.position_52w.toFixed(1) + "%" : "-"}</td>
-            <td style="color:${yoyColor(r.mdd)};">${fmtPct1(r.mdd)}</td>
-            <td style="color:${adrColor(r.adr)};">${r.adr != null ? r.adr.toFixed(1) + "%" : "-"}</td>
-            <td style="color:#B4342A;">${r.up_count ?? "-"}</td>
-            <td style="color:#888;">${r.flat_count ?? "-"}</td>
-            <td style="color:#2F5FA3;">${r.down_count ?? "-"}</td>
-        </tr>
-    `).join("");
 }
 
 function populateLargeFilter() {

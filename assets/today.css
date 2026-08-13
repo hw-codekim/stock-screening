@@ -1,0 +1,118 @@
+.today-updated {
+    font-size: 0.78rem; color: #666; margin-bottom: 14px;
+}
+.today-updated strong { color: #2F5FA3; }
+
+.today-section {
+    background: #fff;
+    border: 1px solid #D7E0EC;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+}
+.today-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #14315C;
+    margin-bottom: 12px;
+}
+.today-section-sub {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #999;
+    margin-left: 6px;
+}
+
+/* 주요 지수 카드 */
+.index-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+}
+.index-card {
+    background: #FAFBFD;
+    border: 1px solid #EEF1F6;
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+}
+.index-card .idx-name { font-size: 0.72rem; color: #888; margin-bottom: 4px; }
+.index-card .idx-value { font-size: 0.95rem; font-weight: 700; color: #14213D; }
+.index-card .idx-change { font-size: 0.78rem; font-weight: 600; margin-top: 2px; }
+
+/* 수급 KPI 그리드 - 개인/외국인/기관계는 진한 카드, 나머지 세부 항목은 옅은 카드 */
+.flow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+.flow-item {
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-align: center;
+}
+.flow-item.major {
+    background: #14315C;
+    border: 1px solid #14315C;
+}
+.flow-item.major .flow-label { color: #C9D6EB; }
+.flow-item.sub {
+    background: #FAFBFD;
+    border: 1px solid #EEF1F6;
+}
+.flow-item.sub .flow-label { color: #999; }
+.flow-label { font-size: 0.72rem; margin-bottom: 4px; }
+.flow-value { font-size: 0.88rem; font-weight: 700; }
+.flow-item.major .flow-value.up   { color: #FF7A7A; }
+.flow-item.major .flow-value.down { color: #7FB2FF; }
+.flow-item.sub .flow-value.up   { color: #B4342A; }
+.flow-item.sub .flow-value.down { color: #2F5FA3; }
+
+/* 데이터 테이블 (상한가/MDD/정배열/TOP10/섹터) */
+.today-table-wrap { overflow-x: auto; }
+.today-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.today-table th, .today-table td {
+    padding: 7px 10px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+.today-table thead th {
+    font-weight: 600;
+    color: #888;
+    background: #FAFBFD;
+    border-bottom: 1px solid #D7E0EC;
+}
+.today-table tbody tr:not(:last-child) td { border-bottom: 1px solid #EEF1F6; }
+.today-table td.name-cell { text-align: left; font-weight: 600; color: #14315C; }
+.today-empty { padding: 16px; text-align: center; color: #999; font-size: 0.8rem; }
+
+/* 코스피/코스닥 TOP10 좌우 배치, 섹터 시가총액/수익률 TOP10 좌우 배치 */
+.today-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.today-two-col .today-table-wrap { max-height: 420px; overflow-y: auto; }
+
+/* 시장 심리·유동성 지표 */
+.sentiment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+.sentiment-chart-title {
+    font-size: 0.78rem; font-weight: 700; color: #14315C;
+    margin-bottom: 6px; text-align: center;
+}
+.sentiment-chart { height: 200px; }
+
+@media (max-width: 700px) {
+    .today-two-col, .sentiment-grid { grid-template-columns: 1fr; }
+    .index-cards { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); }
+    .flow-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+}
