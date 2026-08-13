@@ -71,22 +71,24 @@
 .flow-item.sub .flow-value.up   { color: #B4342A; }
 .flow-item.sub .flow-value.down { color: #2F5FA3; }
 
-/* 상한가 / 정배열 - 카드 형식 */
+/* 상한가 / 정배열 - 카드 형식(가로로 넓은 직사각형) */
 .stock-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
 }
 .stock-card {
     background: #FAFBFD;
     border: 1px solid #EEF1F6;
     border-radius: 6px;
-    padding: 10px 12px;
+    padding: 6px 10px;
 }
-.stock-card .sc-name { font-size: 0.82rem; font-weight: 700; color: #14315C; margin-bottom: 4px; }
-.stock-card .sc-price { font-size: 0.78rem; color: #666; }
-.stock-card .sc-change { font-size: 0.82rem; font-weight: 700; margin-top: 2px; }
-.stock-card .sc-mktcap { font-size: 0.7rem; color: #999; margin-top: 2px; }
+.stock-card .sc-name { font-size: 0.8rem; font-weight: 700; color: #14315C; }
+.stock-card .sc-change { font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
+.stock-card .sc-meta {
+    display: flex; justify-content: space-between;
+    font-size: 0.7rem; color: #999; margin-top: 2px;
+}
 
 /* 데이터 테이블 (TOP10/섹터) */
 .today-table-wrap { overflow-x: auto; }

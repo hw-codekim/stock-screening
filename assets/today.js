@@ -111,9 +111,11 @@ function renderStockCards(elId, rows) {
     el.innerHTML = rows.map(r => `
         <div class="stock-card">
             <div class="sc-name">${r.name}</div>
-            <div class="sc-price">${tFmtPrice(r.close_price)}원</div>
             <div class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</div>
-            <div class="sc-mktcap">${tFmtMktcap(r.mktcap)}</div>
+            <div class="sc-meta">
+                <span>${tFmtPrice(r.close_price)}원</span>
+                <span>${tFmtMktcap(r.mktcap)}</span>
+            </div>
         </div>
     `).join("");
 }
