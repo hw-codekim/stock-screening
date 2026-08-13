@@ -1,0 +1,75 @@
+.fw-table-wrap { overflow-x: auto; background: #fff; border: 1px solid #D7E0EC; border-radius: 4px; }
+.fw-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.fw-table th, .fw-table td {
+    padding: 7px 10px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+.fw-table thead th {
+    font-weight: 600;
+    color: #888;
+    background: #FAFBFD;
+    border-bottom: 1px solid #D7E0EC;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+.fw-table thead tr:first-child th { top: 0; }
+.fw-table thead tr:last-child th { top: 29px; }
+.fw-table tbody tr:not(:last-child) td { border-bottom: 1px solid #EEF1F6; }
+.fw-table tbody tr:hover { background: #F5F8FC; }
+.fw-table td.fw-name-cell, .fw-table th.fw-name-th { text-align: left; }
+.fw-table td.fw-name-cell { font-weight: 600; color: #14315C; }
+.fw-code { font-size: 10px; color: #aaa; font-weight: 400; margin-left: 4px; }
+.fw-sector-cell { text-align: left; font-size: 11px; color: #666; }
+.fw-group-border { border-left: 1px solid #d9dee6; }
+.fw-prelim { background: #FFF6D6; }
+.fw-th-sortable { cursor: pointer; user-select: none; }
+.fw-th-sortable:hover { color: #14315C; }
+.fw-th-sortable.sort-active { color: #14315C; }
+.fw-th-sortable.sort-asc::after  { content: " \25B2"; font-size: 8px; }
+.fw-th-sortable.sort-desc::after { content: " \25BC"; font-size: 8px; }
+
+.fw-count-line { font-size: 0.8rem; color: #14213D; margin-bottom: 10px; }
+
+.fw-rank-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+}
+.fw-rank-box {
+    background: #fff;
+    border: 1px solid #D7E0EC;
+    border-radius: 4px;
+    padding: 14px 16px;
+}
+.fw-rank-box h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #14315C;
+    margin: 0 0 10px;
+}
+.fw-rank-box table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.fw-rank-box th {
+    padding: 6px 8px; color: #888; font-weight: 400;
+    border-bottom: 1px solid #D7E0EC; background: #F5F8FC;
+    text-align: right;
+}
+.fw-rank-box th:first-child, .fw-rank-box td:first-child { text-align: center; width: 24px; }
+.fw-rank-box th:nth-child(2), .fw-rank-box td:nth-child(2) { text-align: left; }
+.fw-rank-box td { padding: 6px 8px; text-align: right; border-bottom: 1px solid #EEF1F6; }
+
+.fw-section-title {
+    font-size: 1rem; font-weight: 700; color: #14213D;
+    margin: 28px 0 10px;
+}
+
+@media (max-width: 700px) {
+    .fw-rank-grid { grid-template-columns: 1fr; }
+}
