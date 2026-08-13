@@ -107,16 +107,29 @@ function getFilteredRows() {
     });
 }
 
-// 대분류 > (대분류 내 시가총액 내림차순)로 묶는다. 2Q26실적 페이지의 groupBySector와 같은 방식.
+// 대분류 > 중분류(합계 시총 내림차순) > 종목(시총 내림차순)으로 묶는다.
+// 2Q26실적 페이지(common.js groupBySector)와 동일한 방식 - 같은 중분류 종목끼리 인접하게 정렬.
 function groupByLarge(rows) {
-    const map = {};
+    const largeMap = {};
     rows.forEach(r => {
         const key = r.sector_large || "미분류";
-        (map[key] = map[key] || []).push(r);
+        (largeMap[key] = largeMap[key] || []).push(r);
     });
-    const groups = Object.keys(map).map(large => {
-        const items = map[large].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
-        const total = items.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+
+    const groups = Object.keys(largeMap).map(large => {
+        const midMap = {};
+        largeMap[large].forEach(r => {
+            const midKey = r.sector_mid || "미분류";
+            (midMap[midKey] = midMap[midKey] || []).push(r);
+        });
+        const midGroups = Object.keys(midMap).map(mid => {
+            const midItems = midMap[mid].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+            const total = midItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+            return { items: midItems, total };
+        });
+        midGroups.sort((a, b) => b.total - a.total);
+        const items = midGroups.flatMap(g => g.items);
+        const total = midGroups.reduce((sum, g) => sum + g.total, 0);
         return { large, items, total };
     });
     groups.sort((a, b) => b.total - a.total);
@@ -194,7 +207,7 @@ function renderForwardTable() {
             <th colspan="3" class="fw-group-border">${metricLabel}(억)</th>
             <th colspan="2" class="fw-group-border">PER(배)</th>
             <th colspan="2" class="fw-group-border">OPM(%)</th>
-            <th colspan="2" class="fw-group-border">영업이익YoY(%)</th>
+            <th colspan="2" class="fw-group-border">YoY(%)</th>
             <th rowspan="2" class="fw-group-border">MDD</th>
             <th rowspan="2" class="fw-group-border">배당</th>
         </tr>
