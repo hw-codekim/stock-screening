@@ -135,9 +135,27 @@
 }
 .sentiment-chart { width: 100%; height: 240px; }
 
+/* 하단 방문자/HITS - 밝은 배경(페이지 하단)용, 헤더의 .visitor-badge와 별개 색상 */
+.today-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px;
+    padding: 20px 0 10px;
+}
+.today-footer .site-footer { padding: 0; }
+.visitor-badge-light {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; color: #999;
+}
+.visitor-badge-light .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #4CAF50; display: inline-block;
+}
+.visitor-sep-light { color: #ccc; }
+
 @media (max-width: 700px) {
     .today-two-col, .sentiment-grid { grid-template-columns: 1fr; }
     .index-cards { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); }
     .flow-item { min-width: 84px; }
     .stock-cards { grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); }
+    .today-footer { justify-content: flex-start; flex-direction: column; align-items: flex-start; }
 }
