@@ -37,11 +37,11 @@
         <div class="page-note-title">포워드실적 이용 가이드</div>
         <div class="page-note-body">
             <b>【데이터】</b><br>
-             ☞ 최근분기(실측/잠정) + 2026E/2027E 컨센서스 추정(매출·영업이익·순이익·EPS 중 선택)<br>
+             ☞ 분기(25.3Q~26.2Q 실측/잠정), 연간(최근 실적연도 + 2026E/2027E 컨센서스 추정, 매출·영업이익·순이익·EPS 중 선택)<br>
              ☞ PER·OPM·영업이익YOY는 2026E/2027E 기준<br>
             <br>
             <b>【사용법】</b><br>
-             ☞ 시장/대분류/중분류/지표를 선택해서 원하는 섹터만 조회 (대분류 미선택 시 대분류별로 묶어서 표시)<br>
+             ☞ 시장/대분류/중분류/지표를 선택해서 원하는 섹터만 조회 (대분류 미선택 시 대분류&gt;중분류별로 묶어서 표시)<br>
              ☞ 표 헤더 클릭 시 해당 컬럼 기준 전체 정렬<br>
              ☞ 엑셀 다운로드로 현재 조회된 결과 저장 가능<br>
             <br>
@@ -73,20 +73,14 @@
 
     <div class="fw-count-line" id="fw-count-line">불러오는 중...</div>
 
-    <table class="fw-table">
-        <colgroup>
-            <col style="width:13%"><col style="width:7%"><col style="width:6.5%">
-            <col style="width:7%"><col style="width:7%"><col style="width:7%">
-            <col style="width:6%"><col style="width:6%">
-            <col style="width:5.5%"><col style="width:5.5%">
-            <col style="width:6%"><col style="width:6%">
-            <col style="width:5.5%"><col style="width:5.5%">
-        </colgroup>
-        <thead id="fw-thead"></thead>
-        <tbody id="fw-tbody">
-            <tr><td style="text-align:center;color:#aaa;padding:20px;">불러오는 중...</td></tr>
-        </tbody>
-    </table>
+    <div class="fw-table-wrap">
+        <table class="fw-table">
+            <thead id="fw-thead"></thead>
+            <tbody id="fw-tbody">
+                <tr><td style="text-align:center;color:#aaa;padding:20px;">불러오는 중...</td></tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="fw-section-title">저평가 / 고배당 스크리닝<span style="font-size:0.7rem;font-weight:400;color:#999;margin-left:8px;">시가총액 1,000억 이상, 상위 30</span></div>
     <div class="fw-rank-grid">
