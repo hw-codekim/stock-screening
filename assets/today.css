@@ -83,8 +83,12 @@
     border-radius: 6px;
     padding: 6px 10px;
 }
+.stock-card .sc-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 6px;
+}
 .stock-card .sc-name { font-size: 0.8rem; font-weight: 700; color: #14315C; }
-.stock-card .sc-change { font-size: 0.78rem; font-weight: 700; margin-top: 1px; }
+.stock-card .sc-change { font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
 .stock-card .sc-meta {
     display: flex; justify-content: space-between;
     font-size: 0.7rem; color: #999; margin-top: 2px;

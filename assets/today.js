@@ -110,8 +110,10 @@ function renderStockCards(elId, rows) {
     if (!rows || !rows.length) { el.innerHTML = '<p class="today-empty">해당 종목 없음</p>'; return; }
     el.innerHTML = rows.map(r => `
         <div class="stock-card">
-            <div class="sc-name">${r.name}</div>
-            <div class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</div>
+            <div class="sc-head">
+                <span class="sc-name">${r.name}</span>
+                <span class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</span>
+            </div>
             <div class="sc-meta">
                 <span>${tFmtPrice(r.close_price)}원</span>
                 <span>${tFmtMktcap(r.mktcap)}</span>
