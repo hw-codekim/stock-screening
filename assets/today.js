@@ -15,11 +15,10 @@ function tFmtMktcap(v) {
     if (v == null) return "-";
     return (v / 10000).toFixed(2) + "조";
 }
-// 네이버 투자자별매매동향 원 데이터 단위는 백만원 -> 억원으로 변환
-function tFmtEokFromMillion(v) {
+// 네이버 투자자별매매동향 원 데이터는 이미 억원 단위 - 그대로 표시 (로컬 Daily 요약 페이지와 동일)
+function tFmtEok(v) {
     if (v == null) return "-";
-    const eok = v / 100;
-    return (eok >= 0 ? "+" : "") + eok.toLocaleString(undefined, { maximumFractionDigits: 0 }) + "억";
+    return (v >= 0 ? "+" : "") + v.toLocaleString() + "억";
 }
 
 const MAJOR_INVESTOR_TYPES = new Set(["개인", "외국인", "기관계"]);
@@ -98,7 +97,7 @@ function renderInvestorFlow(flow) {
         return `
         <div class="flow-item ${major ? "major" : "sub"}">
             <div class="flow-label">${it.investor_type}</div>
-            <div class="flow-value ${dir}">${tFmtEokFromMillion(it.net_buy)}</div>
+            <div class="flow-value ${dir}">${tFmtEok(it.net_buy)}</div>
         </div>`;
     }).join("");
 }
