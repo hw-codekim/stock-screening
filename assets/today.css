@@ -86,9 +86,14 @@
 .stock-card .sc-head {
     display: flex; justify-content: space-between; align-items: baseline;
     gap: 6px;
+    min-width: 0;
 }
-.stock-card .sc-name { font-size: 0.8rem; font-weight: 700; color: #14315C; }
-.stock-card .sc-change { font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+.stock-card .sc-name {
+    font-size: 0.8rem; font-weight: 700; color: #14315C;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    min-width: 0;
+}
+.stock-card .sc-change { font-size: 0.78rem; font-weight: 700; white-space: nowrap; flex: none; }
 .stock-card .sc-meta {
     display: flex; justify-content: space-between;
     font-size: 0.7rem; color: #999; margin-top: 2px;

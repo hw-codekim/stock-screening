@@ -111,7 +111,7 @@ function renderStockCards(elId, rows) {
     el.innerHTML = rows.map(r => `
         <div class="stock-card">
             <div class="sc-head">
-                <span class="sc-name">${r.name}</span>
+                <span class="sc-name" title="${r.name}">${r.name}</span>
                 <span class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</span>
             </div>
             <div class="sc-meta">
