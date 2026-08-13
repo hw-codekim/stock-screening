@@ -1,12 +1,23 @@
 let fwData = null;
 let fwSort = null; // null이면 대분류로 묶어서 표시, 값이 있으면 헤더 클릭으로 전체를 그 컬럼 기준 정렬
 
-function fwFmtMktcap(v) { return v == null ? "-" : v.toLocaleString() + "억"; }
+function fwFmtMktcap(v) { return v == null ? "-" : (v / 10000).toFixed(2) + "조"; }
 function fwFmtNum(v) { return v == null ? "-" : Math.round(v).toLocaleString(); }
 function fwFmtPct1(v) { return v == null ? "-" : v.toFixed(1) + "%"; }
-function fwFmtPct(v) { return v == null ? "-" : v.toFixed(2) + "%"; }
-function fwFmtPer(v) { return v == null ? "-" : v.toFixed(2) + "배"; }
-function fwFmtSigned(v, unit) { return v == null ? "-" : (v >= 0 ? "+" : "") + v.toFixed(2) + unit; }
+function fwFmtPct(v) { return v == null ? "-" : Math.round(v) + "%"; }
+function fwFmtPer(v) { return v == null ? "-" : v.toFixed(1) + "배"; }
+function fwFmtSigned(v, unit) { return v == null ? "-" : (v >= 0 ? "+" : "") + Math.round(v) + unit; }
+
+// 중분류가 "대분류_세부명"처럼 접두어를 달고 있으면(예: 반도체_후공정장비) 대분류 그룹 안에서는
+// 중복 정보라 접두어를 떼고 세부명만 보여준다. (q2.html의 stripMidPrefix와 동일 로직)
+const MID_PSEUDO_SUFFIXES = new Set(["KOSPI", "KOSDAQ"]);
+function fwStripMidPrefix(mid) {
+    if (!mid || !mid.includes("_")) return mid;
+    const [prefix, ...rest] = mid.split("_");
+    const suffix = rest.join("_");
+    if (MID_PSEUDO_SUFFIXES.has(suffix)) return prefix;
+    return suffix;
+}
 function fwOpmStyle(v) {
     if (v == null) return "";
     if (v < 0) return "color:#2E5FA3;font-weight:600;";
@@ -76,7 +87,7 @@ function populateMidFilter() {
     entry.mids.forEach(m => {
         const opt = document.createElement("option");
         opt.value = m;
-        opt.textContent = m;
+        opt.textContent = fwStripMidPrefix(m);
         midSel.appendChild(opt);
     });
 }
@@ -170,23 +181,33 @@ function renderForwardTable() {
     const sortCls = k => `fw-th-sortable${fwSort && fwSort.key === k ? " sort-active " + (fwSort.dir === "asc" ? "sort-asc" : "sort-desc") : ""}`;
     const sortAttr = k => `class="${sortCls(k)}" onclick="setSort('${k}')"`;
 
+    const lastQLabel = lastQ ? fwShortPeriod(lastQ) : "최근분기";
+    const y26 = aEst[0] ? fwShortYear(aEst[0]) : "26E";
+    const y27 = aEst[1] ? fwShortYear(aEst[1]) : "27E";
+
     const thead = document.getElementById("fw-thead");
     thead.innerHTML = `
         <tr>
-            <th class="fw-name-th">종목</th>
-            <th class="fw-sector-cell">섹터</th>
-            <th ${sortAttr("mktcap")}>시총</th>
-            <th ${sortAttr("qlast")} class="fw-group-border">${metricLabel}${lastQ ? " " + fwShortPeriod(lastQ) : ""}</th>
-            <th ${sortAttr("a26")}>${metricLabel}${aEst[0] ? " " + fwShortYear(aEst[0]) : "26E"}</th>
-            <th ${sortAttr("a27")}>${metricLabel}${aEst[1] ? " " + fwShortYear(aEst[1]) : "27E"}</th>
-            <th ${sortAttr("per0")} class="fw-group-border">PER26E</th>
-            <th ${sortAttr("per1")}>PER27E</th>
-            <th ${sortAttr("opm0")}>OPM26E</th>
-            <th ${sortAttr("opm1")}>OPM27E</th>
-            <th ${sortAttr("yoy0")}>YoY26E</th>
-            <th ${sortAttr("yoy1")}>YoY27E</th>
-            <th ${sortAttr("mdd")} class="fw-group-border">MDD</th>
-            <th ${sortAttr("dvr")}>배당</th>
+            <th rowspan="2" class="fw-name-th">종목</th>
+            <th rowspan="2" class="fw-sector-cell">섹터</th>
+            <th rowspan="2" ${sortAttr("mktcap")}>시총</th>
+            <th colspan="3" class="fw-group-border">${metricLabel}(억)</th>
+            <th colspan="2" class="fw-group-border">PER(배)</th>
+            <th colspan="2" class="fw-group-border">OPM(%)</th>
+            <th colspan="2" class="fw-group-border">영업이익YoY(%)</th>
+            <th rowspan="2" class="fw-group-border">MDD</th>
+            <th rowspan="2">배당</th>
+        </tr>
+        <tr>
+            <th ${sortAttr("qlast")} class="fw-group-border">${lastQLabel}</th>
+            <th ${sortAttr("a26")}>${y26}</th>
+            <th ${sortAttr("a27")}>${y27}</th>
+            <th ${sortAttr("per0")} class="fw-group-border">${y26}</th>
+            <th ${sortAttr("per1")}>${y27}</th>
+            <th ${sortAttr("opm0")} class="fw-group-border">${y26}</th>
+            <th ${sortAttr("opm1")}>${y27}</th>
+            <th ${sortAttr("yoy0")} class="fw-group-border">${y26}</th>
+            <th ${sortAttr("yoy1")}>${y27}</th>
         </tr>
     `;
 
@@ -203,7 +224,7 @@ function renderForwardTable() {
         return `
         <tr>
             <td class="fw-name-cell">${r.name}</td>
-            <td class="fw-sector-cell">${r.sector_mid || "-"}</td>
+            <td class="fw-sector-cell">${fwStripMidPrefix(r.sector_mid) || "-"}</td>
             <td>${fwFmtMktcap(r.mktcap)}</td>
             <td class="fw-group-border ${lastStatus === "P" ? "fw-prelim" : ""}">${fwFmtNum(qArr[qArr.length - 1])}</td>
             <td>${fwFmtNum(aArr[0])}</td>
@@ -299,8 +320,8 @@ function fwRenderRankRows(elId, items, formatter) {
 
 function renderRankings() {
     const r = fwData.rankings || {};
-    fwRenderRankRows("fw-rank-per",    r.per,     v => v != null ? v.toFixed(2) + "배" : "-");
-    fwRenderRankRows("fw-rank-fwdper", r.fwd_per, v => v != null ? v.toFixed(2) + "배" : "-");
+    fwRenderRankRows("fw-rank-per",    r.per,     v => v != null ? v.toFixed(1) + "배" : "-");
+    fwRenderRankRows("fw-rank-fwdper", r.fwd_per, v => v != null ? v.toFixed(1) + "배" : "-");
     fwRenderRankRows("fw-rank-pbr",    r.pbr,     v => v != null ? v.toFixed(2) + "배" : "-");
     fwRenderRankRows("fw-rank-dvr",    r.dvr,     v => v != null ? v.toFixed(2) + "%" : "-");
 }

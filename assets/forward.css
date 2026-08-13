@@ -9,7 +9,7 @@
     border-radius: 4px;
 }
 .fw-table th, .fw-table td {
-    padding: 6px 4px;
+    padding: 4px 2px;
     text-align: right;
     font-variant-numeric: tabular-nums;
     overflow: hidden;
@@ -22,9 +22,11 @@
     background: #FAFBFD;
     border-bottom: 1px solid #D7E0EC;
     position: sticky;
-    top: 0;
     z-index: 5;
 }
+/* 2줄 헤더 - 1행(지표/PER/OPM/YoY 그룹명)은 top:0, 2행(기간 라벨)은 1행 높이만큼 아래에 고정 */
+.fw-table thead tr:first-child th { top: 0; }
+.fw-table thead tr:last-child th { top: 22px; }
 .fw-table tbody tr:not(:last-child) td { border-bottom: 1px solid #EEF1F6; }
 .fw-table tbody tr:hover { background: #F5F8FC; }
 .fw-table td.fw-name-cell, .fw-table th.fw-name-th { text-align: left; }
@@ -40,25 +42,9 @@
 
 .fw-group-title-row td {
     font-size: 12px; font-weight: 700; color: #14315C;
-    background: #F5F8FC; padding: 6px 8px; border-bottom: 1px solid #D7E0EC;
+    background: #F5F8FC; padding: 5px 6px; border-bottom: 1px solid #D7E0EC;
     text-align: left;
 }
-
-/* table-layout:fixed 기준 14개 컬럼 폭 배분 - 좌우 스크롤 없이 한 화면에 들어오도록 */
-.fw-table th:nth-child(1),  .fw-table td:nth-child(1)  { width: 15%; }
-.fw-table th:nth-child(2),  .fw-table td:nth-child(2)  { width: 8%; }
-.fw-table th:nth-child(3),  .fw-table td:nth-child(3)  { width: 7%; }
-.fw-table th:nth-child(4),  .fw-table td:nth-child(4)  { width: 8%; }
-.fw-table th:nth-child(5),  .fw-table td:nth-child(5)  { width: 8%; }
-.fw-table th:nth-child(6),  .fw-table td:nth-child(6)  { width: 8%; }
-.fw-table th:nth-child(7),  .fw-table td:nth-child(7)  { width: 7%; }
-.fw-table th:nth-child(8),  .fw-table td:nth-child(8)  { width: 7%; }
-.fw-table th:nth-child(9),  .fw-table td:nth-child(9)  { width: 6%; }
-.fw-table th:nth-child(10), .fw-table td:nth-child(10) { width: 6%; }
-.fw-table th:nth-child(11), .fw-table td:nth-child(11) { width: 6.5%; }
-.fw-table th:nth-child(12), .fw-table td:nth-child(12) { width: 6.5%; }
-.fw-table th:nth-child(13), .fw-table td:nth-child(13) { width: 6%; }
-.fw-table th:nth-child(14), .fw-table td:nth-child(14) { width: 6%; }
 
 .fw-count-line { font-size: 0.8rem; color: #14213D; margin-bottom: 10px; }
 
