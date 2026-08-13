@@ -39,6 +39,34 @@ body {
 }
 .header-btn:hover { background: #3A6FBA; }
 
+/* 상단 메뉴(글자만, 버튼 배경 없음) - 방문 후 색 바뀌지 않도록 :link/:visited 명시 */
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.site-nav a {
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+}
+.site-nav a,
+.site-nav a:link,
+.site-nav a:visited {
+    color: #9FB3D1;
+}
+.site-nav a:hover,
+.site-nav a:active {
+    color: #fff;
+}
+.site-nav a.active {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
 .visitor-badge {
     display: flex; align-items: center; gap: 6px;
     font-size: 0.8rem; color: #D7E0EC;
