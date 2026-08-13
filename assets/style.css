@@ -272,6 +272,29 @@ body {
     font-size: 12px; font-weight: 700; color: #14315C;
     margin-bottom: 8px; text-align: center;
 }
+.graph-title-row {
+    position: relative;
+    margin-bottom: 8px;
+}
+.graph-title-row .graph-title { margin-bottom: 0; }
+.excel-download-link {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.excel-download-link,
+.excel-download-link:link,
+.excel-download-link:visited {
+    color: #2F5FA3;
+}
+.excel-download-link:hover,
+.excel-download-link:active {
+    color: #B4342A;
+}
 
 .placeholder { color: #999; font-size: 0.85rem; padding: 24px; text-align: center; }
 

@@ -377,7 +377,10 @@ function detailMarkup(code, name) {
         <div class="screen-chart-wrap">
             <div class="screen-chart-row">
                 <div class="graph-wrap">
-                    <div class="graph-title">${name} · 매출/OPM</div>
+                    <div class="graph-title-row">
+                        <a href="#" class="excel-download-link" data-code="${code}" data-name="${name}">엑셀다운로드</a>
+                        <div class="graph-title">${name} · 매출/OPM</div>
+                    </div>
                     <canvas id="chart-opm-${code}"></canvas>
                 </div>
                 <div class="graph-wrap">
@@ -388,6 +391,57 @@ function detailMarkup(code, name) {
         </div>
     `;
 }
+
+// ── 엑셀 다운로드 (매출/OPM 그래프) ──────────────────────
+// xlsx 라이브러리는 다운로드 버튼을 실제로 누르기 전까지는 불러오지 않는다
+// (2500개 넘는 행 전체에 항상 필요한 게 아니라서, 안 쓰는 사람에게는 로딩 비용을 안 주기 위함)
+let xlsxLoadPromise = null;
+function ensureXlsxLoaded() {
+    if (window.XLSX) return Promise.resolve();
+    if (xlsxLoadPromise) return xlsxLoadPromise;
+    xlsxLoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+    return xlsxLoadPromise;
+}
+
+function todayStr() {
+    const d = new Date();
+    const p = n => String(n).padStart(2, "0");
+    return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`;
+}
+
+async function downloadFinancialExcel(code, name) {
+    await ensureXlsxLoaded();
+
+    const res = await fetch(`data/stocks/${code}.json`);
+    if (!res.ok) return;
+    const data = await res.json();
+    const d = data.financial;
+    if (!d) return;
+
+    const repType = data.rep_type || "";
+    const rows = [["기간", "매출액(억원)", "영업이익(억원)", "영업이익률(%)", "구분"]];
+    d.quarters.forEach((q, i) => {
+        rows.push([q, d.revenue[i], d.op_income ? d.op_income[i] : "", d.opm[i], repType]);
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "매출OPM");
+    XLSX.writeFile(wb, `${name}_${code}_${todayStr()}.xlsx`);
+}
+
+document.addEventListener("click", (e) => {
+    const link = e.target.closest(".excel-download-link");
+    if (!link) return;
+    e.preventDefault();
+    downloadFinancialExcel(link.dataset.code, link.dataset.name);
+});
 
 function isMobileView() {
     return window.innerWidth <= 700;
