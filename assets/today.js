@@ -41,11 +41,10 @@ async function loadToday() {
     renderIndices(data.indices);
     renderIndexSummary(data.index_summary);
     renderInvestorFlow(data.investor_net_buy);
-    renderSimpleTable("upper-limit-body", data.upper_limit, upperLimitRow, 4);
-    renderSimpleTable("low-mdd-body", data.low_mdd, mddRow, 5);
-    renderSimpleTable("bullish-body", data.bullish_alignment, bullishRow, 4);
-    renderTop10(data.top_mktcap);
-    renderSectorTables(data.top_sectors, data.top_sectors_rate);
+    renderStockCards("upper-limit-cards", data.upper_limit);
+    renderStockCards("bullish-cards", data.bullish_alignment);
+    renderDaily5Top10(data.top_mktcap);
+    renderDaily5Sectors(data.top_sectors, data.top_sectors_rate);
     renderSentimentCharts(data.market_sentiment);
 }
 
@@ -105,125 +104,170 @@ function renderInvestorFlow(flow) {
     }).join("");
 }
 
-// ── 상한가 / MDD / 정배열 공통 테이블 렌더 ────────────
-function renderSimpleTable(elId, rows, rowFn, colCount) {
-    const tbody = document.getElementById(elId);
-    if (!rows || !rows.length) {
-        tbody.innerHTML = `<tr><td colspan="${colCount}" class="today-empty">해당 종목 없음</td></tr>`;
-        return;
-    }
-    tbody.innerHTML = rows.map(rowFn).join("");
-}
-function upperLimitRow(r) {
-    return `<tr>
-        <td class="name-cell">${r.name}</td>
-        <td>${tFmtPrice(r.close_price)}</td>
-        <td style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</td>
-        <td>${tFmtMktcap(r.mktcap)}</td>
-    </tr>`;
-}
-function mddRow(r) {
-    return `<tr>
-        <td class="name-cell">${r.name}</td>
-        <td>${tFmtPrice(r.close_price)}</td>
-        <td style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</td>
-        <td>${tFmtMktcap(r.mktcap)}</td>
-        <td style="color:${tColor(r.mdd)};">${tFmtPct(r.mdd)}</td>
-    </tr>`;
-}
-function bullishRow(r) {
-    return `<tr>
-        <td class="name-cell">${r.name}</td>
-        <td>${tFmtPrice(r.close_price)}</td>
-        <td style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</td>
-        <td>${tFmtMktcap(r.mktcap)}</td>
-    </tr>`;
+// ── 상한가 / 정배열 - 카드 렌더 ───────────────────────
+function renderStockCards(elId, rows) {
+    const el = document.getElementById(elId);
+    if (!rows || !rows.length) { el.innerHTML = '<p class="today-empty">해당 종목 없음</p>'; return; }
+    el.innerHTML = rows.map(r => `
+        <div class="stock-card">
+            <div class="sc-name">${r.name}</div>
+            <div class="sc-price">${tFmtPrice(r.close_price)}원</div>
+            <div class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</div>
+            <div class="sc-mktcap">${tFmtMktcap(r.mktcap)}</div>
+        </div>
+    `).join("");
 }
 
-// ── 코스피/코스닥 TOP10 (당일등락 + 최근5일등락) ──────
-function renderTop10(topMktcap) {
-    const fill = (elId, rows) => {
-        const tbody = document.getElementById(elId);
-        if (!rows || !rows.length) { tbody.innerHTML = '<tr><td colspan="3" class="today-empty">데이터 없음</td></tr>'; return; }
-        tbody.innerHTML = rows.map(r => `
+// 날짜 문자열("2026-08-13") -> "8/13" 형태로 축약
+function shortDate(d) {
+    const [, m, day] = d.split("-");
+    return `${Number(m)}/${Number(day)}`;
+}
+
+// ── 코스피/코스닥 시가총액 TOP10 - 최근 5거래일 일자별 등락률 표 ──
+function renderDaily5Top10(topMktcap) {
+    if (!topMktcap) return;
+    const dates = topMktcap.dates || [];
+    const buildTable = (rows) => {
+        if (!rows || !rows.length) return '<p class="today-empty">데이터 없음</p>';
+        const header = `<tr><th>종목명</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+        const body = rows.map(r => `
             <tr>
                 <td class="name-cell">${r.name}</td>
-                <td style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</td>
-                <td style="color:${tColor(r.change_rate_5d)};">${tFmtPct(r.change_rate_5d)}</td>
+                ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
             </tr>
         `).join("");
+        return `<table class="today-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
     };
-    fill("kospi-top10-body", topMktcap && topMktcap.kospi);
-    fill("kosdaq-top10-body", topMktcap && topMktcap.kosdaq);
+    document.getElementById("kospi-top10-wrap").innerHTML = buildTable(topMktcap.kospi);
+    document.getElementById("kosdaq-top10-wrap").innerHTML = buildTable(topMktcap.kosdaq);
 }
 
-// ── 섹터 시가총액 TOP10(당일+5일 평균) / 섹터 수익률 TOP10 ──
-function renderSectorTables(topSectors, topSectorsRate) {
-    const mktcapBody = document.getElementById("sector-mktcap-body");
-    if (!topSectors || !topSectors.length) {
-        mktcapBody.innerHTML = '<tr><td colspan="4" class="today-empty">데이터 없음</td></tr>';
-    } else {
-        mktcapBody.innerHTML = topSectors.map(r => `
-            <tr>
-                <td class="name-cell">${r.sector}</td>
-                <td>${tFmtMktcap(r.total_mktcap)}</td>
-                <td style="color:${tColor(r.avg_change_rate)};">${tFmtPct(r.avg_change_rate)}</td>
-                <td style="color:${tColor(r.avg_change_rate_5d)};">${tFmtPct(r.avg_change_rate_5d)}</td>
-            </tr>
-        `).join("");
+// ── 섹터 시가총액 TOP10 / 섹터 수익률 TOP10 - 최근 5거래일 일자별 평균등락률 표 ──
+function renderDaily5Sectors(topSectors, topSectorsRate) {
+    if (topSectors) {
+        const dates = topSectors.dates || [];
+        const items = topSectors.items || [];
+        const wrap = document.getElementById("sector-mktcap-wrap");
+        if (!items.length) {
+            wrap.innerHTML = '<p class="today-empty">데이터 없음</p>';
+        } else {
+            const header = `<tr><th>섹터</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+            const body = items.map(r => `
+                <tr>
+                    <td class="name-cell">${r.sector}</td>
+                    ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
+                </tr>
+            `).join("");
+            wrap.innerHTML = `<table class="today-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+        }
     }
 
-    const rateBody = document.getElementById("sector-rate-body");
-    if (!topSectorsRate || !topSectorsRate.length) {
-        rateBody.innerHTML = '<tr><td colspan="3" class="today-empty">데이터 없음</td></tr>';
-    } else {
-        rateBody.innerHTML = topSectorsRate.map(r => `
-            <tr>
-                <td class="name-cell">${r.sector}</td>
-                <td>${r.stock_count}개</td>
-                <td style="color:${tColor(r.avg_change_rate)};">${tFmtPct(r.avg_change_rate)}</td>
-            </tr>
-        `).join("");
+    if (topSectorsRate) {
+        const dates = topSectorsRate.dates || [];
+        const items = topSectorsRate.items || [];
+        const wrap = document.getElementById("sector-rate-wrap");
+        if (!items.length) {
+            wrap.innerHTML = '<p class="today-empty">데이터 없음</p>';
+        } else {
+            const header = `<tr><th>섹터</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+            const body = items.map(r => `
+                <tr>
+                    <td class="name-cell">${r.sector}</td>
+                    ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
+                </tr>
+            `).join("");
+            wrap.innerHTML = `<table class="today-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+        }
     }
 }
 
 // ── 시장 심리·유동성 지표 (5개 라인 차트) ─────────────
-const SENTIMENT_CHARTS = [
-    { key: "customer_deposit", title: "고객예탁금" },
-    { key: "credit_balance",   title: "신용잔고" },
-    { key: "usd_krw",          title: "원/달러 환율" },
-    { key: "wti",              title: "WTI 유가" },
-    { key: "us10y_yield",      title: "미국채 10년물 금리" },
-];
+// 우리 로컬 Daily 요약 페이지(templates/daily_summary.html loadSentimentCharts)와
+// 색상/타이틀/마지막값 강조 로직을 동일하게 맞춘다.
+function fmtNum(v) {
+    return v.toLocaleString(undefined, { maximumFractionDigits: 2 });
+}
 
 function renderSentimentCharts(sentiment) {
-    const grid = document.getElementById("sentiment-grid");
-    if (!sentiment || !sentiment.dates || !sentiment.dates.length) {
-        grid.innerHTML = '<p class="today-empty">데이터 없음</p>';
-        return;
-    }
-    grid.innerHTML = SENTIMENT_CHARTS.map(c => `
-        <div>
-            <div class="sentiment-chart-title">${c.title}</div>
-            <div class="sentiment-chart" id="sent-chart-${c.key}"></div>
-        </div>
-    `).join("");
+    if (!sentiment || !sentiment.dates || !sentiment.dates.length) return;
 
-    SENTIMENT_CHARTS.forEach(c => {
-        const el = document.getElementById(`sent-chart-${c.key}`);
-        const chart = echarts.init(el);
+    const specs = [
+        { field: "usd_krw",          containerId: "sent-usd_krw",          color: "#B4342A", unit: "원" },
+        { field: "wti",              containerId: "sent-wti",              color: "#F5A623", unit: "$" },
+        { field: "customer_deposit", containerId: "sent-customer_deposit", color: "#14315C", unit: "억원" },
+        { field: "credit_balance",   containerId: "sent-credit_balance",   color: "#9B59B6", unit: "억원" },
+        { field: "us10y_yield",      containerId: "sent-us10y_yield",      color: "#2F6B4F", unit: "%" },
+    ];
+
+    specs.forEach(spec => {
+        const container = document.getElementById(spec.containerId);
+        if (!container) return;
+
+        const series = sentiment[spec.field];
+        let lastValue = null, lastIdx = -1;
+        for (let i = series.length - 1; i >= 0; i--) {
+            if (series[i] != null) { lastValue = series[i]; lastIdx = i; break; }
+        }
+        let prevValue = null;
+        for (let i = lastIdx - 1; i >= 0; i--) {
+            if (series[i] != null) { prevValue = series[i]; break; }
+        }
+
+        let pct = null;
+        if (lastValue != null && prevValue != null && prevValue !== 0) {
+            pct = (lastValue - prevValue) / prevValue * 100;
+        }
+        const signColor = pct == null ? spec.color : (pct >= 0 ? "#B4342A" : "#2E5FA3");
+
+        const titleEl = document.getElementById("sent-title-" + spec.field);
+        if (titleEl && lastValue != null) {
+            const baseLabel = titleEl.textContent.trim();
+            let changeHtml = "";
+            if (pct != null) {
+                const sign = pct >= 0 ? "+" : "";
+                changeHtml = `, <span style="color:${signColor};">${sign}${pct.toFixed(2)}%</span>`;
+            }
+            titleEl.innerHTML = `${baseLabel} <span style="font-weight:400;">(${sentiment.dates[lastIdx]}: <span style="color:${signColor};">${fmtNum(lastValue)}${spec.unit}</span>${changeHtml})</span>`;
+        }
+
+        const chart = echarts.init(container);
         chart.setOption({
             animation: false,
-            grid: { left: 50, right: 15, top: 10, bottom: 30 },
-            tooltip: { trigger: "axis" },
-            xAxis: { type: "category", data: sentiment.dates, axisLabel: { fontSize: 9 } },
-            yAxis: { type: "value", scale: true, axisLabel: { fontSize: 9 } },
+            tooltip: {
+                trigger: "axis",
+                valueFormatter: v => v == null ? "-" : fmtNum(v) + spec.unit,
+            },
+            grid: { left: 60, right: 20, top: 26, bottom: 24 },
+            xAxis: {
+                type: "category", data: sentiment.dates,
+                axisLabel: { color: "#888", fontSize: 9 },
+            },
+            yAxis: {
+                type: "value", scale: true,
+                axisLabel: { color: "#888", fontSize: 9, formatter: v => fmtNum(v) },
+                splitLine: { lineStyle: { color: "#E1E9F3", type: "dashed" } },
+            },
             series: [{
-                type: "line", data: sentiment[c.key], showSymbol: false,
-                lineStyle: { color: "#2F5FA3", width: 1.5 },
-                areaStyle: { color: "rgba(47,95,163,0.08)" },
+                type: "line", data: series,
+                smooth: false, symbol: "none", connectNulls: true,
+                lineStyle: { color: spec.color, width: 1.6 },
+                areaStyle: { color: spec.color, opacity: 0.08 },
+                markPoint: lastValue == null ? undefined : {
+                    symbol: "circle", symbolSize: 6,
+                    itemStyle: { color: signColor, borderColor: "#fff", borderWidth: 1 },
+                    label: {
+                        show: true,
+                        formatter: () => fmtNum(lastValue) + spec.unit,
+                        color: signColor, fontSize: 9, fontWeight: 600,
+                        position: (prevValue == null || lastValue >= prevValue) ? "top" : "bottom",
+                        distance: 8,
+                    },
+                    data: [{ coord: [lastIdx, lastValue] }],
+                },
             }],
         });
+        window.addEventListener("resize", () => chart.resize());
     });
 }
 

@@ -67,85 +67,66 @@
 
         <div class="today-section">
             <div class="today-section-title">상한가</div>
-            <div class="today-table-wrap">
-                <table class="today-table">
-                    <thead><tr><th>종목명</th><th>종가</th><th>등락률</th><th>시가총액</th></tr></thead>
-                    <tbody id="upper-limit-body"><tr><td colspan="4" class="today-empty">불러오는 중...</td></tr></tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="today-section">
-            <div class="today-section-title">52주 고점대비 MDD -10% 이내<span class="today-section-sub">시가총액 상위 30</span></div>
-            <div class="today-table-wrap">
-                <table class="today-table">
-                    <thead><tr><th>종목명</th><th>종가</th><th>등락률</th><th>시가총액</th><th>MDD</th></tr></thead>
-                    <tbody id="low-mdd-body"><tr><td colspan="5" class="today-empty">불러오는 중...</td></tr></tbody>
-                </table>
-            </div>
+            <div class="stock-cards" id="upper-limit-cards"></div>
         </div>
 
         <div class="today-section">
             <div class="today-section-title">정배열 종목<span class="today-section-sub">MA20&gt;MA50&gt;MA150, 시가총액 상위 30</span></div>
-            <div class="today-table-wrap">
-                <table class="today-table">
-                    <thead><tr><th>종목명</th><th>종가</th><th>등락률</th><th>시가총액</th></tr></thead>
-                    <tbody id="bullish-body"><tr><td colspan="4" class="today-empty">불러오는 중...</td></tr></tbody>
-                </table>
-            </div>
+            <div class="stock-cards" id="bullish-cards"></div>
         </div>
 
         <div class="today-section">
-            <div class="today-section-title">코스피 / 코스닥 시가총액 TOP10</div>
+            <div class="today-section-title">코스피 / 코스닥 시가총액 TOP10<span class="today-section-sub">최근 5거래일 일자별 등락률</span></div>
             <div class="today-two-col">
                 <div>
-                    <div class="sentiment-chart-title">코스피 TOP10</div>
-                    <div class="today-table-wrap">
-                        <table class="today-table">
-                            <thead><tr><th>종목명</th><th>당일등락</th><th>최근5일등락</th></tr></thead>
-                            <tbody id="kospi-top10-body"><tr><td colspan="3" class="today-empty">불러오는 중...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="sent-title">코스피 TOP10</div>
+                    <div class="today-table-wrap" id="kospi-top10-wrap"></div>
                 </div>
                 <div>
-                    <div class="sentiment-chart-title">코스닥 TOP10</div>
-                    <div class="today-table-wrap">
-                        <table class="today-table">
-                            <thead><tr><th>종목명</th><th>당일등락</th><th>최근5일등락</th></tr></thead>
-                            <tbody id="kosdaq-top10-body"><tr><td colspan="3" class="today-empty">불러오는 중...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="sent-title">코스닥 TOP10</div>
+                    <div class="today-table-wrap" id="kosdaq-top10-wrap"></div>
                 </div>
             </div>
         </div>
 
         <div class="today-section">
-            <div class="today-section-title">섹터 시가총액 / 수익률 TOP10</div>
+            <div class="today-section-title">섹터 시가총액 / 수익률 TOP10<span class="today-section-sub">최근 5거래일 일자별 평균등락률</span></div>
             <div class="today-two-col">
                 <div>
-                    <div class="sentiment-chart-title">섹터 시가총액 TOP10</div>
-                    <div class="today-table-wrap">
-                        <table class="today-table">
-                            <thead><tr><th>섹터</th><th>시가총액</th><th>당일평균등락</th><th>5일평균등락</th></tr></thead>
-                            <tbody id="sector-mktcap-body"><tr><td colspan="4" class="today-empty">불러오는 중...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="sent-title">섹터 시가총액 TOP10</div>
+                    <div class="today-table-wrap" id="sector-mktcap-wrap"></div>
                 </div>
                 <div>
-                    <div class="sentiment-chart-title">섹터 수익률 TOP10</div>
-                    <div class="today-table-wrap">
-                        <table class="today-table">
-                            <thead><tr><th>섹터</th><th>종목수</th><th>평균등락률</th></tr></thead>
-                            <tbody id="sector-rate-body"><tr><td colspan="3" class="today-empty">불러오는 중...</td></tr></tbody>
-                        </table>
-                    </div>
+                    <div class="sent-title">섹터 수익률 TOP10</div>
+                    <div class="today-table-wrap" id="sector-rate-wrap"></div>
                 </div>
             </div>
         </div>
 
         <div class="today-section">
             <div class="today-section-title">시장 심리 · 유동성 지표</div>
-            <div class="sentiment-grid" id="sentiment-grid"></div>
+            <div class="sentiment-grid">
+                <div>
+                    <h3 id="sent-title-usd_krw" class="sent-title">💱 원/달러 환율</h3>
+                    <div id="sent-usd_krw" class="sentiment-chart"></div>
+                </div>
+                <div>
+                    <h3 id="sent-title-wti" class="sent-title">🛢️ WTI 유가</h3>
+                    <div id="sent-wti" class="sentiment-chart"></div>
+                </div>
+                <div>
+                    <h3 id="sent-title-us10y_yield" class="sent-title">🏦 미국 10년물 국채금리</h3>
+                    <div id="sent-us10y_yield" class="sentiment-chart"></div>
+                </div>
+                <div>
+                    <h3 id="sent-title-customer_deposit" class="sent-title">💰 고객예탁금</h3>
+                    <div id="sent-customer_deposit" class="sentiment-chart"></div>
+                </div>
+                <div>
+                    <h3 id="sent-title-credit_balance" class="sent-title">📄 신용잔고</h3>
+                    <div id="sent-credit_balance" class="sentiment-chart"></div>
+                </div>
+            </div>
         </div>
 
     </div>
