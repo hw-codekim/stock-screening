@@ -41,6 +41,7 @@ async function loadToday() {
     renderInvestorFlow(data.investor_net_buy);
     renderStockCards("upper-limit-cards", data.upper_limit);
     renderStockCards("bullish-cards", data.bullish_alignment);
+    renderStockCards("low-mdd-cards", data.low_mdd);
     renderDaily5Top10(data.top_mktcap);
     renderDaily5Sectors(data.top_sectors, data.top_sectors_rate);
     renderSentimentCharts(data.market_sentiment);
