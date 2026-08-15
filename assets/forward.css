@@ -1,31 +1,11 @@
 /* 컬럼이 많아 한 화면에는 안 들어와서 가로 스크롤을 허용한다 (분기 4개 + 연간 3개 전부 표시).
-   전 종목(2,700개+)이 들어가면서 세로로도 매우 길어지므로, wrap 자체 높이를 화면 안으로 제한해서
-   가로 스크롤바가 표 맨 밑(페이지 한참 아래)이 아니라 항상 화면에 보이는 위치에 오도록 한다. */
+   높이 제한 박스로 가두지 않고 표가 페이지 흐름대로 자연스럽게 이어지도록 하며,
+   가로 스크롤바는 브라우저 기본 동작(마우스를 올렸을 때만 나타나는 오버레이 스크롤바)에 맡긴다. */
 .fw-table-wrap {
-    max-height: 70vh;
-    overflow-x: scroll;  /* auto 대신 scroll - OS 오버레이 스크롤바(hover 시에만 보임) 환경에서도 항상 보이도록 */
-    overflow-y: auto;
+    overflow-x: auto;
     background: #fff;
     border: 1px solid #D7E0EC;
     border-radius: 4px;
-    /* Firefox: 항상 보이는 굵은 스크롤바 */
-    scrollbar-width: auto;
-    scrollbar-color: #9FB3D1 #EAF0FA;
-}
-/* Chrome/Edge/Safari: 항상 보이는 굵은 스크롤바 (기본은 hover 전까지 흐릿/숨김 처리되는 경우가 많음) */
-.fw-table-wrap::-webkit-scrollbar {
-    height: 12px;
-}
-.fw-table-wrap::-webkit-scrollbar-track {
-    background: #EAF0FA;
-    border-radius: 6px;
-}
-.fw-table-wrap::-webkit-scrollbar-thumb {
-    background: #9FB3D1;
-    border-radius: 6px;
-}
-.fw-table-wrap::-webkit-scrollbar-thumb:hover {
-    background: #6B87AD;
 }
 .fw-table {
     width: 100%;
