@@ -117,13 +117,13 @@ const FW_QUICK_FILTER_PREDICATES = {
     // 매주 금요일 fnguide 컨센서스 갱신 시 직전 수집 대비 상향된 종목(현재 선택된 지표 기준).
     rev_up26: r => {
         const m = document.getElementById("fw-metric-filter").value;
-        const v = (r.revision_values || [])[0];
-        return v && v[m] != null && v[m] > 0;
+        const rv = ((r.revision_values || [])[0] || {})[m];
+        return rv != null && rv.pct > 0;
     },
     rev_up27: r => {
         const m = document.getElementById("fw-metric-filter").value;
-        const v = (r.revision_values || [])[1];
-        return v && v[m] != null && v[m] > 0;
+        const rv = ((r.revision_values || [])[1] || {})[m];
+        return rv != null && rv.pct > 0;
     },
 };
 
@@ -216,6 +216,9 @@ function renderForwardTable() {
     const qPeriods = fwData.quarter_periods || [];
     const aPeriods = fwData.annual_periods || [];
     const aEst     = fwData.annual_estimate_periods || [];
+    // annual_periods는 [최근 실적연도, 26E, 27E...] 순서라, revision_values(26E/27E만 있음)와
+    // 인덱스가 안 맞는다 - 실적연도 뒤에 붙은 만큼 offset을 빼줘야 aArr[i]가 어느 revision_values 인지 안다.
+    const revOffset = aPeriods.length - aEst.length;
 
     let rows = getFilteredRows();
     rows.forEach(r => {
@@ -275,7 +278,15 @@ function renderForwardTable() {
             <td>${fwFmtMktcap(r.mktcap)}</td>
             ${qArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
             ${qOpm.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
-            ${aArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
+            ${aArr.map((v, i) => {
+                const cls = i === 0 ? "fw-group-border" : "";
+                const rv = ((r.revision_values || [])[i - revOffset] || {})[metric];
+                if (rv == null) return `<td class="${cls}">${fwFmtNum(v)}</td>`;
+                const arrow = rv.pct > 0 ? " ▲" : rv.pct < 0 ? " ▼" : "";
+                const color = rv.pct > 0 ? "#B4342A" : rv.pct < 0 ? "#2E5FA3" : "";
+                const title = `직전 컨센서스 대비: ${fwFmtNum(rv.prev)} → ${fwFmtNum(rv.cur)} (${rv.pct > 0 ? "+" : ""}${rv.pct}%)`;
+                return `<td class="${cls}" title="${title}">${fwFmtNum(v)}<span style="color:${color};font-size:9px;">${arrow}</span></td>`;
+            }).join("")}
             <td class="fw-group-border">${fwFmtPer((r.per || [])[0])}</td>
             <td>${fwFmtPer((r.per || [])[1])}</td>
             <td class="fw-group-border" style="${fwOpmStyle((r.opm || [])[0])}">${fwFmtPct1((r.opm || [])[0])}</td>
