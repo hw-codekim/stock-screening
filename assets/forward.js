@@ -308,57 +308,6 @@ function renderForwardTable() {
         `).join("");
     }
 
-    setupScrollShadow();
-}
-
-// 표(fw-table-wrap)의 가로 스크롤바는 표 세로 길이가 길어서(전종목 2,700개+) 화면을 끝까지
-// 내려야만 닿는다. 화면 아무 데서나 표 위에 있을 때 항상 접근 가능하도록, 뷰포트 하단에
-// sticky로 붙는 "그림자 스크롤바"(fw-scroll-shadow)를 표와 같은 스크롤 폭으로 맞추고
-// 서로 스크롤 위치를 동기화한다. 평소엔 투명, 표 위에 마우스가 있거나 스크롤 중일 때만 보인다.
-let fwScrollShadowWired = false;
-function setupScrollShadow() {
-    const wrap   = document.getElementById("fw-table-wrap");
-    const table  = wrap ? wrap.querySelector("table") : null;
-    const shadow = document.getElementById("fw-scroll-shadow");
-    const inner  = document.getElementById("fw-scroll-shadow-inner");
-    if (!wrap || !table || !shadow || !inner) return;
-
-    const resize = () => {
-        inner.style.width = table.scrollWidth + "px";
-        shadow.style.width = wrap.clientWidth + "px";
-    };
-    resize();
-    // 표를 막 새로 그린 직후에는 레이아웃이 아직 확정되기 전이라 clientWidth가 0으로 잡힐 때가
-    // 있어서, 다음 프레임에 한 번 더 재계산한다.
-    requestAnimationFrame(resize);
-    window.addEventListener("resize", resize);
-
-    if (fwScrollShadowWired) return;
-    fwScrollShadowWired = true;
-
-    let syncing = false;
-    let hideTimer = null;
-    const show = () => {
-        shadow.classList.add("fw-scroll-visible");
-        clearTimeout(hideTimer);
-    };
-    const scheduleHide = () => {
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(() => shadow.classList.remove("fw-scroll-visible"), 700);
-    };
-
-    wrap.addEventListener("scroll", () => {
-        if (!syncing) { syncing = true; shadow.scrollLeft = wrap.scrollLeft; syncing = false; }
-        show(); scheduleHide();
-    });
-    shadow.addEventListener("scroll", () => {
-        if (!syncing) { syncing = true; wrap.scrollLeft = shadow.scrollLeft; syncing = false; }
-        show(); scheduleHide();
-    });
-    wrap.addEventListener("mouseenter", show);
-    wrap.addEventListener("mouseleave", scheduleHide);
-    shadow.addEventListener("mouseenter", show);
-    shadow.addEventListener("mouseleave", scheduleHide);
 }
 
 function exportForwardCsv() {

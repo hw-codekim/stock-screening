@@ -4,33 +4,34 @@
    "표 영역은 높이 제한 없이 페이지가 대신 스크롤" + "그 안의 헤더는 페이지 스크롤에 고정"을
    동시에 만족시킬 방법이 없다(직접 여러 방식으로 검증함). 그래서 표 영역 자체에 높이를
    주고 그 안에서 세로/가로 스크롤이 다 일어나게 한다.
-   가로 스크롤바는 표 영역 맨 아래에 항상 붙어있어 보기 불편하므로 숨기고, 대신 화면
-   아무 데서나 표 위에 있을 때 항상 접근 가능한 "그림자 스크롤바"를 뷰포트 하단에 sticky로
-   하나 더 띄워서 실제 표의 가로 스크롤과 JS로 위치를 맞춘다 - 평소엔 투명하다가 스크롤/
-   마우스오버 시에만 나타난다. */
+   가로/세로 스크롤바는 표 영역 자체의 기본 스크롤바 하나만 쓰되(과거에 별도 "그림자
+   스크롤바"를 얹었더니 스크롤바가 두 개로 보이는 문제가 있었음 - 제거함), 평소엔
+   투명했다가 표 위에 마우스를 올렸을 때만 보이도록 스타일링한다. */
 .fw-table-wrap {
     overflow: auto;
     max-height: 78vh;
     background: #fff;
     border: 1px solid #D7E0EC;
     border-radius: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
 }
-.fw-table-wrap::-webkit-scrollbar:horizontal { display: none; }
-.fw-scroll-shadow {
-    position: sticky;
-    bottom: 6px;
-    height: 12px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    opacity: 0;
-    transition: opacity 0.15s ease;
-    z-index: 30;
+.fw-table-wrap:hover {
+    scrollbar-color: #b7c4d6 transparent;
 }
-.fw-scroll-shadow.fw-scroll-visible {
-    opacity: 0.9;
+.fw-table-wrap::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
-.fw-scroll-shadow-inner {
-    height: 1px;
+.fw-table-wrap::-webkit-scrollbar-track {
+    background: transparent;
+}
+.fw-table-wrap::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 6px;
+}
+.fw-table-wrap:hover::-webkit-scrollbar-thumb {
+    background: #b7c4d6;
 }
 .fw-table {
     width: 100%;
