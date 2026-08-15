@@ -35,7 +35,7 @@ function fwMddStyle(v) {
 }
 function fwShortPeriod(po) {
     const [y, m] = po.period.split("/");
-    return `${y.slice(2)}.${m}`;
+    return `${y.slice(2)}.${m}${po.is_estimate ? "E" : ""}`;
 }
 function fwShortYear(po) {
     return `${po.period.split("/")[0]}${po.is_estimate ? "E" : ""}`;
