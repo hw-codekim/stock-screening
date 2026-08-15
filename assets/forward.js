@@ -114,6 +114,17 @@ const FW_QUICK_FILTER_PREDICATES = {
     per26_10: r => (r.per || [])[0] != null && r.per[0] > 0 && r.per[0] <= 10,
     per27_10: r => (r.per || [])[1] != null && r.per[1] > 0 && r.per[1] <= 10,
     div4:     r => r.dvr != null && r.dvr >= 4,
+    // 매주 금요일 fnguide 컨센서스 갱신 시 직전 수집 대비 상향된 종목(현재 선택된 지표 기준).
+    rev_up26: r => {
+        const m = document.getElementById("fw-metric-filter").value;
+        const v = (r.revision_values || [])[0];
+        return v && v[m] != null && v[m] > 0;
+    },
+    rev_up27: r => {
+        const m = document.getElementById("fw-metric-filter").value;
+        const v = (r.revision_values || [])[1];
+        return v && v[m] != null && v[m] > 0;
+    },
 };
 
 function getFilteredRows() {
