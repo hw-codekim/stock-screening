@@ -93,30 +93,23 @@ function populateMidFilter() {
     });
 }
 
-// 최근분기(quarter_opm 마지막 값)/전년동기/전분기 OPM, 매출 YoY, PER, 배당 기준 빠른 필터.
+// "최근분기" 기준 필터는 항상 백엔드가 고정한 REFERENCE_QUARTER(26.06) 기준으로 판단한다.
+// 분기가 늘어나도(예: 26.09E 추가) quarter_opm 배열의 마지막 값을 쓰면 기준이 조용히 밀리므로,
+// ref_quarter_*/prev_quarter_opm 같은 고정 필드를 쓴다 (stock_rank_service.py에서 계산).
 // null(데이터 없음)인 종목은 해당 조건을 판단할 수 없으므로 필터에서 제외한다.
 const FW_QUICK_FILTER_PREDICATES = {
     opm_qoq5: r => {
-        const arr = r.quarter_opm || [];
-        if (arr.length < 2 || arr[arr.length - 1] == null || arr[arr.length - 2] == null) return false;
-        return arr[arr.length - 1] - arr[arr.length - 2] >= 5;
+        if (r.ref_quarter_opm == null || r.prev_quarter_opm == null) return false;
+        return r.ref_quarter_opm - r.prev_quarter_opm >= 5;
     },
     opm_yoy5: r => {
-        const arr = r.quarter_opm || [];
-        const last = arr[arr.length - 1];
-        if (last == null || r.prior_yr_q_opm == null) return false;
-        return last - r.prior_yr_q_opm >= 5;
+        if (r.ref_quarter_opm == null || r.prior_yr_q_opm == null) return false;
+        return r.ref_quarter_opm - r.prior_yr_q_opm >= 5;
     },
-    opm20: r => {
-        const arr = r.quarter_opm || [];
-        const last = arr[arr.length - 1];
-        return last != null && last >= 20;
-    },
+    opm20: r => r.ref_quarter_opm != null && r.ref_quarter_opm >= 20,
     rev_yoy50: r => {
-        const arr = r.quarter_revenue || [];
-        const last = arr[arr.length - 1];
-        if (last == null || !r.prior_yr_q_revenue) return false;
-        return (last - r.prior_yr_q_revenue) / r.prior_yr_q_revenue * 100 >= 50;
+        if (r.ref_quarter_revenue == null || !r.prior_yr_q_revenue) return false;
+        return (r.ref_quarter_revenue - r.prior_yr_q_revenue) / r.prior_yr_q_revenue * 100 >= 50;
     },
     per26_10: r => (r.per || [])[0] != null && r.per[0] > 0 && r.per[0] <= 10,
     per27_10: r => (r.per || [])[1] != null && r.per[1] > 0 && r.per[1] <= 10,
