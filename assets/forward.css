@@ -34,7 +34,6 @@
 .fw-table tbody tr:hover { background: #F5F8FC; }
 .fw-table td.fw-name-cell, .fw-table th.fw-name-th { text-align: left; }
 .fw-table td.fw-name-cell { font-weight: 600; color: #14315C; }
-.fw-updated-mark { color: #2F6B4F; font-weight: 700; margin-right: 3px; }
 .fw-sector-cell { font-size: 10.5px; color: #666; }
 /* 헤더 그룹(지표/PER/OPM/YoY/MDD/배당) 영역 경계를 본문까지 세로선으로 이어서 그린다 */
 .fw-group-border { border-left: 1px solid #d9dee6; }
