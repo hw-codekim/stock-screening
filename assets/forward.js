@@ -265,13 +265,19 @@ function renderForwardTable() {
     const rowHtml = r => {
         const qArr = r._qArr, aArr = r._aArr, qOpm = r.quarter_opm || [];
         const status = r.quarter_report_status || [];
+        // 최근분기 값이 있고 그 출처 상태가 없음(null)이면 DART 반기/분기보고서 등으로 확정 반영된
+        // 것이므로("잠정"/"추정"이 아님) 종목명 앞에 V 표시 - 포워드실적 페이지에서만 사용
+        const lastStatus = status[status.length - 1];
+        const lastQVal = qArr[qArr.length - 1];
+        const isUpdated = lastQVal != null && (lastStatus === null || lastStatus === undefined);
+        const nameMark = isUpdated ? '<span class="fw-updated-mark" title="DART 확정 실적 반영됨">V</span>' : "";
         return `
         <tr>
-            <td class="fw-name-cell">${r.name}</td>
+            <td class="fw-name-cell">${nameMark}${r.name}</td>
             <td class="fw-sector-cell">${fwStripMidPrefix(r.sector_mid) || "-"}</td>
             <td>${fwFmtMktcap(r.mktcap)}</td>
-            ${qArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border " : ""}${status[i] === "P" ? "fw-prelim" : ""}">${fwFmtNum(v)}</td>`).join("")}
-            ${qOpm.map((v, i) => `<td class="${i === 0 ? "fw-group-border " : ""}${status[i] === "P" ? "fw-prelim " : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
+            ${qArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
+            ${qOpm.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
             ${aArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
             <td class="fw-group-border">${fwFmtPer((r.per || [])[0])}</td>
             <td>${fwFmtPer((r.per || [])[1])}</td>
