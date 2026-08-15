@@ -64,6 +64,7 @@ async function loadForward() {
     document.getElementById("fw-large-filter").addEventListener("change", () => { populateMidFilter(); renderForwardTable(); });
     document.getElementById("fw-mid-filter").addEventListener("change", renderForwardTable);
     document.getElementById("fw-metric-filter").addEventListener("change", renderForwardTable);
+    document.getElementById("fw-quick-filter").addEventListener("change", renderForwardTable);
     document.getElementById("fw-stock-search").addEventListener("input", renderForwardTable);
     document.getElementById("fw-csv-btn").addEventListener("click", exportForwardCsv);
 }
@@ -92,17 +93,50 @@ function populateMidFilter() {
     });
 }
 
+// 최근분기(quarter_opm 마지막 값)/전년동기/전분기 OPM, 매출 YoY, PER, 배당 기준 빠른 필터.
+// null(데이터 없음)인 종목은 해당 조건을 판단할 수 없으므로 필터에서 제외한다.
+const FW_QUICK_FILTER_PREDICATES = {
+    opm_qoq5: r => {
+        const arr = r.quarter_opm || [];
+        if (arr.length < 2 || arr[arr.length - 1] == null || arr[arr.length - 2] == null) return false;
+        return arr[arr.length - 1] - arr[arr.length - 2] >= 5;
+    },
+    opm_yoy5: r => {
+        const arr = r.quarter_opm || [];
+        const last = arr[arr.length - 1];
+        if (last == null || r.prior_yr_q_opm == null) return false;
+        return last - r.prior_yr_q_opm >= 5;
+    },
+    opm20: r => {
+        const arr = r.quarter_opm || [];
+        const last = arr[arr.length - 1];
+        return last != null && last >= 20;
+    },
+    rev_yoy50: r => {
+        const arr = r.quarter_revenue || [];
+        const last = arr[arr.length - 1];
+        if (last == null || !r.prior_yr_q_revenue) return false;
+        return (last - r.prior_yr_q_revenue) / r.prior_yr_q_revenue * 100 >= 50;
+    },
+    per26_10: r => (r.per || [])[0] != null && r.per[0] > 0 && r.per[0] <= 10,
+    per27_10: r => (r.per || [])[1] != null && r.per[1] > 0 && r.per[1] <= 10,
+    div4:     r => r.dvr != null && r.dvr >= 4,
+};
+
 function getFilteredRows() {
     const market = document.getElementById("fw-market-filter").value;
     const large  = document.getElementById("fw-large-filter").value;
     const mid    = document.getElementById("fw-mid-filter").value;
     const query  = document.getElementById("fw-stock-search").value.trim().toLowerCase();
+    const quick  = document.getElementById("fw-quick-filter").value;
+    const quickFn = FW_QUICK_FILTER_PREDICATES[quick];
 
     return (fwData.rows || []).filter(r => {
         if (market && r.market !== market) return false;
         if (large && r.sector_large !== large) return false;
         if (mid && r.sector_mid !== mid) return false;
         if (query && !r.name.toLowerCase().includes(query)) return false;
+        if (quickFn && !quickFn(r)) return false;
         return true;
     });
 }
