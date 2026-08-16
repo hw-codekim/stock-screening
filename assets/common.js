@@ -330,15 +330,16 @@ function detailMarkup(code, name) {
     return `
         <div class="screen-chart-status">차트 불러오는 중...</div>
         <div class="screen-chart-wrap">
-            <div class="screen-chart-row">
-                <div class="graph-wrap">
+            <div class="screen-chart-row" data-code="${code}">
+                <div class="graph-wrap" data-pane="left">
                     <div class="graph-title-row">
                         <a href="#" class="excel-download-link" data-code="${code}" data-name="${name}">엑셀다운로드</a>
                         <div class="graph-title">${name} · 매출/OPM</div>
                     </div>
                     <canvas id="chart-opm-${code}"></canvas>
                 </div>
-                <div class="graph-wrap">
+                <div class="chart-resize-handle" title="드래그해서 크기 조절"></div>
+                <div class="graph-wrap" data-pane="right">
                     <div class="graph-title">${name} · 주가</div>
                     <div id="chart-price-${code}" class="price-chart-container"></div>
                 </div>
@@ -397,6 +398,58 @@ document.addEventListener("click", (e) => {
     e.preventDefault();
     downloadFinancialExcel(link.dataset.code, link.dataset.name);
 });
+
+// ── 차트 영역 좌우 크기 조절 (핸들 드래그) ────────────────
+let resizeState = null;
+
+function onResizeMouseDown(e) {
+    const handle = e.target.closest(".chart-resize-handle");
+    if (!handle) return;
+    const row = handle.closest(".screen-chart-row");
+    const left = row && row.querySelector(".graph-wrap[data-pane='left']");
+    const right = row && row.querySelector(".graph-wrap[data-pane='right']");
+    if (!left || !right) return;
+
+    resizeState = {
+        row, left, right, handle,
+        startX: e.clientX,
+        startLeftWidth: left.getBoundingClientRect().width,
+        code: row.dataset.code,
+    };
+    handle.classList.add("dragging");
+    document.body.style.userSelect = "none";
+    e.preventDefault();
+}
+
+function onResizeMouseMove(e) {
+    if (!resizeState) return;
+    const { row, left, right, code } = resizeState;
+    const rowWidth = row.getBoundingClientRect().width;
+    const handleWidth = 14;
+    const minWidth = 200;
+    let newLeftWidth = resizeState.startLeftWidth + (e.clientX - resizeState.startX);
+    const maxLeftWidth = rowWidth - handleWidth - minWidth;
+    newLeftWidth = Math.max(minWidth, Math.min(maxLeftWidth, newLeftWidth));
+
+    left.style.flex = `0 0 ${newLeftWidth}px`;
+    right.style.flex = "1 1 0";
+
+    const opmChart = chartInstances[`chart-opm-${code}`];
+    if (opmChart) opmChart.resize();
+    const priceChart = chartInstances[`chart-price-${code}`];
+    if (priceChart) priceChart.resize();
+}
+
+function onResizeMouseUp() {
+    if (!resizeState) return;
+    resizeState.handle.classList.remove("dragging");
+    document.body.style.userSelect = "";
+    resizeState = null;
+}
+
+document.addEventListener("mousedown", onResizeMouseDown);
+document.addEventListener("mousemove", onResizeMouseMove);
+document.addEventListener("mouseup", onResizeMouseUp);
 
 function isMobileView() {
     return window.innerWidth <= 700;
