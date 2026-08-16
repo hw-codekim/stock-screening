@@ -23,6 +23,11 @@ body {
     align-items: flex-end;
     gap: 28px;
 }
+/* 페이지마다 제목 글자수가 달라서 그 뒤에 바로 붙는 nav 시작 위치가 페이지마다 밀렸다 당겨졌다
+   했음(예: "CHART" vs "실적 스크리닝") - 제목 칸 너비를 고정해서 메뉴 위치를 페이지 간에 통일 */
+.header-left > div:first-child {
+    min-width: 150px;
+}
 
 /* 링크의 방문(visited) 상태는 브라우저 기본 스타일(a:visited)이 클래스 선택자보다
    우선순위가 높아서 color가 무시되기 쉽다 - :link/:visited를 명시해서 클릭 전후
