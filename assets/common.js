@@ -401,6 +401,21 @@ document.addEventListener("click", (e) => {
 
 // ── 차트 영역 좌우 크기 조절 (핸들 드래그) ────────────────
 let resizeState = null;
+let savedSplitRatio = null; // 왼쪽 패널이 차지하는 비율(0~1) - 한 번 조절하면 다른 종목 펼칠 때도 유지
+
+function applySavedSplit(row) {
+    if (savedSplitRatio == null || !row) return;
+    const left = row.querySelector(".graph-wrap[data-pane='left']");
+    const right = row.querySelector(".graph-wrap[data-pane='right']");
+    if (!left || !right) return;
+    const handleWidth = 14;
+    const minWidth = 200;
+    const availWidth = row.getBoundingClientRect().width - handleWidth;
+    let leftWidth = availWidth * savedSplitRatio;
+    leftWidth = Math.max(minWidth, Math.min(availWidth - minWidth, leftWidth));
+    left.style.flex = `0 0 ${leftWidth}px`;
+    right.style.flex = "1 1 0";
+}
 
 function onResizeMouseDown(e) {
     const handle = e.target.closest(".chart-resize-handle");
@@ -433,6 +448,7 @@ function onResizeMouseMove(e) {
 
     left.style.flex = `0 0 ${newLeftWidth}px`;
     right.style.flex = "1 1 0";
+    savedSplitRatio = newLeftWidth / (rowWidth - handleWidth);
 
     const opmChart = chartInstances[`chart-opm-${code}`];
     if (opmChart) opmChart.resize();
@@ -483,6 +499,7 @@ function openRow(index) {
         if (!detail.dataset.built) {
             detail.dataset.built = "1";
             detail.innerHTML = detailMarkup(row.dataset.code, row.dataset.name);
+            applySavedSplit(detail.querySelector(".screen-chart-row"));
             detail.dataset.loaded = "1";
             loadStockCharts(row.dataset.code, detail);
         } else if (!detail.dataset.loaded) {
