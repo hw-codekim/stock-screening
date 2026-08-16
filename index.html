@@ -19,7 +19,8 @@
             <a href="index.html" class="active">TODAY</a>
             <a href="q2.html">2Q26실적</a>
             <a href="forward.html">포워드실적</a>
-            <a href="us-charts.html">미장Chart</a>
+            <a href="us-charts.html">미장</a>
+            <a href="chart.html">CHART</a>
         </nav>
     </div>
 </header>
@@ -58,17 +59,26 @@
         </div>
 
         <div class="today-section">
-            <div class="today-section-title">상한가</div>
+            <div class="today-section-title-row">
+                <div class="today-section-title">상한가</div>
+                <a href="chart.html?list=upper_limit" class="today-chart-link">CHART →</a>
+            </div>
             <div class="stock-cards" id="upper-limit-cards"></div>
         </div>
 
         <div class="today-section">
-            <div class="today-section-title">정배열 종목<span class="today-section-sub">현재가&gt;MA20&gt;MA50&gt;MA150, 시가총액 상위 30</span></div>
+            <div class="today-section-title-row">
+                <div class="today-section-title">정배열 종목<span class="today-section-sub">현재가&gt;MA20&gt;MA50&gt;MA150, 시가총액 상위 30</span></div>
+                <a href="chart.html?list=bullish_alignment" class="today-chart-link">CHART →</a>
+            </div>
             <div class="stock-cards" id="bullish-cards"></div>
         </div>
 
         <div class="today-section">
-            <div class="today-section-title">52주 고점대비 MDD -10% 이내<span class="today-section-sub">52주 신고가 근접 종목, 시가총액 상위 30</span></div>
+            <div class="today-section-title-row">
+                <div class="today-section-title">52주 고점대비 MDD -10% 이내<span class="today-section-sub">52주 신고가 근접 종목, 시가총액 상위 30</span></div>
+                <a href="chart.html?list=low_mdd" class="today-chart-link">CHART →</a>
+            </div>
             <div class="stock-cards" id="low-mdd-cards"></div>
         </div>
 
