@@ -187,6 +187,7 @@ function renderList(sectors) {
             <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
             <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
             <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm.toFixed(1) + "%" : "-"}</span>
+            <span class="sr-per" data-label="26E PER">${s.per_2026 != null ? s.per_2026.toFixed(1) + "배" : "-"}</span>
             <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
             <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtPct1(s.day_change_rate)}</span>
             <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtPct1(s.price_change)}</span>

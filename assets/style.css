@@ -252,6 +252,7 @@ body {
 .sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-yoy { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-opm { flex: 0 0 60px; text-align: center; }
+.sr-per { flex: 0 0 58px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-price { flex: 0 0 74px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 .sr-daychg { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-chg { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
