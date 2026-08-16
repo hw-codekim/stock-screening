@@ -115,10 +115,6 @@ async function loadList() {
     document.getElementById("summary-line").innerHTML =
         `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
-    if (listData.base_date) {
-        const [, bm, bd] = listData.base_date.split("-");
-        document.getElementById("chg-header").textContent = `${Number(bm)}/${Number(bd)}일 이후`;
-    }
     if (listData.latest_date) {
         const [, lm, ld] = listData.latest_date.split("-");
         document.getElementById("daychg-header").textContent = `${Number(lm)}/${Number(ld)}일등락`;
@@ -190,7 +186,7 @@ function renderList(sectors) {
             <span class="sr-per" data-label="26E PER">${s.per_2026 != null ? s.per_2026.toFixed(1) + "배" : "-"}</span>
             <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
             <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtPct1(s.day_change_rate)}</span>
-            <span class="sr-chg" data-label="7/30이후" style="color:${yoyColor(s.price_change)};">${fmtPct1(s.price_change)}</span>
+            <span class="sr-chg" data-label="YTD" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
             <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd.toFixed(1) + "%" : "-"}</span>
         </div>
         <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;"></div>
