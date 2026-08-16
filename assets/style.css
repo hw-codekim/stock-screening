@@ -240,23 +240,25 @@ body {
 }
 .sr-arrow { flex: 0 0 14px; color: #14315C; font-size: 11px; text-align: center; }
 .sr-name {
-    flex: 2 1 200px; font-weight: 500; color: #14213D;
+    flex: 2 1 180px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .sr-sector {
-    flex: 0 0 84px; font-size: 11px; color: #14213D; text-align: center;
+    flex: 0 0 74px; font-size: 11px; color: #14213D; text-align: center;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.sr-market { flex: 0 0 48px; font-size: 11px; color: #14213D; text-align: center; }
+.sr-market { flex: 0 0 40px; font-size: 11px; color: #14213D; text-align: center; }
 .sr-mktcap { flex: 0 0 64px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
-.sr-num { flex: 1 1 90px; text-align: center; font-variant-numeric: tabular-nums; }
-.sr-yoy { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
-.sr-opm { flex: 0 0 60px; text-align: center; }
-.sr-per { flex: 0 0 58px; text-align: center; font-variant-numeric: tabular-nums; }
-.sr-price { flex: 0 0 74px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
-.sr-daychg { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; }
-.sr-chg { flex: 0 0 70px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
-.sr-mdd { flex: 0 0 60px; text-align: center; font-variant-numeric: tabular-nums; color: #2F5FA3; }
+/* 매출/영업이익은 "1,714,995억"처럼 자릿수가 커서 줄어들면 두 줄로 줄바꿈되던 문제 -
+   flex-shrink을 0으로 고정해서 다른 컬럼이 줄어들어도 이 컬럼만은 항상 폭을 유지 */
+.sr-num { flex: 0 0 92px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sr-yoy { flex: 0 0 46px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-opm { flex: 0 0 50px; text-align: center; }
+.sr-per { flex: 0 0 52px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-price { flex: 0 0 68px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
+.sr-daychg { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-chg { flex: 0 0 54px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+.sr-mdd { flex: 0 0 52px; text-align: center; font-variant-numeric: tabular-nums; color: #2F5FA3; }
 
 .sr-sector-group-title {
     font-size: 12px; font-weight: 700; color: #14315C;
