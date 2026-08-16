@@ -57,7 +57,6 @@ async function loadForward() {
     document.getElementById("fw-generated-at").textContent = `업데이트: ${fwData.generated_at}`;
 
     populateSectorFilter();
-    renderRankings();
     renderForwardTable();
 
     document.getElementById("fw-market-filter").addEventListener("change", renderForwardTable);
@@ -364,30 +363,6 @@ function exportForwardCsv() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-}
-
-function fwRenderRankRows(elId, items, formatter) {
-    const el = document.getElementById(elId);
-    if (!items || !items.length) {
-        el.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#aaa;padding:12px;">데이터 없음</td></tr>';
-        return;
-    }
-    el.innerHTML = items.map((it, idx) => `
-        <tr>
-            <td>${idx + 1}</td>
-            <td style="text-align:left;">${it.name}</td>
-            <td>${formatter(it.value)}</td>
-            <td>${fwFmtMktcap(it.mktcap)}</td>
-        </tr>
-    `).join("");
-}
-
-function renderRankings() {
-    const r = fwData.rankings || {};
-    fwRenderRankRows("fw-rank-per",    r.per,     v => v != null ? v.toFixed(1) + "배" : "-");
-    fwRenderRankRows("fw-rank-fwdper", r.fwd_per, v => v != null ? v.toFixed(1) + "배" : "-");
-    fwRenderRankRows("fw-rank-pbr",    r.pbr,     v => v != null ? v.toFixed(2) + "배" : "-");
-    fwRenderRankRows("fw-rank-dvr",    r.dvr,     v => v != null ? v.toFixed(2) + "%" : "-");
 }
 
 // ── 방문자 카운터 / 맨 위로 스크롤 - common.js와 동일 로직 ──
