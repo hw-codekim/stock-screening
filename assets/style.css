@@ -138,6 +138,8 @@ body {
 .search-bar select { min-width: 140px; }
 .search-bar input { flex: 1 1 240px; min-width: 200px; }
 
+.toggle-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-bottom: 14px; }
+.toggle-row .unreported-toggle { margin-bottom: 0; }
 .unreported-toggle {
     display: flex; align-items: center; gap: 6px;
     font-size: 0.8rem; color: #14213D;

@@ -403,8 +403,13 @@ document.addEventListener("click", (e) => {
 let resizeState = null;
 let savedSplitRatio = null; // 왼쪽 패널이 차지하는 비율(0~1) - 한 번 조절하면 다른 종목 펼칠 때도 유지
 
+function isChartSizeLockOn() {
+    const el = document.getElementById("chart-size-lock-toggle");
+    return !el || el.checked; // 체크박스가 아직 없을 때(다른 페이지 등)는 기본 동작 유지
+}
+
 function applySavedSplit(row) {
-    if (savedSplitRatio == null || !row) return;
+    if (!isChartSizeLockOn() || savedSplitRatio == null || !row) return;
     const left = row.querySelector(".graph-wrap[data-pane='left']");
     const right = row.querySelector(".graph-wrap[data-pane='right']");
     if (!left || !right) return;
@@ -499,7 +504,6 @@ function openRow(index) {
         if (!detail.dataset.built) {
             detail.dataset.built = "1";
             detail.innerHTML = detailMarkup(row.dataset.code, row.dataset.name);
-            applySavedSplit(detail.querySelector(".screen-chart-row"));
             detail.dataset.loaded = "1";
             loadStockCharts(row.dataset.code, detail);
         } else if (!detail.dataset.loaded) {
@@ -560,6 +564,7 @@ async function loadStockCharts(code, detail) {
 
         statusEl.style.display = "none";
         wrapEl.style.display   = "block";
+        applySavedSplit(detail.querySelector(".screen-chart-row"));
 
         if (data.financial) {
             const d = data.financial;

@@ -72,10 +72,15 @@
         </select>
         <input type="text" id="stock-search" placeholder="종목명 또는 코드 검색">
     </div>
-    <label class="unreported-toggle">
-        <input type="checkbox" id="unreported-toggle"> 실적 미발표 기업 포함
-        <span class="unreported-note">( 종목별 그래프와 차트는 체크 해제했을 경우만 가능)</span>
-    </label>
+    <div class="toggle-row">
+        <label class="unreported-toggle">
+            <input type="checkbox" id="unreported-toggle"> 실적 미발표 기업 포함
+            <span class="unreported-note">( 종목별 그래프와 차트는 체크 해제했을 경우만 가능)</span>
+        </label>
+        <label class="unreported-toggle">
+            <input type="checkbox" id="chart-size-lock-toggle" checked> 그래프 사이즈 고정
+        </label>
+    </div>
 
     <div class="summary-line" id="summary-line">불러오는 중...</div>
 
