@@ -541,6 +541,41 @@ document.addEventListener("keydown", (e) => {
 const smallScale = { ticks: { maxRotation: 90, minRotation: 90, font: { size: 9 } } };
 let loadCounter = 0;
 
+// ── 매물대(가격대별 누적거래량) 계산 ────────────────────
+// 종목 상세 캔들차트 위에 반투명 가로 막대로 오버레이. 각 날의 거래량을 그날 고가~저가
+// 구간에 걸친 가격 버킷들에 겹치는 비율만큼 나눠 담는다(종가 하나에만 몰아넣는 것보다
+// 실제 매매가 이뤄진 가격대를 더 정확히 반영).
+function computeVolumeProfile(p, bins = 24) {
+    const highs = (p.high || []).filter(v => v != null);
+    const lows  = (p.low  || []).filter(v => v != null);
+    if (!highs.length || !lows.length) return [];
+    const maxP = Math.max(...highs);
+    const minP = Math.min(...lows);
+    if (maxP <= minP) return [];
+    const binSize = (maxP - minP) / bins;
+    const buckets = new Array(bins).fill(0);
+
+    for (let i = 0; i < p.dates.length; i++) {
+        const h = p.high[i], l = p.low[i], v = p.volume[i];
+        if (h == null || l == null || !v) continue;
+        if (h === l) {
+            const idx = Math.min(bins - 1, Math.max(0, Math.floor((h - minP) / binSize)));
+            buckets[idx] += v;
+            continue;
+        }
+        const startIdx = Math.max(0, Math.floor((l - minP) / binSize));
+        const endIdx   = Math.min(bins - 1, Math.floor((h - minP) / binSize));
+        for (let b = startIdx; b <= endIdx; b++) {
+            const bucketLow  = minP + b * binSize;
+            const bucketHigh = bucketLow + binSize;
+            const overlap = Math.max(0, Math.min(h, bucketHigh) - Math.max(l, bucketLow));
+            buckets[b] += v * (overlap / (h - l));
+        }
+    }
+
+    return buckets.map((vol, idx) => ({ price: minP + (idx + 0.5) * binSize, volume: vol }));
+}
+
 async function loadStockCharts(code, detail) {
     const myToken = ++loadCounter;
     detail.dataset.loadToken = myToken;
@@ -642,6 +677,9 @@ async function loadStockCharts(code, detail) {
                 }],
             };
 
+            const volumeProfile = computeVolumeProfile(p);
+            const maxProfileVol = Math.max(1, ...volumeProfile.map(b => b.volume));
+
             const desktopOption = {
                 animation: false,
                 grid: [
@@ -659,6 +697,9 @@ async function loadStockCharts(code, detail) {
                         axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
                         splitLine: { show: false },
                     },
+                    // 매물대 전용 - 캔들 x축(날짜)과는 별개로, 막대가 그리드 폭의 왼쪽 일부만
+                    // 차지하도록 max를 실제 최대 거래량보다 훨씬 크게 잡아서 눌러준다.
+                    { type: "value", gridIndex: 0, show: false, min: 0, max: maxProfileVol / 0.32 },
                 ],
                 yAxis: [
                     { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
@@ -675,7 +716,14 @@ async function loadStockCharts(code, detail) {
                 },
                 series: [
                     {
-                        name: "종가", type: "candlestick", xAxisIndex: 0, yAxisIndex: 0, data: candleData,
+                        name: "매물대", type: "bar", xAxisIndex: 2, yAxisIndex: 0,
+                        data: volumeProfile.map(b => [b.volume, b.price]),
+                        barWidth: 5, silent: true, z: 1,
+                        itemStyle: { color: "rgba(169,132,63,0.28)" },
+                        tooltip: { show: false },
+                    },
+                    {
+                        name: "종가", type: "candlestick", xAxisIndex: 0, yAxisIndex: 0, data: candleData, z: 3,
                         itemStyle: { color: "#B4342A", color0: "#2E5FA3", borderColor: "#B4342A", borderColor0: "#2E5FA3" },
                         markLine: {
                             symbol: "none",
@@ -700,12 +748,12 @@ async function loadStockCharts(code, detail) {
                         },
                     },
                     {
-                        name: "MA20", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma20,
+                        name: "MA20", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma20, z: 2,
                         smooth: true, symbol: "none", showSymbol: false,
                         lineStyle: { color: "#29B6F6", width: 1.5 },
                     },
                     {
-                        name: "MA50", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma50,
+                        name: "MA50", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma50, z: 2,
                         smooth: true, symbol: "none", showSymbol: false,
                         lineStyle: { color: "#F5A623", width: 1.5 },
                     },
