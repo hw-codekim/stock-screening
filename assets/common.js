@@ -548,10 +548,10 @@ let loadCounter = 0;
 function computeVolumeProfile(p, bins = 24) {
     const highs = (p.high || []).filter(v => v != null);
     const lows  = (p.low  || []).filter(v => v != null);
-    if (!highs.length || !lows.length) return [];
+    if (!highs.length || !lows.length) return { binSize: 0, buckets: [] };
     const maxP = Math.max(...highs);
     const minP = Math.min(...lows);
-    if (maxP <= minP) return [];
+    if (maxP <= minP) return { binSize: 0, buckets: [] };
     const binSize = (maxP - minP) / bins;
     const buckets = new Array(bins).fill(0);
 
@@ -708,6 +708,10 @@ async function loadStockCharts(code, detail) {
             const volumeProfile = computeVolumeProfile(visibleP);
             const maxProfileVol = Math.max(1, ...volumeProfile.buckets.map(b => b.volume));
             const PROFILE_OCCUPY = 0.32; // 매물대 막대가 그리드 폭에서 최대로 차지할 비율(왼쪽부터)
+            // POC(Point of Control) - 매물대에서 거래량이 가장 많이 몰린 가격
+            const pocBucket = volumeProfile.buckets.reduce(
+                (max, b) => (b.volume > max.volume ? b : max), volumeProfile.buckets[0]
+            );
 
             const desktopOption = {
                 animation: false,
@@ -774,11 +778,25 @@ async function loadStockCharts(code, detail) {
                         markLine: {
                             symbol: "none",
                             silent: true,
-                            data: [{
-                                yAxis: lastClose,
-                                label: { show: false },
-                                lineStyle: { color: "#A9843F", type: "dashed", width: 1.4 },
-                            }],
+                            data: [
+                                {
+                                    yAxis: lastClose,
+                                    label: { show: false },
+                                    lineStyle: { color: "#A9843F", type: "dashed", width: 1.4 },
+                                },
+                                ...(pocBucket ? [{
+                                    // POC(매물대 최대 거래량 가격) - 우측 가격축에 뱃지로 표기
+                                    yAxis: pocBucket.price,
+                                    label: {
+                                        show: true,
+                                        formatter: "POC " + Math.round(pocBucket.price).toLocaleString(),
+                                        position: "end",
+                                        color: "#fff", backgroundColor: "#A9843F",
+                                        padding: [2, 6], borderRadius: 8, fontSize: 10, fontWeight: 600,
+                                    },
+                                    lineStyle: { color: "#A9843F", type: "solid", width: 1, opacity: 0.55 },
+                                }] : []),
+                            ],
                         },
                         markPoint: {
                             symbol: "none",
