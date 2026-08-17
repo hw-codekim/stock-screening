@@ -680,7 +680,17 @@ async function loadStockCharts(code, detail) {
                 }],
             };
 
-            const volumeProfile = computeVolumeProfile(p);
+            // y축이 scale:true라 처음 화면에 보이는 구간(dataZoom 60~100%, 최근 40%)의
+            // 고가/저가로 자동 범위가 잡힌다 - 매물대 가격 구간도 그 범위와 맞춰야 화면
+            // 밖으로 벗어나는 막대가 안 생긴다.
+            const visibleStart = Math.floor(p.dates.length * 0.6);
+            const visibleP = {
+                dates:  p.dates.slice(visibleStart),
+                high:   p.high.slice(visibleStart),
+                low:    p.low.slice(visibleStart),
+                volume: p.volume.slice(visibleStart),
+            };
+            const volumeProfile = computeVolumeProfile(visibleP);
             const maxProfileVol = Math.max(1, ...volumeProfile.buckets.map(b => b.volume));
             const PROFILE_OCCUPY = 0.32; // 매물대 막대가 그리드 폭에서 최대로 차지할 비율(왼쪽부터)
 
