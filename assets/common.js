@@ -579,6 +579,17 @@ function computeVolumeProfile(p, bins = 24) {
     };
 }
 
+// 종목 상세 차트 기본 표시 구간(6개월) 시작 인덱스 - 날짜 문자열 기준으로 정확히 계산
+// (전체 데이터 대비 %로 자르면 보관 기간이 늘어날 때마다 기본 노출 구간이 조용히 밀림)
+function findMonthsAgoIndex(dates, months) {
+    if (!dates || !dates.length) return 0;
+    const cutoff = new Date(dates[dates.length - 1]);
+    cutoff.setMonth(cutoff.getMonth() - months);
+    const cutoffStr = cutoff.toISOString().split("T")[0];
+    const idx = dates.findIndex(d => d >= cutoffStr);
+    return idx >= 0 ? idx : 0;
+}
+
 async function loadStockCharts(code, detail) {
     const myToken = ++loadCounter;
     detail.dataset.loadToken = myToken;
@@ -660,13 +671,17 @@ async function loadStockCharts(code, detail) {
                     `거래량: ${(p.volume[idx] || 0).toLocaleString()}`;
             };
 
+            // 기본 표시 구간 = 최근 6개월
+            const sixMonthIdx = findMonthsAgoIndex(p.dates, 6);
+            const lastDateStr = p.dates[p.dates.length - 1];
+
             // 모바일에서는 캔들+거래량+MA+데이터줌까지 다 보여주면 좁은 화면에 짓눌려서
             // 봉이 찌그러지거나 축이 겹치는 문제가 있었음 - 종가 라인 하나로 단순화해서 보여준다.
             const mobileOption = {
                 animation: false,
                 grid: { left: 45, right: 15, top: 20, bottom: 36 },
                 tooltip: { trigger: "axis", textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
-                dataZoom: [{ type: "inside", start: 60, end: 100 }],
+                dataZoom: [{ type: "inside", startValue: p.dates[sixMonthIdx], endValue: lastDateStr }],
                 xAxis: {
                     type: "category", data: p.dates, boundaryGap: false,
                     axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
@@ -680,10 +695,10 @@ async function loadStockCharts(code, detail) {
                 }],
             };
 
-            // y축이 scale:true라 처음 화면에 보이는 구간(dataZoom 60~100%, 최근 40%)의
-            // 고가/저가로 자동 범위가 잡힌다 - 매물대 가격 구간도 그 범위와 맞춰야 화면
-            // 밖으로 벗어나는 막대가 안 생긴다.
-            const visibleStart = Math.floor(p.dates.length * 0.6);
+            // y축이 scale:true라 처음 화면에 보이는 구간(최근 6개월)의 고가/저가로 자동
+            // 범위가 잡힌다 - 매물대 가격 구간도 그 범위와 맞춰야 화면 밖으로 벗어나는
+            // 막대가 안 생긴다.
+            const visibleStart = sixMonthIdx;
             const visibleP = {
                 dates:  p.dates.slice(visibleStart),
                 high:   p.high.slice(visibleStart),
@@ -702,7 +717,7 @@ async function loadStockCharts(code, detail) {
                 ],
                 tooltip: { trigger: "axis", axisPointer: { type: "cross" }, textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
                 dataZoom: [
-                    { type: "inside", xAxisIndex: [0, 1], start: 60, end: 100 },
+                    { type: "inside", xAxisIndex: [0, 1], startValue: p.dates[sixMonthIdx], endValue: lastDateStr },
                 ],
                 xAxis: [
                     { type: "category", data: p.dates, gridIndex: 0, boundaryGap: true, axisLabel: { show: false }, splitLine: { show: false } },
