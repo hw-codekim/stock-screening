@@ -573,7 +573,10 @@ function computeVolumeProfile(p, bins = 24) {
         }
     }
 
-    return buckets.map((vol, idx) => ({ price: minP + (idx + 0.5) * binSize, volume: vol }));
+    return {
+        binSize,
+        buckets: buckets.map((vol, idx) => ({ price: minP + (idx + 0.5) * binSize, volume: vol })),
+    };
 }
 
 async function loadStockCharts(code, detail) {
@@ -678,7 +681,8 @@ async function loadStockCharts(code, detail) {
             };
 
             const volumeProfile = computeVolumeProfile(p);
-            const maxProfileVol = Math.max(1, ...volumeProfile.map(b => b.volume));
+            const maxProfileVol = Math.max(1, ...volumeProfile.buckets.map(b => b.volume));
+            const PROFILE_OCCUPY = 0.32; // 매물대 막대가 그리드 폭에서 최대로 차지할 비율(왼쪽부터)
 
             const desktopOption = {
                 animation: false,
@@ -697,9 +701,6 @@ async function loadStockCharts(code, detail) {
                         axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
                         splitLine: { show: false },
                     },
-                    // 매물대 전용 - 캔들 x축(날짜)과는 별개로, 막대가 그리드 폭의 왼쪽 일부만
-                    // 차지하도록 max를 실제 최대 거래량보다 훨씬 크게 잡아서 눌러준다.
-                    { type: "value", gridIndex: 0, show: false, min: 0, max: maxProfileVol / 0.32 },
                 ],
                 yAxis: [
                     { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
@@ -716,11 +717,26 @@ async function loadStockCharts(code, detail) {
                 },
                 series: [
                     {
-                        name: "매물대", type: "bar", xAxisIndex: 2, yAxisIndex: 0,
-                        data: volumeProfile.map(b => [b.volume, b.price]),
-                        barWidth: 5, silent: true, z: 1,
-                        itemStyle: { color: "rgba(169,132,63,0.28)" },
-                        tooltip: { show: false },
+                        // 캔들 y축(가격, value축)과 x축(날짜, category축)을 그대로 재사용하되, bar 타입은
+                        // "두 축이 다 value/category가 아니면" 세로 막대로 그려버려서 의도한 가로 막대가
+                        // 안 나옴 - custom 시리즈로 직접 rect를 그려서 진짜 가로 막대를 만든다.
+                        name: "매물대", type: "custom", xAxisIndex: 0, yAxisIndex: 0, z: 1, silent: true,
+                        data: volumeProfile.buckets.map((_, i) => i),
+                        renderItem: (params, api) => {
+                            const b = volumeProfile.buckets[params.dataIndex];
+                            const coordSys = params.coordSys;
+                            const yCenter = api.coord([0, b.price])[1];
+                            const yTop    = api.coord([0, b.price + volumeProfile.binSize / 2])[1];
+                            const yBottom = api.coord([0, b.price - volumeProfile.binSize / 2])[1];
+                            const barHeight = Math.max(1, Math.abs(yBottom - yTop) - 1);
+                            const barMaxWidth = coordSys.width * PROFILE_OCCUPY;
+                            const barWidth = (b.volume / maxProfileVol) * barMaxWidth;
+                            return {
+                                type: "rect",
+                                shape: { x: coordSys.x, y: yCenter - barHeight / 2, width: barWidth, height: barHeight },
+                                style: { fill: "rgba(169,132,63,0.28)" },
+                            };
+                        },
                     },
                     {
                         name: "종가", type: "candlestick", xAxisIndex: 0, yAxisIndex: 0, data: candleData, z: 3,
