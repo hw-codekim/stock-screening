@@ -726,6 +726,11 @@ async function loadStockCharts(code, detail) {
                         axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
                         splitLine: { show: false },
                     },
+                    // 매물대 전용 축 - dataZoom의 xAxisIndex:[0,1] 목록에 안 넣어서 줌 범위
+                    // 필터링 대상에서 제외한다. (같은 xAxisIndex:0을 쓰면 매물대 데이터의
+                    // dataIndex(0~23)가 캔들 dataZoom이 보여주는 구간(예: 122~242) 밖이라고
+                    // 판단돼서 6개월 기본 화면에선 안 보이고 전체로 줌아웃해야만 보이는 문제가 있었음)
+                    { type: "value", gridIndex: 0, show: false },
                 ],
                 yAxis: [
                     { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
@@ -745,7 +750,7 @@ async function loadStockCharts(code, detail) {
                         // 캔들 y축(가격, value축)과 x축(날짜, category축)을 그대로 재사용하되, bar 타입은
                         // "두 축이 다 value/category가 아니면" 세로 막대로 그려버려서 의도한 가로 막대가
                         // 안 나옴 - custom 시리즈로 직접 rect를 그려서 진짜 가로 막대를 만든다.
-                        name: "매물대", type: "custom", xAxisIndex: 0, yAxisIndex: 0, z: 1, silent: true,
+                        name: "매물대", type: "custom", xAxisIndex: 2, yAxisIndex: 0, z: 1, silent: true,
                         data: volumeProfile.buckets.map((_, i) => i),
                         renderItem: (params, api) => {
                             const b = volumeProfile.buckets[params.dataIndex];
