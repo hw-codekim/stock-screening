@@ -115,11 +115,6 @@ async function loadList() {
     document.getElementById("summary-line").innerHTML =
         `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
 
-    if (listData.latest_date) {
-        const [, lm, ld] = listData.latest_date.split("-");
-        document.getElementById("daychg-header").textContent = `${Number(lm)}/${Number(ld)}일등락`;
-    }
-
     populateLargeFilter();
     populateMidFilter();
     applyFilter();
