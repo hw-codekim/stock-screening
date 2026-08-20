@@ -9,6 +9,7 @@
 .cf-q { flex: 0 0 52px; text-align: center; font-weight: 600; color: #14315C; }
 .cf-num { flex: 0 0 92px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .cf-pct { flex: 0 0 84px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+.cf-pct-cogs { flex: 0 0 80px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
 
 .cf-data-row {
     display: flex; align-items: center; padding: 7px 12px; font-size: 12px;
