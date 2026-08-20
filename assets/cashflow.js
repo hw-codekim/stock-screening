@@ -103,9 +103,23 @@ function onLargeFilterChange() {
     renderCandidates();
 }
 
-// ── 후보 목록 (클릭한 종목 바로 아래에 표+차트 아코디언으로 펼침) ──
-const CANDIDATE_LIMIT = 50;
+// 대분류(섹터) 그룹으로 묶고, 그룹은 시가총액 합계 내림차순, 그룹 안에서는 종목 시가총액 내림차순
+function groupBySector(items) {
+    const map = {};
+    items.forEach(s => { (map[s.sector_large] = map[s.sector_large] || []).push(s); });
 
+    const groups = Object.keys(map).map(sector => {
+        const groupItems = map[sector].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+        const total = groupItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+        return { sector, items: groupItems, total };
+    });
+    groups.sort((a, b) => b.total - a.total);
+    return groups;
+}
+
+// ── 후보 목록 (클릭한 종목 바로 아래에 표+차트 아코디언으로 펼침) ──
+// 종목 수가 350개뿐이라(q2.html의 2500개+와 달리) 별도 상한 없이 다 보여준다 -
+// .sr-row에 이미 content-visibility:auto가 적용돼 있어 전부 그려도 스크롤 성능엔 문제없음
 function renderCandidates() {
     if (!cfData) return;
     const largeVal = document.getElementById("large-filter").value;
@@ -124,7 +138,31 @@ function renderCandidates() {
         return;
     }
 
-    const shown = filtered.slice(0, CANDIDATE_LIMIT);
+    const shownGroups = groupBySector(filtered);
+
+    const rowHtml = (s) => {
+        const l = s.latest || {};
+        return `
+    <div class="sr-row cf-l-row${s.code === openCode ? " active" : ""}" data-code="${s.code}">
+        <span class="sr-arrow">${s.code === openCode ? "▼" : "▶"}</span>
+        <span class="sr-name">${s.name}</span>
+        <span class="cf-l-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
+        <span class="cf-l-mktcap" data-label="시가총액">${fmtMktcap(s.mktcap)}</span>
+        <span class="cf-l-num" data-label="매출">${fmtWonEok(l.revenue)}</span>
+        <span class="cf-l-num" data-label="매출원가">${fmtWonEok(l.cogs)}</span>
+        <span class="cf-l-pct" data-label="매출원가율">${fmtPct(l.cogs_ratio)}</span>
+        <span class="cf-l-num" data-label="판관비">${fmtWonEok(l.sga)}</span>
+        <span class="cf-l-pct" data-label="판관비율">${fmtPct(l.sga_ratio)}</span>
+        <span class="cf-l-num" data-label="영업이익">${fmtWonEok(l.op_income)}</span>
+        <span class="cf-l-pct" data-label="OPM" style="color:${(l.opm||0) >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(l.opm)}</span>
+        <span class="cf-l-num" data-label="영업현금흐름">${fmtWonEok(l.cfo)}</span>
+        <span class="cf-l-num" data-label="CAPEX">${fmtWonEok(l.capex)}</span>
+        <span class="cf-l-num" data-label="FCF">${fmtWonEok(l.fcf)}</span>
+    </div>
+    <div class="sr-detail" id="cf-detail-${s.code}" style="display:${s.code === openCode ? "block" : "none"};"></div>
+    `;
+    };
+
     wrap.innerHTML = `
         <div class="sr-header cf-l-row">
             <span class="sr-arrow"></span>
@@ -142,31 +180,10 @@ function renderCandidates() {
             <span class="cf-l-num">CAPEX</span>
             <span class="cf-l-num">FCF</span>
         </div>
-        ${shown.map(s => {
-            const l = s.latest || {};
-            return `
-        <div class="sr-row cf-l-row${s.code === openCode ? " active" : ""}" data-code="${s.code}">
-            <span class="sr-arrow">${s.code === openCode ? "▼" : "▶"}</span>
-            <span class="sr-name">${s.name}</span>
-            <span class="cf-l-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
-            <span class="cf-l-mktcap" data-label="시가총액">${fmtMktcap(s.mktcap)}</span>
-            <span class="cf-l-num" data-label="매출">${fmtWonEok(l.revenue)}</span>
-            <span class="cf-l-num" data-label="매출원가">${fmtWonEok(l.cogs)}</span>
-            <span class="cf-l-pct" data-label="매출원가율">${fmtPct(l.cogs_ratio)}</span>
-            <span class="cf-l-num" data-label="판관비">${fmtWonEok(l.sga)}</span>
-            <span class="cf-l-pct" data-label="판관비율">${fmtPct(l.sga_ratio)}</span>
-            <span class="cf-l-num" data-label="영업이익">${fmtWonEok(l.op_income)}</span>
-            <span class="cf-l-pct" data-label="OPM" style="color:${(l.opm||0) >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(l.opm)}</span>
-            <span class="cf-l-num" data-label="영업현금흐름">${fmtWonEok(l.cfo)}</span>
-            <span class="cf-l-num" data-label="CAPEX">${fmtWonEok(l.capex)}</span>
-            <span class="cf-l-num" data-label="FCF">${fmtWonEok(l.fcf)}</span>
-        </div>
-        <div class="sr-detail" id="cf-detail-${s.code}" style="display:${s.code === openCode ? "block" : "none"};"></div>
-        `;
-        }).join("")}
-        ${filtered.length > CANDIDATE_LIMIT
-            ? `<p class="cf-cand-empty">${filtered.length}개 중 ${CANDIDATE_LIMIT}개만 표시 - 검색어를 좁혀보세요.</p>`
-            : ""}
+        ${shownGroups.map(g => `
+        <div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>
+        ${g.items.map(rowHtml).join("")}
+        `).join("")}
     `;
 
     rowEls = Array.from(wrap.querySelectorAll(".sr-row"));
@@ -174,7 +191,7 @@ function renderCandidates() {
 
     // 필터가 바뀌어도 열려 있던 종목이 새 목록에 남아있으면 그대로 펼친 채 유지,
     // 목록에서 빠졌으면(필터링됨) 닫힌 상태로 초기화한다.
-    const newIndex = openCode ? shown.findIndex(s => s.code === openCode) : -1;
+    const newIndex = openCode ? rowEls.findIndex(row => row.dataset.code === openCode) : -1;
     if (newIndex !== -1) {
         activeIndex = newIndex;
         buildDetail(openCode);
