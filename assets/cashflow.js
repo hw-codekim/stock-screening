@@ -130,10 +130,8 @@ function renderCandidates() {
             <span class="sr-arrow"></span>
             <span class="sr-name">종목명</span>
             <span class="cf-l-sector">섹터</span>
-            <span class="cf-l-market">시장</span>
             <span class="cf-l-mktcap">시가총액</span>
             <span class="cf-l-num">매출</span>
-            <span class="cf-l-num">매출총이익</span>
             <span class="cf-l-num">매출원가</span>
             <span class="cf-l-pct">매출원가율</span>
             <span class="cf-l-num">판관비</span>
@@ -151,10 +149,8 @@ function renderCandidates() {
             <span class="sr-arrow">${s.code === openCode ? "▼" : "▶"}</span>
             <span class="sr-name">${s.name}</span>
             <span class="cf-l-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
-            <span class="cf-l-market" data-label="시장">${s.market}</span>
             <span class="cf-l-mktcap" data-label="시가총액">${fmtMktcap(s.mktcap)}</span>
             <span class="cf-l-num" data-label="매출">${fmtWonEok(l.revenue)}</span>
-            <span class="cf-l-num" data-label="매출총이익">${fmtWonEok(l.gross_profit)}</span>
             <span class="cf-l-num" data-label="매출원가">${fmtWonEok(l.cogs)}</span>
             <span class="cf-l-pct" data-label="매출원가율">${fmtPct(l.cogs_ratio)}</span>
             <span class="cf-l-num" data-label="판관비">${fmtWonEok(l.sga)}</span>

@@ -23,13 +23,12 @@
 
 .cf-cand-empty { padding: 16px; color: #999; font-size: 0.85rem; text-align: center; }
 
-/* 상단 목록: 종목명 + 14개 재무 컬럼(2Q26 스냅샷) - 컬럼이 많아 가로 스크롤 컨테이너로 감싼다 */
+/* 상단 목록: 종목명 + 12개 재무 컬럼(2Q26 스냅샷) - 컬럼이 많아 가로 스크롤 컨테이너로 감싼다 */
 .cf-list-scroll { overflow-x: auto; }
-.cf-list-scroll .list-wrap { min-width: 1220px; }
+.cf-list-scroll .list-wrap { min-width: 1100px; }
 .cf-l-row { gap: 6px; }
 .cf-l-row .sr-name { flex: 1 1 130px; }
 .cf-l-sector { flex: 0 0 64px; font-size: 11px; color: #14213D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cf-l-market { flex: 0 0 36px; font-size: 11px; color: #14213D; text-align: center; }
 .cf-l-mktcap { flex: 0 0 64px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
 .cf-l-num { flex: 0 0 78px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .cf-l-pct { flex: 0 0 62px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
