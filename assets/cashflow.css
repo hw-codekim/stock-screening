@@ -27,12 +27,12 @@
    컬럼 폭을 압축하고 금액은 조/억 단위로 짧게 표기해서 가로 스크롤 없이 한 화면에 들어오게 한다.
    overflow-x는 만약을 위한 안전장치로만 남겨둔다(평소엔 안 걸림). */
 .cf-list-scroll { overflow-x: auto; }
-.cf-l-row { gap: 4px; font-size: 11.5px; }
-.cf-l-row .sr-name { flex: 1 1 82px; min-width: 0; }
-.cf-l-sector { flex: 0 0 44px; font-size: 11px; color: #14213D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.cf-l-mktcap { flex: 0 0 50px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
-.cf-l-num { flex: 0 0 54px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.cf-l-pct { flex: 0 0 46px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+.cf-l-row { gap: 6px; font-size: 11.5px; }
+.cf-l-row .sr-name { flex: 0 0 112px; min-width: 0; }
+.cf-l-sector { flex: 0 0 54px; font-size: 11px; color: #14213D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cf-l-mktcap { flex: 0 0 60px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
+.cf-l-num { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cf-l-pct { flex: 0 0 56px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
 
 @media (max-width: 640px) {
     .cf-mktcap { display: none; }
