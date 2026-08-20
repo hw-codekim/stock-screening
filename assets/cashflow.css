@@ -23,6 +23,23 @@
 
 .cf-cand-empty { padding: 16px; color: #999; font-size: 0.85rem; text-align: center; }
 
+/* 상단 목록: 종목명 + 14개 재무 컬럼(2Q26 스냅샷) - 컬럼이 많아 가로 스크롤 컨테이너로 감싼다 */
+.cf-list-scroll { overflow-x: auto; }
+.cf-list-scroll .list-wrap { min-width: 1220px; }
+.cf-l-row { gap: 6px; }
+.cf-l-row .sr-name { flex: 1 1 130px; }
+.cf-l-sector { flex: 0 0 64px; font-size: 11px; color: #14213D; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cf-l-market { flex: 0 0 36px; font-size: 11px; color: #14213D; text-align: center; }
+.cf-l-mktcap { flex: 0 0 64px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
+.cf-l-num { flex: 0 0 78px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cf-l-pct { flex: 0 0 62px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+
 @media (max-width: 640px) {
     .cf-mktcap { display: none; }
+}
+
+@media (max-width: 700px) {
+    /* 좁은 화면에선 style.css의 .sr-row 2열 그리드 + data-label 규칙이 그대로 적용되므로
+       가로 스크롤 대신 세로로 쌓이는 카드형이 되도록 최소너비 제한을 해제한다 */
+    .cf-list-scroll .list-wrap { min-width: 0; }
 }

@@ -2,6 +2,8 @@ let cfData = null;
 let openCode = null;
 let marginChart = null;
 let fcfChart = null;
+let rowEls = [];
+let activeIndex = -1;
 
 // ── 포맷 헬퍼 ────────────────────────────────────────
 function fmtWonEok(v) {
@@ -50,8 +52,9 @@ async function loadCashflow() {
         return;
     }
 
+    const latestLabel = cfData.items[0] && cfData.items[0].latest ? cfData.items[0].latest.label : "";
     document.getElementById("summary-line").innerHTML =
-        `<span class="summary-datetime">[${cfData.generated_at}]</span> 총 ${cfData.items.length}개 종목`;
+        `<span class="summary-datetime">[${cfData.generated_at}]</span> 총 ${cfData.items.length}개 종목 · 목록은 ${latestLabel} 스냅샷 기준`;
 
     populateLargeFilter();
     populateMidFilter();
@@ -123,43 +126,125 @@ function renderCandidates() {
 
     const shown = filtered.slice(0, CANDIDATE_LIMIT);
     wrap.innerHTML = `
-        <div class="sr-header">
+        <div class="sr-header cf-l-row">
             <span class="sr-arrow"></span>
             <span class="sr-name">종목명</span>
-            <span class="sr-sector">섹터</span>
-            <span class="sr-market">시장</span>
-            <span class="sr-mktcap">시가총액</span>
+            <span class="cf-l-sector">섹터</span>
+            <span class="cf-l-market">시장</span>
+            <span class="cf-l-mktcap">시가총액</span>
+            <span class="cf-l-num">매출</span>
+            <span class="cf-l-num">매출총이익</span>
+            <span class="cf-l-num">매출원가</span>
+            <span class="cf-l-pct">매출원가율</span>
+            <span class="cf-l-num">판관비</span>
+            <span class="cf-l-pct">판관비율</span>
+            <span class="cf-l-num">영업이익</span>
+            <span class="cf-l-pct">OPM</span>
+            <span class="cf-l-num">영업현금흐름</span>
+            <span class="cf-l-num">CAPEX</span>
+            <span class="cf-l-num">FCF</span>
         </div>
-        ${shown.map(s => `
-        <div class="sr-row${s.code === openCode ? " active" : ""}" data-code="${s.code}">
+        ${shown.map(s => {
+            const l = s.latest || {};
+            return `
+        <div class="sr-row cf-l-row${s.code === openCode ? " active" : ""}" data-code="${s.code}">
             <span class="sr-arrow">${s.code === openCode ? "▼" : "▶"}</span>
             <span class="sr-name">${s.name}</span>
-            <span class="sr-sector" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
-            <span class="sr-market">${s.market}</span>
-            <span class="sr-mktcap">${fmtMktcap(s.mktcap)}</span>
+            <span class="cf-l-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
+            <span class="cf-l-market" data-label="시장">${s.market}</span>
+            <span class="cf-l-mktcap" data-label="시가총액">${fmtMktcap(s.mktcap)}</span>
+            <span class="cf-l-num" data-label="매출">${fmtWonEok(l.revenue)}</span>
+            <span class="cf-l-num" data-label="매출총이익">${fmtWonEok(l.gross_profit)}</span>
+            <span class="cf-l-num" data-label="매출원가">${fmtWonEok(l.cogs)}</span>
+            <span class="cf-l-pct" data-label="매출원가율">${fmtPct(l.cogs_ratio)}</span>
+            <span class="cf-l-num" data-label="판관비">${fmtWonEok(l.sga)}</span>
+            <span class="cf-l-pct" data-label="판관비율">${fmtPct(l.sga_ratio)}</span>
+            <span class="cf-l-num" data-label="영업이익">${fmtWonEok(l.op_income)}</span>
+            <span class="cf-l-pct" data-label="OPM" style="color:${(l.opm||0) >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(l.opm)}</span>
+            <span class="cf-l-num" data-label="영업현금흐름">${fmtWonEok(l.cfo)}</span>
+            <span class="cf-l-num" data-label="CAPEX">${fmtWonEok(l.capex)}</span>
+            <span class="cf-l-num" data-label="FCF">${fmtWonEok(l.fcf)}</span>
         </div>
         <div class="sr-detail" id="cf-detail-${s.code}" style="display:${s.code === openCode ? "block" : "none"};"></div>
-        `).join("")}
+        `;
+        }).join("")}
         ${filtered.length > CANDIDATE_LIMIT
             ? `<p class="cf-cand-empty">${filtered.length}개 중 ${CANDIDATE_LIMIT}개만 표시 - 검색어를 좁혀보세요.</p>`
             : ""}
     `;
 
-    wrap.querySelectorAll(".sr-row").forEach(row => {
-        row.addEventListener("click", () => toggleStock(row.dataset.code));
-    });
+    rowEls = Array.from(wrap.querySelectorAll(".sr-row"));
+    rowEls.forEach(row => row.addEventListener("click", () => selectRow(row)));
 
-    if (openCode && shown.some(s => s.code === openCode)) {
+    // 필터가 바뀌어도 열려 있던 종목이 새 목록에 남아있으면 그대로 펼친 채 유지,
+    // 목록에서 빠졌으면(필터링됨) 닫힌 상태로 초기화한다.
+    const newIndex = openCode ? shown.findIndex(s => s.code === openCode) : -1;
+    if (newIndex !== -1) {
+        activeIndex = newIndex;
         buildDetail(openCode);
+    } else {
+        openCode = null;
+        activeIndex = -1;
     }
 }
 
-function toggleStock(code) {
+// ── 종목 펼치기/접기 (클릭 + 키보드 방향키 공용) ─────
+function closeRow(row) {
+    row.classList.remove("active");
+    const arrow = row.querySelector(".sr-arrow");
+    if (arrow) arrow.textContent = "▶";
+    const detail = document.getElementById(`cf-detail-${row.dataset.code}`);
+    if (detail) detail.style.display = "none";
     if (marginChart) { marginChart.destroy(); marginChart = null; }
     if (fcfChart)    { fcfChart.destroy();    fcfChart    = null; }
-    openCode = (openCode === code) ? null : code;
-    renderCandidates();
 }
+
+function openRow(index) {
+    if (!rowEls.length) return;
+    index = Math.max(0, Math.min(rowEls.length - 1, index));
+    if (index === activeIndex) return;
+
+    if (activeIndex !== -1 && rowEls[activeIndex]) {
+        closeRow(rowEls[activeIndex]);
+    }
+
+    const row = rowEls[index];
+    openCode = row.dataset.code;
+    activeIndex = index;
+    row.classList.add("active");
+    const arrow = row.querySelector(".sr-arrow");
+    if (arrow) arrow.textContent = "▼";
+    const detail = document.getElementById(`cf-detail-${openCode}`);
+    if (detail) detail.style.display = "block";
+    buildDetail(openCode);
+    row.scrollIntoView({ block: "center", behavior: "smooth" });
+}
+
+function selectRow(row) {
+    const idx = rowEls.indexOf(row);
+    if (idx === activeIndex) {
+        closeRow(row);
+        openCode = null;
+        activeIndex = -1;
+    } else {
+        openRow(idx);
+    }
+}
+
+document.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    if (document.activeElement && document.activeElement.tagName === "INPUT") return;
+    if (!rowEls.length) return;
+
+    e.preventDefault();
+    if (activeIndex === -1) {
+        openRow(0);
+    } else if (e.key === "ArrowDown") {
+        openRow(activeIndex + 1);
+    } else {
+        openRow(activeIndex - 1);
+    }
+});
 
 // ── 종목 상세(표+차트) - 클릭한 행 바로 아래 sr-detail 안에 렌더 ──
 function buildDetail(code) {
