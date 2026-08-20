@@ -1,5 +1,5 @@
 let cfData = null;
-let selectedCode = null;
+let openCode = null;
 let marginChart = null;
 let fcfChart = null;
 
@@ -100,7 +100,7 @@ function onLargeFilterChange() {
     renderCandidates();
 }
 
-// ── 후보 목록 ────────────────────────────────────────
+// ── 후보 목록 (클릭한 종목 바로 아래에 표+차트 아코디언으로 펼침) ──
 const CANDIDATE_LIMIT = 50;
 
 function renderCandidates() {
@@ -131,13 +131,14 @@ function renderCandidates() {
             <span class="sr-mktcap">시가총액</span>
         </div>
         ${shown.map(s => `
-        <div class="sr-row${s.code === selectedCode ? " active" : ""}" data-code="${s.code}">
-            <span class="sr-arrow">▶</span>
+        <div class="sr-row${s.code === openCode ? " active" : ""}" data-code="${s.code}">
+            <span class="sr-arrow">${s.code === openCode ? "▼" : "▶"}</span>
             <span class="sr-name">${s.name}</span>
             <span class="sr-sector" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
             <span class="sr-market">${s.market}</span>
             <span class="sr-mktcap">${fmtMktcap(s.mktcap)}</span>
         </div>
+        <div class="sr-detail" id="cf-detail-${s.code}" style="display:${s.code === openCode ? "block" : "none"};"></div>
         `).join("")}
         ${filtered.length > CANDIDATE_LIMIT
             ? `<p class="cf-cand-empty">${filtered.length}개 중 ${CANDIDATE_LIMIT}개만 표시 - 검색어를 좁혀보세요.</p>`
@@ -145,55 +146,83 @@ function renderCandidates() {
     `;
 
     wrap.querySelectorAll(".sr-row").forEach(row => {
-        row.addEventListener("click", () => selectStock(row.dataset.code));
+        row.addEventListener("click", () => toggleStock(row.dataset.code));
     });
+
+    if (openCode && shown.some(s => s.code === openCode)) {
+        buildDetail(openCode);
+    }
 }
 
-// ── 종목 선택 → 상세(표+차트) ────────────────────────
-function selectStock(code) {
-    const item = cfData.items.find(s => s.code === code);
-    if (!item) return;
-    selectedCode = code;
+function toggleStock(code) {
+    if (marginChart) { marginChart.destroy(); marginChart = null; }
+    if (fcfChart)    { fcfChart.destroy();    fcfChart    = null; }
+    openCode = (openCode === code) ? null : code;
     renderCandidates();
+}
 
-    const detail = document.getElementById("cf-detail");
-    detail.style.display = "block";
-    document.getElementById("cf-detail-title").textContent =
-        `${item.name} (${item.code}) · ${item.market} · ${stripMidPrefix(item.sector_mid)}`;
+// ── 종목 상세(표+차트) - 클릭한 행 바로 아래 sr-detail 안에 렌더 ──
+function buildDetail(code) {
+    const item = cfData.items.find(s => s.code === code);
+    const detail = document.getElementById(`cf-detail-${code}`);
+    if (!item || !detail) return;
 
-    const tbody = document.getElementById("cf-table-body");
-    tbody.innerHTML = item.quarters.map(q => `
-        <div class="cf-row">
-            <span class="cf-name">${item.name}</span>
-            <span class="cf-mktcap">${fmtMktcap(item.mktcap)}</span>
-            <span class="cf-q">${q.label}</span>
-            <span class="cf-num">${fmtWonEok(q.revenue)}</span>
-            <span class="cf-num">${fmtWonEok(q.op_income)}</span>
-            <span class="cf-pct" style="color:${q.opm >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(q.opm)}</span>
-            <span class="cf-num">${fmtWonEok(q.cfo)}</span>
-            <span class="cf-pct" style="color:${q.ocf_margin >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(q.ocf_margin)}</span>
-            <span class="cf-num">${fmtWonEok(q.capex)}</span>
-            <span class="cf-num">${fmtWonEok(q.fcf)}</span>
+    detail.innerHTML = `
+        <div class="list-wrap cf-table-wrap">
+            <div class="sr-header cf-row">
+                <span class="cf-name">종목명</span>
+                <span class="cf-mktcap">시가총액</span>
+                <span class="cf-q">분기</span>
+                <span class="cf-num">매출</span>
+                <span class="cf-num">영업이익</span>
+                <span class="cf-pct">OPM</span>
+                <span class="cf-num">영업현금흐름</span>
+                <span class="cf-pct">영업현금흐름률</span>
+                <span class="cf-num">CAPEX</span>
+                <span class="cf-num">FCF</span>
+            </div>
+            <div>
+                ${item.quarters.map(q => `
+                <div class="cf-row cf-data-row">
+                    <span class="cf-name">${item.name}</span>
+                    <span class="cf-mktcap">${fmtMktcap(item.mktcap)}</span>
+                    <span class="cf-q">${q.label}</span>
+                    <span class="cf-num">${fmtWonEok(q.revenue)}</span>
+                    <span class="cf-num">${fmtWonEok(q.op_income)}</span>
+                    <span class="cf-pct" style="color:${q.opm >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(q.opm)}</span>
+                    <span class="cf-num">${fmtWonEok(q.cfo)}</span>
+                    <span class="cf-pct" style="color:${q.ocf_margin >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(q.ocf_margin)}</span>
+                    <span class="cf-num">${fmtWonEok(q.capex)}</span>
+                    <span class="cf-num">${fmtWonEok(q.fcf)}</span>
+                </div>
+                `).join("")}
+            </div>
         </div>
-    `).join("");
+        <div class="screen-chart-row cf-chart-row">
+            <div class="graph-wrap">
+                <div class="graph-title">OPM · 영업현금흐름률 (%)</div>
+                <canvas id="cf-chart-margin-${code}"></canvas>
+            </div>
+            <div class="graph-wrap">
+                <div class="graph-title">FCF(막대) · CAPEX(선) (억원)</div>
+                <canvas id="cf-chart-fcf-${code}"></canvas>
+            </div>
+        </div>
+    `;
 
-    renderCharts(item);
-    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    renderCharts(item, `cf-chart-margin-${code}`, `cf-chart-fcf-${code}`);
 }
 
 const smallScale = { ticks: { maxRotation: 0, minRotation: 0, font: { size: 10 } } };
 
-function renderCharts(item) {
-    const labels     = item.quarters.map(q => q.label);
-    const opmData    = item.quarters.map(q => q.opm);
-    const ocfData    = item.quarters.map(q => q.ocf_margin);
-    const fcfData    = item.quarters.map(q => q.fcf != null ? Math.round(q.fcf / 1e8) : null);
-    const capexData  = item.quarters.map(q => q.capex != null ? Math.round(q.capex / 1e8) : null);
+function renderCharts(item, marginCanvasId, fcfCanvasId) {
+    const labels    = item.quarters.map(q => q.label);
+    const opmData   = item.quarters.map(q => q.opm);
+    const ocfData   = item.quarters.map(q => q.ocf_margin);
+    const fcfData   = item.quarters.map(q => q.fcf != null ? Math.round(q.fcf / 1e8) : null);
+    const capexData = item.quarters.map(q => q.capex != null ? Math.round(q.capex / 1e8) : null);
 
-    if (marginChart) marginChart.destroy();
-    if (fcfChart) fcfChart.destroy();
-
-    marginChart = new Chart(document.getElementById("cf-chart-margin"), {
+    marginChart = new Chart(document.getElementById(marginCanvasId), {
         type: "line",
         data: {
             labels,
@@ -210,7 +239,7 @@ function renderCharts(item) {
         },
     });
 
-    fcfChart = new Chart(document.getElementById("cf-chart-fcf"), {
+    fcfChart = new Chart(document.getElementById(fcfCanvasId), {
         data: {
             labels,
             datasets: [
