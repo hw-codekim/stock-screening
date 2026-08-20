@@ -10,6 +10,14 @@ function fmtWonEok(v) {
     if (v == null) return "-";
     return Math.round(v / 1e8).toLocaleString() + "억";
 }
+// 목록 컬럼이 많아 폭이 좁으므로 억 단위 콤마 표기 대신 조/억 단위로 짧게 줄여서 가로 스크롤을 피한다
+function fmtWonCompact(v) {
+    if (v == null) return "-";
+    const abs = Math.abs(v);
+    if (abs >= 1e12) return (v / 1e12).toFixed(1) + "조";
+    if (abs >= 1e8) return Math.round(v / 1e8).toLocaleString() + "억";
+    return Math.round(v / 1e4).toLocaleString() + "만";
+}
 function fmtPct(v) {
     if (v == null) return "-";
     return (v >= 0 ? "+" : "") + v.toFixed(1) + "%";
@@ -148,16 +156,16 @@ function renderCandidates() {
         <span class="sr-name">${s.name}</span>
         <span class="cf-l-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
         <span class="cf-l-mktcap" data-label="시가총액">${fmtMktcap(s.mktcap)}</span>
-        <span class="cf-l-num" data-label="매출">${fmtWonEok(l.revenue)}</span>
-        <span class="cf-l-num" data-label="매출원가">${fmtWonEok(l.cogs)}</span>
+        <span class="cf-l-num" data-label="매출">${fmtWonCompact(l.revenue)}</span>
+        <span class="cf-l-num" data-label="매출원가">${fmtWonCompact(l.cogs)}</span>
         <span class="cf-l-pct" data-label="매출원가율">${fmtPct(l.cogs_ratio)}</span>
-        <span class="cf-l-num" data-label="판관비">${fmtWonEok(l.sga)}</span>
+        <span class="cf-l-num" data-label="판관비">${fmtWonCompact(l.sga)}</span>
         <span class="cf-l-pct" data-label="판관비율">${fmtPct(l.sga_ratio)}</span>
-        <span class="cf-l-num" data-label="영업이익">${fmtWonEok(l.op_income)}</span>
+        <span class="cf-l-num" data-label="영업이익">${fmtWonCompact(l.op_income)}</span>
         <span class="cf-l-pct" data-label="OPM" style="color:${(l.opm||0) >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(l.opm)}</span>
-        <span class="cf-l-num" data-label="영업현금흐름">${fmtWonEok(l.cfo)}</span>
-        <span class="cf-l-num" data-label="CAPEX">${fmtWonEok(l.capex)}</span>
-        <span class="cf-l-num" data-label="FCF">${fmtWonEok(l.fcf)}</span>
+        <span class="cf-l-num" data-label="영업현금흐름">${fmtWonCompact(l.cfo)}</span>
+        <span class="cf-l-num" data-label="CAPEX">${fmtWonCompact(l.capex)}</span>
+        <span class="cf-l-num" data-label="FCF">${fmtWonCompact(l.fcf)}</span>
     </div>
     <div class="sr-detail" id="cf-detail-${s.code}" style="display:${s.code === openCode ? "block" : "none"};"></div>
     `;
