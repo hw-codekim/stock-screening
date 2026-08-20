@@ -281,6 +281,7 @@ function buildDetail(code) {
                 <span class="cf-q">분기</span>
                 <span class="cf-num">매출</span>
                 <span class="cf-pct">매출원가율</span>
+                <span class="cf-pct">판관비율</span>
                 <span class="cf-num">영업이익</span>
                 <span class="cf-pct">OPM</span>
                 <span class="cf-num">영업현금흐름</span>
@@ -296,6 +297,7 @@ function buildDetail(code) {
                     <span class="cf-q">${q.label}</span>
                     <span class="cf-num">${fmtWonEok(q.revenue)}</span>
                     <span class="cf-pct">${fmtPct(q.cogs_ratio)}</span>
+                    <span class="cf-pct">${fmtPct(q.sga_ratio)}</span>
                     <span class="cf-num">${fmtWonEok(q.op_income)}</span>
                     <span class="cf-pct" style="color:${q.opm >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(q.opm)}</span>
                     <span class="cf-num">${fmtWonEok(q.cfo)}</span>
