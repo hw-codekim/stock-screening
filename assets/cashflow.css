@@ -1,0 +1,28 @@
+.cf-detail { display: none; margin-top: 18px; }
+.cf-detail h2 { font-size: 1.05rem; color: #14315C; margin: 0 0 10px; }
+
+.cf-row { gap: 8px; }
+.cf-name {
+    flex: 1 1 140px; font-weight: 500; color: #14213D;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.cf-mktcap { flex: 0 0 70px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
+.cf-q { flex: 0 0 52px; text-align: center; font-weight: 600; color: #14315C; }
+.cf-num { flex: 0 0 92px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cf-pct { flex: 0 0 84px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+#cf-table-body .cf-row {
+    display: flex; align-items: center; padding: 7px 12px; font-size: 12px;
+    border-bottom: 1px solid #EEF1F6;
+}
+#cf-table-body .cf-row:last-child { border-bottom: none; }
+#cf-table-body .cf-row:nth-child(even) { background: #FAFBFD; }
+
+.cf-chart-row { margin-top: 16px; gap: 14px; }
+.cf-chart-row .graph-wrap { flex: 1 1 0; min-width: 280px; }
+
+.cf-cand-empty { padding: 16px; color: #999; font-size: 0.85rem; text-align: center; }
+
+@media (max-width: 640px) {
+    .cf-mktcap { display: none; }
+}
