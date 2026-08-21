@@ -20,6 +20,11 @@ function tFmtEok(v) {
     if (v == null) return "-";
     return (v >= 0 ? "+" : "") + v.toLocaleString() + "억";
 }
+// 거래대금은 원 단위 raw 값 - 억원으로 환산해서 표시
+function tFmtTradeValue(v) {
+    if (v == null) return "-";
+    return Math.round(v / 1e8).toLocaleString() + "억";
+}
 
 const MAJOR_INVESTOR_TYPES = new Set(["개인", "외국인", "기관계"]);
 
@@ -153,10 +158,11 @@ function renderDaily5TradeValue(topTradeValue) {
     const dates = topTradeValue.dates || [];
     const buildTable = (rows) => {
         if (!rows || !rows.length) return '<p class="today-empty">데이터 없음</p>';
-        const header = `<tr><th>종목명</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+        const header = `<tr><th>종목명</th><th>거래대금</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
         const body = rows.map(r => `
             <tr>
                 <td class="name-cell">${r.name}</td>
+                <td>${tFmtTradeValue(r.trade_value)}</td>
                 ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
             </tr>
         `).join("");
