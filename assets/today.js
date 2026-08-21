@@ -158,12 +158,15 @@ function renderDaily5TradeValue(topTradeValue) {
     const dates = topTradeValue.dates || [];
     const buildTable = (rows) => {
         if (!rows || !rows.length) return '<p class="today-empty">데이터 없음</p>';
-        const header = `<tr><th>종목명</th><th>거래대금</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+        const header = `<tr><th>종목명</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
         const body = rows.map(r => `
             <tr>
                 <td class="name-cell">${r.name}</td>
-                <td>${tFmtTradeValue(r.trade_value)}</td>
-                ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
+                ${r.daily.map(d => `
+                    <td style="color:${tColor(d && d.change_rate)};">
+                        ${tFmtTradeValue(d && d.trade_value)}<br>(${tFmtPct(d && d.change_rate)})
+                    </td>
+                `).join("")}
             </tr>
         `).join("");
         return `<table class="today-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
