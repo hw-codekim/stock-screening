@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TODAY - 오늘의 시장</title>
 <link rel="stylesheet" href="assets/style.css?v=2">
-<link rel="stylesheet" href="assets/today.css">
+<link rel="stylesheet" href="assets/today.css?v=1">
 </head>
 <body>
 
@@ -88,6 +88,20 @@
         </div>
 
         <div class="today-section">
+            <div class="today-section-title">코스피 / 코스닥 거래대금 TOP20<span class="today-section-sub">최근 5거래일 일자별 등락률</span></div>
+            <div class="today-two-col">
+                <div>
+                    <div class="sent-title">코스피 TOP20</div>
+                    <div class="today-table-wrap" id="kospi-tradevalue-wrap"></div>
+                </div>
+                <div>
+                    <div class="sent-title">코스닥 TOP20</div>
+                    <div class="today-table-wrap" id="kosdaq-tradevalue-wrap"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="today-section">
             <div class="today-section-title">섹터 시가총액 / 수익률 TOP10<span class="today-section-sub">최근 5거래일 일자별 평균등락률</span></div>
             <div class="today-two-col">
                 <div>
@@ -145,6 +159,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/today.js"></script>
+<script src="assets/today.js?v=2"></script>
 </body>
 </html>

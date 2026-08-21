@@ -43,6 +43,7 @@ async function loadToday() {
     renderStockCards("bullish-cards", data.bullish_alignment);
     renderStockCards("low-mdd-cards", data.low_mdd);
     renderDaily5Top10(data.top_mktcap);
+    renderDaily5TradeValue(data.top_trade_value);
     renderDaily5Sectors(data.top_sectors, data.top_sectors_rate);
     renderSentimentCharts(data.market_sentiment);
 }
@@ -144,6 +145,25 @@ function renderDaily5Top10(topMktcap) {
     };
     document.getElementById("kospi-top10-wrap").innerHTML = buildTable(topMktcap.kospi);
     document.getElementById("kosdaq-top10-wrap").innerHTML = buildTable(topMktcap.kosdaq);
+}
+
+// ── 코스피/코스닥 거래대금 TOP20 - 최근 5거래일 일자별 등락률 표 ──
+function renderDaily5TradeValue(topTradeValue) {
+    if (!topTradeValue) return;
+    const dates = topTradeValue.dates || [];
+    const buildTable = (rows) => {
+        if (!rows || !rows.length) return '<p class="today-empty">데이터 없음</p>';
+        const header = `<tr><th>종목명</th>${dates.map(d => `<th>${shortDate(d)}</th>`).join("")}</tr>`;
+        const body = rows.map(r => `
+            <tr>
+                <td class="name-cell">${r.name}</td>
+                ${r.daily.map(v => `<td style="color:${tColor(v)};">${tFmtPct(v)}</td>`).join("")}
+            </tr>
+        `).join("");
+        return `<table class="today-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+    };
+    document.getElementById("kospi-tradevalue-wrap").innerHTML = buildTable(topTradeValue.kospi);
+    document.getElementById("kosdaq-tradevalue-wrap").innerHTML = buildTable(topTradeValue.kosdaq);
 }
 
 // ── 섹터 시가총액 TOP10 / 섹터 수익률 TOP10 - 최근 5거래일 일자별 평균등락률 표 ──
