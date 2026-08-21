@@ -163,8 +163,9 @@ function renderDaily5TradeValue(topTradeValue) {
             <tr>
                 <td class="name-cell">${r.name}</td>
                 ${r.daily.map(d => `
-                    <td style="color:${tColor(d && d.change_rate)};">
-                        ${tFmtTradeValue(d && d.trade_value)}<br>(${tFmtPct(d && d.change_rate)})
+                    <td>
+                        <span style="color:#14213D;">${tFmtTradeValue(d && d.trade_value)}</span><br>
+                        <span style="color:${tColor(d && d.change_rate)};">(${tFmtPct(d && d.change_rate)})</span>
                     </td>
                 `).join("")}
             </tr>
