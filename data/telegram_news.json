@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-22 13:33",
+  "generated_at": "2026-08-22 13:50",
   "items": [
     {
       "date": "2026-08-22 03:44",
       "title": "US-Canada Trade Talks Collapse, Triggering 50% Trump Tariffs",
-      "title_ko": null,
+      "title_ko": "미국-캐나다 무역협상 결렬, 트럼프발 50% 관세 촉발",
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-22/us-canada-trade-talks-collapse-triggering-trump-s-50-tariffs"
@@ -18,33 +18,17 @@
       "link": "https://n.news.naver.com/article/015/0005323495?sid=101"
     },
     {
-      "date": "2026-08-22 03:08",
-      "title": "몇 개의 사진들 - 명동의 화장품 전문 약국들",
-      "title_ko": null,
-      "source": "m.blog.naver.com",
-      "region": "국내",
-      "link": "https://m.blog.naver.com/tosoha1/224386470970"
-    },
-    {
       "date": "2026-08-22 03:03",
       "title": "房利美12名高管突遭解雇，美国房贷市场稳定性担忧升温 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "페니메이 임원 12명 전격 해임, 美 주택담보대출 시장 안정성 우려 확산",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780036"
     },
     {
-      "date": "2026-08-22 02:54",
-      "title": "[Dr. J's Insight] 주주에게 돈 돌려주는 기술: TSMC·Micron은 22년 원칙, 삼성·하이닉스는 이제야 진짜 돈을 푼다 - 주주환원 \"진짜 주가상승의 동인\"인가?",
-      "title_ko": null,
-      "source": "m.blog.naver.com",
-      "region": "국내",
-      "link": "https://m.blog.naver.com/bsj7000/224386331665"
-    },
-    {
       "date": "2026-08-22 02:13",
       "title": "Anthropic IPO filing will show AI backlash as a risk factor, sources say",
-      "title_ko": null,
+      "title_ko": "앤스로픽 IPO 신고서에 'AI 반발' 리스크 요인으로 명시될 전망 - 소식통",
       "source": "cnbc.com",
       "region": "해외",
       "link": "https://cnbc.com/2026/08/21/-anthropic-ipo-filing-will-show-ai-backlash-as-risk-sources-say.html"
@@ -68,7 +52,7 @@
     {
       "date": "2026-08-22 01:32",
       "title": "环球时报社评：中国不会陪美国在伊朗问题上“胡闹” - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "환구시보 사설: 중국은 이란 문제서 미국의 \"억지\"에 동조하지 않을 것",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780046"
@@ -92,7 +76,7 @@
     {
       "date": "2026-08-22 01:04",
       "title": "BREAKING: China's biggest auto recall hits Tesla, Xiaomi, Leapmotor and others over door escape risk",
-      "title_ko": null,
+      "title_ko": "속보: 中 사상 최대 자동차 리콜, 테슬라·샤오미·립모터 등 도어 탈출 결함으로 대상",
       "source": "cnev.co",
       "region": "해외",
       "link": "https://cnev.co/b9qqcg5"
@@ -100,7 +84,7 @@
     {
       "date": "2026-08-22 00:52",
       "title": "AI算力升級帶旺PCB！玻纖布、HVLP銅箔身價看漲 受惠台廠大盤點",
-      "title_ko": null,
+      "title_ko": "AI 연산능력 업그레이드로 PCB 훈풍! 유리섬유 원단·HVLP 동박 몸값 상승, 수혜 대만기업 총정리",
       "source": "ctee.com.tw",
       "region": "해외",
       "link": "https://ctee.com.tw/news/20260822700009-430502"
@@ -130,25 +114,9 @@
       "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431300"
     },
     {
-      "date": "2026-08-21 15:08",
-      "title": "삼성전자 주주환원 관련 생각",
-      "title_ko": null,
-      "source": "m.blog.naver.com",
-      "region": "국내",
-      "link": "https://m.blog.naver.com/donghm/224386132610"
-    },
-    {
-      "date": "2026-08-21 14:25",
-      "title": "주식 공부, 어떻게 시작하면 좋을까요? (86번가 개인 경험담)",
-      "title_ko": null,
-      "source": "youtu.be",
-      "region": "해외",
-      "link": "https://youtu.be/CCu6VaUGm8w"
-    },
-    {
       "date": "2026-08-21 13:36",
       "title": "Memory Stocks Struggle for Momentum With ‘Smart Money’ Moving On",
-      "title_ko": null,
+      "title_ko": "메모리 반도체株, '스마트머니' 이탈로 모멘텀 둔화",
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-21/memory-stocks-struggle-for-momentum-with-smart-money-moving-on"
@@ -156,7 +124,7 @@
     {
       "date": "2026-08-21 13:15",
       "title": "美银Hartnett：贝森特正通过“变相QE”，守住5%的30年期美债收益率“马奇诺防线\" - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "뱅크오브아메리카 하트넷: 베센트 재무장관, '변형 QE'로 30년물 美국채 금리 5% '마지노선' 방어 중",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780012"
@@ -172,7 +140,7 @@
     {
       "date": "2026-08-21 12:37",
       "title": "Exclusive | Nvidia in Talks to Invest in Data-Center Power Developer Cloverleaf Infrastructure",
-      "title_ko": null,
+      "title_ko": "[단독] 엔비디아, 데이터센터 전력 개발업체 클로버리프 인프라스트럭처 투자 논의 중",
       "source": "wsj.com",
       "region": "해외",
       "link": "https://wsj.com/business/deals/nvidia-in-talks-to-invest-in-data-center-power-developer-cloverleaf-infrastructure-ff94c556"
@@ -198,13 +166,13 @@
       "title": "구글, '젬마' 누적 다운로드 10억회 돌파…'어썸 젬마' 저장소 공개",
       "title_ko": null,
       "source": "aitimes.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://aitimes.com/news/articleView.html?idxno=214224"
     },
     {
       "date": "2026-08-21 10:35",
       "title": "恒生指数公司：恒生指数成份股数目将由93只增加至95只，加入华虹宏力、潍柴动力 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "항셍지수공사: 항셍지수 편입종목 93개→95개로 확대, 화홍홍력·웨이차이동력 편입",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152979?ivk=1"
@@ -212,7 +180,7 @@
     {
       "date": "2026-08-21 10:30",
       "title": "美伊冲突致每天去库300万桶，花旗警示原油库存70天红线将临 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "美-이란 충돌로 하루 300만 배럴씩 재고 소진…씨티, 원유재고 '70일 마지노선' 임박 경고",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3779991"
@@ -260,7 +228,7 @@
     {
       "date": "2026-08-21 09:25",
       "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "속보 - 월스트리트견문 (구체 내용 없음)",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152933?ivk=1"
@@ -268,7 +236,7 @@
     {
       "date": "2026-08-21 08:48",
       "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "속보 - 월스트리트견문 (구체 내용 없음)",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152911?ivk=1"
@@ -278,7 +246,7 @@
       "title": "중국 쓰촨성서 천연 수소 노다지 터졌다...순도 98.24% 역대 최고",
       "title_ko": null,
       "source": "g-enews.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://g-enews.com/article/Global-Biz/2026/08/202608211334342177e250e8e188_1"
     },
     {
@@ -292,7 +260,7 @@
     {
       "date": "2026-08-21 06:29",
       "title": "硅业分会：下游需求增加 本周硅片价格大幅上涨 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "실리콘산업협회: 다운스트림 수요 증가로 이번주 실리콘웨이퍼 가격 큰 폭 상승",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152787?ivk=1"
@@ -308,7 +276,7 @@
     {
       "date": "2026-08-21 05:01",
       "title": "Broadcom Seeks More Than $60 Billion in Latest AI Debt Deal",
-      "title_ko": null,
+      "title_ko": "브로드컴, AI 부채 조달로 600억 달러 이상 추진",
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-20/broadcom-seeks-more-than-60-billion-in-latest-ai-debt-deal"
@@ -316,7 +284,7 @@
     {
       "date": "2026-08-21 04:21",
       "title": "[News] STMicroelectronics Plans Third 2026 Price Hike for August 23; Power Device Lead Times Reportedly Hit 52 Weeks",
-      "title_ko": null,
+      "title_ko": "[뉴스] ST마이크로일렉트로닉스, 8/23부로 2026년 세 번째 가격 인상 계획…전력반도체 납기 52주까지 늘어나",
       "source": "trendforce.com",
       "region": "해외",
       "link": "https://trendforce.com/news/2026/08/21/news-stmicroelectronics-plans-third-2026-price-hike-for-august-23-power-device-lead-times-reportedly-hit-52-weeks"
@@ -324,7 +292,7 @@
     {
       "date": "2026-08-21 04:21",
       "title": "SK 海力士傳擬砸數十兆韓元在日本宮城蓋記憶體廠 官方回應了 | 國際焦點 | 國際 | 經濟日報",
-      "title_ko": null,
+      "title_ko": "SK하이닉스, 일본 미야기에 수십조원 규모 메모리 공장 건설 추진설…공식 답변 나와",
       "source": "money.udn.com",
       "region": "해외",
       "link": "https://money.udn.com/money/story/5599/9705185?from=edn_maintab_index"
@@ -332,7 +300,7 @@
     {
       "date": "2026-08-21 04:21",
       "title": "Samsung holds off on High-NA EUV until 1nm production",
-      "title_ko": null,
+      "title_ko": "삼성전자, High-NA EUV 도입 1나노 공정까지 보류",
       "source": "digitimes.com",
       "region": "해외",
       "link": "https://digitimes.com/news/a20260820VL217/samsung-high-na-euv-production-1nm-high-na.html?chid=10"
@@ -340,7 +308,7 @@
     {
       "date": "2026-08-21 04:21",
       "title": "Micron CEO: AI has 'totally changed' the equation for the boom-and-bust memory industry",
-      "title_ko": null,
+      "title_ko": "마이크론 CEO: AI가 메모리 반도체의 '호황-불황' 공식을 완전히 바꿔놨다",
       "source": "cnbc.com",
       "region": "해외",
       "link": "https://cnbc.com/2026/08/20/micron-ceo-ai-changed-memory-industry.html"
@@ -348,7 +316,7 @@
     {
       "date": "2026-08-21 04:20",
       "title": "[News] Samsung to Break Ground on KRW 6T Onyang HBM Fab in Sept., P5 Eyes Triple-Fab Shift as Expansion Accelerates",
-      "title_ko": null,
+      "title_ko": "[뉴스] 삼성전자, 9월 6조원 규모 온양 HBM 공장 착공…P5는 3교대 전환 검토하며 증설 가속",
       "source": "trendforce.com",
       "region": "해외",
       "link": "https://trendforce.com/news/2026/08/20/news-samsung-to-break-ground-on-krw-6t-onyang-hbm-fab-in-sept-p5-eyes-triple-fab-shift-as-expansion-accelerates"
@@ -364,7 +332,7 @@
     {
       "date": "2026-08-21 04:00",
       "title": "村田製作所や京セラ、AI需要で受注高が過去最高　設備投資の上積みも",
-      "title_ko": null,
+      "title_ko": "무라타제작소·교세라, AI 수요로 수주액 사상 최고…설비투자 추가 확대도",
       "source": "nikkei.com",
       "region": "해외",
       "link": "https://nikkei.com/article/DGXZQOUF0461V0U6A800C2000000?n_cid=SNSTW001&n_tw=1787280982"
@@ -380,7 +348,7 @@
     {
       "date": "2026-08-21 03:32",
       "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "속보 - 월스트리트견문 (구체 내용 없음)",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152714?ivk=1"
@@ -420,7 +388,7 @@
     {
       "date": "2026-08-21 01:40",
       "title": "美债回购“信号意义”重于“实际效果”！野村：如果市场继续恶化，美联储会下场“YCC或QE” - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "美국채 바이백, '실질 효과'보다 '신호 의미'가 더 크다! 노무라: 시장 계속 악화되면 Fed가 'YCC 또는 QE' 개입할 것",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3779959"
@@ -454,7 +422,7 @@
       "title": "中 휴머노이드 누가 사나…정부 훈련센터가 주고객",
       "title_ko": null,
       "source": "g-enews.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://g-enews.com/article/Global-Biz/2026/08/2026082020513580379a1f309431_1"
     },
     {
@@ -468,7 +436,7 @@
     {
       "date": "2026-08-20 22:56",
       "title": "Geely prepares revolutionary 500 Wh/kg solid-state EV battery that could beat diesel",
-      "title_ko": null,
+      "title_ko": "지리자동차, 디젤 능가할 '혁신적' 500Wh/kg 전고체 배터리 준비 중",
       "source": "electrek.co",
       "region": "해외",
       "link": "https://electrek.co/2026/08/20/geely-500-wh-kg-solid-state-battery-2027-pilot"
@@ -476,7 +444,7 @@
     {
       "date": "2026-08-20 22:56",
       "title": "Chery H1 profit falls as overseas revenue surges 51%",
-      "title_ko": null,
+      "title_ko": "체리자동차, 해외매출 51% 급증에도 상반기 순이익은 감소",
       "source": "cnevpost.com",
       "region": "해외",
       "link": "https://cnevpost.com/2026/08/20/chery-h1-2026-earnings"
@@ -484,7 +452,7 @@
     {
       "date": "2026-08-20 22:42",
       "title": "中国集装箱船首次成功抵达俄摩尔曼斯克港 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "中 컨테이너선, 러시아 무르만스크항 최초 성공 입항",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3152589?ivk=1"
@@ -492,7 +460,7 @@
     {
       "date": "2026-08-20 06:59",
       "title": "SK Hynix's new HBM team lands in Nvidia and AMD's backyard — co-design is becoming the way to win HBM4 orders",
-      "title_ko": null,
+      "title_ko": "SK하이닉스 신설 HBM팀, 엔비디아·AMD 안방에 상륙 — 공동설계가 HBM4 수주의 관건으로 부상",
       "source": "digitimes.com",
       "region": "해외",
       "link": "https://digitimes.com/news/a20260820PD219/sk-hynix-hbm-hbm4-design-amd.html"
@@ -500,7 +468,7 @@
     {
       "date": "2026-08-20 06:59",
       "title": "First Nvidia H200 shipments reach China, ByteDance and Tencent take deliveries as Beijing loosens its import block — most licensed chips must stay in Hong Kong, which can't power them",
-      "title_ko": null,
+      "title_ko": "엔비디아 H200 첫 물량 中 도착, 바이트댄스·텐센트 인도받아…단 라이선스 칩은 홍콩 밖으로 못 나가 구동 불가",
       "source": "tomshardware.com",
       "region": "해외",
       "link": "https://tomshardware.com/pc-components/gpus/first-nvidia-h200-shipments-reach-bytedance-and-tencent-as-beijing-loosens-its-import-block"
@@ -508,7 +476,7 @@
     {
       "date": "2026-08-20 06:59",
       "title": "[News] Marvell, AMD Reportedly Shake Up Google TPU Race, Putting Broadcom, MediaTek Under Pressure",
-      "title_ko": null,
+      "title_ko": "[뉴스] 마벨·AMD, 구글 TPU 경쟁 판도 흔든다는 보도…브로드컴·미디어텍 압박 커져",
       "source": "trendforce.com",
       "region": "해외",
       "link": "https://trendforce.com/news/2026/08/20/news-marvell-amd-reportedly-shake-up-google-tpu-race-putting-broadcom-mediatek-under-pressure"
@@ -534,13 +502,13 @@
       "title": "HD현대중공업, 해외 첫 현지 공동건조…페루서 ‘침보테함’ 진수",
       "title_ko": null,
       "source": "tinyurl.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://tinyurl.com/24fren9f"
     },
     {
       "date": "2026-08-19 22:55",
       "title": "China NEV retail sales fall 15% in first 16 days of August, outperforming broader market",
-      "title_ko": null,
+      "title_ko": "中 신에너지차(NEV) 8월 1~16일 소매판매 15% 감소, 그래도 전체 시장보다는 선방",
       "source": "cnevpost.com",
       "region": "해외",
       "link": "https://cnevpost.com/2026/08/19/china-nev-retail-sales-first-16-days-aug-2026"
@@ -564,7 +532,7 @@
     {
       "date": "2026-08-19 03:32",
       "title": "Fuerzas Armadas  Así es el K9, el obús autopropulsado con visión 360º que reforzará la potencia de fuego del Ejército de Tierra",
-      "title_ko": null,
+      "title_ko": "스페인 육군, 360도 시야 갖춘 자주포 K9 도입 — 화력 강화 나서",
       "source": "eldebate.com",
       "region": "해외",
       "link": "https://eldebate.com/espana/defensa/20260819/asi-k9-obus-autopropulsado-vision-360-reforzara-potencia-fuego-ejercito-tierra_434324.html"
@@ -580,7 +548,7 @@
     {
       "date": "2026-08-18 23:32",
       "title": "US Army Turns to Hanwha Defense for New Mobile Artillery",
-      "title_ko": null,
+      "title_ko": "美 육군, 신형 기동 야포 사업에 한화디펜스 선정",
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-18/us-army-turns-to-hanwha-defense-for-new-mobile-artillery"
@@ -588,7 +556,7 @@
     {
       "date": "2026-08-18 22:25",
       "title": "Army selects Mobile Tactical Cannon prototype system to advance Fires modernization",
-      "title_ko": null,
+      "title_ko": "美 육군, 화력 현대화 위해 기동형 전술포 시제 시스템 선정",
       "source": "army.mil",
       "region": "해외",
       "link": "https://army.mil/article/294726/army_selects_mobile_tactical_cannon_prototype_system_to_advance_fires_modernization"
