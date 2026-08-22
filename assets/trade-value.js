@@ -34,6 +34,13 @@ function tvShortDate(d) {
     const [, m, day] = d.split("-");
     return `${Number(m)}/${Number(day)}`;
 }
+// 거래대금이 전일대비 500%(6배) 이상 급등한 날인지
+function tvIsSurge(daily, i) {
+    if (i === 0) return false;
+    const prevTv = daily[i - 1] && daily[i - 1].trade_value;
+    const curTv  = daily[i] && daily[i].trade_value;
+    return !!(prevTv && curTv && curTv >= prevTv * 6);
+}
 
 // ── 방문자 카운터 (GoatCounter) ────────────────────
 async function loadVisitorCount() {
@@ -79,6 +86,7 @@ function renderSectorSummary() {
                 sector: s.sector_large,
                 tvSum:     dates.map(() => 0),
                 mktcapSum: dates.map(() => 0),
+                surge:     dates.map(() => false),
                 mids: {},
             };
         }
@@ -88,6 +96,7 @@ function renderSectorSummary() {
                 mid: s.sector_mid,
                 tvSum:     dates.map(() => 0),
                 mktcapSum: dates.map(() => 0),
+                surge:     dates.map(() => false),
             };
         }
         const m = g.mids[s.sector_mid];
@@ -98,6 +107,10 @@ function renderSectorSummary() {
             g.mktcapSum[i] += mc;
             m.tvSum[i]     += tv;
             m.mktcapSum[i] += mc;
+            if (tvIsSurge(s.daily, i)) {
+                g.surge[i] = true;
+                m.surge[i] = true;
+            }
         });
     });
 
@@ -105,9 +118,10 @@ function renderSectorSummary() {
     const latestIdx = dates.length - 1;
     const groups = Object.values(map).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
 
-    const ratioCells = (tvSum, mktcapSum) => tvSum.map((v, i) => {
+    const ratioCells = (tvSum, mktcapSum, surge) => tvSum.map((v, i) => {
         const mktcapWon = mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
-        return `<td class="tv-ratio">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
+        const cls = surge[i] ? "tv-ratio tv-surge" : "tv-ratio";
+        return `<td class="${cls}">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
     }).join("");
 
     const header = `<tr><th>대분류</th>${dates.map(d => `<th>${tvShortDate(d)}</th>`).join("")}</tr>`;
@@ -116,14 +130,14 @@ function renderSectorSummary() {
         const mainRow = `
         <tr>
             <td class="tv-sector-name" data-sector="${g.sector}"><span class="tv-caret">${expanded ? "▾" : "▸"}</span>${g.sector}</td>
-            ${ratioCells(g.tvSum, g.mktcapSum)}
+            ${ratioCells(g.tvSum, g.mktcapSum, g.surge)}
         </tr>`;
         if (!expanded) return mainRow;
         const mids = Object.values(g.mids).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
         const midRows = mids.map(m => `
         <tr class="tv-mid-row">
             <td class="tv-mid-name" data-sector="${g.sector}" data-mid="${m.mid}">${tvStripMidPrefix(m.mid)}</td>
-            ${ratioCells(m.tvSum, m.mktcapSum)}
+            ${ratioCells(m.tvSum, m.mktcapSum, m.surge)}
         </tr>`).join("");
         return mainRow + midRows;
     }).join("");
@@ -137,12 +151,6 @@ function renderSectorSummary() {
             if (tvExpandedSectors.has(sector)) tvExpandedSectors.delete(sector);
             else tvExpandedSectors.add(sector);
             renderSectorSummary();
-
-            document.getElementById("large-filter").value = sector;
-            document.getElementById("mid-filter").value = "";
-            populateMidFilter();
-            renderTable();
-            document.getElementById("tv-body").scrollIntoView({ behavior: "smooth", block: "start" });
         });
     });
     wrap.querySelectorAll(".tv-mid-name").forEach(td => {
@@ -256,9 +264,9 @@ function renderTable() {
             <td class="tv-name" title="${s.name}">${s.name}</td>
             <td class="tv-sector" title="${s.sector_mid}">${tvStripMidPrefix(s.sector_mid)}</td>
             <td class="tv-mktcap">${tvFmtMktcap(s.mktcap)}</td>
-            ${s.daily.map(d => {
+            ${s.daily.map((d, i) => {
                 const rate = d && d.change_rate;
-                const surge = rate != null && rate >= 50;
+                const surge = tvIsSurge(s.daily, i);
                 return `
                 <td${surge ? ' class="tv-surge"' : ""}>
                     <span class="tv-value">${tvFmtTradeValue(d && d.trade_value)}</span>
