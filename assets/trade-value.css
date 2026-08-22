@@ -46,6 +46,7 @@
 .tv-table td.tv-ratio { color: #14213D; }
 .tv-caret { display: inline-block; width: 14px; color: #888; }
 
+.tv-table tr.tv-group-row.expanded td { border-bottom: 2px solid #A9BAD1; }
 .tv-table tr.tv-mid-row td:not(.tv-surge) { background: #FBFCFE; }
 .tv-table td.tv-mid-name {
     text-align: left; color: #2F5FA3; cursor: pointer;

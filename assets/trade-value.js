@@ -130,7 +130,7 @@ function renderSectorSummary() {
     const body = groups.map(g => {
         const expanded = tvExpandedSectors.has(g.sector);
         const mainRow = `
-        <tr>
+        <tr class="tv-group-row${expanded ? " expanded" : ""}">
             <td class="tv-sector-name" data-sector="${g.sector}"><span class="tv-caret">${expanded ? "▾" : "▸"}</span>${g.sector}</td>
             ${ratioCells(g.tvSum, g.mktcapSum)}
         </tr>`;
