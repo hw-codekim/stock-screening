@@ -17,6 +17,10 @@ function tvFmtMktcap(v) {
     if (v == null) return "-";
     return (v / 10000).toFixed(2) + "조";
 }
+function tvFmtRatio(v) {
+    if (v == null) return "-";
+    return v.toFixed(2) + "%";
+}
 const TV_MID_PSEUDO_SUFFIXES = new Set(["KOSPI", "KOSDAQ"]);
 function tvStripMidPrefix(mid) {
     if (!mid || !mid.includes("_")) return mid;
@@ -60,7 +64,54 @@ async function loadTradeValue() {
 
     populateLargeFilter();
     populateMidFilter();
+    renderSectorSummary();
     renderTable();
+}
+
+// ── 대분류별 거래대금비율 = (그날 대분류 전종목 거래대금 합) / (대분류 전종목 시총 합, 억원->원 환산) x100
+function renderSectorSummary() {
+    const dates = tvData.dates;
+    const map = {};
+    tvData.items.forEach(s => {
+        if (!map[s.sector_large]) {
+            map[s.sector_large] = {
+                sector: s.sector_large,
+                tvSum:     dates.map(() => 0),
+                mktcapSum: dates.map(() => 0),
+            };
+        }
+        const g = map[s.sector_large];
+        s.daily.forEach((d, i) => {
+            g.tvSum[i]     += (d && d.trade_value) || 0;
+            g.mktcapSum[i] += (d && d.mktcap) || 0;
+        });
+    });
+
+    // 정렬 기준: 최신일 시총 합 내림차순
+    const latestIdx = dates.length - 1;
+    const groups = Object.values(map).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
+
+    const header = `<tr><th>대분류</th>${dates.map(d => `<th>${tvShortDate(d)}</th>`).join("")}</tr>`;
+    const body = groups.map(g => `
+        <tr>
+            <td class="tv-sector-name" data-sector="${g.sector}">${g.sector}</td>
+            ${g.tvSum.map((v, i) => {
+                const mktcapWon = g.mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
+                return `<td class="tv-ratio">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
+            }).join("")}
+        </tr>
+    `).join("");
+
+    const wrap = document.getElementById("tv-sector-summary");
+    wrap.innerHTML = `<table class="tv-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+    wrap.querySelectorAll(".tv-sector-name").forEach(td => {
+        td.addEventListener("click", () => {
+            document.getElementById("large-filter").value = td.dataset.sector;
+            populateMidFilter();
+            renderTable();
+            document.getElementById("tv-body").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    });
 }
 
 // ── 대분류/중분류 필터 ───────────────────────────────
@@ -132,13 +183,18 @@ function renderTable() {
     const dates    = tvData.dates;
     const latestIdx = dates.length - 1;
 
+    const wrap = document.getElementById("tv-body");
+    if (!largeVal && !midVal && !query) {
+        wrap.innerHTML = '<p class="placeholder">대분류를 클릭하거나 검색어를 입력해 주세요.</p>';
+        return;
+    }
+
     const filtered = tvData.items.filter(s =>
         (!largeVal || s.sector_large === largeVal) &&
         (!midVal || s.sector_mid === midVal) &&
         (!query || s.name.toLowerCase().includes(query) || s.code.includes(query))
     );
 
-    const wrap = document.getElementById("tv-body");
     if (!filtered.length) {
         wrap.innerHTML = '<p class="tv-cand-empty">조건에 맞는 종목이 없습니다.</p>';
         return;

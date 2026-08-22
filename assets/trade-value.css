@@ -34,3 +34,14 @@
     background: #F5F8FC; padding: 6px 12px; border-bottom: 1px solid #D7E0EC;
 }
 .tv-cand-empty { padding: 16px; color: #999; font-size: 0.85rem; text-align: center; }
+
+.tv-section-title {
+    font-size: 0.95rem; font-weight: 700; color: #14315C;
+    margin: 4px 0 8px;
+}
+.tv-table td.tv-sector-name {
+    text-align: left; font-weight: 600; color: #14315C; cursor: pointer;
+}
+.tv-table td.tv-sector-name:hover { text-decoration: underline; }
+.tv-table td.tv-ratio { color: #14213D; }
+
