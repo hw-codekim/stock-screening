@@ -1,6 +1,14 @@
 {
-  "generated_at": "2026-08-22 17:40",
+  "generated_at": "2026-08-22 18:02",
   "items": [
+    {
+      "date": "2026-08-22 08:05",
+      "title": "\"전세 살 집이 없다\"…'실거주' 강화에 월세로 밀리는 세입자들",
+      "title_ko": null,
+      "source": "naver.me",
+      "region": "국내",
+      "link": "https://naver.me/GYDPBDIu"
+    },
     {
       "date": "2026-08-22 07:54",
       "title": "익명 'Ox 알파' 등장…코딩 성능·100조 토큰 무상 제공에 '발칵'",
@@ -376,6 +384,14 @@
       "source": "cnbc.com",
       "region": "해외",
       "link": "https://cnbc.com/2026/08/20/micron-ceo-ai-changed-memory-industry.html"
+    },
+    {
+      "date": "2026-08-21 04:21",
+      "title": "Micron CEO: AI has 'totally changed' the equation for the boom-and-bust memory industry",
+      "title_ko": null,
+      "source": "share.google",
+      "region": "해외",
+      "link": "https://share.google/KxwBNNLqMOJF1zM21"
     },
     {
       "date": "2026-08-21 04:20",
@@ -1584,22 +1600,6 @@
       "source": "trendforce.com",
       "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/17/news-samsung-sk-hynix-1h26-chip-facility-investment-up-35-nvidia-not-among-samsungs-top-five-customers/"
-    },
-    {
-      "date": "2026-08-17 22:49",
-      "title": "기업가치 50조원 수준에서 최대 10조원 프리IPO 관측에 해명공시에도 6일 주가가 10.37% 급락. 별도 상장 시 경제적 지분 희석과 현금 이동 경로 장기화 우려가 제기되는 반면, 미래에셋은 M&A 회수·후속 투자재원(약 150억 달러 여력) 성격으로 긍정 평가했고, 한국기업거버넌스포럼은 논의 중단을 요구",
-      "title_ko": null,
-      "source": "wowtv.co.kr",
-      "region": "국내",
-      "link": "https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202608170047&t=NN"
-    },
-    {
-      "date": "2026-08-17 22:49",
-      "title": "소프트뱅크 SB에너지와 체결한 역대 최대 규모 프로젝트로, 엔비디아는 1단계(5GW) 자산가치를 최대 1050억 달러까지 백스톱하는 대신 전반부 독점 칩 공급권과 SB에너지 지분(15억 달러 투자)을 확보. 당초 10GW 전체(약 2500억 달러) 보증안이 알려지며 주가가 5% 하락했던 만큼 리스크 노출을 줄이는 구조로 재설계됐고, 부지는 DOE 소유 옛 우라늄 농축 시설로 9.2GW 가스발전을 기반",
-      "title_ko": null,
-      "source": "wsj.com",
-      "region": "국내",
-      "link": "https://www.wsj.com/articles/openai-locks-in-lease-for-huge-data-center-in-ohio-with-backing-from-nvidia-7474bb9c?mod=tech_lead_pos1"
     }
   ]
 }
