@@ -1,6 +1,14 @@
 {
-  "generated_at": "2026-08-22 15:03",
+  "generated_at": "2026-08-22 16:03",
   "items": [
+    {
+      "date": "2026-08-22 06:58",
+      "title": "知名能源分析师Jeff Currie：醒醒吧，各位，大宗商品正在发出信号 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3779954"
+    },
     {
       "date": "2026-08-22 05:45",
       "title": "贝森特没能稳住市场，日本有重蹈“1997年亚洲金融危机”的风险 - 华尔街见闻",
@@ -40,6 +48,14 @@
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-22/us-canada-trade-talks-collapse-triggering-trump-s-50-tariffs"
+    },
+    {
+      "date": "2026-08-22 03:44",
+      "title": "미·캐나다 무역협상 결렬… 캐나다산 제품 관세 50% 현실화",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/366/0001187703?sid=104"
     },
     {
       "date": "2026-08-22 03:43",
@@ -1584,22 +1600,6 @@
       "source": "cnbc.com",
       "region": "해외",
       "link": "https://www.cnbc.com/2026/08/17/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html"
-    },
-    {
-      "date": "2026-08-17 22:49",
-      "title": "삼성 DS 25.6조원(+23.5%), SK하이닉스 17.6조원(+56.4%)이며 양사 모두 상반기 가동률 100%를 기록. R&D도 삼성 27.4조원(+51.5%), SK하이닉스 6.0조원(+98.4%)으로 급증했고, SK하이닉스의 엔비디아향 매출은 17.6조원으로 비중이 2025년 24%에서 13.35%로 하락(ASIC 고객 다변화). 삼성의 5대 고객사는 알파벳·아마존·애플 등으로 엔비디아는 명단에 없음",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "해외",
-      "link": "https://www.trendforce.com/news/2026/08/17/news-samsung-sk-hynix-1h26-chip-facility-investment-up-35-nvidia-not-among-samsungs-top-five-customers/"
-    },
-    {
-      "date": "2026-08-17 22:49",
-      "title": "기업가치 50조원 수준에서 최대 10조원 프리IPO 관측에 해명공시에도 6일 주가가 10.37% 급락. 별도 상장 시 경제적 지분 희석과 현금 이동 경로 장기화 우려가 제기되는 반면, 미래에셋은 M&A 회수·후속 투자재원(약 150억 달러 여력) 성격으로 긍정 평가했고, 한국기업거버넌스포럼은 논의 중단을 요구",
-      "title_ko": null,
-      "source": "wowtv.co.kr",
-      "region": "국내",
-      "link": "https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202608170047&t=NN"
     }
   ]
 }
