@@ -1,6 +1,70 @@
 {
-  "generated_at": "2026-08-23 00:02",
+  "generated_at": "2026-08-23 08:48",
   "items": [
+    {
+      "date": "2026-08-22 23:26",
+      "title": "한국 7월 EU 철강 수출 41%↓…신철강조치 영향 일부 반영 | 연합뉴스",
+      "title_ko": null,
+      "source": "yna.co.kr",
+      "region": "국내",
+      "link": "https://yna.co.kr/view/AKR20260821179800003?section=industry/heavy-chemistry"
+    },
+    {
+      "date": "2026-08-22 23:13",
+      "title": "이란 대통령·국회의장, 강경파 겨냥 \"전쟁 끝내야\"·\"경제 어려워\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/421/0009127106?sid=104"
+    },
+    {
+      "date": "2026-08-22 22:59",
+      "title": "'K9 자주포' 한화, 현지 자회사에 4천억…미국 방산시장 돌격 | 연합뉴스",
+      "title_ko": null,
+      "source": "yna.co.kr",
+      "region": "국내",
+      "link": "https://yna.co.kr/view/AKR20260822028400003"
+    },
+    {
+      "date": "2026-08-22 22:43",
+      "title": "삼성 110조·하이닉스 40조+α…'금액보다 환원율' 따져보니",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431341"
+    },
+    {
+      "date": "2026-08-22 22:13",
+      "title": "美官员：约40艘油轮21日晚通过霍尔木兹海峡 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3153410?ivk=1"
+    },
+    {
+      "date": "2026-08-22 21:03",
+      "title": "캐나다 총리, 美에 보복관세 '맞불'…철강·낙농품 등에 부과",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016264986?sid=104"
+    },
+    {
+      "date": "2026-08-22 20:43",
+      "title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports",
+      "title_ko": null,
+      "source": "ca.finance.yahoo.com",
+      "region": "해외",
+      "link": "https://ca.finance.yahoo.com/news/nvidia-customers-notified-ai-related-192053264.html"
+    },
+    {
+      "date": "2026-08-22 15:32",
+      "title": "硅谷调研后，高盛的总结：Agent进入执行时代，AI竞争转向工作流，世界模型崛起 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3780055"
+    },
     {
       "date": "2026-08-22 14:22",
       "title": "KF-21'in Endonezya'ya Satış Fiyatı 125 Milyon Dolar | SSBülten",
@@ -96,6 +160,14 @@
       "source": "aitimes.com",
       "region": "국내",
       "link": "https://aitimes.com/news/articleView.html?idxno=214249"
+    },
+    {
+      "date": "2026-08-22 07:54",
+      "title": "익명 'Ox 알파' 등장…코딩 성능·100조 토큰 무상 제공에 '발칵'",
+      "title_ko": null,
+      "source": "share.google",
+      "region": "국내",
+      "link": "https://share.google/YiRx1WtPt05ErK00w"
     },
     {
       "date": "2026-08-22 07:47",
@@ -1528,78 +1600,6 @@
       "source": "zdnet.co.kr",
       "region": "국내",
       "link": "https://zdnet.co.kr/view/?no=20260818120757"
-    },
-    {
-      "date": "2026-08-18 08:38",
-      "title": "폴란드, K9·호마르-K 자재 공급업체 선정 착수…한화에어로 유럽법인 입찰 참여",
-      "title_ko": null,
-      "source": "theguru.co.kr",
-      "region": "국내",
-      "link": "https://theguru.co.kr/mobile/article.html?no=105898"
-    },
-    {
-      "date": "2026-08-18 07:22",
-      "title": "노동부, ‘일주일새 끼임 사망 2건’ HD현대중공업 감독 착수",
-      "title_ko": null,
-      "source": "news.kbs.co.kr",
-      "region": "국내",
-      "link": "https://news.kbs.co.kr/news/pc/view/view.do?ncd=8639370"
-    },
-    {
-      "date": "2026-08-18 04:58",
-      "title": "푸틴, 우크라 드론 부담됐나?…군사축제 돌연 취소 [밀리터리+]",
-      "title_ko": null,
-      "source": "nownews.seoul.co.kr",
-      "region": "국내",
-      "link": "https://nownews.seoul.co.kr/news/newsView.php?id=20260818601004"
-    },
-    {
-      "date": "2026-08-18 00:06",
-      "title": "한미연합축소 압박… 호르무즈 군사개입하나[양낙규의 Defence Club]",
-      "title_ko": null,
-      "source": "asiae.co.kr",
-      "region": "국내",
-      "link": "https://asiae.co.kr/article/2026081808273967800"
-    },
-    {
-      "date": "2026-08-18 00:04",
-      "title": "[단독] 현대로템, 올해 연말까지 ‘현대위아 방산 특수사업부’ 인수",
-      "title_ko": null,
-      "source": "sedaily.com",
-      "region": "국내",
-      "link": "https://sedaily.com/article/20080035"
-    },
-    {
-      "date": "2026-08-17 23:57",
-      "title": "'세계 최초' '세계 최대' 경쟁하는 한•중… 고부가 선박 수주전, 암모니아로 확대",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/industry/company/2026/08/17/LIAFM3K7JNC6BHJOWMGTMEGK7Y/"
-    },
-    {
-      "date": "2026-08-17 23:57",
-      "title": "방사청, 국방 R&D '협약'엔 이윤 한 푼도 안 준다?…방산업계 발칵",
-      "title_ko": null,
-      "source": "biz.heraldcorp.com",
-      "region": "국내",
-      "link": "https://biz.heraldcorp.com/article/10841879"
-    },
-    {
-      "date": "2026-08-17 23:57",
-      "title": "HD현대 '차세대 무인수상정' 수출 청신호… 내년 초 美해군에 시연",
-      "title_ko": null,
-      "source": "tinyurl.com",
-      "region": "국내",
-      "link": "https://tinyurl.com/22xcf6sc"
-    },
-    {
-      "date": "2026-08-17 23:57",
-      "title": "'세계 최초' '세계 최대' 경쟁하는 한•중… 고부가 선박 수주전, 암모니아로 확대",
-      "title_ko": null,
-      "source": "tinyurl.com",
-      "region": "국내",
-      "link": "https://tinyurl.com/24qw6w43"
     }
   ]
 }
