@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>현금흐름 스크리닝</title>
+<title>거래대금 스크리닝</title>
 <link rel="stylesheet" href="assets/style.css?v=2">
-<link rel="stylesheet" href="assets/cashflow.css?v=6">
+<link rel="stylesheet" href="assets/trade-value.css?v=1">
 </head>
 <body>
 
 <header class="site-header">
     <div class="header-left">
         <div>
-            <h1>현금흐름 스크리닝</h1>
-            <div class="sub">영업현금흐름 · CAPEX · FCF 분기 추이</div>
+            <h1>거래대금 스크리닝</h1>
+            <div class="sub">코스피·코스닥 전종목 일자별 거래대금·등락률</div>
         </div>
         <nav class="site-nav">
             <a href="index.html">TODAY</a>
             <a href="q2.html">2Q26실적</a>
             <a href="forward.html">포워드실적</a>
             <a href="us-charts.html">미장</a>
-            <a href="cashflow.html" class="active">현금흐름</a>
-            <a href="trade-value.html">거래대금</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="trade-value.html" class="active">거래대금</a>
         </nav>
     </div>
     <div class="visitor-badge">
@@ -35,12 +35,12 @@
 
 <div class="container">
     <div class="page-note">
-        <div class="page-note-kicker">코스피 시총 200 · 코스닥 시총 150</div>
-        <div class="page-note-title">현금흐름 스크리닝 이용 가이드</div>
+        <div class="page-note-kicker">코스피 + 코스닥 전종목</div>
+        <div class="page-note-title">거래대금 스크리닝 이용 가이드</div>
         <div class="page-note-body">
-            ☞ 영업현금흐름(CFO) · CAPEX(유형자산 취득) · FCF(=CFO−CAPEX)를 DART 재무제표에서 직접 계산<br>
-            ☞ 영업현금흐름률 = 영업현금흐름 ÷ 매출 — OPM과 비교하면 회계이익 대비 실제 현금창출력을 볼 수 있음<br>
-            ☞ 대분류/중분류로 좁히거나 종목명·코드로 검색 후 목록에서 종목을 클릭하면 최근 8개 분기 상세가 표시됩니다 (키보드 방향키 ↑/↓로도 이동 가능)
+            ☞ 거래대금 = 종가 × 거래량 근사치, 최근 10거래일 일자별로 표시<br>
+            ☞ 대분류/중분류로 좁히거나 종목명·코드로 검색, 섹터별로 묶어서 시가총액 합계 내림차순으로 정렬됩니다<br>
+            ☞ 표가 넓어 가로 스크롤이 필요합니다
         </div>
     </div>
 
@@ -56,19 +56,18 @@
 
     <div class="summary-line" id="summary-line">불러오는 중...</div>
 
-    <div class="cf-list-scroll">
-        <div class="list-wrap" id="cf-candidates">
+    <div class="tv-scroll">
+        <div class="list-wrap" id="tv-body">
             <p class="placeholder">불러오는 중...</p>
         </div>
     </div>
 
-    <div class="site-footer">데이터는 분기 실적 발표 후 갱신됩니다.</div>
+    <div class="site-footer">데이터는 매 영업일 장마감 후 갱신됩니다.</div>
 </div>
 
 <button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/cashflow.js?v=8"></script>
+<script src="assets/trade-value.js?v=1"></script>
 </body>
 </html>
