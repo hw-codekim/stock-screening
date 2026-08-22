@@ -14,6 +14,9 @@ body {
     color: #fff;
     padding: 18px 24px;
     box-shadow: 0 2px 8px rgba(20, 33, 61, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .site-header h1 { margin: 0; font-size: 1.2rem; font-weight: 700; }
 .site-header .sub { font-size: 0.75rem; color: #9FB3D1; margin-top: 2px; }
@@ -23,6 +26,15 @@ body {
     align-items: flex-end;
     gap: 28px;
 }
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.header-contact { font-size: 0.8rem; color: #D7E0EC; white-space: nowrap; }
+.header-contact a, .header-contact a:visited { color: #D7E0EC; text-decoration: none; }
+.header-contact a:hover { text-decoration: underline; }
 /* 페이지마다 제목 글자수가 달라서 그 뒤에 바로 붙는 nav 시작 위치가 페이지마다 밀렸다 당겨졌다
    했음(예: "CHART" vs "실적 스크리닝") - 제목 칸 너비를 고정해서 메뉴 위치를 페이지 간에 통일 */
 .header-left > div:first-child {
