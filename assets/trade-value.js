@@ -86,7 +86,6 @@ function renderSectorSummary() {
                 sector: s.sector_large,
                 tvSum:     dates.map(() => 0),
                 mktcapSum: dates.map(() => 0),
-                surge:     dates.map(() => false),
                 mids: {},
             };
         }
@@ -96,7 +95,6 @@ function renderSectorSummary() {
                 mid: s.sector_mid,
                 tvSum:     dates.map(() => 0),
                 mktcapSum: dates.map(() => 0),
-                surge:     dates.map(() => false),
             };
         }
         const m = g.mids[s.sector_mid];
@@ -107,10 +105,6 @@ function renderSectorSummary() {
             g.mktcapSum[i] += mc;
             m.tvSum[i]     += tv;
             m.mktcapSum[i] += mc;
-            if (tvIsSurge(s.daily, i)) {
-                g.surge[i] = true;
-                m.surge[i] = true;
-            }
         });
     });
 
@@ -118,11 +112,19 @@ function renderSectorSummary() {
     const latestIdx = dates.length - 1;
     const groups = Object.values(map).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
 
-    const ratioCells = (tvSum, mktcapSum, surge) => tvSum.map((v, i) => {
-        const mktcapWon = mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
-        const cls = surge[i] ? "tv-ratio tv-surge" : "tv-ratio";
-        return `<td class="${cls}">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
-    }).join("");
+    // 거래대금비율이 전일대비 50% 이상 급등한 날을 노란색으로 표시
+    const ratioCells = (tvSum, mktcapSum) => {
+        const ratios = tvSum.map((v, i) => {
+            const mktcapWon = mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
+            return mktcapWon ? v / mktcapWon * 100 : null;
+        });
+        return ratios.map((r, i) => {
+            const prev = i > 0 ? ratios[i - 1] : null;
+            const surge = prev != null && prev > 0 && r != null && r >= prev * 1.5;
+            const cls = surge ? "tv-ratio tv-surge" : "tv-ratio";
+            return `<td class="${cls}">${tvFmtRatio(r)}</td>`;
+        }).join("");
+    };
 
     const header = `<tr><th>대분류</th>${dates.map(d => `<th>${tvShortDate(d)}</th>`).join("")}</tr>`;
     const body = groups.map(g => {
@@ -130,14 +132,14 @@ function renderSectorSummary() {
         const mainRow = `
         <tr>
             <td class="tv-sector-name" data-sector="${g.sector}"><span class="tv-caret">${expanded ? "▾" : "▸"}</span>${g.sector}</td>
-            ${ratioCells(g.tvSum, g.mktcapSum, g.surge)}
+            ${ratioCells(g.tvSum, g.mktcapSum)}
         </tr>`;
         if (!expanded) return mainRow;
         const mids = Object.values(g.mids).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
         const midRows = mids.map(m => `
         <tr class="tv-mid-row">
             <td class="tv-mid-name" data-sector="${g.sector}" data-mid="${m.mid}">${tvStripMidPrefix(m.mid)}</td>
-            ${ratioCells(m.tvSum, m.mktcapSum, m.surge)}
+            ${ratioCells(m.tvSum, m.mktcapSum)}
         </tr>`).join("");
         return mainRow + midRows;
     }).join("");
