@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22 14:03",
+  "generated_at": "2026-08-22 14:10",
   "items": [
     {
       "date": "2026-08-22 04:45",
@@ -258,36 +258,12 @@
       "link": "https://wallstreetcn.com/livenews/3152911?ivk=1"
     },
     {
-      "date": "2026-08-21 08:23",
-      "title": "※ 원문 확인:",
-      "title_ko": null,
-      "source": "bbs2.shinhansec.com",
-      "region": "해외",
-      "link": "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353489"
-    },
-    {
-      "date": "2026-08-21 08:23",
-      "title": "※ 원문 확인:",
-      "title_ko": null,
-      "source": "bbs2.shinhansec.com",
-      "region": "해외",
-      "link": "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=353491"
-    },
-    {
       "date": "2026-08-21 08:11",
       "title": "중국 쓰촨성서 천연 수소 노다지 터졌다...순도 98.24% 역대 최고",
       "title_ko": null,
       "source": "g-enews.com",
       "region": "국내",
       "link": "https://g-enews.com/article/Global-Biz/2026/08/202608211334342177e250e8e188_1"
-    },
-    {
-      "date": "2026-08-21 07:07",
-      "title": "해당 기사에 대한 사측 답변 공시입니다.",
-      "title_ko": null,
-      "source": "buly.kr",
-      "region": "국내",
-      "link": "https://buly.kr/2Jqo3yE"
     },
     {
       "date": "2026-08-21 07:07",
@@ -1600,6 +1576,30 @@
       "source": "ecommercenews.eu",
       "region": "해외",
       "link": "https://ecommercenews.eu/amazon-launches-bulk-storage-service-in-europe/"
+    },
+    {
+      "date": "2026-08-17 22:30",
+      "title": "- GS리테일(전일주가 +3.55%): GS25 가을야구 특수 겨낭 마케팅에 8월 11~13일 잠실야구장 인근 매장 매출 동기간 대비 25.5% 증가",
+      "title_ko": null,
+      "source": "m.sedaily.com",
+      "region": "국내",
+      "link": "https://m.sedaily.com/article/20079818?ref=naver"
+    },
+    {
+      "date": "2026-08-17 22:30",
+      "title": "- 홈플러스 재개에 카드사 대금 지급 재개, 홈플러스 재개장 첫날 일매출도 1.2% YoY 증가",
+      "title_ko": null,
+      "source": "magazine.hankyung.com",
+      "region": "국내",
+      "link": "https://magazine.hankyung.com/business/article/202608175056b"
+    },
+    {
+      "date": "2026-08-17 22:30",
+      "title": "- 면세점 4사 2분기 동반 흑자, 체질개선 및 자유여행객(FIT) 매출 증대 효과",
+      "title_ko": null,
+      "source": "chosun.com",
+      "region": "국내",
+      "link": "https://www.chosun.com/economy/2026/08/18/ZQREZO7TVJHPPLZAAPMRIUHVH4/"
     }
   ]
 }
