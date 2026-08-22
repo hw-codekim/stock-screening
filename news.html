@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주요 뉴스</title>
+<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/news.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>주요 뉴스</h1>
+            <div class="sub">국내·해외 시장 주요 뉴스 헤드라인</div>
+        </div>
+        <nav class="site-nav">
+            <a href="news.html" class="active">주요뉴스</a>
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="trade-value.html">거래대금</a>
+        </nav>
+    </div>
+    <div class="visitor-badge">
+        <span class="dot"></span>방문자 <span id="visitor-count">-</span>명
+        <span class="visitor-sep">·</span>
+        <a class="hits-badge" href="https://hits.sh/hw-codekim.github.io/stock-screening/" target="_blank" rel="noopener">
+            <img src="https://hits.sh/hw-codekim.github.io/stock-screening/.svg?style=flat-square&label=hits.sh&color=2F5FA3&labelColor=14315C" alt="hits.sh 방문자 카운터">
+        </a>
+    </div>
+</header>
+
+<div class="container">
+    <div class="page-note">
+        <div class="page-note-kicker">국내 + 해외</div>
+        <div class="page-note-title">주요 뉴스 이용 가이드</div>
+        <div class="page-note-body">
+            ☞ 제목을 클릭하면 원문 기사로 이동합니다 (새 탭)<br>
+            ☞ 해외 기사는 원문 제목과 함께 번역 제목이 표시됩니다
+        </div>
+    </div>
+
+    <div class="summary-line" id="summary-line">불러오는 중...</div>
+
+    <div class="news-scroll">
+        <div class="list-wrap" id="news-body">
+            <p class="placeholder">불러오는 중...</p>
+        </div>
+    </div>
+
+    <div class="site-footer">데이터는 수시로 갱신됩니다.</div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/news.js?v=1"></script>
+</body>
+</html>
