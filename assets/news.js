@@ -45,7 +45,7 @@ function renderNews() {
 
 async function loadNews() {
     try {
-        const res = await fetch("data/telegram_news.json");
+        const res = await fetch(`data/telegram_news.json?_=${Date.now()}`, { cache: "no-store" });
         newsData = await res.json();
     } catch (e) {
         document.getElementById("news-body").innerHTML = '<p class="news-cand-empty">데이터를 불러오지 못했습니다.</p>';
