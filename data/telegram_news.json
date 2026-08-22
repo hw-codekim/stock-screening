@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22 17:04",
+  "generated_at": "2026-08-22 17:40",
   "items": [
     {
       "date": "2026-08-22 07:54",
@@ -12,7 +12,7 @@
     {
       "date": "2026-08-22 07:47",
       "title": "Bessent to Detail US Plans to Isolate Iran’s Economy on Monday",
-      "title_ko": null,
+      "title_ko": "베센트, 월요일 이란 경제 고립 위한 美 계획 상세 발표 예정",
       "source": "bloomberg.com",
       "region": "해외",
       "link": "https://bloomberg.com/news/articles/2026-08-20/bessent-to-detail-us-plans-to-isolate-iran-s-economy-on-monday"
@@ -20,7 +20,7 @@
     {
       "date": "2026-08-22 06:58",
       "title": "知名能源分析师Jeff Currie：醒醒吧，各位，大宗商品正在发出信号 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "저명 에너지 분석가 제프 커리: 정신 차려라, 원자재가 신호를 보내고 있다 - 월스트리트견문",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3779954"
@@ -28,7 +28,7 @@
     {
       "date": "2026-08-22 05:45",
       "title": "贝森特没能稳住市场，日本有重蹈“1997年亚洲金融危机”的风险 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "베센트도 시장 못 진정시켜…일본, '1997년 아시아 금융위기' 재현 위험",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780052"
@@ -36,7 +36,7 @@
     {
       "date": "2026-08-22 05:27",
       "title": "Anthropic自研芯片落子：挖来谷歌TPU业务创始人，2万亿IPO前夜的\"去英伟达\"豪赌 - 华尔街见闻",
-      "title_ko": null,
+      "title_ko": "앤스로픽, 자체 AI 칩 착수 - 구글 TPU 사업 창업자 영입, 2조 달러 IPO 앞두고 '탈엔비디아' 승부수",
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780053"
@@ -622,7 +622,7 @@
       "title": "기존 파트너십을 확대하는 다년 계약으로 HRT는 베라 루빈 칩에 대규모로 접근하는 첫 고객군에 포함될 예정. 코어위브는 MS 의존도(한때 매출 70% 이상)를 낮추기 위해 금융권 고객 확대에 주력 중이며, 경쟁사 제인스트리트도 60억 달러 지출과 10억 달러 지분 투자로 참여",
       "title_ko": null,
       "source": "bloomberg.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.bloomberg.com/news/articles/2026-08-20/hudson-river-signs-multibillion-dollar-coreweave-crwv-deal-for-ai-cloud"
     },
     {
@@ -630,7 +630,7 @@
       "title": "애저 파운드리를 통해 주당 수조 개 토큰을 사용하며 자체 모델 평가 등 개발 과정에 외부 모델을 활용. 파운드리 최대 고객은 바이트댄스이고 오픈AI가 MS 전체 AI 매출의 약 70%를 차지하는 등 수요 집중·순환거래 구조가 부각되는 가운데, 메타는 자체 API 사업 구축으로 외부 의존을 줄일 가능성",
       "title_ko": null,
       "source": "bloomberg.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.bloomberg.com/news/articles/2026-08-20/meta-has-quietly-become-one-of-microsoft-s-largest-ai-customers?srnd=homepage-americas"
     },
     {
@@ -638,7 +638,7 @@
       "title": "미국법인이 HBM 아키텍처 설계팀을 운영하며 고객사와 베이스다이 설계 현안을 직접 협의하고 맞춤형 HBM 아키텍처를 개발 중이며, 연봉 15만~26만 달러에 3나노 이하 첨단공정 설계 경험자를 우대해 인력을 보강. HBM4부터 베이스다이에 첨단 로직 공정이 적용돼 AI 가속기와 동시 최적화가 중요해지면서, 경쟁 축이 캐파·미세공정에서 고객 개발 초기 진입을 겨루는 '고객 선점'으로 이동(엔비디아·AMD·브로드컴 본사 인접 입지 활용)",
       "title_ko": null,
       "source": "newspim.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.newspim.com/news/view/20260819000419"
     },
     {
@@ -646,7 +646,7 @@
       "title": "30일 보존 요건은 유지하되 고객이 자사 인프라에 데이터를 두는 선택지를 부여하는 방식으로, 세일즈포스 등 100개 이상 고객사와 수개월간 협의해 연내 새 안전 시스템을 도입할 계획. 6월 프런티어 모델 트래픽 30일 보존 의무화 이후 나온 조정이며, 오픈AI도 전날 데이터를 보존하지 않으면서 오용을 탐지하는 시스템을 발표",
       "title_ko": null,
       "source": "reuters.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.reuters.com/business/anthropic-plans-change-enterprise-data-retention-policy-source-says-2026-08-20/"
     },
     {
@@ -654,7 +654,7 @@
       "title": "노바레이크와 유사한 듀얼소싱 전략으로 리스크를 낮추려는 행보이며, 이미 캐파가 빠듯한 AMD의 물량 확보를 더 어렵게 만들 수 있다는 관측. 인텔 18A-P는 리스크 생산에 진입했고 14A는 2028년 양산 목표이며, TSMC는 A16(SPR 적용, N2P 대비 속도 8~10%↑)을 4분기 양산 예정이고 삼성 1.4나노는 2027년→2029년으로 연기",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/20/news-intel-may-tap-tsmc-n2x-for-some-razor-lake-chips-in-2027-depending-on-18a-p-performance/"
     },
     {
@@ -662,7 +662,7 @@
       "title": "38만9825㎡ 부지의 온양 신규 팹은 인허가가 한 달 앞당겨져 '3대 메가프로젝트' 중 첫 착공 사례가 될 전망이며, HBM4 수율이 80%에 근접하자 화성 H1 유휴 클린룸 활용과 평택 P4 1c 라인 구축도 병행. 용적률을 350%→490%로 높이는 산단계획 변경으로 P5-1·P5-2에 클린룸 6개를 넣어 캐파를 1.5배 이상 늘린다는 구상(SK하이닉스도 용인 신규 팹 전량 트리플팹 계획)",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/20/news-samsung-to-break-ground-on-krw-6t-onyang-hbm-fab-in-sept-p5-eyes-triple-fab-shift-as-expansion-accelerates/"
     },
     {
@@ -670,7 +670,7 @@
       "title": "구리 배선의 대역폭 한계를 넘기 위해 광 트랜시버를 프로세서 패키지에 통합하고, 포토닉 인터포저로 메모리와 프로세서를 직접 연결해 여러 가속기가 대형 메모리 풀을 공유하는 구조를 제시. 노드당 100Tb/s 이상 대역폭, 1pJ/bit 미만 효율, 10ns 미만 칩간 지연을 목표로 2D·2.5D·3D 이종집적까지 아우르는 로드맵 제시",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/20/news-sk-hynix-unveils-cpo-roadmap-looks-beyond-hbm-to-ai-infrastructure/"
     },
     {
@@ -694,7 +694,7 @@
       "title": "- Walmart(전일주가 -9.15%): 월마트, 기존점포 매출 증가율 6년 만에 최저치에도 연간 전망치 상향",
       "title_ko": null,
       "source": "finance.yahoo.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://finance.yahoo.com/markets/stocks/article/walmart-stock-drops-9-as-sales-growth-slows-customers-make-trade-offs-amid-high-fuel-costs-182327744.html"
     },
     {
@@ -822,7 +822,7 @@
       "title": "- Amazon(전일주가 +2.46%): 아마존 프라임 에어 드론 배송 서비스, 올해 약 500개 도시 확대 예정",
       "title_ko": null,
       "source": "aboutamazon.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.aboutamazon.com/news/transportation/amazon-prime-air-drone-delivery-expansion"
     },
     {
@@ -830,7 +830,7 @@
       "title": "- Proya Cosmetics(전일주가 -1.87%): 중국 최대 뷰티기업 프로야, 울타뷰티 계약으로 미국 진출 확대",
       "title_ko": null,
       "source": "bloomberg.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.bloomberg.com/news/articles/2026-08-19/china-s-biggest-beauty-brand-proya-to-enter-us-this-year-with-ulta-deal"
     },
     {
@@ -934,7 +934,7 @@
       "title": "■한국타이어, SUV타이어 '다이나프로'로 북미 공략…지프 인베이전 참가",
       "title_ko": null,
       "source": "daejonilbo.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.daejonilbo.com/news/articleView.html?idxno=2295396"
     },
     {
@@ -942,7 +942,7 @@
       "title": "■핸들·페달 없는 테슬라 사이버캡이 온다",
       "title_ko": null,
       "source": "econovill.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.econovill.com/news/articleView.html?idxno=748408"
     },
     {
@@ -974,7 +974,7 @@
       "title": "■현대차 'N 비전 74' 양산하나…美·캐나다서 상표 출원",
       "title_ko": null,
       "source": "gpkorea.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.gpkorea.com/news/articleView.html?idxno=145803"
     },
     {
@@ -990,7 +990,7 @@
       "title": "■‘1조 ESS’ 세 번째 승부 온다…1·2차 주도권 내준 LG엔솔, ‘오창 LFP’ 승부수",
       "title_ko": null,
       "source": "kukinews.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.kukinews.com/article/view/kuk202608190217"
     },
     {
@@ -998,7 +998,7 @@
       "title": "■더 크고, 더 강인해진 현대 투싼 디자인 공개",
       "title_ko": null,
       "source": "motorgraph.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.motorgraph.com/news/articleView.html?idxno=44338"
     },
     {
@@ -1006,7 +1006,7 @@
       "title": "■체리 로봇 사업부, IPO 추진…해외 경찰 로봇 시장 공략",
       "title_ko": null,
       "source": "reuters.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.reuters.com/business/autos-transportation/cherys-robot-unit-eyes-ipo-targets-overseas-market-police-robots-2026-08-19/"
     },
     {
@@ -1014,7 +1014,7 @@
       "title": "■LG엔솔, 美 미시간 랜싱공장 본격 가동",
       "title_ko": null,
       "source": "segye.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.segye.com/newsView/20260819520104?OutUrl=naver"
     },
     {
@@ -1086,7 +1086,7 @@
       "title": "노동부, '1주일새 끼임 사망 2건' HD현대중공업 고강도 감독 착수",
       "title_ko": null,
       "source": "ajunews.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.ajunews.com/view/20260818150651537"
     },
     {
@@ -1150,7 +1150,7 @@
       "title": "세계 수주 75% 中•••K조선, 새 먹거리로 승부",
       "title_ko": null,
       "source": "sisajournal-e.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.sisajournal-e.com/news/articleView.html?idxno=423144"
     },
     {
@@ -1166,7 +1166,7 @@
       "title": "세미애널리시스 칩북 기준 한국발 HBM 수출이 말레이시아행 13억 달러로 늘고 대만행은 30억 달러 아래로 하락했는데, 말레이시아의 유일한 대형 제조사가 인텔이라는 점에서 물량 이전 정황. 인텔은 EMIB·EMIB-T, TSMC는 고전력 칩용 CoWoS 중심이라는 차이는 있으나 7월 물량 이월 보도가 데이터로 뒷받침되는 모습",
       "title_ko": null,
       "source": "wccftech.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://wccftech.com/intel-might-have-gained-ground-on-tsmcs-packaging-dominance-as-booming-ai-demand-overwhelms-the-industrys-undisputed-leader/"
     },
     {
@@ -1174,7 +1174,7 @@
       "title": "IP 라이선싱 중심의 자산경량 모델에서 완제품 데이터센터 프로세서로 확장하면서 기존 고객들과 같은 공급망을 두고 직접 경쟁하는 구도",
       "title_ko": null,
       "source": "digitimes.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.digitimes.com/news/a20260818VL206/arm-capacity-demand-cpu-expansion.html"
     },
     {
@@ -1190,7 +1190,7 @@
       "title": "삼성은 230.6억 달러(+70.7%)로 1위지만 점유율은 29.3%로 소폭 하락했고, SK하이닉스 그룹은 321단 램프업과 솔리다임 QLC eSSD 호조로 142.7억 달러(+89.5%)에 영업이익률 사상 최고. 마이크론은 118.5억 달러(+99.2%)로 증가율 1위, 키옥시아 107.2억 달러(+79.9%), 샌디스크 89.7억 달러(+50.7%)를 기록했고 3분기도 ASP 상승이 이어질 전망",
       "title_ko": null,
       "source": "trendforce.com.tw",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com.tw/presscenter/news/20260818-13185.html"
     },
     {
@@ -1198,7 +1198,7 @@
       "title": "컬러풀의 CXMT 기반 48GB 키트가 9,014MT/s를 기록해 2025년 말 8,000MT/s 대비 향상됐고 DDR5-6000 CL30(예비 테스트 CL28)까지 확인. 17나노 DDR5 수율은 90%, 기가바이트 전 라인업이 지원에 나섰으며, 삼성·SK하이닉스가 서버·HBM에 캐파를 집중하는 사이 ASP가 양사 대비 5~10% 낮은 수준까지 좁혀졌고 월 캐파는 30만→연말 35만→2028년 말 50만 장으로 확대 계획",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/18/news-cxmt-ddr5-reportedly-tops-9000-mts-on-amd-platform-narrowing-performance-gap-with-global-leaders/"
     },
     {
@@ -1206,7 +1206,7 @@
       "title": "8월 17일 21.125달러로 전주 대비 4.97% 상승했으며, 블루필드-4 기반 CMX(Context Memory eXtension)가 HBM과 네트워크 스토리지 사이에 플래시 계층을 두고 KV 캐시를 처리하는 구조가 핵심 촉매. CMX 1세트에 eSSD 약 576개(9.6PB)가 쓰일 것으로 추산되며, 키옥시아 CM10, 솔리다임 321단 QLC SSD, 삼성 PM1763(16TB, 읽기 28,400MB/s) 등이 수혜 대상",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/18/news-nvidia-vera-rubin-spillover-from-hbm-to-nand-cmx-fuels-tlc-spot-price-rebound-from-june-dip/"
     },
     {
@@ -1222,7 +1222,7 @@
       "title": "- 실리콘투(전일주가 +3.85%): 글로벌 사모펀드 CVC캐피탈, 실리콘투에 3,000억 투자",
       "title_ko": null,
       "source": "se-cu.com",
-      "region": "해외",
+      "region": "국내",
       "link": "http://se-cu.com/ndsoft/error.html"
     },
     {
@@ -1230,7 +1230,7 @@
       "title": "- Costco(전일주가 +0.82%): 코스트코 스캔그룹과 제휴, 시니어 겨냥 메디케어 상품 출시",
       "title_ko": null,
       "source": "cnbc.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.cnbc.com/2026/08/18/costco-sets-its-sights-on-a-new-kind-of-product-medicare-advantage.html"
     },
     {
@@ -1270,7 +1270,7 @@
       "title": "- Target corporation(전일주가 +0.97%): 타겟 울타와의 제휴 종료 최종 확정, 공백에는 새로운 타겟 뷰티 스튜디오 도입 예정",
       "title_ko": null,
       "source": "retaildive.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.retaildive.com/news/target-finalizes-divorce-from-ulta-signaling-shift-in-beauty-market/827990/"
     },
     {
@@ -1334,7 +1334,7 @@
       "title": "■현대차, 미래사업 조직 촘촘히…'자율주행·SDV·로봇' 임원 보강",
       "title_ko": null,
       "source": "bloter.net",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.bloter.net/news/articleView.html?idxno=671166"
     },
     {
@@ -1342,7 +1342,7 @@
       "title": "■K-배터리, R&D 투자 1.8조 육박 13%↑…“ESS·로봇 등 신기술 투자 ‘고삐’”",
       "title_ko": null,
       "source": "ceoscoredaily.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.ceoscoredaily.com/page/view/2026081816273433939"
     },
     {
@@ -1358,7 +1358,7 @@
       "title": "■중국 포니AI, 해외에 로보택시 4,000대 이상 배치 계획",
       "title_ko": null,
       "source": "reuters.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.reuters.com/business/autos-transportation/chinas-ponyais-overseas-robotaxi-pipeline-expands-over-4000-vehicles-2026-08-18/"
     },
     {
@@ -1366,7 +1366,7 @@
       "title": "■아인라이드, 성장 가속 전망 속 테슬라 대형 전기트럭 ‘세미’ 500대 도입 계획",
       "title_ko": null,
       "source": "reuters.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.reuters.com/business/autos-transportation/einride-deploy-500-tesla-electric-trucks-north-american-fleet-2026-08-18/"
     },
     {
@@ -1374,7 +1374,7 @@
       "title": "■“핸들·브레이크 없는 차”…테슬라, 자율주행 로보택시 선봬",
       "title_ko": null,
       "source": "segye.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.segye.com/newsView/20260818519001?OutUrl=naver"
     },
     {
@@ -1390,7 +1390,7 @@
       "title": "■삼성SDI, 美 인디애나 공장 전략 재검토… ESS·LFP 활용 확대되나",
       "title_ko": null,
       "source": "skyedaily.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.skyedaily.com/news/news_view.html?ID=310003"
     },
     {
@@ -1470,7 +1470,7 @@
       "title": "HD현대 '차세대 무인수상정' 수출 청신호… 내년 초 美해군에 시연",
       "title_ko": null,
       "source": "tinyurl.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://tinyurl.com/22xcf6sc"
     },
     {
@@ -1478,7 +1478,7 @@
       "title": "'세계 최초' '세계 최대' 경쟁하는 한•중… 고부가 선박 수주전, 암모니아로 확대",
       "title_ko": null,
       "source": "tinyurl.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://tinyurl.com/24qw6w43"
     },
     {
@@ -1486,7 +1486,7 @@
       "title": "민간자금으로 K-방산 키운다…혁신 스타트업 성장 생태계 구축",
       "title_ko": null,
       "source": "tinyurl.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://tinyurl.com/2d2kn2xf"
     },
     {
@@ -1558,7 +1558,7 @@
       "title": "원장(原廠) 고위층이 기존 예상 2년보다 긴 4년을 제시했다며 전략적 재고를 쌓아 향후 2년 eSSD·CSP·AI 프로젝트 물량을 확보하겠다고 밝힘. 2분기 AI 생태계 매출 비중은 38%로 최대 카테고리가 됐고 매출총이익률은 65.3%로 사상 최고. AI 시스템의 디스펙 흐름에서 D램은 줄어도 스토리지 용량은 유지되고 있다고 언급",
       "title_ko": null,
       "source": "view.inews.qq.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://view.inews.qq.com/k/20260814A047FH00?scene=wap&no-redirect=1"
     },
     {
@@ -1574,7 +1574,7 @@
       "title": "5월 470억 달러에서 재차 상승하며 전년비 7배 증가했고 2분기 잠정 매출은 115억 달러(전년비 14배), 기업가치는 9650억 달러. 통상과 달리 2년 뒤 실적 기준 EV/매출 배수가 적용되고 있으며, 팔란티어(53배)·스페이스X·클라우드플레어(각 41.6배)가 비교 대상으로 거론",
       "title_ko": null,
       "source": "cnbc.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.cnbc.com/2026/08/17/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html"
     },
     {
@@ -1582,7 +1582,7 @@
       "title": "삼성 DS 25.6조원(+23.5%), SK하이닉스 17.6조원(+56.4%)이며 양사 모두 상반기 가동률 100%를 기록. R&D도 삼성 27.4조원(+51.5%), SK하이닉스 6.0조원(+98.4%)으로 급증했고, SK하이닉스의 엔비디아향 매출은 17.6조원으로 비중이 2025년 24%에서 13.35%로 하락(ASIC 고객 다변화). 삼성의 5대 고객사는 알파벳·아마존·애플 등으로 엔비디아는 명단에 없음",
       "title_ko": null,
       "source": "trendforce.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.trendforce.com/news/2026/08/17/news-samsung-sk-hynix-1h26-chip-facility-investment-up-35-nvidia-not-among-samsungs-top-five-customers/"
     },
     {
@@ -1598,7 +1598,7 @@
       "title": "소프트뱅크 SB에너지와 체결한 역대 최대 규모 프로젝트로, 엔비디아는 1단계(5GW) 자산가치를 최대 1050억 달러까지 백스톱하는 대신 전반부 독점 칩 공급권과 SB에너지 지분(15억 달러 투자)을 확보. 당초 10GW 전체(약 2500억 달러) 보증안이 알려지며 주가가 5% 하락했던 만큼 리스크 노출을 줄이는 구조로 재설계됐고, 부지는 DOE 소유 옛 우라늄 농축 시설로 9.2GW 가스발전을 기반",
       "title_ko": null,
       "source": "wsj.com",
-      "region": "해외",
+      "region": "국내",
       "link": "https://www.wsj.com/articles/openai-locks-in-lease-for-huge-data-center-in-ohio-with-backing-from-nvidia-7474bb9c?mod=tech_lead_pos1"
     }
   ]
