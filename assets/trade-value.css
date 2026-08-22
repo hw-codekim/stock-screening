@@ -44,4 +44,23 @@
 }
 .tv-table td.tv-sector-name:hover { text-decoration: underline; }
 .tv-table td.tv-ratio { color: #14213D; }
+.tv-caret { display: inline-block; width: 14px; color: #888; }
+
+.tv-table tr.tv-mid-row td { background: #FBFCFE; }
+.tv-table td.tv-mid-name {
+    text-align: left; color: #2F5FA3; cursor: pointer;
+    padding-left: 26px; font-size: 11px;
+}
+.tv-table td.tv-mid-name:hover { text-decoration: underline; }
+
+#tv-search-btn {
+    padding: 8px 18px;
+    border: none; border-radius: 4px;
+    background: #2F5FA3; color: #fff;
+    font-size: 0.85rem; font-weight: 600;
+    cursor: pointer;
+}
+#tv-search-btn:hover { background: #3A6FBA; }
+
+.tv-table td.tv-surge { background: #FFF3B0; }
 

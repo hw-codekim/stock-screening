@@ -1,4 +1,5 @@
 let tvData = null;
+let tvExpandedSectors = new Set();
 
 // ── 포맷 헬퍼 ────────────────────────────────────────
 function tvFmtTradeValue(v) {
@@ -68,7 +69,7 @@ async function loadTradeValue() {
     renderTable();
 }
 
-// ── 대분류별 거래대금비율 = (그날 대분류 전종목 거래대금 합) / (대분류 전종목 시총 합, 억원->원 환산) x100
+// ── 대분류/중분류별 거래대금비율 = (그날 소속 전종목 거래대금 합) / (소속 전종목 시총 합, 억원->원 환산) x100
 function renderSectorSummary() {
     const dates = tvData.dates;
     const map = {};
@@ -78,12 +79,25 @@ function renderSectorSummary() {
                 sector: s.sector_large,
                 tvSum:     dates.map(() => 0),
                 mktcapSum: dates.map(() => 0),
+                mids: {},
             };
         }
         const g = map[s.sector_large];
+        if (!g.mids[s.sector_mid]) {
+            g.mids[s.sector_mid] = {
+                mid: s.sector_mid,
+                tvSum:     dates.map(() => 0),
+                mktcapSum: dates.map(() => 0),
+            };
+        }
+        const m = g.mids[s.sector_mid];
         s.daily.forEach((d, i) => {
-            g.tvSum[i]     += (d && d.trade_value) || 0;
-            g.mktcapSum[i] += (d && d.mktcap) || 0;
+            const tv = (d && d.trade_value) || 0;
+            const mc = (d && d.mktcap) || 0;
+            g.tvSum[i]     += tv;
+            g.mktcapSum[i] += mc;
+            m.tvSum[i]     += tv;
+            m.mktcapSum[i] += mc;
         });
     });
 
@@ -91,23 +105,51 @@ function renderSectorSummary() {
     const latestIdx = dates.length - 1;
     const groups = Object.values(map).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
 
+    const ratioCells = (tvSum, mktcapSum) => tvSum.map((v, i) => {
+        const mktcapWon = mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
+        return `<td class="tv-ratio">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
+    }).join("");
+
     const header = `<tr><th>대분류</th>${dates.map(d => `<th>${tvShortDate(d)}</th>`).join("")}</tr>`;
-    const body = groups.map(g => `
+    const body = groups.map(g => {
+        const expanded = tvExpandedSectors.has(g.sector);
+        const mainRow = `
         <tr>
-            <td class="tv-sector-name" data-sector="${g.sector}">${g.sector}</td>
-            ${g.tvSum.map((v, i) => {
-                const mktcapWon = g.mktcapSum[i] * 1e8; // mktcap 필드는 억원 단위
-                return `<td class="tv-ratio">${tvFmtRatio(mktcapWon ? v / mktcapWon * 100 : null)}</td>`;
-            }).join("")}
-        </tr>
-    `).join("");
+            <td class="tv-sector-name" data-sector="${g.sector}"><span class="tv-caret">${expanded ? "▾" : "▸"}</span>${g.sector}</td>
+            ${ratioCells(g.tvSum, g.mktcapSum)}
+        </tr>`;
+        if (!expanded) return mainRow;
+        const mids = Object.values(g.mids).sort((a, b) => b.mktcapSum[latestIdx] - a.mktcapSum[latestIdx]);
+        const midRows = mids.map(m => `
+        <tr class="tv-mid-row">
+            <td class="tv-mid-name" data-sector="${g.sector}" data-mid="${m.mid}">${tvStripMidPrefix(m.mid)}</td>
+            ${ratioCells(m.tvSum, m.mktcapSum)}
+        </tr>`).join("");
+        return mainRow + midRows;
+    }).join("");
 
     const wrap = document.getElementById("tv-sector-summary");
     wrap.innerHTML = `<table class="tv-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
+
     wrap.querySelectorAll(".tv-sector-name").forEach(td => {
+        td.addEventListener("click", () => {
+            const sector = td.dataset.sector;
+            if (tvExpandedSectors.has(sector)) tvExpandedSectors.delete(sector);
+            else tvExpandedSectors.add(sector);
+            renderSectorSummary();
+
+            document.getElementById("large-filter").value = sector;
+            document.getElementById("mid-filter").value = "";
+            populateMidFilter();
+            renderTable();
+            document.getElementById("tv-body").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    });
+    wrap.querySelectorAll(".tv-mid-name").forEach(td => {
         td.addEventListener("click", () => {
             document.getElementById("large-filter").value = td.dataset.sector;
             populateMidFilter();
+            document.getElementById("mid-filter").value = td.dataset.mid;
             renderTable();
             document.getElementById("tv-body").scrollIntoView({ behavior: "smooth", block: "start" });
         });
@@ -153,7 +195,6 @@ function populateMidFilter() {
 
 function onLargeFilterChange() {
     populateMidFilter();
-    renderTable();
 }
 
 // 대분류(섹터) 그룹으로 묶고, 그룹은 시가총액 합계 내림차순, 그룹 안에서는 최신일 거래대금 내림차순
@@ -185,7 +226,7 @@ function renderTable() {
 
     const wrap = document.getElementById("tv-body");
     if (!largeVal && !midVal && !query) {
-        wrap.innerHTML = '<p class="placeholder">대분류를 클릭하거나 검색어를 입력해 주세요.</p>';
+        wrap.innerHTML = '<p class="placeholder">대분류를 클릭하거나 조건을 선택한 후 검색 버튼을 눌러 주세요.</p>';
         return;
     }
 
@@ -215,12 +256,16 @@ function renderTable() {
             <td class="tv-name" title="${s.name}">${s.name}</td>
             <td class="tv-sector" title="${s.sector_mid}">${tvStripMidPrefix(s.sector_mid)}</td>
             <td class="tv-mktcap">${tvFmtMktcap(s.mktcap)}</td>
-            ${s.daily.map(d => `
-                <td>
+            ${s.daily.map(d => {
+                const rate = d && d.change_rate;
+                const surge = rate != null && rate >= 50;
+                return `
+                <td${surge ? ' class="tv-surge"' : ""}>
                     <span class="tv-value">${tvFmtTradeValue(d && d.trade_value)}</span>
-                    <span class="tv-pct" style="color:${tvColor(d && d.change_rate)};">(${tvFmtPct(d && d.change_rate)})</span>
+                    <span class="tv-pct" style="color:${tvColor(rate)};">(${tvFmtPct(rate)})</span>
                 </td>
-            `).join("")}
+            `;
+            }).join("")}
         </tr>
         `).join("")}
     `).join("");
@@ -230,8 +275,10 @@ function renderTable() {
 
 // ── 이벤트 바인딩 ────────────────────────────────────
 document.getElementById("large-filter").addEventListener("change", onLargeFilterChange);
-document.getElementById("mid-filter").addEventListener("change", renderTable);
-document.getElementById("stock-search").addEventListener("input", renderTable);
+document.getElementById("tv-search-btn").addEventListener("click", renderTable);
+document.getElementById("stock-search").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") renderTable();
+});
 
 const scrollTopBtn = document.getElementById("scroll-top-btn");
 scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
