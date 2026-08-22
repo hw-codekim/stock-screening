@@ -34,14 +34,6 @@
       "link": "https://wallstreetcn.com/articles/3780052"
     },
     {
-      "date": "2026-08-22 05:39",
-      "title": "知名能源分析师Jeff Currie：醒醒吧，各位，大宗商品正在发出信号 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3779954"
-    },
-    {
       "date": "2026-08-22 05:27",
       "title": "Anthropic自研芯片落子：挖来谷歌TPU业务创始人，2万亿IPO前夜的\"去英伟达\"豪赌 - 华尔街见闻",
       "title_ko": null,
@@ -290,14 +282,6 @@
       "link": "https://wallstreetcn.com/livenews/3152933?ivk=1"
     },
     {
-      "date": "2026-08-21 08:48",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": "속보 - 월스트리트견문 (구체 내용 없음)",
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3152911?ivk=1"
-    },
-    {
       "date": "2026-08-21 08:11",
       "title": "중국 쓰촨성서 천연 수소 노다지 터졌다...순도 98.24% 역대 최고",
       "title_ko": null,
@@ -424,14 +408,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/mnews/article/023/0003994141"
-    },
-    {
-      "date": "2026-08-21 03:32",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": "속보 - 월스트리트견문 (구체 내용 없음)",
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3152714?ivk=1"
     },
     {
       "date": "2026-08-21 03:30",
@@ -624,14 +600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/011/0004653567?type=main"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "최태원 회장이 직접 현지를 방문한 것으로 알려졌으며, 미야기현은 규슈·홋카이도와 함께 일본 정부가 육성 중인 3대 반도체 거점. 용인·호남 클러스터 계획은 원안대로 추진하면서 글로벌 수급난에 대비한 추가 해외 거점을 확보하는 성격이나, 자국 내 메모리 투자를 압박하는 미국의 요구가 더 거세질 수 있다는 점은 위험 요인",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/028/0002819506?sid=101"
     },
     {
       "date": "2026-08-20 22:49",
@@ -1600,6 +1568,38 @@
       "source": "chosun.com",
       "region": "국내",
       "link": "https://www.chosun.com/economy/tech_it/2026/08/17/ZZKPHDQN6JHZNOGSTL4Z2T6H2Y/?utm_source=naver&utm_medium=referral&utm_campaign=naver-news"
+    },
+    {
+      "date": "2026-08-17 22:49",
+      "title": "5월 470억 달러에서 재차 상승하며 전년비 7배 증가했고 2분기 잠정 매출은 115억 달러(전년비 14배), 기업가치는 9650억 달러. 통상과 달리 2년 뒤 실적 기준 EV/매출 배수가 적용되고 있으며, 팔란티어(53배)·스페이스X·클라우드플레어(각 41.6배)가 비교 대상으로 거론",
+      "title_ko": null,
+      "source": "cnbc.com",
+      "region": "해외",
+      "link": "https://www.cnbc.com/2026/08/17/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html"
+    },
+    {
+      "date": "2026-08-17 22:49",
+      "title": "삼성 DS 25.6조원(+23.5%), SK하이닉스 17.6조원(+56.4%)이며 양사 모두 상반기 가동률 100%를 기록. R&D도 삼성 27.4조원(+51.5%), SK하이닉스 6.0조원(+98.4%)으로 급증했고, SK하이닉스의 엔비디아향 매출은 17.6조원으로 비중이 2025년 24%에서 13.35%로 하락(ASIC 고객 다변화). 삼성의 5대 고객사는 알파벳·아마존·애플 등으로 엔비디아는 명단에 없음",
+      "title_ko": null,
+      "source": "trendforce.com",
+      "region": "해외",
+      "link": "https://www.trendforce.com/news/2026/08/17/news-samsung-sk-hynix-1h26-chip-facility-investment-up-35-nvidia-not-among-samsungs-top-five-customers/"
+    },
+    {
+      "date": "2026-08-17 22:49",
+      "title": "기업가치 50조원 수준에서 최대 10조원 프리IPO 관측에 해명공시에도 6일 주가가 10.37% 급락. 별도 상장 시 경제적 지분 희석과 현금 이동 경로 장기화 우려가 제기되는 반면, 미래에셋은 M&A 회수·후속 투자재원(약 150억 달러 여력) 성격으로 긍정 평가했고, 한국기업거버넌스포럼은 논의 중단을 요구",
+      "title_ko": null,
+      "source": "wowtv.co.kr",
+      "region": "국내",
+      "link": "https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202608170047&t=NN"
+    },
+    {
+      "date": "2026-08-17 22:49",
+      "title": "소프트뱅크 SB에너지와 체결한 역대 최대 규모 프로젝트로, 엔비디아는 1단계(5GW) 자산가치를 최대 1050억 달러까지 백스톱하는 대신 전반부 독점 칩 공급권과 SB에너지 지분(15억 달러 투자)을 확보. 당초 10GW 전체(약 2500억 달러) 보증안이 알려지며 주가가 5% 하락했던 만큼 리스크 노출을 줄이는 구조로 재설계됐고, 부지는 DOE 소유 옛 우라늄 농축 시설로 9.2GW 가스발전을 기반",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://www.wsj.com/articles/openai-locks-in-lease-for-huge-data-center-in-ohio-with-backing-from-nvidia-7474bb9c?mod=tech_lead_pos1"
     }
   ]
 }
