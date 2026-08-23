@@ -1,6 +1,14 @@
 {
-  "generated_at": "2026-08-23 14:00",
+  "generated_at": "2026-08-23 15:00",
   "items": [
+    {
+      "date": "2026-08-23 14:35",
+      "title": "엔비디아도 못 버틴 메모리값 상승 … 삼전닉스, 협상력 커져",
+      "title_ko": null,
+      "source": "biz.newdaily.co.kr",
+      "region": "국내",
+      "link": "https://biz.newdaily.co.kr/site/data/html/2026/08/23/2026082300048.html"
+    },
     {
       "date": "2026-08-23 13:56",
       "title": "7月再现！高盛：存储“股价业绩差”最具吸引力，金融和硬资产成为新热点 - 华尔街见闻",
@@ -247,7 +255,7 @@
       "title_ko": null,
       "source": "google.com",
       "region": "국내",
-      "link": "https://www.google.com/share.google?q=xyu84lhuvOONDefuz"
+      "link": "https://www.google.com/share.google?q=BFX5EsgjqA94JUz5R"
     },
     {
       "date": "2026-08-22 16:28",
@@ -1592,14 +1600,6 @@
       "source": "theguru.co.kr",
       "region": "국내",
       "link": "https://www.theguru.co.kr/news/article.html?no=105904"
-    },
-    {
-      "date": "2026-08-18 22:37",
-      "title": "세미애널리시스 칩북 기준 한국발 HBM 수출이 말레이시아행 13억 달러로 늘고 대만행은 30억 달러 아래로 하락했는데, 말레이시아의 유일한 대형 제조사가 인텔이라는 점에서 물량 이전 정황. 인텔은 EMIB·EMIB-T, TSMC는 고전력 칩용 CoWoS 중심이라는 차이는 있으나 7월 물량 이월 보도가 데이터로 뒷받침되는 모습",
-      "title_ko": null,
-      "source": "wccftech.com",
-      "region": "국내",
-      "link": "https://wccftech.com/intel-might-have-gained-ground-on-tsmcs-packaging-dominance-as-booming-ai-demand-overwhelms-the-industrys-undisputed-leader/"
     }
   ]
 }
