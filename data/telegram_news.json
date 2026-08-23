@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23 22:00",
+  "generated_at": "2026-08-23 23:00",
   "items": [
     {
       "date": "2026-08-23 21:34",
@@ -211,6 +211,14 @@
     },
     {
       "date": "2026-08-23 09:19",
+      "title": "트럼프 행정부, 애플 中 메모리 구매 허용할 듯 | 뉴스 - 초이스스탁US",
+      "title_ko": null,
+      "source": "choicestock.co.kr",
+      "region": "국내",
+      "link": "https://choicestock.co.kr/stock/news_view/178061?bu="
+    },
+    {
+      "date": "2026-08-23 09:19",
       "title": "트럼프 행정부, 애플 中 메모리 구매 허용할 듯",
       "title_ko": null,
       "source": "m.g-enews.com",
@@ -250,6 +258,14 @@
       "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431341"
     },
     {
+      "date": "2026-08-23 05:43",
+      "title": "엔비디아, AI 서버값 15% 인상…메모리 품귀에 업계 긴장",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/119/0003124266?sid=104"
+    },
+    {
       "date": "2026-08-22 23:26",
       "title": "한국 7월 EU 철강 수출 41%↓…신철강조치 영향 일부 반영 | 연합뉴스",
       "title_ko": null,
@@ -280,6 +296,14 @@
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3153410?ivk=1"
+    },
+    {
+      "date": "2026-08-22 21:50",
+      "title": "이스라엘 공격받은 이란 사우스파르스 가스전…70% 복구",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/003/0014141865?sid=104"
     },
     {
       "date": "2026-08-22 21:12",
@@ -1576,30 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/mnews/article/005/0001867786?sid=101"
-    },
-    {
-      "date": "2026-08-19 07:32",
-      "title": "- 상반기 중국 노선 탑승객 954만명으로 22% YoY 증가, 역대 두번째 규모로 연말 첫 2,000만명 돌파 전망",
-      "title_ko": null,
-      "source": "alie.kr",
-      "region": "국내",
-      "link": "https://alie.kr/AF2tLbc"
-    },
-    {
-      "date": "2026-08-19 05:57",
-      "title": "한화엔진, 창원에 선박 발전용 중속엔진 공장 준공 | 연합뉴스",
-      "title_ko": null,
-      "source": "yna.co.kr",
-      "region": "국내",
-      "link": "https://yna.co.kr/view/AKR20260819111200003?section=industry/heavy-chemistry"
-    },
-    {
-      "date": "2026-08-19 03:32",
-      "title": "Fuerzas Armadas  Así es el K9, el obús autopropulsado con visión 360º que reforzará la potencia de fuego del Ejército de Tierra",
-      "title_ko": "스페인 육군, 360도 시야 갖춘 자주포 K9 도입 — 화력 강화 나서",
-      "source": "eldebate.com",
-      "region": "해외",
-      "link": "https://eldebate.com/espana/defensa/20260819/asi-k9-obus-autopropulsado-vision-360-reforzara-potencia-fuego-ejercito-tierra_434324.html"
     }
   ]
 }
