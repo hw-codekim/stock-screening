@@ -1,6 +1,62 @@
 {
-  "generated_at": "2026-08-23 10:00",
+  "generated_at": "2026-08-23 13:01",
   "items": [
+    {
+      "date": "2026-08-23 11:41",
+      "title": "Nvidia Customers Notified About AI-Related Price Hikes Above 15%",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-08-22/nvidia-customers-notified-about-ai-related-price-hikes-above-15"
+    },
+    {
+      "date": "2026-08-23 11:31",
+      "title": "Breaking: DeepSeek announces full-day off-peak pricing on weekends, will working on weekends be more cost-effective from now on?",
+      "title_ko": null,
+      "source": "eu.36kr.com",
+      "region": "해외",
+      "link": "https://eu.36kr.com/en/p/3951308056099972"
+    },
+    {
+      "date": "2026-08-23 11:12",
+      "title": "쏟아지는 주가 ‘하향’ 보고서... 삼전닉스 목표주가도 3배 차이",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/stock/stock_general/2026/08/23/MFRDQZJRGYZWKYJZG42WEZJTHE"
+    },
+    {
+      "date": "2026-08-23 11:02",
+      "title": "Nvidia Is Spending $6 Billion to Build a Powerful U.S. Alternative to Chinese AI",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://wsj.com/tech/ai/nvidia-is-spending-6-billion-to-build-a-powerful-u-s-alternative-to-chinese-ai-c51c38cc"
+    },
+    {
+      "date": "2026-08-23 11:01",
+      "title": "임광현 \"고가 법인주택 42% 사주 사적 사용…200억 넘는 황제사택도\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431350"
+    },
+    {
+      "date": "2026-08-23 10:36",
+      "title": "中 희토류 수출 제한, 日 제조업 '비상'…공급난 2027년까지 - 초이스경제",
+      "title_ko": null,
+      "source": "choicenews.co.kr",
+      "region": "국내",
+      "link": "http://choicenews.co.kr/news/articleView.html?idxno=170297"
+    },
+    {
+      "date": "2026-08-23 10:00",
+      "title": "구글, 마벨에 17조원 지분 옵션…맞춤형 AI 칩 대반격",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=fI0bW5Dj3Zh8Yat8x"
+    },
     {
       "date": "2026-08-23 09:39",
       "title": "엔비디아, AI 서버값 15% 전격 인상…빅테크 투자 비상",
@@ -1544,62 +1600,6 @@
       "source": "trendforce.com.tw",
       "region": "국내",
       "link": "https://www.trendforce.com.tw/presscenter/news/20260818-13185.html"
-    },
-    {
-      "date": "2026-08-18 22:37",
-      "title": "컬러풀의 CXMT 기반 48GB 키트가 9,014MT/s를 기록해 2025년 말 8,000MT/s 대비 향상됐고 DDR5-6000 CL30(예비 테스트 CL28)까지 확인. 17나노 DDR5 수율은 90%, 기가바이트 전 라인업이 지원에 나섰으며, 삼성·SK하이닉스가 서버·HBM에 캐파를 집중하는 사이 ASP가 양사 대비 5~10% 낮은 수준까지 좁혀졌고 월 캐파는 30만→연말 35만→2028년 말 50만 장으로 확대 계획",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "국내",
-      "link": "https://www.trendforce.com/news/2026/08/18/news-cxmt-ddr5-reportedly-tops-9000-mts-on-amd-platform-narrowing-performance-gap-with-global-leaders/"
-    },
-    {
-      "date": "2026-08-18 22:37",
-      "title": "8월 17일 21.125달러로 전주 대비 4.97% 상승했으며, 블루필드-4 기반 CMX(Context Memory eXtension)가 HBM과 네트워크 스토리지 사이에 플래시 계층을 두고 KV 캐시를 처리하는 구조가 핵심 촉매. CMX 1세트에 eSSD 약 576개(9.6PB)가 쓰일 것으로 추산되며, 키옥시아 CM10, 솔리다임 321단 QLC SSD, 삼성 PM1763(16TB, 읽기 28,400MB/s) 등이 수혜 대상",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "국내",
-      "link": "https://www.trendforce.com/news/2026/08/18/news-nvidia-vera-rubin-spillover-from-hbm-to-nand-cmx-fuels-tlc-spot-price-rebound-from-june-dip/"
-    },
-    {
-      "date": "2026-08-18 22:37",
-      "title": "광복절 연휴 마라톤 교섭 후 \"9부 능선을 넘었다\"는 평가 속 18일 이천캠퍼스에서 대표자 교섭. 지난해 합의한 PS 상한 폐지·현금 80% 체계를 사측이 자사주 지급과 매도 제한으로 변경 제안한 데 대한 반발이 크고, 13일 출범한 통합노조 조합원이 3000명 돌파를 앞두고 있어 교섭 장기화 가능성도 상존",
-      "title_ko": null,
-      "source": "yna.co.kr",
-      "region": "국내",
-      "link": "https://www.yna.co.kr/view/AKR20260818023000003?input=1195m"
-    },
-    {
-      "date": "2026-08-18 22:32",
-      "title": "- 실리콘투(전일주가 +3.85%): 글로벌 사모펀드 CVC캐피탈, 실리콘투에 3,000억 투자",
-      "title_ko": null,
-      "source": "se-cu.com",
-      "region": "국내",
-      "link": "http://se-cu.com/ndsoft/error.html"
-    },
-    {
-      "date": "2026-08-18 22:32",
-      "title": "- Costco(전일주가 +0.82%): 코스트코 스캔그룹과 제휴, 시니어 겨냥 메디케어 상품 출시",
-      "title_ko": null,
-      "source": "cnbc.com",
-      "region": "국내",
-      "link": "https://www.cnbc.com/2026/08/18/costco-sets-its-sights-on-a-new-kind-of-product-medicare-advantage.html"
-    },
-    {
-      "date": "2026-08-18 22:32",
-      "title": "- 롯데쇼핑(전일주가 +0.1%): SC제일은행·롯데백화점, VIP 대상 제휴 서비스 본격화",
-      "title_ko": null,
-      "source": "fnnews.com",
-      "region": "국내",
-      "link": "https://www.fnnews.com/news/202608181131406166"
-    },
-    {
-      "date": "2026-08-18 22:32",
-      "title": "- 한국관광공사 연이은 인도 중대형 포상관광 유치로 9월 2,000여명 규모의 인도 관광객 방한 예정",
-      "title_ko": null,
-      "source": "hankyung.com",
-      "region": "국내",
-      "link": "https://www.hankyung.com/article/202608186000g"
     }
   ]
 }
