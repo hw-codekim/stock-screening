@@ -1,6 +1,46 @@
 {
-  "generated_at": "2026-08-24 14:00",
+  "generated_at": "2026-08-24 15:00",
   "items": [
+    {
+      "date": "2026-08-24 14:50",
+      "title": "中쉬인, 다음달 1일 홍콩증시 상장…최대 2조4천억원 조달",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016266932?sid=104"
+    },
+    {
+      "date": "2026-08-24 14:15",
+      "title": "一线厂商谈存储：供需失衡会延续很久，等着瞧 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/charts/41959663"
+    },
+    {
+      "date": "2026-08-24 14:09",
+      "title": "삼전 소각 10조~20조원\"…DS증권, '금산법 10% 규제' 지목",
+      "title_ko": null,
+      "source": "m-economynews.com",
+      "region": "국내",
+      "link": "https://m-economynews.com/news/article.html?no=70035"
+    },
+    {
+      "date": "2026-08-24 14:07",
+      "title": "'이미 사용되고 있는데'…테슬라 FSD 확대 도입 지지부진 이유는",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431477"
+    },
+    {
+      "date": "2026-08-24 14:06",
+      "title": "SK하이닉스, 일본에 공장 지을까…\"인프라·소재·장비 갖춰\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431485"
+    },
     {
       "date": "2026-08-24 13:42",
       "title": "Peter Thiel’s Fund Shows the Next Big AI Bet Is Power, Not Chips",
@@ -1560,46 +1600,6 @@
       "source": "theguru.co.kr",
       "region": "국내",
       "link": "https://www.theguru.co.kr/news/article.html?no=106026"
-    },
-    {
-      "date": "2026-08-20 23:40",
-      "title": "中 휴머노이드 누가 사나…정부 훈련센터가 주고객",
-      "title_ko": null,
-      "source": "g-enews.com",
-      "region": "국내",
-      "link": "https://g-enews.com/article/Global-Biz/2026/08/2026082020513580379a1f309431_1"
-    },
-    {
-      "date": "2026-08-20 23:30",
-      "title": "中·스위스, 관세 99.8% 철폐하는 새 무역협정 타결",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006355393?sid=101"
-    },
-    {
-      "date": "2026-08-20 22:56",
-      "title": "Geely prepares revolutionary 500 Wh/kg solid-state EV battery that could beat diesel",
-      "title_ko": "지리자동차, 디젤 능가할 '혁신적' 500Wh/kg 전고체 배터리 준비 중",
-      "source": "electrek.co",
-      "region": "해외",
-      "link": "https://electrek.co/2026/08/20/geely-500-wh-kg-solid-state-battery-2027-pilot"
-    },
-    {
-      "date": "2026-08-20 22:56",
-      "title": "Chery H1 profit falls as overseas revenue surges 51%",
-      "title_ko": "체리자동차, 해외매출 51% 급증에도 상반기 순이익은 감소",
-      "source": "cnevpost.com",
-      "region": "해외",
-      "link": "https://cnevpost.com/2026/08/20/chery-h1-2026-earnings"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "삼성전자·SK하이닉스가 메모리 호황 장기화 전망에 기존 4기 계획에 2기 이상을 더하겠다는 의향을 정부에 전달. 이에 2040년 최대 전력수요 전망이 138.2GW에서 165GW로 20% 가까이 상향됐고 반도체 부문 추가 수요만 기존 4GW 대비 20.6GW 증가, 증가분 26.8GW는 원전 19기 이상에 해당하는 규모",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/011/0004653567?type=main"
     }
   ]
 }
