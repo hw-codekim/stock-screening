@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-24 18:00",
+  "generated_at": "2026-08-24 19:00",
   "items": [
+    {
+      "date": "2026-08-24 18:57",
+      "title": "[단독] 美 \"웨스팅하우스 지분 인수\"…한국에 제안",
+      "title_ko": null,
+      "source": "hankyung.com",
+      "region": "국내",
+      "link": "https://hankyung.com/article/2026082496041"
+    },
+    {
+      "date": "2026-08-24 18:28",
+      "title": "中·印, 25일 베이징서 국경문제 회담…\"국제 문제도 의견교환\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016267951?sid=104"
+    },
+    {
+      "date": "2026-08-24 18:06",
+      "title": "HD현대중공업 노사, 중노위 최종 조정 결렬…노조 쟁의권 확보",
+      "title_ko": null,
+      "source": "m.tf.co.kr",
+      "region": "국내",
+      "link": "https://m.tf.co.kr/read/economy/2357398.htm?retRef=Y&source=https://news.google.com/"
+    },
     {
       "date": "2026-08-24 17:34",
       "title": "삼성 '3D 적층'·SK하이닉스 '어드밴스드 패키징', 엇갈린 차세대 HBM 기술 승부수",
@@ -1576,30 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/mnews/article/050/0000109936?sid=101"
-    },
-    {
-      "date": "2026-08-21 01:40",
-      "title": "美债回购“信号意义”重于“实际效果”！野村：如果市场继续恶化，美联储会下场“YCC或QE” - 华尔街见闻",
-      "title_ko": "美국채 바이백, '실질 효과'보다 '신호 의미'가 더 크다! 노무라: 시장 계속 악화되면 Fed가 'YCC 또는 QE' 개입할 것",
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3779959"
-    },
-    {
-      "date": "2026-08-21 01:30",
-      "title": "中, 사우디산 원유 대량 구매 재개…호르무즈 밖에서 선적 시도",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/001/0016263011?sid=104"
-    },
-    {
-      "date": "2026-08-21 01:22",
-      "title": "베센트 美재무 \"이란 경제 압박으로 추가 군사 작전 필요성 없앨 것\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/421/0009124819?sid=104"
     }
   ]
 }
