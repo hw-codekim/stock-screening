@@ -1,6 +1,38 @@
 {
-  "generated_at": "2026-08-24 22:00",
+  "generated_at": "2026-08-24 23:00",
   "items": [
+    {
+      "date": "2026-08-24 22:47",
+      "title": "Donald J. Trump (@realDonaldTrump)",
+      "title_ko": null,
+      "source": "truthsocial.com",
+      "region": "해외",
+      "link": "https://truthsocial.com/@realDonaldTrump/117150758113256193"
+    },
+    {
+      "date": "2026-08-24 22:38",
+      "title": "최태원 \"마진율 내려야하나\" 걱정…돈 쓸어담는 삼전닉스, 못웃는 이유",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/008/0005403992?cds=news_edit&type=editn"
+    },
+    {
+      "date": "2026-08-24 22:22",
+      "title": "中 샤오미, 대만 TSMC와 자체 개발 '엑스링' 칩 3종 생산 협력",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/008/0005404031?sid=104"
+    },
+    {
+      "date": "2026-08-24 22:09",
+      "title": "“일론 머스크 까지 잡았다” 효성중공업의 반전",
+      "title_ko": null,
+      "source": "magazine.hankyung.com",
+      "region": "국내",
+      "link": "https://magazine.hankyung.com/business/article/202608248641b"
+    },
     {
       "date": "2026-08-24 20:44",
       "title": "Bessent could tap near $1 trillion Treasury General Account to fund bond buybacks, sources said",
@@ -1568,38 +1600,6 @@
       "source": "money.udn.com",
       "region": "해외",
       "link": "https://money.udn.com/money/story/5599/9705185?from=edn_maintab_index"
-    },
-    {
-      "date": "2026-08-21 04:21",
-      "title": "Samsung holds off on High-NA EUV until 1nm production",
-      "title_ko": "삼성전자, High-NA EUV 도입 1나노 공정까지 보류",
-      "source": "digitimes.com",
-      "region": "해외",
-      "link": "https://digitimes.com/news/a20260820VL217/samsung-high-na-euv-production-1nm-high-na.html?chid=10"
-    },
-    {
-      "date": "2026-08-21 04:21",
-      "title": "Micron CEO: AI has 'totally changed' the equation for the boom-and-bust memory industry",
-      "title_ko": "마이크론 CEO: AI가 메모리 반도체의 '호황-불황' 공식을 완전히 바꿔놨다",
-      "source": "cnbc.com",
-      "region": "해외",
-      "link": "https://cnbc.com/2026/08/20/micron-ceo-ai-changed-memory-industry.html"
-    },
-    {
-      "date": "2026-08-21 04:20",
-      "title": "[News] Samsung to Break Ground on KRW 6T Onyang HBM Fab in Sept., P5 Eyes Triple-Fab Shift as Expansion Accelerates",
-      "title_ko": "[뉴스] 삼성전자, 9월 6조원 규모 온양 HBM 공장 착공…P5는 3교대 전환 검토하며 증설 가속",
-      "source": "trendforce.com",
-      "region": "해외",
-      "link": "https://trendforce.com/news/2026/08/20/news-samsung-to-break-ground-on-krw-6t-onyang-hbm-fab-in-sept-p5-eyes-triple-fab-shift-as-expansion-accelerates"
-    },
-    {
-      "date": "2026-08-21 04:11",
-      "title": "200조 미래대응기금, 3대메가프로젝트·AI에 쏟는다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/015/0005323220?ntype=RANKING&rc=N&sid=101"
     }
   ]
 }
