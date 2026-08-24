@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-08-24 19:00",
+  "generated_at": "2026-08-24 20:00",
   "items": [
+    {
+      "date": "2026-08-24 19:37",
+      "title": "\"사흘 새 실종자 시신만 4구\" 제주 잇따른 비극…경찰 '허위 종결' 논란",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/General-News/2026/08/20260824191953676ea14faf6f5_1"
+    },
+    {
+      "date": "2026-08-24 19:18",
+      "title": "이재명 대통령, 정의선·이재용과 연쇄 회동…‘3대 메가’ 기업 현장 목소리 청취",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Industry/2026/08/202608241814035024ea14faf6f5_1"
+    },
     {
       "date": "2026-08-24 18:57",
       "title": "[단독] 美 \"웨스팅하우스 지분 인수\"…한국에 제안",
@@ -672,6 +688,14 @@
       "source": "scmp.com",
       "region": "해외",
       "link": "https://scmp.com/business/china-business/article/3364906/after-gaining-ev-dominance-chinese-carmakers-shift-goal-take-full-hybrid-behemoths"
+    },
+    {
+      "date": "2026-08-23 17:52",
+      "title": "美 '이란 지원국 제재' 경고에…中 \"정당한 권익 수호할 것\"(종합)",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016267912?sid=104"
     },
     {
       "date": "2026-08-23 17:39",
@@ -1576,30 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/001/0016264381?sid=104"
-    },
-    {
-      "date": "2026-08-21 02:12",
-      "title": "[카카오, 둘로 다시 뛴다] 지배구조 개편으로 바뀌는 내 주식은?…카카오X·카카오AI 주식 모두 받는다",
-      "title_ko": null,
-      "source": "techm.kr",
-      "region": "국내",
-      "link": "https://techm.kr/news/articleView.html?idxno=154492"
-    },
-    {
-      "date": "2026-08-21 02:11",
-      "title": "[속보] 카카오, 카카오 AI·카카오X로 인적분할 결의 | 연합뉴스",
-      "title_ko": null,
-      "source": "yna.co.kr",
-      "region": "국내",
-      "link": "https://yna.co.kr/view/AKR20260821056200017"
-    },
-    {
-      "date": "2026-08-21 02:10",
-      "title": "[단독] 틱톡, 한국 이커머스 진출…연내 '틱톡샵' 론칭",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/050/0000109936?sid=101"
     }
   ]
 }
