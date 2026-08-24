@@ -1,6 +1,110 @@
 {
-  "generated_at": "2026-08-24 13:00",
+  "generated_at": "2026-08-24 14:00",
   "items": [
+    {
+      "date": "2026-08-24 13:42",
+      "title": "Peter Thiel’s Fund Shows the Next Big AI Bet Is Power, Not Chips",
+      "title_ko": null,
+      "source": "finance.yahoo.com",
+      "region": "해외",
+      "link": "https://finance.yahoo.com/technology/ai/articles/peter-thiel-fund-shows-next-020715134.html"
+    },
+    {
+      "date": "2026-08-24 13:39",
+      "title": "1분기 일자리 29.2만개 증가… 20대 일자리 비중 2017년 이후 최저",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/policy_sub/2026/08/24/3J2UANNTN5HKJGFUWEVYSGDTXM"
+    },
+    {
+      "date": "2026-08-24 13:39",
+      "title": "네이버, 1년 새 자회사 6곳 증가… 카카오, 37곳 줄어",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/it-science/ict/2026/08/24/45COQAQZ3NC2FHU533BRBMLS5I"
+    },
+    {
+      "date": "2026-08-24 13:35",
+      "title": "美 국무부 \"AIM-9X 공대공 미사일 韓 판매 잠정승인\"…KF-21에도 청신호",
+      "title_ko": null,
+      "source": "fnnews.com",
+      "region": "국내",
+      "link": "https://fnnews.com/news/202608220350289405"
+    },
+    {
+      "date": "2026-08-24 13:28",
+      "title": "NAND 快閃記憶體陸資大廠長江存儲啟動掛牌計畫 競爭受關注 | 產業熱點 | 產業 | 經濟日報",
+      "title_ko": null,
+      "source": "money.udn.com",
+      "region": "해외",
+      "link": "https://money.udn.com/money/story/5612/9710059?from=edn_subcatelist_cate"
+    },
+    {
+      "date": "2026-08-24 13:28",
+      "title": "Trump Will Reportedly Allow Apple To Procure Memory Chips From CXMT And YMTC After Xi's US Visit In September",
+      "title_ko": null,
+      "source": "wccftech.com",
+      "region": "해외",
+      "link": "https://wccftech.com/trump-will-reportedly-allow-apple-to-procure-memory-chips-from-cxmt-and-ymtc-after-xis-us-visit-in-september"
+    },
+    {
+      "date": "2026-08-24 13:28",
+      "title": "Samsung Leverages Advanced Logic Processes To Advance HBM As It Works On Its Next-Gen zHBM DRAM That 3D Stacks Memory On Compute",
+      "title_ko": null,
+      "source": "wccftech.com",
+      "region": "해외",
+      "link": "https://wccftech.com/samsung-leverages-advanced-logic-processes-to-advance-hbm-works-on-3d-stacked-zhbm"
+    },
+    {
+      "date": "2026-08-24 13:27",
+      "title": "Broadcom debt deal expected to reach upwards of $70 billion, sources say",
+      "title_ko": null,
+      "source": "cnbc.com",
+      "region": "해외",
+      "link": "https://cnbc.com/2026/08/21/broadcom-debt-deal-expected-to-reach-upwards-of-70-billion-sources.html"
+    },
+    {
+      "date": "2026-08-24 13:27",
+      "title": "Alibaba plunges after announcing $10.2 billion share placement to fund AI push",
+      "title_ko": null,
+      "source": "cnbc.com",
+      "region": "해외",
+      "link": "https://cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html"
+    },
+    {
+      "date": "2026-08-24 13:27",
+      "title": "[News] NVIDIA Reportedly Eyes More Than 15% Price Hikes for Vera Rubin, Grace Blackwell Servers in Early 2027",
+      "title_ko": null,
+      "source": "trendforce.com",
+      "region": "해외",
+      "link": "https://trendforce.com/news/2026/08/24/news-nvidia-reportedly-eyes-more-than-15-price-hikes-for-vera-rubin-grace-blackwell-servers-in-early-2027"
+    },
+    {
+      "date": "2026-08-24 13:21",
+      "title": "AI Is Fixing UK Productivity. But There’s a Cost",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/opinion/articles/2026-08-24/ai-is-fixing-uk-productivity-but-there-s-a-cost"
+    },
+    {
+      "date": "2026-08-24 13:04",
+      "title": "구윤철 \"합리적 이유 있는 비거주면 과감하게 거주로 전환\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431471"
+    },
+    {
+      "date": "2026-08-24 13:04",
+      "title": "마크 잔디 \"美국채금리, 상승세 이어질 것\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431475"
+    },
     {
       "date": "2026-08-24 12:23",
       "title": "Nvidia Discusses Perplexity Investment at $30 Billion-Plus Valuation",
@@ -1496,110 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/011/0004653567?type=main"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "자국 칩 육성 기조에도 오픈AI·구글과의 LLM 성능 격차 확대 우려가 커지자 텐센트·알리바바·바이두·바이트댄스의 고성능 GPU 도입 길을 열어줌. 화웨이 어센드가 스펙을 끌어올렸지만 CUDA 생태계와 파운드리 병목으로 수요를 감당하기 어려웠던 현실이 배경",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/138/0002238346"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "TPU를 포함한 커스텀 칩 개발·공급 계약과 함께 주당 206.58달러에 보통주 5900만주를 매입할 권리를 받았고, 전량 행사 시 구글은 마벨 5대 주주로 등극. 인수권 대부분은 2027년 3분기~2033년 말 마벨 제품을 5억 달러 구매할 때마다 단계적으로 부여되는 구조로, 목표 달성 시 누적 매출은 최대 1200억 달러 규모이며 브로드컴 외 공급망 다변화로 해석",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/366/0001187296"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "기존 파트너십을 확대하는 다년 계약으로 HRT는 베라 루빈 칩에 대규모로 접근하는 첫 고객군에 포함될 예정. 코어위브는 MS 의존도(한때 매출 70% 이상)를 낮추기 위해 금융권 고객 확대에 주력 중이며, 경쟁사 제인스트리트도 60억 달러 지출과 10억 달러 지분 투자로 참여",
-      "title_ko": null,
-      "source": "bloomberg.com",
-      "region": "국내",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-20/hudson-river-signs-multibillion-dollar-coreweave-crwv-deal-for-ai-cloud"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "애저 파운드리를 통해 주당 수조 개 토큰을 사용하며 자체 모델 평가 등 개발 과정에 외부 모델을 활용. 파운드리 최대 고객은 바이트댄스이고 오픈AI가 MS 전체 AI 매출의 약 70%를 차지하는 등 수요 집중·순환거래 구조가 부각되는 가운데, 메타는 자체 API 사업 구축으로 외부 의존을 줄일 가능성",
-      "title_ko": null,
-      "source": "bloomberg.com",
-      "region": "국내",
-      "link": "https://www.bloomberg.com/news/articles/2026-08-20/meta-has-quietly-become-one-of-microsoft-s-largest-ai-customers?srnd=homepage-americas"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "미국법인이 HBM 아키텍처 설계팀을 운영하며 고객사와 베이스다이 설계 현안을 직접 협의하고 맞춤형 HBM 아키텍처를 개발 중이며, 연봉 15만~26만 달러에 3나노 이하 첨단공정 설계 경험자를 우대해 인력을 보강. HBM4부터 베이스다이에 첨단 로직 공정이 적용돼 AI 가속기와 동시 최적화가 중요해지면서, 경쟁 축이 캐파·미세공정에서 고객 개발 초기 진입을 겨루는 '고객 선점'으로 이동(엔비디아·AMD·브로드컴 본사 인접 입지 활용)",
-      "title_ko": null,
-      "source": "newspim.com",
-      "region": "국내",
-      "link": "https://www.newspim.com/news/view/20260819000419"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "30일 보존 요건은 유지하되 고객이 자사 인프라에 데이터를 두는 선택지를 부여하는 방식으로, 세일즈포스 등 100개 이상 고객사와 수개월간 협의해 연내 새 안전 시스템을 도입할 계획. 6월 프런티어 모델 트래픽 30일 보존 의무화 이후 나온 조정이며, 오픈AI도 전날 데이터를 보존하지 않으면서 오용을 탐지하는 시스템을 발표",
-      "title_ko": null,
-      "source": "reuters.com",
-      "region": "국내",
-      "link": "https://www.reuters.com/business/anthropic-plans-change-enterprise-data-retention-policy-source-says-2026-08-20/"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "노바레이크와 유사한 듀얼소싱 전략으로 리스크를 낮추려는 행보이며, 이미 캐파가 빠듯한 AMD의 물량 확보를 더 어렵게 만들 수 있다는 관측. 인텔 18A-P는 리스크 생산에 진입했고 14A는 2028년 양산 목표이며, TSMC는 A16(SPR 적용, N2P 대비 속도 8~10%↑)을 4분기 양산 예정이고 삼성 1.4나노는 2027년→2029년으로 연기",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "국내",
-      "link": "https://www.trendforce.com/news/2026/08/20/news-intel-may-tap-tsmc-n2x-for-some-razor-lake-chips-in-2027-depending-on-18a-p-performance/"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "38만9825㎡ 부지의 온양 신규 팹은 인허가가 한 달 앞당겨져 '3대 메가프로젝트' 중 첫 착공 사례가 될 전망이며, HBM4 수율이 80%에 근접하자 화성 H1 유휴 클린룸 활용과 평택 P4 1c 라인 구축도 병행. 용적률을 350%→490%로 높이는 산단계획 변경으로 P5-1·P5-2에 클린룸 6개를 넣어 캐파를 1.5배 이상 늘린다는 구상(SK하이닉스도 용인 신규 팹 전량 트리플팹 계획)",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "국내",
-      "link": "https://www.trendforce.com/news/2026/08/20/news-samsung-to-break-ground-on-krw-6t-onyang-hbm-fab-in-sept-p5-eyes-triple-fab-shift-as-expansion-accelerates/"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "구리 배선의 대역폭 한계를 넘기 위해 광 트랜시버를 프로세서 패키지에 통합하고, 포토닉 인터포저로 메모리와 프로세서를 직접 연결해 여러 가속기가 대형 메모리 풀을 공유하는 구조를 제시. 노드당 100Tb/s 이상 대역폭, 1pJ/bit 미만 효율, 10ns 미만 칩간 지연을 목표로 2D·2.5D·3D 이종집적까지 아우르는 로드맵 제시",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "국내",
-      "link": "https://www.trendforce.com/news/2026/08/20/news-sk-hynix-unveils-cpo-roadmap-looks-beyond-hbm-to-ai-infrastructure/"
-    },
-    {
-      "date": "2026-08-20 22:49",
-      "title": "당해 현금 40%·주식 40%, 나머지 20%는 1·2년 뒤 주식으로 이연 지급하며 구성원 선택에 따라 주식 비중을 100%까지 확대 가능. 주식 수 산정은 3개 시점 종가 중 최저가를 적용하고 첫해엔 현금 수령 예외를 뒀으며, 적자 시 고용안정 합의 후 임금 3% 이내 이연 지급 원칙도 명문화",
-      "title_ko": null,
-      "source": "zdnet.co.kr",
-      "region": "국내",
-      "link": "https://zdnet.co.kr/view/?no=20260820161743"
-    },
-    {
-      "date": "2026-08-20 22:42",
-      "title": "中国集装箱船首次成功抵达俄摩尔曼斯克港 - 华尔街见闻",
-      "title_ko": "中 컨테이너선, 러시아 무르만스크항 최초 성공 입항",
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3152589?ivk=1"
-    },
-    {
-      "date": "2026-08-20 22:35",
-      "title": "- Walmart(전일주가 -9.15%): 월마트, 기존점포 매출 증가율 6년 만에 최저치에도 연간 전망치 상향",
-      "title_ko": null,
-      "source": "finance.yahoo.com",
-      "region": "국내",
-      "link": "https://finance.yahoo.com/markets/stocks/article/walmart-stock-drops-9-as-sales-growth-slows-customers-make-trade-offs-amid-high-fuel-costs-182327744.html"
-    },
-    {
-      "date": "2026-08-20 22:35",
-      "title": "- GS리테일(전일주가 -0.74%): GS더프레시, 가맹 500호점 달성 '생활권 슈퍼' 확장 전략",
-      "title_ko": null,
-      "source": "mobile.newsis.com",
-      "region": "국내",
-      "link": "https://mobile.newsis.com/view/NISX20260820_0003755271"
     }
   ]
 }
