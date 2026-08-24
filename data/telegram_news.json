@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-24 10:00",
+  "generated_at": "2026-08-24 11:00",
   "items": [
+    {
+      "date": "2026-08-24 10:51",
+      "title": "'금산법 10%룰' 묶인 삼성전자 주주환원…우선주 소각 늘리나",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431396"
+    },
+    {
+      "date": "2026-08-24 10:32",
+      "title": "SK하이닉스 “HBM4 12단 양산·16단 인증 중”…하이브리드 본딩으로 20단 이상도 준비 [비즈360]",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/mnews/article/016/0002687376"
+    },
+    {
+      "date": "2026-08-24 10:10",
+      "title": "\"美 장기금리 상승에 증시 20%까지 급락 가능성\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431422"
+    },
     {
       "date": "2026-08-24 09:45",
       "title": "[테크M 이슈] HYPE 이어 두나무도? 美, 해외 코인기업 러브콜…웹3 '온쇼어' 속도",
@@ -1576,30 +1600,6 @@
       "source": "thebk.co.kr",
       "region": "국내",
       "link": "https://www.thebk.co.kr/news/articleView.html?idxno=311202"
-    },
-    {
-      "date": "2026-08-20 06:59",
-      "title": "SK Hynix's new HBM team lands in Nvidia and AMD's backyard — co-design is becoming the way to win HBM4 orders",
-      "title_ko": "SK하이닉스 신설 HBM팀, 엔비디아·AMD 안방에 상륙 — 공동설계가 HBM4 수주의 관건으로 부상",
-      "source": "digitimes.com",
-      "region": "해외",
-      "link": "https://digitimes.com/news/a20260820PD219/sk-hynix-hbm-hbm4-design-amd.html"
-    },
-    {
-      "date": "2026-08-20 06:59",
-      "title": "First Nvidia H200 shipments reach China, ByteDance and Tencent take deliveries as Beijing loosens its import block — most licensed chips must stay in Hong Kong, which can't power them",
-      "title_ko": "엔비디아 H200 첫 물량 中 도착, 바이트댄스·텐센트 인도받아…단 라이선스 칩은 홍콩 밖으로 못 나가 구동 불가",
-      "source": "tomshardware.com",
-      "region": "해외",
-      "link": "https://tomshardware.com/pc-components/gpus/first-nvidia-h200-shipments-reach-bytedance-and-tencent-as-beijing-loosens-its-import-block"
-    },
-    {
-      "date": "2026-08-20 06:59",
-      "title": "[News] Marvell, AMD Reportedly Shake Up Google TPU Race, Putting Broadcom, MediaTek Under Pressure",
-      "title_ko": "[뉴스] 마벨·AMD, 구글 TPU 경쟁 판도 흔든다는 보도…브로드컴·미디어텍 압박 커져",
-      "source": "trendforce.com",
-      "region": "해외",
-      "link": "https://trendforce.com/news/2026/08/20/news-marvell-amd-reportedly-shake-up-google-tpu-race-putting-broadcom-mediatek-under-pressure"
     }
   ]
 }
