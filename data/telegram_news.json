@@ -1,6 +1,38 @@
 {
-  "generated_at": "2026-08-25 12:00",
+  "generated_at": "2026-08-25 13:00",
   "items": [
+    {
+      "date": "2026-08-25 12:55",
+      "title": "티엘비, 소캠 공급 확대…3분기도 주문 증가세",
+      "title_ko": null,
+      "source": "etoday.co.kr",
+      "region": "국내",
+      "link": "https://etoday.co.kr/news/view/2614327"
+    },
+    {
+      "date": "2026-08-25 12:54",
+      "title": "낙폭 줄인 코스피, 6550선 회복…외국인 2조원 순매도",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/stock/stock_general/2026/08/25/ZKWFDHCKRVHTNIE52Z66A2BV6M"
+    },
+    {
+      "date": "2026-08-25 12:21",
+      "title": "美, 엔화 공동개입 조건으로 BOJ '신속한 금리 인상' 요구 | 아주경제",
+      "title_ko": null,
+      "source": "ajunews.com",
+      "region": "국내",
+      "link": "https://ajunews.com/view/20260824110840159"
+    },
+    {
+      "date": "2026-08-25 12:17",
+      "title": "[속보] SK하이닉스 잠정합의안 노조 투표 부결…반대 50.1%",
+      "title_ko": null,
+      "source": "hankyung.com",
+      "region": "국내",
+      "link": "https://hankyung.com/article/2026082504367"
+    },
     {
       "date": "2026-08-25 11:56",
       "title": "快讯 - 华尔街见闻",
@@ -1568,38 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/417/0001156051"
-    },
-    {
-      "date": "2026-08-22 20:43",
-      "title": "Nvidia customers notified about AI-related price hikes above 15%, Bloomberg News reports",
-      "title_ko": null,
-      "source": "ca.finance.yahoo.com",
-      "region": "해외",
-      "link": "https://ca.finance.yahoo.com/news/nvidia-customers-notified-ai-related-192053264.html"
-    },
-    {
-      "date": "2026-08-22 20:06",
-      "title": "트럼프 \"호르무즈 해협, 현재 미국 영토\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431330"
-    },
-    {
-      "date": "2026-08-22 20:05",
-      "title": "앤트로픽, 역대 최대 기업가치 '2조 달러' IPO 추진",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431332"
-    },
-    {
-      "date": "2026-08-22 18:29",
-      "title": "월가는 재정적자와 국가부채 증가라는 근본 문제를 그대로 둔 채 금리 상승만 억제할 경우 그 부담이 달러 가치 하락으로 옮겨가면서 결국 달러화가 대가를 치를 수 있다는 논리다. 금과 비트코인 등 대체자산으로의 자금 이동도 빨라지는 모습이다.",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005724347%3Fsid%3D101&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005724347%253Fsid%253D101%26version%3D10%26sourceReferer%3Dshare"
     }
   ]
 }
