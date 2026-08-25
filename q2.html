@@ -41,6 +41,7 @@
              ☞ 26E PER 계산 : FNGUIDE, NAVER 우선 적용, 없을 경우 "시가총액/((26.1Q + 26.2Q) x2)" 계산<br>
              ☞ 종목 클릭 시 좌측 1Q17~2Q26까지 매출과 OPM 그래프, 우측 최근 6개월 Chart (키보드 방향키 ↑/↓)<br>
              ☞ 종목별 실적 엑셀 다운로드 가능(좌측 그래프 "엑셀다운로드" 클릭) <br>
+             ☞ 현재 필터/정렬이 반영된 전체 표는 검색창 옆 "전체 표 엑셀 다운로드"로 한 번에 내보내기 가능<br>
             <br>
              <b>섹터내 종목 비교시 유용하게 활용 가능! 섹터간 상대 강도 비교 가능!</b>
         </div>
@@ -69,6 +70,7 @@
             <option value="price50">YTD 50% 이상</option>
         </select>
         <input type="text" id="stock-search" placeholder="종목명 또는 코드 검색">
+        <button type="button" class="list-excel-btn" onclick="downloadListExcel()">📥 전체 표 엑셀 다운로드</button>
     </div>
     <div class="toggle-row">
         <label class="unreported-toggle">

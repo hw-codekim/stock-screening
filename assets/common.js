@@ -49,6 +49,7 @@ let listData = null;         // list.json 원본
 let reportedItems = [];      // 이번 분기 발표 기업 (평탄화된 목록)
 let unreportedItems = [];    // 이번 분기 미발표 기업 (평탄화된 목록)
 let rowEls = [];             // 현재 렌더링된 .sr-row 목록 (필터 반영 후)
+let lastFilteredItems = [];  // 현재 필터/정렬 반영된 전체 목록 (화면 표시 순서, 엑셀 다운로드용)
 let activeIndex = -1;
 const chartInstances = {};
 
@@ -233,9 +234,13 @@ function applyFilter() {
     // 컬럼 정렬이 켜져 있으면 대분류 그룹핑 없이 전체를 그 기준으로 한 줄로 정렬해서 보여주고,
     // 꺼져 있으면 기존처럼 대분류 > 중분류 > 시총순 그룹 구조로 보여준다.
     if (sortField) {
-        renderList([{ sector: null, items: sortItems(filteredItems, sortField, sortDir) }]);
+        const sorted = sortItems(filteredItems, sortField, sortDir);
+        lastFilteredItems = sorted;
+        renderList([{ sector: null, items: sorted }]);
     } else {
-        renderList(groupBySector(filteredItems));
+        const grouped = groupBySector(filteredItems);
+        lastFilteredItems = grouped.flatMap(g => g.items);
+        renderList(grouped);
     }
 }
 
@@ -390,6 +395,32 @@ document.addEventListener("click", (e) => {
     e.preventDefault();
     downloadFinancialExcel(link.dataset.code, link.dataset.name);
 });
+
+// ── 엑셀 다운로드 (전체 표) ────────────────────────────
+// 종목별 매출/OPM 다운로드와는 별개로, 현재 필터/정렬이 반영된 목록 전체를
+// 화면에 보이는 컬럼 그대로 한 시트로 내보낸다.
+async function downloadListExcel() {
+    if (!lastFilteredItems.length) return;
+    await ensureXlsxLoaded();
+
+    const rows = [[
+        "종목명", "종목코드", "섹터", "시장", "시가총액(억원)",
+        "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "OPM(%)",
+        "26E PER(배)", "현재가", "최근등락(%)", "YTD(%)", "MDD(%)",
+    ]];
+    lastFilteredItems.forEach(s => {
+        rows.push([
+            s.name, s.code, stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
+            s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.opm ?? "",
+            s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", s.price_change ?? "", s.mdd ?? "",
+        ]);
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "실적스크리닝");
+    XLSX.writeFile(wb, `실적스크리닝_${todayStr()}.xlsx`);
+}
 
 // ── 차트 영역 좌우 크기 조절 (핸들 드래그) ────────────────
 let resizeState = null;
