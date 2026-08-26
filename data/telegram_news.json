@@ -1,6 +1,70 @@
 {
-  "generated_at": "2026-08-26 15:00",
+  "generated_at": "2026-08-26 16:00",
   "items": [
+    {
+      "date": "2026-08-26 15:58",
+      "title": "Exclusive | OpenAI’s Head of Data Centers Has Left the Company",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://wsj.com/tech/ai/openais-head-of-data-centers-has-left-company-6d24fd83?st=r8H2rW"
+    },
+    {
+      "date": "2026-08-26 15:39",
+      "title": "[News] U.S. May Push Near-Total ASML China Ban on DUV Sales and Servicing Amid China Domestic Lithography Push",
+      "title_ko": null,
+      "source": "trendforce.com",
+      "region": "해외",
+      "link": "https://trendforce.com/news/2026/08/25/news-u-s-may-push-near-total-asml-china-ban-on-duv-sales-and-servicing-amid-chinas-domestic-lithography-push"
+    },
+    {
+      "date": "2026-08-26 15:39",
+      "title": "OpenAI’s 700W Jalapeño ASIC outpaces 1,400W Nvidia flagship GPU — claims up to 1.9x throughput per kilowatt and 3.6x lower latency, co-developed with Broadcom",
+      "title_ko": null,
+      "source": "tomshardware.com",
+      "region": "해외",
+      "link": "https://tomshardware.com/tech-industry/semiconductors/openai-says-its-jalapeno-chip-beats-nvidias-gb300-in-first-published-benchmarks"
+    },
+    {
+      "date": "2026-08-26 15:39",
+      "title": "[News] Apple Unveils M6, Its First 2nm Chip Built by TSMC, With 30% AI GPU Compute Boost vs. M5",
+      "title_ko": null,
+      "source": "trendforce.com",
+      "region": "해외",
+      "link": "https://trendforce.com/news/2026/08/26/news-apple-unveils-m6-its-first-2nm-chip-built-by-tsmc-with-30-ai-gpu-compute-boost-vs-m5"
+    },
+    {
+      "date": "2026-08-26 15:05",
+      "title": "SoftBank mulls up to $20 billion bond sale for OpenAI financing, Bloomberg News reports",
+      "title_ko": null,
+      "source": "channelnewsasia.com",
+      "region": "해외",
+      "link": "https://channelnewsasia.com/business/softbank-mulls-up-20-billion-bond-sale-openai-financing-bloomberg-news-reports-6341881"
+    },
+    {
+      "date": "2026-08-26 15:04",
+      "title": "LIG D&A, 첨단 해양 무인체계 앞세워 '북유럽 바닷길' 개척 속도 | 연합뉴스",
+      "title_ko": null,
+      "source": "yna.co.kr",
+      "region": "국내",
+      "link": "https://yna.co.kr/view/AKR20260826110400003?section=industry/heavy-chemistry"
+    },
+    {
+      "date": "2026-08-26 15:03",
+      "title": "中 함대 몰려오면 ‘무인정 떼’ 출격…대만 신무기 공개 [밀리터리+]",
+      "title_ko": null,
+      "source": "amp.seoul.co.kr",
+      "region": "국내",
+      "link": "https://amp.seoul.co.kr/nownews/20260826601008"
+    },
+    {
+      "date": "2026-08-26 15:00",
+      "title": "주가조작 합동대응단, 한미회계법인 압수수색…미공개정보 이용 혐의",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/stock/stock_general/2026/08/26/JJD7OS3BFBG45NZPG3JBR43RG4"
+    },
     {
       "date": "2026-08-26 14:59",
       "title": "현대차, 2030년 이익률 ‘9% 이상’ 제시… 신차 100종·원가 혁신 승부수",
@@ -1536,70 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/008/0005404099?sid=104"
-    },
-    {
-      "date": "2026-08-25 04:25",
-      "title": "美, 이란 ‘경제적 고립’ 작전 돌입…5대 분야 겨냥·달러망 차단 경고",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006357337?sid=104"
-    },
-    {
-      "date": "2026-08-25 00:57",
-      "title": "NVIDIA Groq 3 LPX Now in Full Production With World-Class Speed for Agentic AI",
-      "title_ko": null,
-      "source": "nvidianews.nvidia.com",
-      "region": "해외",
-      "link": "https://nvidianews.nvidia.com/news/nvidia-groq-3-lpx-now-in-full-production-with-world-class-speed-for-agentic-ai"
-    },
-    {
-      "date": "2026-08-25 00:07",
-      "title": "정부·여당, 비거주 1주택자 실거주 인정 확대 논의…강남 급매물 둔화 우려",
-      "title_ko": null,
-      "source": "cbci.co.kr",
-      "region": "국내",
-      "link": "https://cbci.co.kr/news/articleView.html?idxno=600660"
-    },
-    {
-      "date": "2026-08-24 22:47",
-      "title": "트럼프, 보복관세 캐나다에 \"내년부터 자동차 관세 50%로\" 반격",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/001/0016268108?sid=104"
-    },
-    {
-      "date": "2026-08-24 22:47",
-      "title": "Donald J. Trump (@realDonaldTrump)",
-      "title_ko": null,
-      "source": "truthsocial.com",
-      "region": "해외",
-      "link": "https://truthsocial.com/@realDonaldTrump/117150758113256193"
-    },
-    {
-      "date": "2026-08-24 22:38",
-      "title": "최태원 \"마진율 내려야하나\" 걱정…돈 쓸어담는 삼전닉스, 못웃는 이유",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/008/0005403992?cds=news_edit&type=editn"
-    },
-    {
-      "date": "2026-08-24 22:22",
-      "title": "中 샤오미, 대만 TSMC와 자체 개발 '엑스링' 칩 3종 생산 협력",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/008/0005404031?sid=104"
-    },
-    {
-      "date": "2026-08-24 22:09",
-      "title": "“일론 머스크 까지 잡았다” 효성중공업의 반전",
-      "title_ko": null,
-      "source": "magazine.hankyung.com",
-      "region": "국내",
-      "link": "https://magazine.hankyung.com/business/article/202608248641b"
     }
   ]
 }
