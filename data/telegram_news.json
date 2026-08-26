@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-26 12:00",
+  "generated_at": "2026-08-26 13:00",
   "items": [
+    {
+      "date": "2026-08-26 12:59",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3154984?ivk=1"
+    },
+    {
+      "date": "2026-08-26 12:30",
+      "title": "내년 초음속 미사일 전력 배치[양낙규의 Defence Club]",
+      "title_ko": null,
+      "source": "v.daum.net",
+      "region": "국내",
+      "link": "https://v.daum.net/v/tTsQFFLxAE"
+    },
+    {
+      "date": "2026-08-26 12:14",
+      "title": "OpenAI Claims Its New Chips Can Outperform Nvidia Processors in Tests",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-08-25/openai-claims-its-new-chips-can-outperform-nvidia-processors-in-tests"
+    },
     {
       "date": "2026-08-26 11:58",
       "title": "[속보] 오세훈 “재건축·재개발 용적률 1.2배 완화, 국토부 전향적 검토”",
@@ -946,14 +970,6 @@
       "link": "https://hankyung.com/article/2026082504367"
     },
     {
-      "date": "2026-08-25 11:56",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3154302?ivk=1"
-    },
-    {
       "date": "2026-08-25 11:55",
       "title": "'귀하신 몸' 디즈니가 어쩌다…다이소 '500원 상품'까지 등장",
       "title_ko": null,
@@ -1584,22 +1600,6 @@
       "source": "m.tf.co.kr",
       "region": "국내",
       "link": "https://m.tf.co.kr/read/economy/2357398.htm?retRef=Y&source=https://news.google.com/"
-    },
-    {
-      "date": "2026-08-24 17:34",
-      "title": "삼성 '3D 적층'·SK하이닉스 '어드밴스드 패키징', 엇갈린 차세대 HBM 기술 승부수",
-      "title_ko": null,
-      "source": "google.com",
-      "region": "국내",
-      "link": "https://www.google.com/share.google?q=5oubOOR2qZkKY1Af2"
-    },
-    {
-      "date": "2026-08-24 17:31",
-      "title": "比特币ETF上周流入资金规模创10个月以来最大 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3153662?ivk=1"
     }
   ]
 }
