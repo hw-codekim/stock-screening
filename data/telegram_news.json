@@ -1,6 +1,46 @@
 {
-  "generated_at": "2026-08-26 21:00",
+  "generated_at": "2026-08-26 22:00",
   "items": [
+    {
+      "date": "2026-08-26 21:59",
+      "title": "“AI 산업 사이클 초기… 야구로 치면 아직 2회, 9회까지 한참 남았다”",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/023/0003994977?sid=101"
+    },
+    {
+      "date": "2026-08-26 21:50",
+      "title": "박현주 \"부동산 상투쳤다…보유세 1억이면 반응할 것\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431965"
+    },
+    {
+      "date": "2026-08-26 21:50",
+      "title": "이란 혁명수비대 \"오만과 호르무즈 해협 통행 수익 배분 합의\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/421/0009134505?sid=104"
+    },
+    {
+      "date": "2026-08-26 21:50",
+      "title": "박현주 \"반도체는 미국 말고 한국에 지어야…공급과잉 와도 치킨게임\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431967"
+    },
+    {
+      "date": "2026-08-26 21:00",
+      "title": "China’s Z.AI Made Ox Alpha Stealth Model That Rivals DeepSeek",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-08-26/china-s-z-ai-made-ox-alpha-stealth-model-that-rivals-deepseek"
+    },
     {
       "date": "2026-08-26 20:37",
       "title": "딥시크, 5000억위안 몸값으로 투자유치 막바지…2027년 IPO 채비",
@@ -1560,46 +1600,6 @@
       "source": "news.einfomax.co.kr",
       "region": "국내",
       "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431594"
-    },
-    {
-      "date": "2026-08-25 08:55",
-      "title": "\"합병 대상 못 찾아\"…코스닥 한파에 스팩도 줄상폐",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431595"
-    },
-    {
-      "date": "2026-08-25 08:53",
-      "title": "KB증권 \"두산에너빌리티, 美 원전 발주 시계 빨라진다…목표가 14만원\"",
-      "title_ko": null,
-      "source": "fnnews.com",
-      "region": "국내",
-      "link": "https://fnnews.com/news/202608250833109229"
-    },
-    {
-      "date": "2026-08-25 08:53",
-      "title": "AMD, AI 랙 에너지 효율 4배 끌어올렸다…2030년 20배 목표 순항",
-      "title_ko": null,
-      "source": "digitaltoday.co.kr",
-      "region": "국내",
-      "link": "https://digitaltoday.co.kr/news/articleView.html?idxno=695185"
-    },
-    {
-      "date": "2026-08-25 08:50",
-      "title": "지분율 올려야 하는 하닉 vs 지분 넘치면 안 되는 삼전",
-      "title_ko": null,
-      "source": "etoday.co.kr",
-      "region": "국내",
-      "link": "https://etoday.co.kr/news/view/2617536"
-    },
-    {
-      "date": "2026-08-25 08:40",
-      "title": "Nebius Token Factory Becomes First AI Cloud to Adopt NVIDIA Groq 3 LPX",
-      "title_ko": null,
-      "source": "nebius.com",
-      "region": "해외",
-      "link": "https://nebius.com/blog/posts/nvidia-groq-3-lpx-nebius-token-factory"
     }
   ]
 }
