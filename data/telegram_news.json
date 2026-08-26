@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-26 19:00",
+  "generated_at": "2026-08-26 20:00",
   "items": [
+    {
+      "date": "2026-08-26 19:38",
+      "title": "AI 데이터센터 전력 공급에 미국 화석연료 사용 급증, 중국 '재생에너지 올인'과 정책 엇갈려",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=kCVMnhX0PA13BYtuF"
+    },
+    {
+      "date": "2026-08-26 19:35",
+      "title": "딥시크, 올해 매출 벌써 작년 10배 수준...API 매출총이익률 82.9%",
+      "title_ko": null,
+      "source": "digitaltoday.co.kr",
+      "region": "국내",
+      "link": "https://digitaltoday.co.kr/news/articleView.html?idxno=695742"
+    },
+    {
+      "date": "2026-08-26 19:06",
+      "title": "‘대통령령으로 변경’ 100兆 미래기금…靑 “국회 통제 받는다”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/president_office/2026/08/26/WUSZKAHJHRBYXDF3UYNPBRVSCI"
+    },
     {
       "date": "2026-08-26 18:59",
       "title": "골드만삭스 “중국 첨단 반도체 공급, 장비 병목에도 2035년까지 급증”",
@@ -1576,30 +1600,6 @@
       "source": "google.com",
       "region": "국내",
       "link": "https://www.google.com/share.google?q=Uqt9uXVi04sQADUCE"
-    },
-    {
-      "date": "2026-08-25 08:07",
-      "title": "More EV Owners Can Now Get Paid To Power California’s Grid",
-      "title_ko": null,
-      "source": "insideevs.com",
-      "region": "해외",
-      "link": "https://insideevs.com/news/805919/california-pacific-gas-electric-vehicle-to-grid-charging"
-    },
-    {
-      "date": "2026-08-25 08:06",
-      "title": "Leapmotor Cuts Full-Year Profit Target by 40% Despite Record First Half | EV",
-      "title_ko": null,
-      "source": "eletric-vehicles.com",
-      "region": "해외",
-      "link": "https://eletric-vehicles.com/leap-motor/leapmotor-cuts-full-year-profit-target-by-40-despite-record-first-half"
-    },
-    {
-      "date": "2026-08-25 08:06",
-      "title": "Zeekr 7X orders top 200,000 globally, now sold in more than 50 countries",
-      "title_ko": null,
-      "source": "cnevpost.com",
-      "region": "해외",
-      "link": "https://cnevpost.com/2026/08/24/zeekr-7x-orders-top-200000-globally"
     }
   ]
 }
