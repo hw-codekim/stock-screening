@@ -1,6 +1,62 @@
 {
-  "generated_at": "2026-08-26 09:00",
+  "generated_at": "2026-08-26 10:00",
   "items": [
+    {
+      "date": "2026-08-26 09:49",
+      "title": "오픈AI, 데이터센터 총괄 퇴사…IPO 앞두고 임원 이탈 이어져",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/it-science/ict/2026/08/26/GYT2DOMN5JBJXJ5L2SUI77CJHM"
+    },
+    {
+      "date": "2026-08-26 09:34",
+      "title": "Boeing (BA) Lands $131 Billion F 15 Defense Contract",
+      "title_ko": null,
+      "source": "finance.yahoo.com",
+      "region": "해외",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/boeing-ba-lands-131-billion-170900757.html"
+    },
+    {
+      "date": "2026-08-26 09:27",
+      "title": "\"中 데이터센터 전력사용량, 2030년 되면 한국 전체 소비량 넘어서\"",
+      "title_ko": null,
+      "source": "theguru.co.kr",
+      "region": "국내",
+      "link": "https://theguru.co.kr/mobile/article.html?no=106256"
+    },
+    {
+      "date": "2026-08-26 09:20",
+      "title": "CXMT 상장 약발 끝났나…중국 반도체 ETF 줄줄이 하락",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/stock/stock_general/2026/08/26/GEZWGM3BGEZTOMRWMFQTMMDDME"
+    },
+    {
+      "date": "2026-08-26 09:17",
+      "title": "‘韓·美 동맹 필요하지만, 美는 비호감’… 韓, 반미 여론 사상 첫 50% 돌파",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/international/international_general/2026/08/26/P6M7JUPEPBGILLOGTRNEBKJXGE"
+    },
+    {
+      "date": "2026-08-26 09:16",
+      "title": "실적은 이미 합격점…엔비디아, 시장은 '황의 입'만 본다",
+      "title_ko": null,
+      "source": "fnnews.com",
+      "region": "국내",
+      "link": "https://fnnews.com/news/202608260846505979"
+    },
+    {
+      "date": "2026-08-26 09:04",
+      "title": "코스피 4거래일째 기타법인 1조원대 매수세…정체는",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431793"
+    },
     {
       "date": "2026-08-26 08:47",
       "title": "“세계서 가장 미친 韓주식시장, 공포의 놀이기구 됐다”…‘3배 뛰고 40% 급락’ 코스피에 美 ‘충격’",
@@ -1544,62 +1600,6 @@
       "source": "wccftech.com",
       "region": "해외",
       "link": "https://wccftech.com/trump-will-reportedly-allow-apple-to-procure-memory-chips-from-cxmt-and-ymtc-after-xis-us-visit-in-september"
-    },
-    {
-      "date": "2026-08-24 13:28",
-      "title": "Samsung Leverages Advanced Logic Processes To Advance HBM As It Works On Its Next-Gen zHBM DRAM That 3D Stacks Memory On Compute",
-      "title_ko": null,
-      "source": "wccftech.com",
-      "region": "해외",
-      "link": "https://wccftech.com/samsung-leverages-advanced-logic-processes-to-advance-hbm-works-on-3d-stacked-zhbm"
-    },
-    {
-      "date": "2026-08-24 13:27",
-      "title": "Broadcom debt deal expected to reach upwards of $70 billion, sources say",
-      "title_ko": null,
-      "source": "cnbc.com",
-      "region": "해외",
-      "link": "https://cnbc.com/2026/08/21/broadcom-debt-deal-expected-to-reach-upwards-of-70-billion-sources.html"
-    },
-    {
-      "date": "2026-08-24 13:27",
-      "title": "Alibaba plunges after announcing $10.2 billion share placement to fund AI push",
-      "title_ko": null,
-      "source": "cnbc.com",
-      "region": "해외",
-      "link": "https://cnbc.com/2026/08/24/alibaba-share-placement-drop-ai-hong-kong.html"
-    },
-    {
-      "date": "2026-08-24 13:27",
-      "title": "[News] NVIDIA Reportedly Eyes More Than 15% Price Hikes for Vera Rubin, Grace Blackwell Servers in Early 2027",
-      "title_ko": null,
-      "source": "trendforce.com",
-      "region": "해외",
-      "link": "https://trendforce.com/news/2026/08/24/news-nvidia-reportedly-eyes-more-than-15-price-hikes-for-vera-rubin-grace-blackwell-servers-in-early-2027"
-    },
-    {
-      "date": "2026-08-24 13:21",
-      "title": "AI Is Fixing UK Productivity. But There’s a Cost",
-      "title_ko": null,
-      "source": "bloomberg.com",
-      "region": "해외",
-      "link": "https://bloomberg.com/opinion/articles/2026-08-24/ai-is-fixing-uk-productivity-but-there-s-a-cost"
-    },
-    {
-      "date": "2026-08-24 13:04",
-      "title": "구윤철 \"합리적 이유 있는 비거주면 과감하게 거주로 전환\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431471"
-    },
-    {
-      "date": "2026-08-24 13:04",
-      "title": "마크 잔디 \"美국채금리, 상승세 이어질 것\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431475"
     }
   ]
 }
