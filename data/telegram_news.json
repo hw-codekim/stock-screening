@@ -1,6 +1,126 @@
 {
-  "generated_at": "2026-08-27 13:00",
+  "generated_at": "2026-08-27 14:00",
   "items": [
+    {
+      "date": "2026-08-27 13:55",
+      "title": "‘독자 AI 3강’ 중 2팀 뭉쳤다…SKT, 업스테이지와 보안 AI 개발",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F138%2F0002239156%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F138%252F0002239156%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-08-27 13:54",
+      "title": "英법원 \"삼성전자, 스와치에 '상표권 침해' 161억원 배상하라\"",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F092%2F0002435244%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F092%252F0002435244%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-08-27 13:49",
+      "title": "“요즘엔 창구 앉으면 직원 눈치부터”…지갑 비어가는데 대출은 더 안 나와",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005726524%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005726524%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-08-27 13:48",
+      "title": "\"훼손시신 유기\"...중국인 유학생 살해범 사이코패스 검사 검토",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F052%2F0002398963%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F052%252F0002398963%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-08-27 13:47",
+      "title": "[단독]야간당직 때 허위종결…지휘부 다음날 보고받아",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F079%2F0004183063%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F079%252F0004183063%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-08-27 13:42",
+      "title": "조세금융신문",
+      "title_ko": null,
+      "source": "tfmedia.co.kr",
+      "region": "국내",
+      "link": "https://tfmedia.co.kr/"
+    },
+    {
+      "date": "2026-08-27 13:31",
+      "title": "신현송 한은 총재 “2회 연속 금리 인상은 물가에 선제 대응한 것”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/policy_sub/2026/08/27/CTUI5WC2PJB57GJSZSH7IFEINQ"
+    },
+    {
+      "date": "2026-08-27 13:30",
+      "title": "'캐나다 50% 관세' 위협에도…美 완성차 업계 침묵하는 이유",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432143"
+    },
+    {
+      "date": "2026-08-27 13:14",
+      "title": "Anthropic and Nscale strike $45 billion cloud deal, sources say",
+      "title_ko": null,
+      "source": "cnbc.com",
+      "region": "해외",
+      "link": "https://cnbc.com/2026/08/26/anthropic-and-nscale-strike-45-billion-cloud-deal-sources-say.html"
+    },
+    {
+      "date": "2026-08-27 13:14",
+      "title": "Tesla doubles down on custom AI chips as Musk claims AI5 can beat NVIDIA on efficiency and cost",
+      "title_ko": null,
+      "source": "digitimes.com",
+      "region": "해외",
+      "link": "https://digitimes.com/news/a20260826PD226/tesla-cost-efficiency-chips-ceo.html"
+    },
+    {
+      "date": "2026-08-27 13:14",
+      "title": "CXMT And YMTC Reportedly Have No Intention Of Supplying Apple Large Volumes Of Memory Chips, But Would Still Like The Bragging Rights That Come With An Apple Partnership",
+      "title_ko": null,
+      "source": "wccftech.com",
+      "region": "해외",
+      "link": "https://wccftech.com/cxmt-and-ymtc-reportedly-have-no-intention-of-supplying-apple-large-volumes-of-memory-chips-but-would-still-like-the-bragging-rights-that-come-with-an-apple-partnership"
+    },
+    {
+      "date": "2026-08-27 13:14",
+      "title": "Amazon Commits to 3 Million NVIDIA GPUs in AWS, Tripling a Deal That Started at Just One Million",
+      "title_ko": null,
+      "source": "wccftech.com",
+      "region": "해외",
+      "link": "https://wccftech.com/amazon-commits-to-3-million-nvidia-gpus-in-aws-tripling-a-deal-that-started-at-just-one-million"
+    },
+    {
+      "date": "2026-08-27 13:14",
+      "title": "[News] Kioxia Reportedly Plans JPY 1T+ NAND Fab in Japan, Operations Eyed for 2029 or Later",
+      "title_ko": null,
+      "source": "trendforce.com",
+      "region": "해외",
+      "link": "https://trendforce.com/news/2026/08/27/news-kioxia-reportedly-plans-jpy-1t-nand-fab-in-japan-operations-eyed-for-2029-or-later"
+    },
+    {
+      "date": "2026-08-27 13:11",
+      "title": "“조사 못받겠다”…쿠팡, 공정위와 정면충돌",
+      "title_ko": null,
+      "source": "sedaily.com",
+      "region": "국내",
+      "link": "https://sedaily.com/article/20083988"
+    },
+    {
+      "date": "2026-08-27 13:03",
+      "title": "금리 인상에 '동결' 소수의견 낸 황건일…3년 7개월만",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432136"
+    },
     {
       "date": "2026-08-27 12:59",
       "title": "보잉, F-15 생산·개량 181조원 계약…폴란드 등 7개국 포함 - 데일리방산",
@@ -1480,126 +1600,6 @@
       "source": "zerohedge.com",
       "region": "해외",
       "link": "https://zerohedge.com/energy/goldman-sounds-alarm-europe-may-need-eu100-natgas-shock-refill-winter-storage"
-    },
-    {
-      "date": "2026-08-25 21:32",
-      "title": "美 전문직 비자 신청하려면 1억4000만원 내야…망명 신청 비자도 일괄 취소",
-      "title_ko": null,
-      "source": "google.com",
-      "region": "국내",
-      "link": "https://www.google.com/share.google?q=wdqNIRfWmoxmivU16"
-    },
-    {
-      "date": "2026-08-25 20:39",
-      "title": "원전주 일제히 강세…\"지금이 매수 타이밍\"",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F015%2F0005324592%3Fsid%3D101&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F015%252F0005324592%253Fsid%253D101%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-08-25 20:38",
-      "title": "\"하닉 레버리지 없었다면 변동성 38% 줄었을 것\"",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005725734%3Fsid%3D101&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005725734%253Fsid%253D101%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-08-25 20:37",
-      "title": "美, 이란전쟁에 철수했던 중동 외교관 복귀…이르면 이번 주부터",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/421/0009132254?sid=104"
-    },
-    {
-      "date": "2026-08-25 20:34",
-      "title": "India AI Data Center Firm Orders 9,000 Nvidia Vera Rubin Systems",
-      "title_ko": null,
-      "source": "bloomberg.com",
-      "region": "해외",
-      "link": "https://bloomberg.com/news/articles/2026-08-25/india-ai-data-center-firm-orders-9-000-nvidia-vera-rubin-systems?taid=6a8d67bcda5a7100012888c8"
-    },
-    {
-      "date": "2026-08-25 20:17",
-      "title": "[단독]미국형 원전 고집에 韓 난색…대미 원전투자 ‘주도권 충돌’",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006357868?sid=100"
-    },
-    {
-      "date": "2026-08-25 20:15",
-      "title": "현대차 노사, 성과금 400%·기본급 10만원 인상 잠정합의",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/023/0003994728?sid=101"
-    },
-    {
-      "date": "2026-08-25 20:10",
-      "title": "\"마윈, '유상증자' 알리바바 주식 1천억원어치 넘게 사들여\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/001/0016270483?sid=104"
-    },
-    {
-      "date": "2026-08-25 19:43",
-      "title": "\"빙판길 걷는 휴머노이드는 시기상조…실시간 상태 추정 어려워\"",
-      "title_ko": null,
-      "source": "google.com",
-      "region": "국내",
-      "link": "https://www.google.com/share.google?q=zDEppkKESyexn52uh"
-    },
-    {
-      "date": "2026-08-25 18:49",
-      "title": "외로운 수컷은 왜 술을 더 찾나…뇌 회로서 단서 찾았다",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/science-chosun/science/2026/08/25/GY3WCYRUG5QTQODBGJQTOZLFHE"
-    },
-    {
-      "date": "2026-08-25 18:05",
-      "title": "골드만삭스 “中 첨단칩 공급, 2035년 수요의 66% 자체 충당… SMIC 증설 주도”",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/it-science/ict/2026/08/25/QANHD6PLUJF4LENWJSVHRGDSWU"
-    },
-    {
-      "date": "2026-08-25 18:04",
-      "title": "샤오미(1810 HK), LPDDR6 지원 ‘엑스링 O3’ 공개…CXMT 핵심 협력사로 알려져 - 알파경제",
-      "title_ko": null,
-      "source": "alphabiz.co.kr",
-      "region": "국내",
-      "link": "https://alphabiz.co.kr/news/articleView.html?idxno=175764"
-    },
-    {
-      "date": "2026-08-25 17:42",
-      "title": "[속보] SK하이닉스 기술사무직 노조, 임단협 잠정합의안 가결…66% 찬성",
-      "title_ko": null,
-      "source": "m.inews24.com",
-      "region": "국내",
-      "link": "https://m.inews24.com/v/1998170"
-    },
-    {
-      "date": "2026-08-25 17:32",
-      "title": "'기업이 직원 안 뽑는데 실업률은 낮아'…노동시장의 이례적 현상",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4431701"
-    },
-    {
-      "date": "2026-08-25 17:03",
-      "title": "‘실종 허위 종결’ 경찰관, 사건 기록 삭제하며 ‘교통사고 사상자’로",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/topics/topics_social/2026/08/25/U775U7RZFZEW5AENLEA62TLKHY"
     }
   ]
 }
