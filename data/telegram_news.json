@@ -1,6 +1,54 @@
 {
-  "generated_at": "2026-08-27 11:00",
+  "generated_at": "2026-08-27 12:00",
   "items": [
+    {
+      "date": "2026-08-27 11:58",
+      "title": "한은 총재 \"향후 6개월, 완만한 금리 인상 예상\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016274254"
+    },
+    {
+      "date": "2026-08-27 11:57",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3155707?ivk=1"
+    },
+    {
+      "date": "2026-08-27 11:10",
+      "title": "월가 베테랑들, 美 재무부 국채 개입 비판 잇따라…\"근본 문제 해결못해\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432047"
+    },
+    {
+      "date": "2026-08-27 11:09",
+      "title": "정부, 휴머노이드 생태계 4년간 2.3조 투자…피지컬 AI 실증엔 2.8조",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432076"
+    },
+    {
+      "date": "2026-08-27 11:07",
+      "title": "젠슨 황, '순환 금융' 논란 적극 반박…\"AI 본질 보라\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432070"
+    },
+    {
+      "date": "2026-08-27 11:01",
+      "title": "450억달러 베팅…앤트로픽, 엔비디아 차세대 '베라 루빈' AI 컴퓨팅 6년 확보",
+      "title_ko": null,
+      "source": "digitaltoday.co.kr",
+      "region": "국내",
+      "link": "https://digitaltoday.co.kr/news/articleView.html?idxno=695920"
+    },
     {
       "date": "2026-08-27 10:50",
       "title": "\"3억 빌리면, 月이자만 200만원\"…주담대 금리 '8% 시대' 오나",
@@ -32,14 +80,6 @@
       "source": "pressian.com",
       "region": "국내",
       "link": "https://pressian.com/pages/articles/2026082710293385059"
-    },
-    {
-      "date": "2026-08-27 10:29",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3155660?ivk=1"
     },
     {
       "date": "2026-08-27 10:26",
@@ -1560,46 +1600,6 @@
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780200"
-    },
-    {
-      "date": "2026-08-25 16:36",
-      "title": "贝森特的真正算盘：逼空美债CTA，将10年期收益率打到4.3%？ - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3780229"
-    },
-    {
-      "date": "2026-08-25 16:30",
-      "title": "中 빅테크, 동남아 AI 인프라 장악…데이터센터 영토 확장",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/015/0005324497?sid=101"
-    },
-    {
-      "date": "2026-08-25 16:26",
-      "title": "자율주행 사고 책임 판 바뀌나…中, 제조사에 책임 묻는다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006357715?sid=104"
-    },
-    {
-      "date": "2026-08-25 16:14",
-      "title": "심텍 엔비디아 '소캠' 기판으로 성장궤도 올라, 김영구 청주 공장 증설에 2740억 투자",
-      "title_ko": null,
-      "source": "businesspost.co.kr",
-      "region": "국내",
-      "link": "https://businesspost.co.kr/BP?command=article_view&num=445543"
-    },
-    {
-      "date": "2026-08-25 15:58",
-      "title": "임광현 국세청장 “배우자 상속공제 5억 한도, 28년째 그대로… 개선 시급”",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/policy/policy_sub/2026/08/25/ZHXFURE5TBHC3CREWCVMQASVNI"
     }
   ]
 }
