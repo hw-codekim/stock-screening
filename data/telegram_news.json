@@ -1,6 +1,30 @@
 {
-  "generated_at": "2026-08-28 22:00",
+  "generated_at": "2026-08-28 23:00",
   "items": [
+    {
+      "date": "2026-08-28 22:56",
+      "title": "Exclusive | Chevron, Other U.S. Firms Near Deal to Invest Billions in Venezuelan Oil Fields",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://wsj.com/business/energy-oil/chevron-other-u-s-firms-near-deal-to-invest-billions-in-venezuelan-oil-fields-55739e38"
+    },
+    {
+      "date": "2026-08-28 22:43",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3156919?ivk=1"
+    },
+    {
+      "date": "2026-08-28 22:17",
+      "title": "현금 125조 메타, 한국서 1조 조달?·· ‘삼전하닉’ 투자자 '촉각' - 그린포스트코리아",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fwww.greenpostkorea.co.kr%2Fnews%2FarticleView.html%3Fidxno%3D307367&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fwww.greenpostkorea.co.kr%252Fnews%252FarticleView.html%253Fidxno%253D307367%26version%3D10%26sourceReferer%3Dshare"
+    },
     {
       "date": "2026-08-28 21:45",
       "title": "[단독] 제주도, 北에는 한국 아닌 '중국의 지원'이라 속이고 대북 지원…리호남 사진 입수",
@@ -600,14 +624,6 @@
       "source": "news.einfomax.co.kr",
       "region": "국내",
       "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432285"
-    },
-    {
-      "date": "2026-08-28 05:31",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3156309?ivk=1"
     },
     {
       "date": "2026-08-28 05:26",
@@ -1584,22 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/055/0001383671?cds=news_edit"
-    },
-    {
-      "date": "2026-08-27 06:01",
-      "title": "엔비디아, 13분기 연속 최대 실적에도 주가는 하락…2분기 매출 962억달러",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F138%2F0002239126%3Fsid%3D105&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F138%252F0002239126%253Fsid%253D105%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-08-27 06:00",
-      "title": "이 대통령, 이재용과 비공개 만찬…반도체·대미투자 논의한 듯",
-      "title_ko": null,
-      "source": "mobile.newsis.com",
-      "region": "국내",
-      "link": "https://mobile.newsis.com/view/NISX20260826_0003764269"
     }
   ]
 }
