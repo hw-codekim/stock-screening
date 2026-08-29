@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-08-29 09:00",
+  "generated_at": "2026-08-29 10:00",
   "items": [
+    {
+      "date": "2026-08-29 09:59",
+      "title": "트럼프 \"베네수와 석유거래 합의…매장량 과반 통제권 확보\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016277694?sid=104"
+    },
+    {
+      "date": "2026-08-29 09:29",
+      "title": "워시 연준의장 \"美 물가지표 더욱 우려\"…추가 긴축 시사(종합2보)",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016277591?sid=104"
+    },
     {
       "date": "2026-08-29 08:47",
       "title": "SK, 도시바 지분 매각에 키옥시아 1대 주주 올라…한일 메모리 협력 모색",
@@ -83,6 +99,14 @@
     },
     {
       "date": "2026-08-28 23:55",
+      "title": "美 트럼프 행정부, 中 AI '원격 연산 우회' 차단 추진…태국·싱가포르 정조준",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/092/0002435514?sid=105"
+    },
+    {
+      "date": "2026-08-28 23:55",
       "title": "Trump Administration Working on AI Rule to Curb China’s Remote Access to Chips",
       "title_ko": null,
       "source": "theinformation.com",
@@ -160,6 +184,14 @@
       "source": "biz.chosun.com",
       "region": "국내",
       "link": "https://biz.chosun.com/international/international_general/2026/08/28/HQ4LRYOV5BF6PM2ZM2SUB3G7IQ"
+    },
+    {
+      "date": "2026-08-28 19:19",
+      "title": "CXMT, 반년 만에 15.8조 벌었다…‘AI 메모리 호황’ 타고 삼전닉스 추격 [비즈360]",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/016/0002690000?sid=101"
     },
     {
       "date": "2026-08-28 19:19",
@@ -1568,38 +1600,6 @@
       "source": "datatooza.com",
       "region": "국내",
       "link": "https://datatooza.com/article/20260827074939835952ef315cfe_80"
-    },
-    {
-      "date": "2026-08-27 08:13",
-      "title": "트럼프, 사우디 우라늄 농축 허용안 의회 제출…\"이스라엘 수교 조건\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/008/0005405235"
-    },
-    {
-      "date": "2026-08-27 08:06",
-      "title": "키옥시아, 日 신규 메모리 생산시설 건설에 8조원 이상 투자",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432004"
-    },
-    {
-      "date": "2026-08-27 08:05",
-      "title": "구다이글로벌, 무형자산 비중 60% 육박…IPO서 'M&A 성과' 관건",
-      "title_ko": null,
-      "source": "news1.kr",
-      "region": "국내",
-      "link": "https://news1.kr/industry/general-industry/6269902"
-    },
-    {
-      "date": "2026-08-27 07:57",
-      "title": "“출근길 MTS 켜는게 도파민이었는데”…다시 ‘박스피’에 자금회전 급감 - 매일경제",
-      "title_ko": null,
-      "source": "mk.co.kr",
-      "region": "국내",
-      "link": "https://mk.co.kr/news/stock/12137351"
     }
   ]
 }
