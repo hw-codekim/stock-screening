@@ -72,7 +72,7 @@ function kcRenderChart(container) {
         closes[i] >= (i > 0 ? closes[i - 1] : closes[i]) ? 'rgba(180,52,42,0.65)' : 'rgba(46,95,163,0.65)'
     );
 
-    const chart = echarts.init(container);
+    const chart = echarts.init(container, null, { devicePixelRatio: window.devicePixelRatio || 1 });
     chart.setOption({
         animation: false,
         backgroundColor: '#ffffff',
@@ -98,20 +98,24 @@ function kcRenderChart(container) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
-            { left: 44, right: 8, top: 6, bottom: 62 },
-            { left: 44, right: 8, top: '72%', bottom: 6 },
+            { left: 50, right: 10, top: 10, bottom: 76 },
+            { left: 50, right: 10, top: '75%', bottom: 8 },
         ],
         xAxis: [
             { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
-              axisLabel: { show: false }, axisTick: { show: false }, splitLine: { show: false } },
+              axisLabel: { show: false }, axisTick: { show: false },
+              splitLine: { show: true, lineStyle: { color: '#EFF2F6' } },
+              axisLine: { lineStyle: { color: '#D7E0EC' } } },
             { type: 'category', data: dates, gridIndex: 1,
-              axisLabel: { color: '#999', fontSize: 9, interval: 'auto' },
-              axisTick: { show: false }, splitLine: { show: false } },
+              axisLabel: { color: '#8a94a3', fontSize: 10, interval: 'auto', hideOverlap: true },
+              axisTick: { show: false }, splitLine: { show: false },
+              axisLine: { lineStyle: { color: '#D7E0EC' } } },
         ],
         yAxis: [
             { scale: true, gridIndex: 0, position: 'right',
-              axisLabel: { color: '#888', fontSize: 9, formatter: v => v.toLocaleString() },
-              splitLine: { lineStyle: { color: '#ECEFF3' } } },
+              axisLabel: { color: '#6b7585', fontSize: 10, formatter: v => v.toLocaleString() },
+              splitLine: { lineStyle: { color: '#E7EBF1' } },
+              axisLine: { show: false } },
             { scale: true, gridIndex: 1, position: 'right', show: false,
               splitLine: { show: false } },
         ],
@@ -120,9 +124,11 @@ function kcRenderChart(container) {
                 type: 'candlestick', name: '주가',
                 xAxisIndex: 0, yAxisIndex: 0,
                 data: candleData,
+                barWidth: '70%',
                 itemStyle: {
-                    color: '#B4342A', color0: '#2E5FA3',
-                    borderColor: '#B4342A', borderColor0: '#2E5FA3',
+                    color: '#C0392B', color0: '#2E5FA3',
+                    borderColor: '#C0392B', borderColor0: '#2E5FA3',
+                    borderWidth: 1.1,
                 },
             },
             {
@@ -163,6 +169,14 @@ function kcSetupLazyRender() {
     }, { rootMargin: '200px 0px' });
     containers.forEach(el => observer.observe(el));
 }
+
+let kcResizeTimer = null;
+window.addEventListener("resize", () => {
+    clearTimeout(kcResizeTimer);
+    kcResizeTimer = setTimeout(() => {
+        KC_CHART_INSTANCES.forEach(chart => chart.resize());
+    }, 150);
+});
 
 const kcScrollTopBtn = document.getElementById("scroll-top-btn");
 if (kcScrollTopBtn) {

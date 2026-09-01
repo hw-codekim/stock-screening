@@ -3,6 +3,21 @@
     color: #888;
     margin: 0 0 14px;
 }
+.kc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: -8px;
+}
+.kc-legend-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
 
 .kc-sector { margin-bottom: 28px; }
 .kc-sector-title {
@@ -46,7 +61,7 @@
 
 .kc-chart {
     width: 100%;
-    height: 230px;
+    height: 280px;
     background: #F5F7FA;
     border-radius: 2px;
 }
