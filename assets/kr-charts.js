@@ -28,7 +28,13 @@ async function kcLoad() {
                 ${items.map(it => `
                 <div class="kc-card">
                     <div class="kc-card-label">
-                        <span class="kc-card-name">${it.name} (${it.code})</span>
+                        <span class="kc-card-left">
+                            <span class="kc-card-name">${it.name}</span>
+                            <span class="kc-mini-legend">
+                                <i class="kc-legend-dot" style="background:#9B59B6;"></i>50
+                                <i class="kc-legend-dot" style="background:#27ae60;"></i>150
+                            </span>
+                        </span>
                         <span class="kc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
                     </div>
                     <div class="kc-chart" id="kc-chart-${it.code}" data-code="${it.code}"></div>
@@ -98,26 +104,18 @@ function kcRenderChart(container) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
-            { left: 50, right: 10, top: 10, bottom: 76 },
-            { left: 50, right: 10, top: '75%', bottom: 8 },
+            { left: 2, right: 58, top: 4, bottom: '27%' },
+            { left: 2, right: 58, top: '75%', bottom: 2 },
         ],
         xAxis: [
             { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
-              axisLabel: { show: false }, axisTick: { show: false },
-              splitLine: { show: true, lineStyle: { color: '#EFF2F6' } },
-              axisLine: { lineStyle: { color: '#D7E0EC' } } },
+              show: false },
             { type: 'category', data: dates, gridIndex: 1,
-              axisLabel: { color: '#8a94a3', fontSize: 10, interval: 'auto', hideOverlap: true },
-              axisTick: { show: false }, splitLine: { show: false },
-              axisLine: { lineStyle: { color: '#D7E0EC' } } },
+              show: false },
         ],
         yAxis: [
-            { scale: true, gridIndex: 0, position: 'right',
-              axisLabel: { color: '#6b7585', fontSize: 10, formatter: v => v.toLocaleString() },
-              splitLine: { lineStyle: { color: '#E7EBF1' } },
-              axisLine: { show: false } },
-            { scale: true, gridIndex: 1, position: 'right', show: false,
-              splitLine: { show: false } },
+            { scale: true, gridIndex: 0, show: false },
+            { scale: true, gridIndex: 1, show: false },
         ],
         series: [
             {
@@ -129,6 +127,17 @@ function kcRenderChart(container) {
                     color: '#C0392B', color0: '#2E5FA3',
                     borderColor: '#C0392B', borderColor0: '#2E5FA3',
                     borderWidth: 1.1,
+                },
+                markPoint: {
+                    symbol: 'circle', symbolSize: 4,
+                    itemStyle: { color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3' },
+                    label: {
+                        show: true, position: 'right', distance: 4,
+                        formatter: () => closes[closes.length - 1].toLocaleString(),
+                        color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3',
+                        fontSize: 10, fontWeight: 600,
+                    },
+                    data: [{ coord: [candleData.length - 1, closes[closes.length - 1]] }],
                 },
             },
             {
@@ -169,14 +178,6 @@ function kcSetupLazyRender() {
     }, { rootMargin: '200px 0px' });
     containers.forEach(el => observer.observe(el));
 }
-
-let kcResizeTimer = null;
-window.addEventListener("resize", () => {
-    clearTimeout(kcResizeTimer);
-    kcResizeTimer = setTimeout(() => {
-        KC_CHART_INSTANCES.forEach(chart => chart.resize());
-    }, 150);
-});
 
 const kcScrollTopBtn = document.getElementById("scroll-top-btn");
 if (kcScrollTopBtn) {

@@ -3,13 +3,6 @@
     color: #888;
     margin: 0 0 14px;
 }
-.kc-legend {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 14px;
-    margin-top: -8px;
-}
 .kc-legend-dot {
     display: inline-block;
     width: 9px;
@@ -56,7 +49,10 @@
     margin-bottom: 4px;
     font-weight: 500;
 }
+.kc-card-left { display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; }
 .kc-card-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kc-mini-legend { font-size: 0.65rem; color: #999; white-space: nowrap; flex-shrink: 0; }
+.kc-mini-legend .kc-legend-dot { width: 6px; height: 6px; margin: 0 2px 0 5px; }
 .kc-card-mktcap { font-size: 0.72rem; color: #888; font-weight: 400; white-space: nowrap; margin-left: 6px; }
 
 .kc-chart {
