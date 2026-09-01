@@ -37,6 +37,7 @@ async function kcLoad() {
                         </span>
                         <span class="kc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
                     </div>
+                    <div class="kc-card-price">${kcLastPriceText(it)}</div>
                     <div class="kc-chart" id="kc-chart-${it.code}" data-code="${it.code}"></div>
                 </div>
                 `).join("")}
@@ -45,6 +46,19 @@ async function kcLoad() {
     }).join("");
 
     kcSetupLazyRender();
+}
+
+function kcLastPriceText(item) {
+    if (!item.ohlcv || item.ohlcv.length === 0) return '-';
+    const last = item.ohlcv[item.ohlcv.length - 1];
+    const prev = item.ohlcv.length > 1 ? item.ohlcv[item.ohlcv.length - 2] : last;
+    const [y, m, d] = last[0].split('-').map(Number);
+    const close = last[4];
+    const prevClose = prev[4];
+    const pct = prevClose ? (close - prevClose) / prevClose * 100 : 0;
+    const sign = pct >= 0 ? '+' : '';
+    const color = pct >= 0 ? '#B4342A' : '#2E5FA3';
+    return `${m}/${d}일 <span style="color:${color};font-weight:600;">${close.toLocaleString()}원(${sign}${pct.toFixed(1)}%)</span>`;
 }
 
 function kcFindItem(code) {
@@ -104,8 +118,8 @@ function kcRenderChart(container) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
-            { left: 6, right: 10, top: 16, bottom: '27%' },
-            { left: 6, right: 10, top: '75%', bottom: 2 },
+            { left: 6, right: 6, top: 16, bottom: '27%' },
+            { left: 6, right: 6, top: '75%', bottom: 2 },
         ],
         xAxis: [
             { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
@@ -133,18 +147,6 @@ function kcRenderChart(container) {
                     color: '#C0392B', color0: '#2E5FA3',
                     borderColor: '#C0392B', borderColor0: '#2E5FA3',
                     borderWidth: 1.1,
-                },
-                markPoint: {
-                    symbol: 'circle', symbolSize: 4,
-                    itemStyle: { color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3' },
-                    label: {
-                        show: true, position: 'top', align: 'right', distance: 6,
-                        formatter: () => closes[closes.length - 1].toLocaleString(),
-                        color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3',
-                        fontSize: 10, fontWeight: 600,
-                        backgroundColor: 'rgba(255,255,255,0.85)',
-                    },
-                    data: [{ coord: [candleData.length - 1, closes[closes.length - 1]] }],
                 },
             },
             {

@@ -54,6 +54,7 @@
 .kc-mini-legend { font-size: 0.65rem; color: #999; white-space: nowrap; flex-shrink: 0; }
 .kc-mini-legend .kc-legend-dot { width: 6px; height: 6px; margin: 0 2px 0 5px; }
 .kc-card-mktcap { font-size: 0.72rem; color: #888; font-weight: 400; white-space: nowrap; margin-left: 6px; }
+.kc-card-price { font-size: 0.78rem; color: #555; margin-bottom: 6px; }
 
 .kc-chart {
     width: 100%;
