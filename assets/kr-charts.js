@@ -104,8 +104,8 @@ function kcRenderChart(container) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
-            { left: 2, right: 58, top: 4, bottom: '27%' },
-            { left: 2, right: 58, top: '75%', bottom: 2 },
+            { left: 2, right: 4, top: 16, bottom: '27%' },
+            { left: 2, right: 4, top: '75%', bottom: 2 },
         ],
         xAxis: [
             { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
@@ -132,10 +132,11 @@ function kcRenderChart(container) {
                     symbol: 'circle', symbolSize: 4,
                     itemStyle: { color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3' },
                     label: {
-                        show: true, position: 'right', distance: 4,
+                        show: true, position: 'top', distance: 6,
                         formatter: () => closes[closes.length - 1].toLocaleString(),
                         color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3',
                         fontSize: 10, fontWeight: 600,
+                        backgroundColor: 'rgba(255,255,255,0.85)',
                     },
                     data: [{ coord: [candleData.length - 1, closes[closes.length - 1]] }],
                 },
