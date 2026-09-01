@@ -104,18 +104,24 @@ function kcRenderChart(container) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
-            { left: 2, right: 4, top: 16, bottom: '27%' },
-            { left: 2, right: 4, top: '75%', bottom: 2 },
+            { left: 6, right: 10, top: 16, bottom: '27%' },
+            { left: 6, right: 10, top: '75%', bottom: 2 },
         ],
         xAxis: [
             { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
-              show: false },
+              axisLabel: { show: false }, axisLine: { show: false }, axisTick: { show: false },
+              splitLine: { show: true, lineStyle: { color: '#EFF2F6' } } },
             { type: 'category', data: dates, gridIndex: 1,
-              show: false },
+              axisLabel: { show: false }, axisLine: { show: false }, axisTick: { show: false },
+              splitLine: { show: true, lineStyle: { color: '#EFF2F6' } } },
         ],
         yAxis: [
-            { scale: true, gridIndex: 0, show: false },
-            { scale: true, gridIndex: 1, show: false },
+            { scale: true, gridIndex: 0,
+              axisLabel: { show: false }, axisLine: { show: false }, axisTick: { show: false },
+              splitLine: { show: true, lineStyle: { color: '#E7EBF1' } } },
+            { scale: true, gridIndex: 1,
+              axisLabel: { show: false }, axisLine: { show: false }, axisTick: { show: false },
+              splitLine: { show: false } },
         ],
         series: [
             {
