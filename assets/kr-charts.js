@@ -64,6 +64,8 @@ function kcRenderChart(container) {
     const lows   = item.ohlcv.map(b => b[3]);
     const closes = item.ohlcv.map(b => b[4]);
     const vols   = item.ohlcv.map(b => b[5]);
+    const ma50   = item.ohlcv.map(b => b[6]);
+    const ma150  = item.ohlcv.map(b => b[7]);
 
     const candleData = dates.map((_, i) => [opens[i], closes[i], lows[i], highs[i]]);
     const volColors = dates.map((_, i) =>
@@ -74,7 +76,26 @@ function kcRenderChart(container) {
     chart.setOption({
         animation: false,
         backgroundColor: '#ffffff',
-        tooltip: { trigger: 'axis', axisPointer: { type: 'cross' }, textStyle: { fontSize: 11 } },
+        tooltip: {
+            trigger: 'axis', axisPointer: { type: 'cross' }, textStyle: { fontSize: 11 },
+            formatter: (params) => {
+                const idx = params[0].dataIndex;
+                const close = closes[idx];
+                const prevClose = idx > 0 ? closes[idx - 1] : close;
+                const changeRate = prevClose ? (close - prevClose) / prevClose * 100 : 0;
+                const changeColor = changeRate >= 0 ? '#B4342A' : '#2E5FA3';
+                const changeSign = changeRate >= 0 ? '+' : '';
+                const ma50v = ma50[idx], ma150v = ma150[idx];
+                return `
+                    <div style="font-weight:600;margin-bottom:4px;">${dates[idx]}</div>
+                    <div>현재가: ${close.toLocaleString()}</div>
+                    <div>등락률: <span style="color:${changeColor};">${changeSign}${changeRate.toFixed(2)}%</span></div>
+                    <div>거래량: ${vols[idx].toLocaleString()}</div>
+                    <div>MA50: ${ma50v != null ? ma50v.toLocaleString() : '-'}</div>
+                    <div>MA150: ${ma150v != null ? ma150v.toLocaleString() : '-'}</div>
+                `;
+            },
+        },
         axisPointer: { link: [{ xAxisIndex: 'all' }] },
         grid: [
             { left: 44, right: 8, top: 6, bottom: 62 },
@@ -103,6 +124,16 @@ function kcRenderChart(container) {
                     color: '#B4342A', color0: '#2E5FA3',
                     borderColor: '#B4342A', borderColor0: '#2E5FA3',
                 },
+            },
+            {
+                type: 'line', name: 'MA50', xAxisIndex: 0, yAxisIndex: 0,
+                data: ma50, smooth: true, symbol: 'none', showSymbol: false,
+                lineStyle: { color: '#9B59B6', width: 1.2 },
+            },
+            {
+                type: 'line', name: 'MA150', xAxisIndex: 0, yAxisIndex: 0,
+                data: ma150, smooth: true, symbol: 'none', showSymbol: false,
+                lineStyle: { color: '#27ae60', width: 1.2 },
             },
             {
                 type: 'bar', name: '거래량',
