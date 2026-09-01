@@ -1,6 +1,38 @@
 {
-  "generated_at": "2026-09-01 20:00",
+  "generated_at": "2026-09-01 21:00",
   "items": [
+    {
+      "date": "2026-09-01 20:49",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3158501?ivk=1"
+    },
+    {
+      "date": "2026-09-01 20:41",
+      "title": "금리 충격 1년 반 뒤 온다…저축은행 부실대출 비율 내년 말 10% 돌파",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/view.php?ud=202608311319394734e30fcb1ba8_1"
+    },
+    {
+      "date": "2026-09-01 20:40",
+      "title": "[예보료 재산정] 은행의 5배 내는데 또 인상 추진… 저축은행 “서민금융 위축”",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Finance/2026/09/202609011459352034e30fcb1ba8_1"
+    },
+    {
+      "date": "2026-09-01 20:04",
+      "title": "서학개미 레버리지 매수 몰리자… 美 대체거래소, SOXL 주간 시세 중단",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/stock/stock_general/2026/09/01/WH5Z75MEORBSBCUPXIZGZPJ4MY"
+    },
     {
       "date": "2026-09-01 19:51",
       "title": "유럽 장기 국채, 인플레 우려에 일제 상승…英 30년물 10bp↑(상보)",
@@ -45,9 +77,9 @@
       "date": "2026-09-01 19:27",
       "title": "HD현대중공업 노사, 임단협 교섭 결렬…2일부터 부분파업",
       "title_ko": null,
-      "source": "m.asiatoday.co.kr",
+      "source": "asiatoday.co.kr",
       "region": "국내",
-      "link": "https://m.asiatoday.co.kr/kn/view.php?key=20260901010000542"
+      "link": "https://asiatoday.co.kr/kn/view.php?key=20260901010000542"
     },
     {
       "date": "2026-09-01 19:01",
@@ -504,14 +536,6 @@
       "source": "wsj.com",
       "region": "해외",
       "link": "https://wsj.com/tech/ai/anthropic-signs-35-billion-cloud-deal-backed-by-nvidia-f12622f1"
-    },
-    {
-      "date": "2026-09-01 08:29",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3158094?ivk=1"
     },
     {
       "date": "2026-09-01 08:28",
@@ -1576,30 +1600,6 @@
       "source": "hankyung.com",
       "region": "국내",
       "link": "https://hankyung.com/article/2026082647881"
-    },
-    {
-      "date": "2026-08-28 18:17",
-      "title": "내년부터 결혼하면 100만원...아이 낳으면 최대 2000만원 받는다",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/policy/policy_sub/2026/08/28/KXWY2Y4SDVABLFW7I4G5CL2XIM"
-    },
-    {
-      "date": "2026-08-28 18:10",
-      "title": "[단독] 느닷없이 \"7조 더 내라\"…대미투자 '상업적 합리성' 시험대",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/015/0005326016?cds=news_edit"
-    },
-    {
-      "date": "2026-08-28 18:03",
-      "title": "美포탄·미사일 재고 바닥에…K방산 빅 찬스 - 매일경제",
-      "title_ko": null,
-      "source": "mk.co.kr",
-      "region": "국내",
-      "link": "https://mk.co.kr/news/business/12138057"
     }
   ]
 }
