@@ -1,0 +1,144 @@
+let KC_DATA = null;
+const KC_CHART_INSTANCES = new Map(); // code -> echarts instance
+
+async function kcLoad() {
+    const body = document.getElementById("kc-body");
+    try {
+        const res = await fetch("data/kr_charts.json");
+        KC_DATA = await res.json();
+    } catch (e) {
+        body.innerHTML = '<p class="placeholder">데이터를 불러오지 못했습니다.</p>';
+        return;
+    }
+
+    const genEl = document.getElementById("kc-generated-at");
+    if (genEl) genEl.textContent = KC_DATA.generated_at ? `기준: ${KC_DATA.generated_at}` : "";
+
+    const sections = [
+        { key: "kospi200", title: "코스피200" },
+        { key: "kosdaq150", title: "코스닥150" },
+    ];
+
+    body.innerHTML = sections.map(sec => {
+        const items = (KC_DATA[sec.key] || []).slice().sort((a, b) => b.mktcap - a.mktcap);
+        return `
+        <div class="kc-sector">
+            <div class="kc-sector-title">${sec.title}<span class="kc-sector-count">${items.length}개</span></div>
+            <div class="kc-grid">
+                ${items.map(it => `
+                <div class="kc-card">
+                    <div class="kc-card-label">
+                        <span class="kc-card-name">${it.name} (${it.code})</span>
+                        <span class="kc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
+                    </div>
+                    <div class="kc-chart" id="kc-chart-${it.code}" data-code="${it.code}"></div>
+                </div>
+                `).join("")}
+            </div>
+        </div>`;
+    }).join("");
+
+    kcSetupLazyRender();
+}
+
+function kcFindItem(code) {
+    for (const key of ["kospi200", "kosdaq150"]) {
+        const found = (KC_DATA[key] || []).find(it => it.code === code);
+        if (found) return found;
+    }
+    return null;
+}
+
+function kcRenderChart(container) {
+    const code = container.dataset.code;
+    if (KC_CHART_INSTANCES.has(code)) return;
+    const item = kcFindItem(code);
+    if (!item || !item.ohlcv || item.ohlcv.length === 0) {
+        container.innerHTML = '<p style="color:#aaa;font-size:12px;padding:10px;text-align:center;">데이터 없음</p>';
+        return;
+    }
+
+    const dates  = item.ohlcv.map(b => b[0]);
+    const opens  = item.ohlcv.map(b => b[1]);
+    const highs  = item.ohlcv.map(b => b[2]);
+    const lows   = item.ohlcv.map(b => b[3]);
+    const closes = item.ohlcv.map(b => b[4]);
+    const vols   = item.ohlcv.map(b => b[5]);
+
+    const candleData = dates.map((_, i) => [opens[i], closes[i], lows[i], highs[i]]);
+    const volColors = dates.map((_, i) =>
+        closes[i] >= (i > 0 ? closes[i - 1] : closes[i]) ? 'rgba(180,52,42,0.65)' : 'rgba(46,95,163,0.65)'
+    );
+
+    const chart = echarts.init(container);
+    chart.setOption({
+        animation: false,
+        backgroundColor: '#ffffff',
+        tooltip: { trigger: 'axis', axisPointer: { type: 'cross' }, textStyle: { fontSize: 11 } },
+        axisPointer: { link: [{ xAxisIndex: 'all' }] },
+        grid: [
+            { left: 44, right: 8, top: 6, bottom: 62 },
+            { left: 44, right: 8, top: '72%', bottom: 6 },
+        ],
+        xAxis: [
+            { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
+              axisLabel: { show: false }, axisTick: { show: false }, splitLine: { show: false } },
+            { type: 'category', data: dates, gridIndex: 1,
+              axisLabel: { color: '#999', fontSize: 9, interval: 'auto' },
+              axisTick: { show: false }, splitLine: { show: false } },
+        ],
+        yAxis: [
+            { scale: true, gridIndex: 0, position: 'right',
+              axisLabel: { color: '#888', fontSize: 9, formatter: v => v.toLocaleString() },
+              splitLine: { lineStyle: { color: '#ECEFF3' } } },
+            { scale: true, gridIndex: 1, position: 'right', show: false,
+              splitLine: { show: false } },
+        ],
+        series: [
+            {
+                type: 'candlestick', name: '주가',
+                xAxisIndex: 0, yAxisIndex: 0,
+                data: candleData,
+                itemStyle: {
+                    color: '#B4342A', color0: '#2E5FA3',
+                    borderColor: '#B4342A', borderColor0: '#2E5FA3',
+                },
+            },
+            {
+                type: 'bar', name: '거래량',
+                xAxisIndex: 1, yAxisIndex: 1,
+                data: vols,
+                itemStyle: { color: (params) => volColors[params.dataIndex] },
+            },
+        ],
+    });
+
+    KC_CHART_INSTANCES.set(code, chart);
+}
+
+function kcSetupLazyRender() {
+    const containers = document.querySelectorAll('.kc-chart');
+    if (!('IntersectionObserver' in window)) {
+        containers.forEach(kcRenderChart);
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                kcRenderChart(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '200px 0px' });
+    containers.forEach(el => observer.observe(el));
+}
+
+const kcScrollTopBtn = document.getElementById("scroll-top-btn");
+if (kcScrollTopBtn) {
+    kcScrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    window.addEventListener("scroll", () => {
+        kcScrollTopBtn.classList.toggle("visible", window.scrollY > 400);
+    });
+}
+
+kcLoad();

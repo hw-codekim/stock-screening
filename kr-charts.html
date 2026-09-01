@@ -3,25 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>미장 차트</title>
+<title>국장 차트</title>
 <link rel="stylesheet" href="assets/style.css?v=3">
-<link rel="stylesheet" href="assets/us-charts.css">
+<link rel="stylesheet" href="assets/kr-charts.css">
 </head>
 <body>
 
 <header class="site-header">
     <div class="header-left">
         <div>
-            <h1>미장 차트</h1>
-            <div class="sub">미국 증시 섹터별 주요 차트</div>
+            <h1>국장 차트</h1>
+            <div class="sub">코스피200 · 코스닥150 캔들 + 거래량</div>
         </div>
         <nav class="site-nav">
             <a href="news.html">주요뉴스</a>
             <a href="index.html">TODAY</a>
             <a href="q2.html">2Q26실적</a>
             <a href="forward.html">포워드실적</a>
-            <a href="us-charts.html" class="active">미장</a>
-            <a href="kr-charts.html">국장</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html" class="active">국장</a>
             <a href="cashflow.html">현금흐름</a>
             <a href="trade-value.html">거래대금</a>
         </nav>
@@ -32,15 +32,17 @@
 </header>
 
 <div class="container">
-    <p class="uc-note">차트 이미지는 finviz.com에서 실시간으로 제공됩니다.</p>
-    <div id="uc-body">
+    <p class="kc-note">코스피 시가총액 상위 200 + 코스닥 시가총액 상위 150 (실제 지수 편입종목과는 다를 수 있음) · 최근 3개월 캔들+거래량 · 시가총액순 정렬 · <span id="kc-generated-at"></span></p>
+    <div id="kc-body">
         <p class="placeholder">불러오는 중...</p>
     </div>
-    <div class="site-footer">차트 출처: finviz.com</div>
+    <div class="site-footer">데이터는 매 영업일 장마감 후 갱신됩니다.</div>
 </div>
 
 <button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
 
-<script src="assets/us-charts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/kr-charts.js"></script>
 </body>
 </html>

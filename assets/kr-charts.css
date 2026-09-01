@@ -1,0 +1,59 @@
+.kc-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 14px;
+}
+
+.kc-sector { margin-bottom: 28px; }
+.kc-sector-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #14315C;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D7E0EC;
+}
+.kc-sector-title .kc-sector-count {
+    font-weight: 400;
+    color: #888;
+    font-size: 0.8rem;
+    margin-left: 6px;
+}
+
+.kc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.kc-card {
+    background: #ffffff;
+    border: 1px solid #D7E0EC;
+    border-radius: 3px;
+    padding: 8px;
+}
+.kc-card-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: #14213D;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+.kc-card-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kc-card-mktcap { font-size: 0.72rem; color: #888; font-weight: 400; white-space: nowrap; margin-left: 6px; }
+
+.kc-chart {
+    width: 100%;
+    height: 230px;
+    background: #F5F7FA;
+    border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+    .kc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+    .kc-grid { grid-template-columns: 1fr; }
+}
