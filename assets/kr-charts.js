@@ -138,7 +138,7 @@ function kcRenderChart(container) {
                     symbol: 'circle', symbolSize: 4,
                     itemStyle: { color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3' },
                     label: {
-                        show: true, position: 'top', distance: 6,
+                        show: true, position: 'top', align: 'right', distance: 6,
                         formatter: () => closes[closes.length - 1].toLocaleString(),
                         color: closes[closes.length - 1] >= (closes.length > 1 ? closes[closes.length - 2] : closes[closes.length - 1]) ? '#C0392B' : '#2E5FA3',
                         fontSize: 10, fontWeight: 600,
