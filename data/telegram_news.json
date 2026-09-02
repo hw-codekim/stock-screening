@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-09-02 20:00",
+  "generated_at": "2026-09-02 21:00",
   "items": [
+    {
+      "date": "2026-09-02 20:58",
+      "title": "伯克希尔哈撒韦首席执行官格雷格.阿贝尔：将人工智能数据中心视为伯克希尔哈撒韦能源的重要机会，愿意承接超大规模企业的数据中心能源需求 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3780917"
+    },
+    {
+      "date": "2026-09-02 20:07",
+      "title": "李 “지금은 전 정권이 만든 보릿고개…성장에 집중해 파이 키울 때”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/president_office/2026/09/02/RH4BONRFQVGFNKT5IB5OIJWXZI"
+    },
     {
       "date": "2026-09-02 19:38",
       "title": "李 정부, 4년 뒤 '1000조 지출'…반도체 꺾이면?",
@@ -1584,22 +1600,6 @@
       "source": "wsj.com",
       "region": "해외",
       "link": "https://wsj.com/tech/ai/anthropic-signs-35-billion-cloud-deal-backed-by-nvidia-f12622f1"
-    },
-    {
-      "date": "2026-09-01 08:28",
-      "title": "미 AI 기업들의 반격...'친데이터센터 슈퍼팩'에 선거자금 지원",
-      "title_ko": null,
-      "source": "ytn.co.kr",
-      "region": "국내",
-      "link": "https://ytn.co.kr/_ln/0104_202609010456450214"
-    },
-    {
-      "date": "2026-09-01 08:23",
-      "title": "台積電：AI 算力需求每年增五倍 將透過先進邏輯製程、3DFabric 等抓緊基建熱潮 | 產業熱點 | 產業 | 經濟日報",
-      "title_ko": null,
-      "source": "money.udn.com",
-      "region": "해외",
-      "link": "https://money.udn.com/money/story/5612/9725920?from=edn_maintab_cate"
     }
   ]
 }
