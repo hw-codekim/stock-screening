@@ -1,6 +1,22 @@
 {
-  "generated_at": "2026-09-02 19:00",
+  "generated_at": "2026-09-02 20:00",
   "items": [
+    {
+      "date": "2026-09-02 19:38",
+      "title": "李 정부, 4년 뒤 '1000조 지출'…반도체 꺾이면?",
+      "title_ko": null,
+      "source": "magazine.hankyung.com",
+      "region": "국내",
+      "link": "https://magazine.hankyung.com/business/article/202609020481b"
+    },
+    {
+      "date": "2026-09-02 19:31",
+      "title": "글로벌 채권 시장 패닉…인플레 공포·금리 인상 압박에 국채 수익률 고공행진",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Global-Biz/2026/09/202609021901123414e250e8e188_1"
+    },
     {
       "date": "2026-09-02 18:36",
       "title": "‘주식 팔고 다음날 돈 수령’ 결제주기 단축…“반대매매 일정도 당겨진다”",
@@ -1584,22 +1600,6 @@
       "source": "money.udn.com",
       "region": "해외",
       "link": "https://money.udn.com/money/story/5612/9725920?from=edn_maintab_cate"
-    },
-    {
-      "date": "2026-09-01 07:55",
-      "title": "美재무 \"日, 엔화 강세위한 조치할 것\" … 9월 BOJ 금리인상에 무게",
-      "title_ko": null,
-      "source": "newdaily.co.kr",
-      "region": "국내",
-      "link": "https://newdaily.co.kr/site/data/html/2026/09/01/2026090100010.html"
-    },
-    {
-      "date": "2026-09-01 07:49",
-      "title": "Tesla Cybercab fleet grows in Austin ahead of launch event",
-      "title_ko": null,
-      "source": "teslarati.com",
-      "region": "해외",
-      "link": "https://teslarati.com/tesla-cybercab-fleet-grows-austin-ahead-launch-event"
     }
   ]
 }
