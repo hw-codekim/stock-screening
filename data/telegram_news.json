@@ -1,6 +1,38 @@
 {
-  "generated_at": "2026-09-02 10:00",
+  "generated_at": "2026-09-02 11:00",
   "items": [
+    {
+      "date": "2026-09-02 10:47",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3158933?ivk=1"
+    },
+    {
+      "date": "2026-09-02 10:27",
+      "title": "'몸값 1조' AI 스타트업 뤼튼, 상장 주관사 선정 착수",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/mnews/article/215/0001264561?ntype=RANKING&rc=N&sid=101"
+    },
+    {
+      "date": "2026-09-02 10:07",
+      "title": "김용범 \"역대급 호황에 부동산 수요 폭발 직전이었다\" [인터뷰]",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/469/0000951564"
+    },
+    {
+      "date": "2026-09-02 10:04",
+      "title": "美 밀러 \"中 반도체 장비 25년 뒤처져\"… 삼성 파운드리 반사 수혜 관측",
+      "title_ko": null,
+      "source": "m.g-enews.com",
+      "region": "국내",
+      "link": "https://m.g-enews.com/article/Global-Biz/2026/09/202609020949354267fbbec65dfb_1"
+    },
     {
       "date": "2026-09-02 09:49",
       "title": "[속보] 용혜인 \"임신중지약물 도입 신속히 마무리…모자보건법 개정도 추진\"",
@@ -482,14 +514,6 @@
       "link": "https://n.news.naver.com/article/001/0016283994?sid=104"
     },
     {
-      "date": "2026-09-02 05:04",
-      "title": "김용범 \"역대급 호황에 부동산 수요 폭발 직전이었다\" [인터뷰]",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F469%2F0000951564%3Fsid%3D100&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F469%252F0000951564%253Fsid%253D100%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
       "date": "2026-09-02 04:37",
       "title": "美 중부사령부 \"호르무즈 인근 IRGC 목표물 겨냥한 공습 시작\"(상보)",
       "title_ko": null,
@@ -656,14 +680,6 @@
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/articles/3780833"
-    },
-    {
-      "date": "2026-09-01 20:49",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3158501?ivk=1"
     },
     {
       "date": "2026-09-01 20:41",
@@ -1584,22 +1600,6 @@
       "source": "v.daum.net",
       "region": "국내",
       "link": "https://v.daum.net/v/20260829145037971"
-    },
-    {
-      "date": "2026-08-30 11:41",
-      "title": "반독점 우려 불거진 엔비디아의 중기 대출보증 한달만에 중단",
-      "title_ko": null,
-      "source": "sedaily.com",
-      "region": "국내",
-      "link": "https://sedaily.com/article/20084664"
-    },
-    {
-      "date": "2026-08-30 11:40",
-      "title": "'정면 돌파' 택한 워시, 트럼프도 뚫을 수 있나…시장에선 '합격점' [Fed 워치]",
-      "title_ko": null,
-      "source": "v.daum.net",
-      "region": "국내",
-      "link": "https://v.daum.net/v/20260829030609189"
     }
   ]
 }
