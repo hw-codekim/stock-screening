@@ -1,6 +1,46 @@
 {
-  "generated_at": "2026-09-02 21:00",
+  "generated_at": "2026-09-02 22:00",
   "items": [
+    {
+      "date": "2026-09-02 21:39",
+      "title": "TSMC’s Quarterly Chipmaking Tool Needs Almost Doubled This Year",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-09-02/tsmc-s-quarterly-chipmaking-tool-needs-almost-doubled-this-year?taid=6a9817fc3375640001f23d02"
+    },
+    {
+      "date": "2026-09-02 21:27",
+      "title": "추미애, ‘경기도 재정위기’에 …“이재명 책임 없다, 김동연 탓”",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F029%2F0003045873%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F029%252F0003045873%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-02 21:17",
+      "title": "美, 반도체 관세 공식화…“미국서 생산 안 하면 관세” - 포쓰저널",
+      "title_ko": null,
+      "source": "4th.kr",
+      "region": "국내",
+      "link": "http://4th.kr/news/articleView.html?idxno=2117360"
+    },
+    {
+      "date": "2026-09-02 21:12",
+      "title": "“Sell Sell or Sell”！美银警告：9月美股仅剩90亿美元买盘空间 ，一旦下跌或触发1630亿卖盘 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3780920"
+    },
+    {
+      "date": "2026-09-02 21:07",
+      "title": "快讯 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3159248?ivk=1"
+    },
     {
       "date": "2026-09-02 20:58",
       "title": "伯克希尔哈撒韦首席执行官格雷格.阿贝尔：将人工智能数据中心视为伯克希尔哈撒韦能源的重要机会，愿意承接超大规模企业的数据中心能源需求 - 华尔街见闻",
@@ -408,14 +448,6 @@
       "source": "asiae.co.kr",
       "region": "국내",
       "link": "https://asiae.co.kr/article/2026090209312996427"
-    },
-    {
-      "date": "2026-09-02 10:47",
-      "title": "快讯 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3158933?ivk=1"
     },
     {
       "date": "2026-09-02 10:27",
@@ -1568,38 +1600,6 @@
       "source": "dailian.co.kr",
       "region": "국내",
       "link": "https://dailian.co.kr/news/view/1684792/8%EC%9B%94-%EC%88%98%EC%B6%9C-%EC%A0%84%EB%85%84%E6%AF%94-687-%EA%B8%89%EC%A6%9D%ED%95%9C-98-2026"
-    },
-    {
-      "date": "2026-09-01 09:02",
-      "title": "[속보]반도체 수출 466.5억弗 전년比 209%↑…3개월 연속 400억弗 돌파",
-      "title_ko": null,
-      "source": "newsis.com",
-      "region": "국내",
-      "link": "https://newsis.com/view/NISX20260901_0003770614"
-    },
-    {
-      "date": "2026-09-01 08:50",
-      "title": "[단독] 다이소, 뷰티 특화매장 첫 출점",
-      "title_ko": null,
-      "source": "dnews.co.kr",
-      "region": "국내",
-      "link": "https://dnews.co.kr/uhtml/view.jsp?idxno=202609010837505680080"
-    },
-    {
-      "date": "2026-09-01 08:42",
-      "title": "비에이치, 보스턴다이내믹스·삼성 이어 '북미 로봇 빅테크' 선점…휴머노이드 '관절 핵심' 주목",
-      "title_ko": null,
-      "source": "dreago.kr",
-      "region": "국내",
-      "link": "https://dreago.kr/n/c5dd8d"
-    },
-    {
-      "date": "2026-09-01 08:35",
-      "title": "Exclusive | Anthropic Signs $35 Billion Cloud Deal Backed by Nvidia",
-      "title_ko": null,
-      "source": "wsj.com",
-      "region": "해외",
-      "link": "https://wsj.com/tech/ai/anthropic-signs-35-billion-cloud-deal-backed-by-nvidia-f12622f1"
     }
   ]
 }
