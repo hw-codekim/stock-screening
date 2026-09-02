@@ -1,6 +1,46 @@
 {
-  "generated_at": "2026-09-02 13:00",
+  "generated_at": "2026-09-02 14:00",
   "items": [
+    {
+      "date": "2026-09-02 13:55",
+      "title": "LB세미콘, 퀄컴향 첫 출하…범프·테스트·백엔드 협력 강화",
+      "title_ko": null,
+      "source": "m.newspim.com",
+      "region": "국내",
+      "link": "https://m.newspim.com/news/view/20260902000755"
+    },
+    {
+      "date": "2026-09-02 13:47",
+      "title": "정부, 3일 ‘부처·공공기관 지방 이전' 방안 발표한다",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/policy_sub/2026/09/02/ASYSQYH3WNE6FIHVVI7GXXJT4U"
+    },
+    {
+      "date": "2026-09-02 13:31",
+      "title": "[속보] 알테오젠, 노바티스와 최대 4조4165억원 ALT-B4 옵션·라이선스 계약",
+      "title_ko": null,
+      "source": "ift.tt",
+      "region": "국내",
+      "link": "https://ift.tt/AYtFfXW"
+    },
+    {
+      "date": "2026-09-02 13:14",
+      "title": "맛있고 간편해서 자주 사 먹는 건데…편의점서 ‘즉석밥’ 집었다가 깜짝",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/mnews/article/011/0004657796"
+    },
+    {
+      "date": "2026-09-02 13:13",
+      "title": "Data Center Spending to Reach $31.6 Trillion by 2050 on AI Boom",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-09-02/data-center-spending-to-reach-31-6-trillion-by-2050-on-ai-boom?taid=6a97a19b207a0d00012953ac"
+    },
     {
       "date": "2026-09-02 12:36",
       "title": "戴尔电话会：“缺的就是DRAM、DRAM、DRAM！” ，AI积压订单逼近千亿，全年指引大幅上调 - 华尔街见闻",
@@ -183,7 +223,7 @@
       "title_ko": null,
       "source": "sisunnews.co.kr",
       "region": "국내",
-      "link": "https://sisunnews.co.kr/news/articleView.html?idxno=245245"
+      "link": "http://sisunnews.co.kr/news/articleView.html?idxno=245245"
     },
     {
       "date": "2026-09-02 09:24",
@@ -1560,46 +1600,6 @@
       "source": "ssbulten.com.tr",
       "region": "해외",
       "link": "https://ssbulten.com.tr/gundem/detay/associated-press-abdnin-avrupadaki-patriot-stoklarinda-kriz-yasaniyor--19957"
-    },
-    {
-      "date": "2026-08-30 16:17",
-      "title": "'K방산 기회의 땅' 떠오른 중동…전망은[양낙규의 Defence Club]",
-      "title_ko": null,
-      "source": "view.asiae.co.kr",
-      "region": "국내",
-      "link": "https://view.asiae.co.kr/article/2025021813594115397"
-    },
-    {
-      "date": "2026-08-30 14:47",
-      "title": "GPU 수보다 운영 생산성…SK AX가 짚은 AI 데이터센터의 조건",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/293/0000089746"
-    },
-    {
-      "date": "2026-08-30 14:46",
-      "title": "ESS 3차 입찰 임박…삼성SDI·SK온 선두 속 LG엔솔 반격 나선다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/031/0001053528"
-    },
-    {
-      "date": "2026-08-30 14:46",
-      "title": "美, 현지 알루미늄 제련소 짓는 기업에 수입 관세 '반값' 혜택",
-      "title_ko": null,
-      "source": "stockinfo7.com",
-      "region": "국내",
-      "link": "https://stockinfo7.com/news/pick/url/9592926"
-    },
-    {
-      "date": "2026-08-30 13:59",
-      "title": "정유주, 정제마진 강세에 코스피 압도…“제품값 정상화 더뎌” [코주부]",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/011/0004656522"
     }
   ]
 }
