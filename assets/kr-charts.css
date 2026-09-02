@@ -54,6 +54,9 @@
 .kc-mini-legend { font-size: 0.65rem; color: #999; white-space: nowrap; flex-shrink: 0; }
 .kc-mini-legend .kc-legend-dot { width: 6px; height: 6px; margin: 0 2px 0 5px; }
 .kc-card-mktcap { font-size: 0.72rem; color: #888; font-weight: 400; white-space: nowrap; margin-left: 6px; }
+.kc-card-sub { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.kc-card-mid { font-size: 0.68rem; color: #7a869a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kc-card-market { font-size: 0.62rem; color: #A9B4C4; border: 1px solid #E1E7F0; border-radius: 3px; padding: 0 4px; white-space: nowrap; margin-left: 6px; }
 .kc-card-price { font-size: 0.78rem; color: #555; margin-bottom: 6px; }
 
 .kc-chart {

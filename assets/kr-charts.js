@@ -1,5 +1,6 @@
 let KC_DATA = null;
 const KC_CHART_INSTANCES = new Map(); // code -> echarts instance
+let KC_LAZY_OBSERVER = null;
 
 async function kcLoad() {
     const body = document.getElementById("kc-body");
@@ -14,18 +15,116 @@ async function kcLoad() {
     const genEl = document.getElementById("kc-generated-at");
     if (genEl) genEl.textContent = KC_DATA.generated_at ? `기준: ${KC_DATA.generated_at}` : "";
 
-    const sections = [
-        { key: "kospi200", title: "코스피200" },
-        { key: "kosdaq150", title: "코스닥150" },
-    ];
+    document.getElementById("kc-large-filter").addEventListener("change", () => {
+        kcPopulateMidFilter();
+        kcRender();
+    });
+    document.getElementById("kc-mid-filter").addEventListener("change", kcRender);
+    document.getElementById("kc-market-filter").addEventListener("change", () => {
+        kcPopulateLargeFilter();
+        kcPopulateMidFilter();
+        kcRender();
+    });
+    document.getElementById("kc-search").addEventListener("input", kcRender);
 
-    body.innerHTML = sections.map(sec => {
-        const items = (KC_DATA[sec.key] || []).slice().sort((a, b) => b.mktcap - a.mktcap);
-        return `
+    kcPopulateLargeFilter();
+    kcPopulateMidFilter();
+    kcRender();
+}
+
+// ── 필터링 helpers ──────────────────────────────────
+function kcMarketFiltered() {
+    const marketVal = document.getElementById("kc-market-filter").value;
+    return (KC_DATA.items || []).filter(it => !marketVal || it.market === marketVal);
+}
+
+function kcPopulateLargeFilter() {
+    const sel = document.getElementById("kc-large-filter");
+    const prev = sel.value;
+    const counts = {};
+    kcMarketFiltered().forEach(it => { counts[it.sector_large] = (counts[it.sector_large] || 0) + 1; });
+    const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    sel.innerHTML = '<option value="">전체 대분류</option>' +
+        sorted.map(s => `<option value="${s}">${s} (${counts[s]})</option>`).join("");
+    sel.value = sorted.includes(prev) ? prev : "";
+}
+
+function kcPopulateMidFilter() {
+    const largeVal = document.getElementById("kc-large-filter").value;
+    const sel = document.getElementById("kc-mid-filter");
+    const prev = sel.value;
+    const counts = {};
+    kcMarketFiltered()
+        .filter(it => !largeVal || it.sector_large === largeVal)
+        .forEach(it => { counts[it.sector_mid] = (counts[it.sector_mid] || 0) + 1; });
+    const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+    sel.innerHTML = '<option value="">전체 중분류</option>' +
+        sorted.map(s => `<option value="${s}">${s} (${counts[s]})</option>`).join("");
+    sel.value = sorted.includes(prev) ? prev : "";
+}
+
+function kcFilteredItems() {
+    const marketVal = document.getElementById("kc-market-filter").value;
+    const largeVal  = document.getElementById("kc-large-filter").value;
+    const midVal    = document.getElementById("kc-mid-filter").value;
+    const q         = document.getElementById("kc-search").value.trim().toLowerCase();
+    return (KC_DATA.items || []).filter(it =>
+        (!marketVal || it.market === marketVal) &&
+        (!largeVal || it.sector_large === largeVal) &&
+        (!midVal || it.sector_mid === midVal) &&
+        (!q || it.name.toLowerCase().includes(q) || it.code.includes(q))
+    );
+}
+
+// 대분류별로 묶어서 대분류 합산 시총 내림차순.
+// 대분류 안에서는 다시 중분류별로 묶어 중분류 합산 시총 내림차순으로 인접 정렬,
+// 같은 중분류 안에서는 종목 시총 내림차순.
+function kcGroupBySector(items) {
+    const largeMap = {};
+    items.forEach(it => { (largeMap[it.sector_large] = largeMap[it.sector_large] || []).push(it); });
+
+    const groups = Object.keys(largeMap).map(sector => {
+        const midMap = {};
+        largeMap[sector].forEach(it => { (midMap[it.sector_mid] = midMap[it.sector_mid] || []).push(it); });
+
+        const midGroups = Object.keys(midMap).map(mid => {
+            const midItems = midMap[mid].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
+            const total = midItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
+            return { mid, items: midItems, total };
+        });
+        midGroups.sort((a, b) => b.total - a.total);
+
+        const sortedItems = midGroups.flatMap(g => g.items);
+        const total = midGroups.reduce((sum, g) => sum + g.total, 0);
+        return { sector, items: sortedItems, total };
+    });
+    groups.sort((a, b) => b.total - a.total);
+    return groups;
+}
+
+// ── 렌더 ────────────────────────────────────────────
+function kcRender() {
+    const body = document.getElementById("kc-body");
+
+    if (KC_LAZY_OBSERVER) { KC_LAZY_OBSERVER.disconnect(); KC_LAZY_OBSERVER = null; }
+    KC_CHART_INSTANCES.forEach(chart => chart.dispose());
+    KC_CHART_INSTANCES.clear();
+
+    const items = kcFilteredItems();
+    document.getElementById("kc-count-line").textContent = `${items.length}개 종목`;
+
+    if (items.length === 0) {
+        body.innerHTML = '<p class="placeholder">조건에 맞는 종목이 없습니다.</p>';
+        return;
+    }
+
+    const groups = kcGroupBySector(items);
+
+    body.innerHTML = groups.map(g => `
         <div class="kc-sector">
-            <div class="kc-sector-title">${sec.title}<span class="kc-sector-count">${items.length}개</span></div>
+            <div class="kc-sector-title">${g.sector}<span class="kc-sector-count">${g.items.length}개</span></div>
             <div class="kc-grid">
-                ${items.map(it => `
+                ${g.items.map(it => `
                 <div class="kc-card">
                     <div class="kc-card-label">
                         <span class="kc-card-left">
@@ -37,13 +136,17 @@ async function kcLoad() {
                         </span>
                         <span class="kc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
                     </div>
+                    <div class="kc-card-sub">
+                        <span class="kc-card-mid">${it.sector_mid}</span>
+                        <span class="kc-card-market">${it.market === "KOSPI" ? "코스피" : "코스닥"}</span>
+                    </div>
                     <div class="kc-card-price">${kcLastPriceText(it)}</div>
                     <div class="kc-chart" id="kc-chart-${it.code}" data-code="${it.code}"></div>
                 </div>
                 `).join("")}
             </div>
-        </div>`;
-    }).join("");
+        </div>`
+    ).join("");
 
     kcSetupLazyRender();
 }
@@ -62,11 +165,7 @@ function kcLastPriceText(item) {
 }
 
 function kcFindItem(code) {
-    for (const key of ["kospi200", "kosdaq150"]) {
-        const found = (KC_DATA[key] || []).find(it => it.code === code);
-        if (found) return found;
-    }
-    return null;
+    return (KC_DATA.items || []).find(it => it.code === code) || null;
 }
 
 function kcRenderChart(container) {
@@ -96,27 +195,7 @@ function kcRenderChart(container) {
     chart.setOption({
         animation: false,
         backgroundColor: '#ffffff',
-        tooltip: {
-            trigger: 'axis', axisPointer: { type: 'cross' }, textStyle: { fontSize: 11 },
-            formatter: (params) => {
-                const idx = params[0].dataIndex;
-                const close = closes[idx];
-                const prevClose = idx > 0 ? closes[idx - 1] : close;
-                const changeRate = prevClose ? (close - prevClose) / prevClose * 100 : 0;
-                const changeColor = changeRate >= 0 ? '#B4342A' : '#2E5FA3';
-                const changeSign = changeRate >= 0 ? '+' : '';
-                const ma50v = ma50[idx], ma150v = ma150[idx];
-                return `
-                    <div style="font-weight:600;margin-bottom:4px;">${dates[idx]}</div>
-                    <div>현재가: ${close.toLocaleString()}</div>
-                    <div>등락률: <span style="color:${changeColor};">${changeSign}${changeRate.toFixed(2)}%</span></div>
-                    <div>거래량: ${vols[idx].toLocaleString()}</div>
-                    <div>MA50: ${ma50v != null ? ma50v.toLocaleString() : '-'}</div>
-                    <div>MA150: ${ma150v != null ? ma150v.toLocaleString() : '-'}</div>
-                `;
-            },
-        },
-        axisPointer: { link: [{ xAxisIndex: 'all' }] },
+        tooltip: { show: false },
         grid: [
             { left: 6, right: 6, top: 16, bottom: '27%' },
             { left: 6, right: 6, top: '75%', bottom: 2 },
@@ -177,15 +256,15 @@ function kcSetupLazyRender() {
         containers.forEach(kcRenderChart);
         return;
     }
-    const observer = new IntersectionObserver((entries) => {
+    KC_LAZY_OBSERVER = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 kcRenderChart(entry.target);
-                observer.unobserve(entry.target);
+                KC_LAZY_OBSERVER.unobserve(entry.target);
             }
         });
     }, { rootMargin: '200px 0px' });
-    containers.forEach(el => observer.observe(el));
+    containers.forEach(el => KC_LAZY_OBSERVER.observe(el));
 }
 
 const kcScrollTopBtn = document.getElementById("scroll-top-btn");

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>국장 차트</title>
 <link rel="stylesheet" href="assets/style.css?v=3">
-<link rel="stylesheet" href="assets/kr-charts.css?v=5">
+<link rel="stylesheet" href="assets/kr-charts.css?v=6">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
     <div class="header-left">
         <div>
             <h1>국장 차트</h1>
-            <div class="sub">코스피200 · 코스닥150 캔들 + 거래량</div>
+            <div class="sub">코스피 1조 이상 · 코스닥 5000억 이상 캔들 + 거래량</div>
         </div>
         <nav class="site-nav">
             <a href="news.html">주요뉴스</a>
@@ -32,7 +32,24 @@
 </header>
 
 <div class="container">
-    <p class="kc-note">코스피 시가총액 상위 200 + 코스닥 시가총액 상위 150 (실제 지수 편입종목과는 다를 수 있음) · 최근 3개월 캔들+거래량 · 시가총액순 정렬 · 마우스 오버 시 현재가·등락률·거래량·MA50·MA150 표시 · <span id="kc-generated-at"></span></p>
+    <p class="kc-note">코스피 시가총액 1조 이상 + 코스닥 시가총액 5000억 이상 · 최근 3개월 캔들+거래량 · 대분류별로 묶어 시가총액순 정렬 · <span id="kc-generated-at"></span></p>
+
+    <div class="search-bar">
+        <select id="kc-market-filter">
+            <option value="">전체 시장</option>
+            <option value="KOSPI">코스피</option>
+            <option value="KOSDAQ">코스닥</option>
+        </select>
+        <select id="kc-large-filter">
+            <option value="">전체 대분류</option>
+        </select>
+        <select id="kc-mid-filter">
+            <option value="">전체 중분류</option>
+        </select>
+        <input type="text" id="kc-search" placeholder="종목명 또는 코드 검색">
+    </div>
+    <div class="summary-line" id="kc-count-line">불러오는 중...</div>
+
     <div id="kc-body">
         <p class="placeholder">불러오는 중...</p>
     </div>
@@ -43,6 +60,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/kr-charts.js?v=8"></script>
+<script src="assets/kr-charts.js?v=10"></script>
 </body>
 </html>
