@@ -26,6 +26,18 @@ function fmtMktcap(v) {
     if (v == null) return "-";
     return (v / 10000).toFixed(2) + "조";
 }
+// 시가총액(억원) / 최근 4개분기 영업현금흐름 합(원)
+function fmtMktcapPerCfo4q(item) {
+    const mktcap = item.mktcap;
+    const quarters = item.quarters || [];
+    if (mktcap == null || quarters.length < 4) return "-";
+    const last4 = quarters.slice(-4);
+    if (last4.some(q => q.cfo == null)) return "-";
+    const cfo4qSum = last4.reduce((sum, q) => sum + q.cfo, 0);
+    if (cfo4qSum <= 0) return "-";
+    const ratio = (mktcap * 1e8) / cfo4qSum;
+    return ratio.toFixed(1) + "배";
+}
 const MID_PSEUDO_SUFFIXES = new Set(["KOSPI", "KOSDAQ"]);
 function stripMidPrefix(mid) {
     if (!mid || !mid.includes("_")) return mid;
@@ -164,6 +176,7 @@ function renderCandidates() {
         <span class="cf-l-num" data-label="영업이익">${fmtWonCompact(l.op_income)}</span>
         <span class="cf-l-pct" data-label="OPM" style="color:${(l.opm||0) >= 0 ? '#B4342A' : '#2F5FA3'}">${fmtPct(l.opm)}</span>
         <span class="cf-l-num" data-label="영업현금흐름">${fmtWonCompact(l.cfo)}</span>
+        <span class="cf-l-ratio" data-label="시총/영업CF(4Q)">${fmtMktcapPerCfo4q(s)}</span>
         <span class="cf-l-num" data-label="CAPEX">${fmtWonCompact(l.capex)}</span>
         <span class="cf-l-num" data-label="FCF">${fmtWonCompact(l.fcf)}</span>
     </div>
@@ -185,6 +198,7 @@ function renderCandidates() {
             <span class="cf-l-num">영업이익</span>
             <span class="cf-l-pct">OPM</span>
             <span class="cf-l-num">영업현금흐름</span>
+            <span class="cf-l-ratio">시총/영업CF(4Q)</span>
             <span class="cf-l-num">CAPEX</span>
             <span class="cf-l-num">FCF</span>
         </div>

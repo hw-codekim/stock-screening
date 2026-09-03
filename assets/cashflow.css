@@ -1,8 +1,8 @@
-.cf-table-wrap { margin-bottom: 4px; }
+.cf-table-wrap { margin-bottom: 4px; overflow-x: auto; }
 
 .cf-row { gap: 8px; }
 .cf-name {
-    flex: 1 1 140px; font-weight: 500; color: #14213D;
+    flex: 0 0 130px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .cf-mktcap { flex: 0 0 70px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
@@ -34,6 +34,7 @@
 .cf-l-mktcap { flex: 0 0 60px; text-align: center; color: #14213D; font-variant-numeric: tabular-nums; }
 .cf-l-num { flex: 0 0 64px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .cf-l-pct { flex: 0 0 56px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+.cf-l-ratio { flex: 0 0 72px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; color: #14213D; }
 
 @media (max-width: 640px) {
     .cf-mktcap { display: none; }
