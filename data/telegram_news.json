@@ -1,6 +1,54 @@
 {
-  "generated_at": "2026-09-03 16:00",
+  "generated_at": "2026-09-03 17:00",
   "items": [
+    {
+      "date": "2026-09-03 16:57",
+      "title": "US Diesel Hits Highest Since April as Wars Strain Global Supply",
+      "title_ko": null,
+      "source": "finance.yahoo.com",
+      "region": "해외",
+      "link": "https://finance.yahoo.com/energy/articles/us-diesel-hits-highest-since-090323531.html"
+    },
+    {
+      "date": "2026-09-03 16:56",
+      "title": "셰브론, 베네수에 70억달러 투자…원유 생산 2배로 늘린다",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/018/0006363157?sid=101"
+    },
+    {
+      "date": "2026-09-03 16:47",
+      "title": "'틱톡' 바이트댄스, 269억불 대출 확보…AI투자 확대할 듯",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/018/0006363197?sid=101"
+    },
+    {
+      "date": "2026-09-03 16:33",
+      "title": "영업이익률 76% SK하이닉스, 진짜 리스크는 따로 있다",
+      "title_ko": null,
+      "source": "shindonga.donga.com",
+      "region": "국내",
+      "link": "https://shindonga.donga.com/economy/article/all/13/6368317/1?fbclid=IwdGRzaAUGAgdjbGNrBQYCA3Bkb2YFZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEeEfBnPIt97wyCE77wkexjqdeorDVcqZrbmsQfCmKPJLKLoMtAoDX2aLqb5KE_aem_YxAd6USJK4HcOkyzT4eyYw"
+    },
+    {
+      "date": "2026-09-03 16:23",
+      "title": "100조+α '미래대응기금' 떴다…벌써부터 군침 흘리는 여의도",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433321"
+    },
+    {
+      "date": "2026-09-03 16:10",
+      "title": "씨티, 삼성전자·SK하이닉스 목표가 낮춰…“환율 부담”",
+      "title_ko": null,
+      "source": "m.g-enews.com",
+      "region": "국내",
+      "link": "https://m.g-enews.com/article/Securities/2026/09/202609031528125623153ddfb15a_1"
+    },
     {
       "date": "2026-09-03 15:46",
       "title": "英伟达管理层解释：震撼市场的70%收入指引来自何方？ - 华尔街见闻",
@@ -1552,54 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/029/0003045658"
-    },
-    {
-      "date": "2026-09-02 08:10",
-      "title": "델, 실적호조·연간 가이던스 상향에 시간외 6%↑",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4432981"
-    },
-    {
-      "date": "2026-09-02 07:57",
-      "title": "美재무, 국채금리 급등 진화 안간힘…연일 \"심각한 상황 아냐\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/001/0016284013"
-    },
-    {
-      "date": "2026-09-02 07:54",
-      "title": "BYD, 캐나다 스텔란티스 공장 인수 타진…북미 거점 모색",
-      "title_ko": null,
-      "source": "g-enews.com",
-      "region": "국내",
-      "link": "https://g-enews.com/article/Global-Biz/2026/09/2026090206502783082bd56fbc3c_1"
-    },
-    {
-      "date": "2026-09-02 07:49",
-      "title": "\"모델보다 시스템\"…TSMC는 하이닉스엔 우군, 삼성은 독자노선",
-      "title_ko": null,
-      "source": "m.g-enews.com",
-      "region": "국내",
-      "link": "https://m.g-enews.com/article/Global-Biz/2026/09/202609020738573358fbbec65dfb_1"
-    },
-    {
-      "date": "2026-09-02 07:48",
-      "title": "대신 전략. 돌직구",
-      "title_ko": null,
-      "source": "telegram.me",
-      "region": "국내",
-      "link": "https://telegram.me/daishinstrategy"
-    },
-    {
-      "date": "2026-09-02 07:47",
-      "title": "FT \"호르무즈 해협서 韓 장금상선 소유 유조선 피격\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/001/0016284088"
     }
   ]
 }
