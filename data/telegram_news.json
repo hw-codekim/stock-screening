@@ -1,6 +1,38 @@
 {
-  "generated_at": "2026-09-11 21:00",
+  "generated_at": "2026-09-11 22:00",
   "items": [
+    {
+      "date": "2026-09-11 21:47",
+      "title": "Exclusive | Pentagon in Talks to Get Into AI Infrastructure Funding With a $5 Billion Loan",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://wsj.com/tech/ai/pentagon-in-talks-to-get-into-ai-infrastructure-funding-with-a-5-billion-loan-0367eeb0"
+    },
+    {
+      "date": "2026-09-11 21:41",
+      "title": "파키스탄, 이란과 '긴장 완화' 논의…후티 공격도 의제",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/421/0009165645?sid=104"
+    },
+    {
+      "date": "2026-09-11 21:17",
+      "title": "삼성전기, AI용 MLCC 집중한 사이…中, 글로벌 PC 공급망 파고든다",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/018/0006367903"
+    },
+    {
+      "date": "2026-09-11 21:04",
+      "title": "“삼전닉스처럼 성과급 달라” 요구 빗발치자…최대 ‘월급 68개월치’ 쏜다는 이 회사",
+      "title_ko": null,
+      "source": "sedaily.com",
+      "region": "국내",
+      "link": "https://sedaily.com/article/20090050"
+    },
     {
       "date": "2026-09-11 20:31",
       "title": "快讯 - 华尔街见闻",
@@ -8,14 +40,6 @@
       "source": "wallstreetcn.com",
       "region": "해외",
       "link": "https://wallstreetcn.com/livenews/3163921?ivk=1"
-    },
-    {
-      "date": "2026-09-11 20:26",
-      "title": "삼성전기, AI용 MLCC 집중한 사이…中, 글로벌 PC 공급망 파고든다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006367903?sid=101"
     },
     {
       "date": "2026-09-11 19:56",
@@ -1576,30 +1600,6 @@
       "source": "biz.chosun.com",
       "region": "국내",
       "link": "https://biz.chosun.com/industry/car/2026/09/03/LCB2JDSGQFAY7GZFFD4TWXVPQI"
-    },
-    {
-      "date": "2026-09-03 11:45",
-      "title": "강신철 국방장관 후보자 “사관학교, 바뀌더라도 韓 사관학교”",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/policy/politics/2026/09/03/7LSA5H7QTFHOVGEKFCWIMLV2PA"
-    },
-    {
-      "date": "2026-09-03 11:39",
-      "title": "트럼프 \"이란과 관련해 매우 잘 진행되고 있다\"(상보)",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433273"
-    },
-    {
-      "date": "2026-09-03 11:30",
-      "title": "中 CXMT, D램 점유율 10% 뚫었다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/011/0004658140?sid=101"
     }
   ]
 }
