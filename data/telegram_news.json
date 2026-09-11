@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11 22:00",
+  "generated_at": "2026-09-11 23:00",
   "items": [
     {
       "date": "2026-09-11 21:47",
@@ -216,6 +216,14 @@
       "source": "ekoreanews.co.kr",
       "region": "국내",
       "link": "https://ekoreanews.co.kr/news/articleView.html?idxno=88047"
+    },
+    {
+      "date": "2026-09-11 13:35",
+      "title": "\"주식창 끄고 떠난다\" 개미들 '백기'…1000조 뭉칫돈 대이동",
+      "title_ko": null,
+      "source": "hankyung.com",
+      "region": "국내",
+      "link": "https://hankyung.com/article/202609118484v"
     },
     {
       "date": "2026-09-11 12:58",
@@ -1592,14 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/031/0001055035"
-    },
-    {
-      "date": "2026-09-03 11:53",
-      "title": "테슬라 모델 Y, 국산·수입 브랜드 통틀어 ‘판매 1위’",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/industry/car/2026/09/03/LCB2JDSGQFAY7GZFFD4TWXVPQI"
     }
   ]
 }
