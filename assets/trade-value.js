@@ -57,6 +57,88 @@ async function loadVisitorCount() {
     }
 }
 
+// ── 투자자 동향 요약 ─────────────────────────────────
+function tvFmtEok(v) {
+    if (v == null) return "-";
+    return (v >= 0 ? "+" : "") + v.toLocaleString() + "억";
+}
+function tvFmtRatioPct(v) {
+    if (v == null) return "-";
+    return (v >= 0 ? "+" : "") + v.toFixed(3) + "%";
+}
+function tvSummaryRows(list, valueKey, labelFn, fmtFn) {
+    if (!list || !list.length) return '<div class="tv-summary-empty">데이터 없음</div>';
+    return list.map(r => {
+        const label = labelFn(r);
+        return `
+        <div class="tv-summary-row">
+            <span class="tv-summary-name" title="${label}">${label}</span>
+            <span class="tv-summary-value" style="color:${tvColor(r[valueKey])};">${fmtFn(r[valueKey])}</span>
+        </div>`;
+    }).join("");
+}
+function tvSummaryCard(title, buyList, sellList, buyLabel, sellLabel, valueKey, labelFn, fmtFn) {
+    return `
+    <div class="tv-summary-card">
+        <div class="tv-summary-title">${title}</div>
+        <div class="tv-summary-cols">
+            <div class="tv-summary-col">
+                <div class="tv-summary-col-label">${buyLabel}</div>
+                ${tvSummaryRows(buyList, valueKey, labelFn, fmtFn)}
+            </div>
+            <div class="tv-summary-col">
+                <div class="tv-summary-col-label">${sellLabel}</div>
+                ${tvSummaryRows(sellList, valueKey, labelFn, fmtFn)}
+            </div>
+        </div>
+    </div>`;
+}
+
+async function loadMoneyFlowSummary() {
+    const wrap = document.getElementById("tv-summary-grid");
+    try {
+        const res = await fetch("data/money_flow_summary.json");
+        const data = await res.json();
+        renderMoneyFlowSummary(data);
+    } catch (e) {
+        wrap.innerHTML = '<p class="placeholder">투자자 동향 데이터를 불러오지 못했습니다.</p>';
+    }
+}
+
+function renderMoneyFlowSummary(data) {
+    const s = data.summary;
+    const genEl = document.getElementById("tv-summary-generated");
+    if (genEl) {
+        const dateRange = s.flow_dates && s.flow_dates.length
+            ? `${tvShortDate(s.flow_dates[s.flow_dates.length - 1])}~${tvShortDate(s.flow_dates[0])}`
+            : "-";
+        genEl.textContent = `기준일: ${dateRange} · 생성 ${data.generated_at}`;
+    }
+
+    const sectorLabel = r => tvStripMidPrefix(r.sector_mid);
+    const stockLabel  = r => `${r.name} (${tvStripMidPrefix(r.sector_mid)})`;
+
+    const cards = [
+        tvSummaryCard("섹터별 기관 순매수 (5일, 억원)",
+            s.inst_buy_sectors, s.inst_sell_sectors, "매수 상위", "매도 상위",
+            "institution_eok", sectorLabel, tvFmtEok),
+        tvSummaryCard("섹터별 외국인 순매수 (5일, 억원)",
+            s.foreign_buy_sectors, s.foreign_sell_sectors, "매수 상위", "매도 상위",
+            "foreign_eok", sectorLabel, tvFmtEok),
+        tvSummaryCard("거래대금비율 추세 (최근10일 vs 이전10일, %p)",
+            s.steady_inflow_sectors, s.steady_outflow_sectors, "꾸준히 유입", "꾸준히 유출",
+            "diff", sectorLabel, tvFmtRatioPct),
+        tvSummaryCard("시총 대비 기관 순매수 비중 상위 종목",
+            s.mktcap_ratio_institution_buy, s.mktcap_ratio_institution_sell, "매수 비중 상위", "매도 비중 상위",
+            "institution_ratio_pct", stockLabel, tvFmtRatioPct),
+        tvSummaryCard("시총 대비 외국인 순매수 비중 상위 종목",
+            s.mktcap_ratio_foreign_buy, s.mktcap_ratio_foreign_sell, "매수 비중 상위", "매도 비중 상위",
+            "foreign_ratio_pct", stockLabel, tvFmtRatioPct),
+    ];
+
+    document.getElementById("tv-summary-grid").innerHTML = cards.join("");
+}
+
 // ── 로드 ────────────────────────────────────────────
 async function loadTradeValue() {
     try {
@@ -298,3 +380,4 @@ window.addEventListener("scroll", () => {
 
 loadVisitorCount();
 loadTradeValue();
+loadMoneyFlowSummary();
