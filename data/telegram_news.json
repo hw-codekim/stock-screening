@@ -1,6 +1,606 @@
 {
-  "generated_at": "2026-09-11 23:00",
+  "generated_at": "2026-09-13 12:12",
   "items": [
+    {
+      "date": "2026-09-13 11:39",
+      "title": "서울 아파트값 83주째 상승…역대 최장 기록 눈앞",
+      "title_ko": null,
+      "source": "sporbiz.co.kr",
+      "region": "국내",
+      "link": "http://sporbiz.co.kr/news/articleView.html?idxno=864671"
+    },
+    {
+      "date": "2026-09-13 11:36",
+      "title": "환율 1340원대 급락 여파…‘삼전닉스’ 영업익 전망 21조 감소",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/mnews/article/029/0003047635"
+    },
+    {
+      "date": "2026-09-13 11:25",
+      "title": "“원자로를 제트엔진처럼 찍어내라”…포스터의 공장형 초소형 원전 혁명 - 에너지안전신문",
+      "title_ko": null,
+      "source": "esnews.kr",
+      "region": "국내",
+      "link": "https://esnews.kr/news/articleView.html?idxno=6177"
+    },
+    {
+      "date": "2026-09-13 11:14",
+      "title": "Trump Brushes Off AI Doomsaying to Safeguard US Lead Over China",
+      "title_ko": null,
+      "source": "bloomberg.com",
+      "region": "해외",
+      "link": "https://bloomberg.com/news/articles/2026-09-12/trump-brushes-off-ai-doomsaying-to-safeguard-us-lead-over-china"
+    },
+    {
+      "date": "2026-09-13 11:06",
+      "title": "한화오션, 바다 위 '데이터센터' 첫 공개…육상 한계 넘어선다",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F079%2F0004188686%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F079%252F0004188686%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 11:05",
+      "title": "\"중국산 쓰지 마\" 美 경고 한마디에 '땡큐'…'5조 잭팟' 터진 K-배터리 [주末머니]",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F277%2F0005815484%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F277%252F0005815484%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 11:05",
+      "title": "주담대 7%도 버거운데…코픽스·FOMC에 또 오르나",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/648/0000050717?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 11:04",
+      "title": "올들어 집값 10% 넘게 오른 지역 19곳…어디?",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/648/0000050708?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 11:01",
+      "title": "\"제주 여행 무섭다\" 술렁였는데…자영업자도 놀란 '뜻밖의 반전'",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F015%2F0005331655%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F015%252F0005331655%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 11:00",
+      "title": "임광현 “부부공동 1주택자들 그간 더 많이 낸 종부세 환급해줄 것”",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/023/0003998112?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 10:59",
+      "title": "'표심' 급한 트럼프 vs '호르무즈' 쥔 이란...출구 없는 기싸움",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F052%2F0002406325%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F052%252F0002406325%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:58",
+      "title": "'등록금 0원' 정책…거점국립대보다 지방국립대에 더 큰 영향",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F079%2F0004188673%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F079%252F0004188673%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:57",
+      "title": "1,200만 원짜리 취업코칭·하이닉스 대비반도…구직 청년들 '한숨'",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F055%2F0001387869%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F055%252F0001387869%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:56",
+      "title": "서울 유일 신규 택지 염창공원 1000가구 설명회 파행…주민들 \"행정폭력\"",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F448%2F0000638973%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F448%252F0000638973%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:56",
+      "title": "與, 김승원 청문회 앞두고 \"제넨셀 임상시험 승인 과정 특혜 없었다\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/448/0000638997?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 10:55",
+      "title": "李, 4050 지지 하락·범여권 공세 등에 \"개혁의 이름으로 개혁 방해\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/448/0000639008?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 10:52",
+      "title": "“3년치 위스키가 창고에 가득”…스코틀랜드 1980년대 이후 최악 불황",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/009/0005734302?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 10:51",
+      "title": "“삼전닉스 ETF 팔고 금·원전 샀다”…조정장에 눈 돌린 개미들",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005734321%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005734321%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:51",
+      "title": "“직원 수천명에 강제로 지방 전근 가라니”...금융권 이전 둘러싼 경제학",
+      "title_ko": null,
+      "source": "link.naver.com",
+      "region": "국내",
+      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005734315%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005734315%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
+    },
+    {
+      "date": "2026-09-13 10:51",
+      "title": "[속보] 용혜인 후보자, 오전 11시30분 국회 기자회견…메시지 주목",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/009/0005734325?cds=news_edit"
+    },
+    {
+      "date": "2026-09-13 10:27",
+      "title": "\"AI 속도 늦추자\" 아모데이 제안…올트먼·머스크도 \"옳다\"",
+      "title_ko": null,
+      "source": "edaily.co.kr",
+      "region": "국내",
+      "link": "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=01164406645579792"
+    },
+    {
+      "date": "2026-09-13 10:27",
+      "title": "Iran says Arab states to sign Hormuz shipping route deal in Oman - Türkiye Today",
+      "title_ko": null,
+      "source": "turkiyetoday.com",
+      "region": "해외",
+      "link": "https://turkiyetoday.com/region/iran-says-arab-states-to-sign-hormuz-shipping-route-deal-in-oman-3227978?s=1"
+    },
+    {
+      "date": "2026-09-13 09:28",
+      "title": "AI 데이터센터 투자 가속도...반도체·부품 매출 182% 급증",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=j7sAspfgsZN2F6SA8"
+    },
+    {
+      "date": "2026-09-13 09:23",
+      "title": "\"반도체 끌고 AI 받친다\"…韓 성장률 상향이 바꿀 자산시장 셈법",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434577"
+    },
+    {
+      "date": "2026-09-13 09:13",
+      "title": "테슬라, 로드스터 10월 1일 출시 예고…2017년 공개 후 첫 공식 일정",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Global-Biz/2026/09/2026091307190167432bd56fbc3c_1"
+    },
+    {
+      "date": "2026-09-13 09:12",
+      "title": "월가 은행들 美 8월 PCE 전망치 상향…연준 '매파 기조'에 암호화폐 초긴장",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Securities/2026/09/202609130722182147e250e8e188_1"
+    },
+    {
+      "date": "2026-09-13 08:47",
+      "title": "최태원 \"AI, 이제 비즈니스가 되느냐의 문제…버블처럼 꺼질까 걱정\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434571"
+    },
+    {
+      "date": "2026-09-13 08:25",
+      "title": "SpaceX To Get Weighting Boost In Nasdaq 100 After Rebalance",
+      "title_ko": null,
+      "source": "finance.yahoo.com",
+      "region": "해외",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/spacex-weighting-boost-nasdaq-100-175851733.html"
+    },
+    {
+      "date": "2026-09-13 08:15",
+      "title": "올트먼, AI 안전 우려에 \"오픈AI IPO, 2026년엔 없다\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016306269?sid=104"
+    },
+    {
+      "date": "2026-09-13 07:42",
+      "title": "삼성전자·퀄컴, 5년 전 ‘트라우마’ 극복하나… 2나노 파운드리 수주 가능성은",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/it-science/ict/2026/09/13/RNOZIFPSPRAPDB3KTS4BBJQQ2Y"
+    },
+    {
+      "date": "2026-09-13 07:29",
+      "title": "서울 아파트값 86주째 상승… 文정부 최장 기록 넘었다",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/real_estate/real_estate_general/2026/09/13/AVZLPG7LX5DVHNEAKJGFP7ARW4"
+    },
+    {
+      "date": "2026-09-13 07:26",
+      "title": "만기 앞둔 전셋집, 시세 얼마나 올랐나 보니",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434567"
+    },
+    {
+      "date": "2026-09-12 23:08",
+      "title": "미국, 한국산 유정용 강관 반덤핑 관세 유지 확정…5개국 대상 2차 일몰재심 완료",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Global-Biz/2026/09/2026091220494143222bd56fbc3c_1"
+    },
+    {
+      "date": "2026-09-12 22:50",
+      "title": "트럼프 “이란 전쟁, 11월 美 중간선거 직후 끝날 것… 국제유가 급락 전망”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/international/international_general/2026/09/12/KKN552XXTVFBZC6QMION5WV62Q"
+    },
+    {
+      "date": "2026-09-12 22:13",
+      "title": "中国工程院院士邬贺铨：2030年中国算力有望占到全球30% - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3164346?ivk=1"
+    },
+    {
+      "date": "2026-09-12 20:55",
+      "title": "高盛最新判断：利率上升≠美股下跌，盈利增长才是牛市关键 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781632"
+    },
+    {
+      "date": "2026-09-12 20:42",
+      "title": "李 대통령 “혁명보다 어려운 개혁… 개혁 이름으로 방해하는 게 가장 큰 걸림돌”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/president_office/2026/09/12/BJW4UI4ST5DHNEH3Y6BZXZEYME"
+    },
+    {
+      "date": "2026-09-12 19:19",
+      "title": "금양, 기장공장을 데이터센터로 물적분할 추진…상폐 돌파구",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=dIq1X7Bq9mxRENHY5"
+    },
+    {
+      "date": "2026-09-12 19:04",
+      "title": "美股长牛背后有大小熊 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781629"
+    },
+    {
+      "date": "2026-09-12 18:45",
+      "title": "李 대통령 “유가 걱정하지 않아도 돼… 휘발유·경유가격 계속 안정”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/president_office/2026/09/12/WIIXLFN62ZCVRNCOXLNXRT3NAQ"
+    },
+    {
+      "date": "2026-09-12 18:40",
+      "title": "AI伺服器賣爆！全球市場衝1,663億美元 緯創、鴻海、廣達等8台廠吃香",
+      "title_ko": null,
+      "source": "ctee.com.tw",
+      "region": "해외",
+      "link": "https://ctee.com.tw/news/20260912700125-430502"
+    },
+    {
+      "date": "2026-09-12 18:17",
+      "title": "Trump says 'everything will work out fine' on Iran during Ireland visit",
+      "title_ko": null,
+      "source": "iranintl.com",
+      "region": "해외",
+      "link": "https://iranintl.com/en/202609127725"
+    },
+    {
+      "date": "2026-09-12 17:40",
+      "title": "유조선 운임 사상 최고치",
+      "title_ko": null,
+      "source": "magazine.hankyung.com",
+      "region": "국내",
+      "link": "https://magazine.hankyung.com/business/article/202609120321b"
+    },
+    {
+      "date": "2026-09-12 17:40",
+      "title": "交易员警惕线上移：10年期美债收益率破6%，才是个人投资组合的真正红线 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781625"
+    },
+    {
+      "date": "2026-09-12 17:39",
+      "title": "Firm Inflation Reading Keeps Pressure on Fed to Raise Rates",
+      "title_ko": null,
+      "source": "wsj.com",
+      "region": "해외",
+      "link": "https://wsj.com/economy/cpi-inflation-report-august-2026-e2b1e5e7?st=Wxjx3E"
+    },
+    {
+      "date": "2026-09-12 17:39",
+      "title": "한·미 협력 기대감에 원전 ETF 훨훨…수익률 상위권 '싹쓸이'",
+      "title_ko": null,
+      "source": "v.daum.net",
+      "region": "국내",
+      "link": "https://v.daum.net/v/20260911150654023?botevent=e&botref=KN&from=newsbot"
+    },
+    {
+      "date": "2026-09-12 17:07",
+      "title": "오라클 창업자 엘리슨, 주식 최대 10조 매각…5000만주 처분",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/003/0014185792"
+    },
+    {
+      "date": "2026-09-12 15:22",
+      "title": "중국산 광트랜시버, 美FCC 규제 대상서 빠져…'업계 안도'",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016305964?sid=104"
+    },
+    {
+      "date": "2026-09-12 15:05",
+      "title": "美해군 “국격 과시용 핵잠 안돼” 지적에…정부 “한반도 안보 위한 것”",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=HMoCrDNxm2XKMelT7"
+    },
+    {
+      "date": "2026-09-12 14:57",
+      "title": "공격적 투자하며 현금도 쌓는다…서학개미의 ‘양손 베팅’",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=tuJFijcCouaI5ANSJ"
+    },
+    {
+      "date": "2026-09-12 14:15",
+      "title": "잘나가는 K뷰티까지… 한국콜마에 36년 만에 첫 노조",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/distribution/channel/2026/09/11/EJRC3HMNCJB4HDLTM3OAUMA2IU"
+    },
+    {
+      "date": "2026-09-12 12:44",
+      "title": "12조 상속세 빚 털어낸 삼성가…이재용이 택한 지배력 수성",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Global-Biz/2026/09/202609120843551186fbbec65dfb_1"
+    },
+    {
+      "date": "2026-09-12 11:52",
+      "title": "美联储一旦开启加息周期，“连加3次”是合理预期？ - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781618"
+    },
+    {
+      "date": "2026-09-12 11:49",
+      "title": "67%暴跌后卷土重来！AI投资明星Aschenbrenner重回市场，押注SK海力士、AMD等 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781600"
+    },
+    {
+      "date": "2026-09-12 11:42",
+      "title": "\"달라진 원화 강세 공식…外人 주식 17조원 팔아도 환율 급락\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434564"
+    },
+    {
+      "date": "2026-09-12 10:46",
+      "title": "[라온신문] 광산 개발 및 AI 데이터센터 건설 수요에 中 굴삭기 수출 증가",
+      "title_ko": null,
+      "source": "raonnews.com",
+      "region": "국내",
+      "link": "https://raonnews.com/mobile/article.html?no=61056"
+    },
+    {
+      "date": "2026-09-12 10:43",
+      "title": "日 비자 수수료 올리자… 中, 일본인 대상 수수료 7배 인상",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/366/0001191922?sid=104"
+    },
+    {
+      "date": "2026-09-12 10:15",
+      "title": "2분기 팹리스 톱10 매출 73% 급증…AMD, 퀄컴 제치고 첫 3위",
+      "title_ko": null,
+      "source": "google.com",
+      "region": "국내",
+      "link": "https://www.google.com/share.google?q=AS6BQJ9wfgeAYIzPm"
+    },
+    {
+      "date": "2026-09-12 09:44",
+      "title": "강신철 “‘내일 전작권 회수해도 문제없다’ 공감…북한 정권과 북한군은 우리의 적”",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/2026/09/11/GDSCRPFT3JGVNH3NRONEYCIWRU"
+    },
+    {
+      "date": "2026-09-12 09:43",
+      "title": "한미일 ‘프리덤에지’ 끝나자 北 탄도미사일…靑 “즉각 중단하라”(종합)",
+      "title_ko": null,
+      "source": "biz.chosun.com",
+      "region": "국내",
+      "link": "https://biz.chosun.com/policy/politics/2026/09/12/R5JDPSDJL5DYDAZH6XAEHRWQBA"
+    },
+    {
+      "date": "2026-09-12 09:32",
+      "title": "AI TRENDS | DeepSeek Tests Voice Chat With Four Voice Options",
+      "title_ko": null,
+      "source": "binance.com",
+      "region": "해외",
+      "link": "https://binance.com/en/square/post/365712417115237"
+    },
+    {
+      "date": "2026-09-12 09:25",
+      "title": "오라클 창업자 엘리슨, 주식 최대 10조원 매각…5000만주 처분 | 아주경제",
+      "title_ko": null,
+      "source": "ajunews.com",
+      "region": "국내",
+      "link": "https://ajunews.com/view/20260912165420367"
+    },
+    {
+      "date": "2026-09-12 09:18",
+      "title": "\"AI 도입 빠른 韓, 생산국 수혜까지…성장 기회 커진다\"",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434554"
+    },
+    {
+      "date": "2026-09-12 08:47",
+      "title": "트럼프 \"中 자동차, 미국서 만들면 괜찮아…美근로자 고용이 중요\"",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/421/0009166129?sid=104"
+    },
+    {
+      "date": "2026-09-12 08:43",
+      "title": "甲骨文跳涨8.5%后转跌！AI需求强难消巨额烧钱与利润担忧 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781598"
+    },
+    {
+      "date": "2026-09-12 08:38",
+      "title": "报道：美国权衡如何利用《国防生产法》提升炼油产能 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3164069?ivk=1"
+    },
+    {
+      "date": "2026-09-12 08:32",
+      "title": "“新美联储通讯社”：美联储下周势将加息，但只加息一次无法解决问题 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/articles/3781605"
+    },
+    {
+      "date": "2026-09-12 08:21",
+      "title": "Exclusive-Nvidia in talks to invest in Anthropic’s mega IPO, sources say | live",
+      "title_ko": null,
+      "source": "live.euronext.com",
+      "region": "해외",
+      "link": "https://live.euronext.com/en/financial-news/exclusive-nvidia-talks-invest-anthropics-mega-ipo-sources-say"
+    },
+    {
+      "date": "2026-09-12 08:14",
+      "title": "호르무즈 이어 홍해 비상…\"후티, 바브엘만데브 해협 통제권 확보\"(종합2보)",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016305658?sid=104"
+    },
+    {
+      "date": "2026-09-12 08:05",
+      "title": "제재 늘리던 미국·유럽 자동차 업계, 결국 中 배터리로 '유턴'",
+      "title_ko": null,
+      "source": "theguru.co.kr",
+      "region": "국내",
+      "link": "https://theguru.co.kr/mobile/article.html?no=106997"
+    },
+    {
+      "date": "2026-09-12 07:45",
+      "title": "报道：美国目前不打算袭击也门胡塞武装 - 华尔街见闻",
+      "title_ko": null,
+      "source": "wallstreetcn.com",
+      "region": "해외",
+      "link": "https://wallstreetcn.com/livenews/3164189?ivk=1"
+    },
+    {
+      "date": "2026-09-12 06:38",
+      "title": "[G-돋보기] 연준 9월 금리 인상 확률 90%로 폭등...근원물가 깜짝 급등·유가 충격",
+      "title_ko": null,
+      "source": "g-enews.com",
+      "region": "국내",
+      "link": "https://g-enews.com/article/Global-Biz/2026/09/202609120557528378e250e8e188_1"
+    },
+    {
+      "date": "2026-09-12 04:13",
+      "title": "끈적한 美 물가 미국 선물시장 9월 '인상 베팅' 85% 넘겨",
+      "title_ko": null,
+      "source": "news.einfomax.co.kr",
+      "region": "국내",
+      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4434534"
+    },
+    {
+      "date": "2026-09-11 23:14",
+      "title": "Leopold Aschenbrenner's Situational Awareness is active in options market, sources say",
+      "title_ko": null,
+      "source": "cnbc.com",
+      "region": "해외",
+      "link": "https://cnbc.com/2026/09/11/leopold-aschenbrenners-situational-awareness-is-active-in-options-market-sources-say.html"
+    },
+    {
+      "date": "2026-09-11 23:08",
+      "title": "고유가 여파 美소비자심리 47.8로 급락…역대 두번째로 낮아",
+      "title_ko": null,
+      "source": "n.news.naver.com",
+      "region": "국내",
+      "link": "https://n.news.naver.com/article/001/0016305647?sid=104"
+    },
     {
       "date": "2026-09-11 21:47",
       "title": "Exclusive | Pentagon in Talks to Get Into AI Infrastructure Funding With a $5 Billion Loan",
@@ -138,14 +738,6 @@
       "link": "https://wallstreetcn.com/livenews/3163739?ivk=1"
     },
     {
-      "date": "2026-09-11 16:20",
-      "title": "잘나가는 K뷰티까지… 한국콜마에 36년 만에 첫 노조",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/distribution/channel/2026/09/11/EJRC3HMNCJB4HDLTM3OAUMA2IU"
-    },
-    {
       "date": "2026-09-11 16:19",
       "title": "撤退信号？“大空头”平仓英伟达和Palantir看跌期权 - 华尔街见闻",
       "title_ko": null,
@@ -168,14 +760,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/mnews/article/001/0016305075"
-    },
-    {
-      "date": "2026-09-11 15:45",
-      "title": "한·미 협력 기대감에 원전 ETF 훨훨…수익률 상위권 '싹쓸이'",
-      "title_ko": null,
-      "source": "v.daum.net",
-      "region": "국내",
-      "link": "https://v.daum.net/v/20260911150654023?botevent=e&botref=KN&from=newsbot"
     },
     {
       "date": "2026-09-11 15:07",
@@ -1016,590 +1600,6 @@
       "source": "n.news.naver.com",
       "region": "국내",
       "link": "https://n.news.naver.com/article/123/0002389650?sid=004"
-    },
-    {
-      "date": "2026-09-04 17:00",
-      "title": "报道：苹果折叠屏iPhone日产量仅“几百”台，开售初期或供应紧张 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3781082"
-    },
-    {
-      "date": "2026-09-04 16:56",
-      "title": "中美或将就农业及相关非关税壁垒发布声明？外交部：无信息提供 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3160426?ivk=1"
-    },
-    {
-      "date": "2026-09-04 16:51",
-      "title": "泰国暂停49个数据中心项目建设，拟加强行业监管 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/livenews/3160435?ivk=1"
-    },
-    {
-      "date": "2026-09-04 16:47",
-      "title": "노무라 \"다시 달러당 160엔 가면 BOJ 9·10·12월 연속 금리인상 가능\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/421/0009151322?sid=101"
-    },
-    {
-      "date": "2026-09-04 15:29",
-      "title": "中 YMTC 낸드 성장세 거세...日 키옥시아 따라잡고 삼성·하닉 추격",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/031/0001055524?sid=105"
-    },
-    {
-      "date": "2026-09-04 10:34",
-      "title": "Ancang-ancang Korsel Berinvestasi di Galangan Kapal RI",
-      "title_ko": null,
-      "source": "tempo.co",
-      "region": "해외",
-      "link": "https://tempo.co/sains/ancang-ancang-korsel-berinvestasi-di-galangan-kapal-ri--2285400"
-    },
-    {
-      "date": "2026-09-04 10:23",
-      "title": "高盛：霍尔木兹通行量已恢复三分之二，每天有500万桶“暗船”流量 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3781047"
-    },
-    {
-      "date": "2026-09-04 10:18",
-      "title": "Nvidia in Talks to Invest Around $2.5 Billion in Murati’s Thinking Machines Lab",
-      "title_ko": null,
-      "source": "theinformation.com",
-      "region": "해외",
-      "link": "https://theinformation.com/articles/thinking-machines-lab-talks-raise-billions-roughly-40-billion-valuation"
-    },
-    {
-      "date": "2026-09-04 08:25",
-      "title": "국고보조금 받는 정당에 ‘기생충’이라더니…6년 전과 대비되는 용혜인",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005730247%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005730247%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-04 08:24",
-      "title": "“금리·환율까지 우주의 기운이 모이는중”…금융지주 주가 ‘불기둥’",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005730243%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005730243%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-04 08:23",
-      "title": "영구임대서 공공재개발까지 35년…필요한 건 '많이' 아닌 '제대로' [누구를 위한 어떤 '공공' ④·끝]",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F014%2F0005570960%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F014%252F0005570960%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-04 08:22",
-      "title": "삼성물산, 스웨덴 원전도 뚫었다… SMR 시장 공략 속도",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/014/0005570805"
-    },
-    {
-      "date": "2026-09-04 08:21",
-      "title": "#osteosarcoma #adc #sarcoma #indacceptance #drugdevelopment #clinicaltrials #oncologyresearch | SOTIO Biotech",
-      "title_ko": null,
-      "source": "linkedin.com",
-      "region": "해외",
-      "link": "https://linkedin.com/posts/sotio_osteosarcoma-adc-sarcoma-activity-7500159406014361600-liuo?rcm=ACoAAB8NhTABkdUAqJ2vYAWWfK0wmiFc8hruA4k"
-    },
-    {
-      "date": "2026-09-04 07:56",
-      "title": "[단독] \"에이피알, 짝퉁에 당했다\"…싱가포르는 한때 수출금지",
-      "title_ko": null,
-      "source": "newspim.com",
-      "region": "국내",
-      "link": "https://newspim.com/news/view/20260903001199"
-    },
-    {
-      "date": "2026-09-04 07:52",
-      "title": "Can Xiaomi Take On Porsche On Its Home Turf? It’s About To Try",
-      "title_ko": null,
-      "source": "insideevs.com",
-      "region": "해외",
-      "link": "https://insideevs.com/news/807047/xiaomi-germany-launch-2027-porsche"
-    },
-    {
-      "date": "2026-09-04 07:51",
-      "title": "China's August NEV wholesale sales seen rising 16% as retail demand remains weak",
-      "title_ko": null,
-      "source": "cnevpost.com",
-      "region": "해외",
-      "link": "https://cnevpost.com/2026/09/03/china-aug-nev-wholesale-cpca-estimate"
-    },
-    {
-      "date": "2026-09-04 07:30",
-      "title": "사우디는 빗장, 美는 유전 매입…'중질유 확보전'에 끼인 韓 정유는",
-      "title_ko": null,
-      "source": "biz.newdaily.co.kr",
-      "region": "국내",
-      "link": "https://biz.newdaily.co.kr/site/data/html/2026/08/31/2026083100129.html"
-    },
-    {
-      "date": "2026-09-04 07:12",
-      "title": "Bloom Energy and 7 More Stocks That Could Join the S&P 500 This Month",
-      "title_ko": null,
-      "source": "barrons.com",
-      "region": "해외",
-      "link": "https://barrons.com/articles/sp-500-index-additions-bloom-energy-9e4bf0dc"
-    },
-    {
-      "date": "2026-09-04 06:07",
-      "title": "\"금리동결 지지\" 발언에 기술주 웃었다…국채금리도 진정[뉴욕마감]",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F008%2F0005409324%3Fsid%3D101&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F008%252F0005409324%253Fsid%253D101%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-04 06:06",
-      "title": "비거주·임대사업자 세제 또 바뀔까...추가 보완 가능성 ‘솔솔’",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/024/0000107975?cds=news_edit"
-    },
-    {
-      "date": "2026-09-03 22:51",
-      "title": "공장은 지어도 사람은 못 옮긴다?…호남 반도체에 숨은 '파업 변수'",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F018%2F0006363335%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F018%252F0006363335%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 22:33",
-      "title": "美 \"미국 내 생산 반도체 무관세, 아니면 관세\"…선거 앞두고 삼성·하닉에 투자 압박",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F448%2F0000637334%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F448%252F0000637334%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 22:28",
-      "title": "[단독]김승원, 판사 퇴직 직후 음주운전 벌금 70만 원",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F079%2F0004185741%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F079%252F0004185741%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 22:27",
-      "title": "靑 ‘호르무즈 파병 가닥’ 보도에 “사실과 달라… 결정된 바 없어”",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F366%2F0001190285%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F366%252F0001190285%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 22:26",
-      "title": "삼전닉스 믿고 샀는데 어쩌나…\"잔치는 끝났다\" 충격 전망 [분석+]",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F015%2F0005328562%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F015%252F0005328562%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 22:25",
-      "title": "“지방 이전하면 퇴사”…뿔난 국책은행 노조 총파업 한다",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F009%2F0005730227%3Fcds%3Dnews_edit&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F009%252F0005730227%253Fcds%253Dnews_edit%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 21:55",
-      "title": "Exclusive / Saudi AI firm HUMAIN to launch giant global VC fund this year",
-      "title_ko": null,
-      "source": "semafor.com",
-      "region": "해외",
-      "link": "https://semafor.com/article/09/03/2026/saudi-ai-firm-humain-to-launch-giant-global-vc-fund-this-year"
-    },
-    {
-      "date": "2026-09-03 21:49",
-      "title": "Google Is Now Pulling DDR4 Modules Out Of Retired Servers And Reusing Them In New AI Servers",
-      "title_ko": null,
-      "source": "wccftech.com",
-      "region": "해외",
-      "link": "https://wccftech.com/google-is-now-pulling-ddr4-modules-out-of-retired-servers-and-reusing-them-in-new-ai-servers"
-    },
-    {
-      "date": "2026-09-03 21:37",
-      "title": "Fed Governor Waller indicates he will support holding rates steady at September meeting",
-      "title_ko": null,
-      "source": "cnbc.com",
-      "region": "해외",
-      "link": "https://cnbc.com/2026/09/03/fed-governor-waller-indicates-he-will-support-holding-rates-steady-at-september-meeting.html?__source=iosappshare%7Ccom.apple.UIKit.activity.CopyToPasteboard"
-    },
-    {
-      "date": "2026-09-03 21:22",
-      "title": "NVIDIA to Acquire Hugging Face",
-      "title_ko": null,
-      "source": "blogs.nvidia.com",
-      "region": "해외",
-      "link": "https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face"
-    },
-    {
-      "date": "2026-09-03 21:03",
-      "title": "영업이익 N% 성과급 요구 파업은 ‘불법’…노동부 지침 발표",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/056/0012250306?sid=101"
-    },
-    {
-      "date": "2026-09-03 20:46",
-      "title": "[단독]정부, 호르무즈에 '파병' 가닥...\"국회에 파병동의안 제출 준비 중\"",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/437/0000509380?sid=100"
-    },
-    {
-      "date": "2026-09-03 20:07",
-      "title": "폴란드 내부서 터져 나온 '불협화음'…K2 전차 현지화 과정서 뜻밖의 이견 속출",
-      "title_ko": null,
-      "source": "theguru.co.kr",
-      "region": "국내",
-      "link": "https://theguru.co.kr/mobile/article.html?no=106615"
-    },
-    {
-      "date": "2026-09-03 19:44",
-      "title": "美国“租房一族”加速崛起：不买房，把钱投入股市 - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3780994"
-    },
-    {
-      "date": "2026-09-03 19:40",
-      "title": "우리금융硏 \"연준, 9월 금리 25bp 인상할 것…근원물가 압력 대응\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433360"
-    },
-    {
-      "date": "2026-09-03 19:32",
-      "title": "삼성전자, 2Q HBM 점유율 21%→33% '껑충'",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Fmnews%2Farticle%2F031%2F0001055295&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Fmnews%252Farticle%252F031%252F0001055295%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 18:09",
-      "title": "가품에 골머리…에이피알 \"문제된 메디큐브 제품, 수출한 적 없어\"",
-      "title_ko": null,
-      "source": "magazine.hankyung.com",
-      "region": "국내",
-      "link": "https://magazine.hankyung.com/business/article/202609032688b"
-    },
-    {
-      "date": "2026-09-03 17:54",
-      "title": "한·중·일 증시 일제히 'V자' 변동성 장세…배경은?",
-      "title_ko": null,
-      "source": "g-enews.com",
-      "region": "국내",
-      "link": "https://g-enews.com/article/Securities/2026/09/202609031724378157153ddfb15a_1"
-    },
-    {
-      "date": "2026-09-03 17:47",
-      "title": "“발표 보고 알았다”… 세종 이전에 성평등부 ‘당혹’, 법무부는 ‘담담’",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/topics/law_firm/2026/09/03/7AGOKMTNWFF5XHXQ6W7ME6GU3Q"
-    },
-    {
-      "date": "2026-09-03 17:26",
-      "title": "에이피알 \"수단레드 검출 메디큐브 제품, 싱가포르 수출 이력 없어\"",
-      "title_ko": null,
-      "source": "google.com",
-      "region": "국내",
-      "link": "https://www.google.com/share.google?q=U2HZoaqyhlF81NchP"
-    },
-    {
-      "date": "2026-09-03 17:26",
-      "title": "[단독] 에이피알 '메디큐브', 싱가포르서 발암 의심 물질 검출…현지 보건당국 제품 회수",
-      "title_ko": null,
-      "source": "link.naver.com",
-      "region": "국내",
-      "link": "https://link.naver.com/bridge?url=https%3A%2F%2Fn.news.naver.com%2Farticle%2F014%2F0005570589%3Fsid%3D101&dst=naversearchapp%3A%2F%2Finappbrowser%3Furl%3Dhttps%253A%252F%252Fn.news.naver.com%252Farticle%252F014%252F0005570589%253Fsid%253D101%26version%3D10%26sourceReferer%3Dshare"
-    },
-    {
-      "date": "2026-09-03 17:21",
-      "title": "엔화, BOJ 매파 발언에 강세…\"연속 인상도 가능\"",
-      "title_ko": null,
-      "source": "m.newspim.com",
-      "region": "국내",
-      "link": "https://m.newspim.com/news/view/20260902001229"
-    },
-    {
-      "date": "2026-09-03 17:07",
-      "title": "셰브론, 베네수에 70억달러 투자…원유 생산 2배로 늘린다",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006363157?sid=101"
-    },
-    {
-      "date": "2026-09-03 16:57",
-      "title": "US Diesel Hits Highest Since April as Wars Strain Global Supply",
-      "title_ko": null,
-      "source": "finance.yahoo.com",
-      "region": "해외",
-      "link": "https://finance.yahoo.com/energy/articles/us-diesel-hits-highest-since-090323531.html"
-    },
-    {
-      "date": "2026-09-03 16:47",
-      "title": "'틱톡' 바이트댄스, 269억불 대출 확보…AI투자 확대할 듯",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006363197?sid=101"
-    },
-    {
-      "date": "2026-09-03 16:33",
-      "title": "영업이익률 76% SK하이닉스, 진짜 리스크는 따로 있다",
-      "title_ko": null,
-      "source": "shindonga.donga.com",
-      "region": "국내",
-      "link": "https://shindonga.donga.com/economy/article/all/13/6368317/1?fbclid=IwdGRzaAUGAgdjbGNrBQYCA3Bkb2YFZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEeEfBnPIt97wyCE77wkexjqdeorDVcqZrbmsQfCmKPJLKLoMtAoDX2aLqb5KE_aem_YxAd6USJK4HcOkyzT4eyYw"
-    },
-    {
-      "date": "2026-09-03 16:23",
-      "title": "100조+α '미래대응기금' 떴다…벌써부터 군침 흘리는 여의도",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433321"
-    },
-    {
-      "date": "2026-09-03 16:10",
-      "title": "씨티, 삼성전자·SK하이닉스 목표가 낮춰…“환율 부담”",
-      "title_ko": null,
-      "source": "m.g-enews.com",
-      "region": "국내",
-      "link": "https://m.g-enews.com/article/Securities/2026/09/202609031528125623153ddfb15a_1"
-    },
-    {
-      "date": "2026-09-03 15:46",
-      "title": "英伟达管理层解释：震撼市场的70%收入指引来自何方？ - 华尔街见闻",
-      "title_ko": null,
-      "source": "wallstreetcn.com",
-      "region": "해외",
-      "link": "https://wallstreetcn.com/articles/3780962"
-    },
-    {
-      "date": "2026-09-03 15:36",
-      "title": "HSA Tests Product Samples of Medicube PDRN Pink Collagen Capsule Cream for Presence of Sudan Red Dyes",
-      "title_ko": null,
-      "source": "hsa.gov.sg",
-      "region": "해외",
-      "link": "https://hsa.gov.sg/announcements/hsa-tests-product-samples-of-medicube-pdrn-pink-collagen-capsule-cream-for-presence-of-sudan-red-dyes"
-    },
-    {
-      "date": "2026-09-03 15:35",
-      "title": "SEMICON Taiwan》晶片升級「系統戰」！科技五虎將開講 說的其實是同一句話：AI需求仍強",
-      "title_ko": null,
-      "source": "ctee.com.tw",
-      "region": "해외",
-      "link": "https://ctee.com.tw/news/20260903700054-430501"
-    },
-    {
-      "date": "2026-09-03 14:56",
-      "title": "Studsvik, GE Vernova Hitachi and Samsung C&T commit to advancing 1.2 GW nuclear power project in Sweden | GE Vernova News",
-      "title_ko": null,
-      "source": "gevernova.com",
-      "region": "해외",
-      "link": "https://gevernova.com/news/press-releases/studsvik-ge-vernova-hitachi-samsung-ct-commit-advancing-12-gw-nuclear-power-project"
-    },
-    {
-      "date": "2026-09-03 14:43",
-      "title": "“보증금 안 돌려줄 의도 없었다”…전세사기 부결 97%",
-      "title_ko": null,
-      "source": "magazine.hankyung.com",
-      "region": "국내",
-      "link": "https://magazine.hankyung.com/business/article/202609030933b"
-    },
-    {
-      "date": "2026-09-03 14:42",
-      "title": "“3%로 빌렸는데” 영끌족 이자 폭탄",
-      "title_ko": null,
-      "source": "magazine.hankyung.com",
-      "region": "국내",
-      "link": "https://magazine.hankyung.com/business/article/202609031102b"
-    },
-    {
-      "date": "2026-09-03 14:21",
-      "title": "증권가 “단기 공포 클라이맥스 지나가”… JP모건도 조정론 접고 ‘강세론’ 선회",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/stock/stock_general/2026/09/03/EYIJL3UDWBANNM7BWBZ5SCZPTE"
-    },
-    {
-      "date": "2026-09-03 14:00",
-      "title": "엔비디아가 대만 반도체 채권을 산 이유는",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433304"
-    },
-    {
-      "date": "2026-09-03 14:00",
-      "title": "李대통령, 정의선과 비공개 회동…새만금·대미투자 등 현안 논의",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433307"
-    },
-    {
-      "date": "2026-09-03 13:51",
-      "title": "李대통령 “외환위기 마지막 빚 갚아... 국민 여러분 덕분에 마무리”",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/policy/politics/president_office/2026/09/03/PLR4LG3KYJCGNAMCBP6BMYFVQU"
-    },
-    {
-      "date": "2026-09-03 13:12",
-      "title": "'결국 금리가 문제'…한전 vs 삼전닉스 3년치 선납 전기요금 두고 이견",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433297"
-    },
-    {
-      "date": "2026-09-03 13:12",
-      "title": "대기업, 총수일가·임직원에 주식 지급 65.7% ↑",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/policy/policy_sub/2026/09/03/JNVXVJEDNRFYFAHCBETXI7FMAM"
-    },
-    {
-      "date": "2026-09-03 13:12",
-      "title": "두산은 총수에게, 한화는 2세에게… 대기업 주식 지급 계약 65.7% ↑",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/JNVXVJEDNRFYFAHCBETXI7FMAM"
-    },
-    {
-      "date": "2026-09-03 13:11",
-      "title": "JPMorgan scales back Jane Street financing amid growing bond market rivalry - FT",
-      "title_ko": null,
-      "source": "uk.finance.yahoo.com",
-      "region": "해외",
-      "link": "https://uk.finance.yahoo.com/news/jpmorgan-scales-back-jane-street-221534326.html"
-    },
-    {
-      "date": "2026-09-03 13:07",
-      "title": "삼전닉스 전기요금 3년 선납에 촉각…SK하이닉스 연내 국고채 투자개시 유효할까",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433296"
-    },
-    {
-      "date": "2026-09-03 12:51",
-      "title": "\"또 개입할라\"…160엔 뚫렸던 엔화, 하루 만에 2엔 급반등",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/018/0006362818"
-    },
-    {
-      "date": "2026-09-03 12:51",
-      "title": "한은 \"스테이블코인 시장 개방 시 달러-원 연계 강화…수요 충격 환율로\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433290"
-    },
-    {
-      "date": "2026-09-03 12:45",
-      "title": "SG \"연준, 3회 금리 인상 전망…동결 유지 필요성 낮아져\"",
-      "title_ko": null,
-      "source": "news.einfomax.co.kr",
-      "region": "국내",
-      "link": "https://news.einfomax.co.kr/news/articleView.html?idxno=4433279"
-    },
-    {
-      "date": "2026-09-03 12:43",
-      "title": "[단독] 美 운용사, 솔리다임 ETF 선등록…IPO 시계 빨라지나",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/293/0000089948"
-    },
-    {
-      "date": "2026-09-03 12:43",
-      "title": "Hegseth Extends Mideast Deployments Into 2027, Escalating Strain on Troops",
-      "title_ko": null,
-      "source": "wsj.com",
-      "region": "해외",
-      "link": "https://wsj.com/politics/national-security/hegseth-extends-mideast-deployments-into-2027-escalating-strain-on-troops-c10fc533"
-    },
-    {
-      "date": "2026-09-03 12:35",
-      "title": "공화당 의원 다수, 트럼프 선거 지원 전당대회 불참",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/003/0014165810?sid=104"
-    },
-    {
-      "date": "2026-09-03 12:22",
-      "title": "감사전 재무제표 안 낸 기업 76곳… 1년 새 46% 급증",
-      "title_ko": null,
-      "source": "biz.chosun.com",
-      "region": "국내",
-      "link": "https://biz.chosun.com/stock/stock_general/2026/09/03/MM3DQYJYHBRTGYTFGRQWMMBQMU"
-    },
-    {
-      "date": "2026-09-03 12:20",
-      "title": "[속보] 경찰, 방시혁 하이브 의장 불구속송치…“기존 주주 지분 팔게 유도”",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/009/0005729842"
-    },
-    {
-      "date": "2026-09-03 12:14",
-      "title": "이 대통령, 전날 정의선 회장과 비공개 회동…새만금 투자 논의",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/mnews/article/003/0014166815?sid=100"
-    },
-    {
-      "date": "2026-09-03 11:59",
-      "title": "미군 호위에 원유 1800만배럴 호르무즈 통과...전쟁전 90%",
-      "title_ko": null,
-      "source": "n.news.naver.com",
-      "region": "국내",
-      "link": "https://n.news.naver.com/article/031/0001055035"
     }
   ]
 }
