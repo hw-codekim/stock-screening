@@ -66,6 +66,7 @@ function tvFmtRatioPct(v) {
     if (v == null) return "-";
     return (v >= 0 ? "+" : "") + v.toFixed(3) + "%";
 }
+// 단일 값(추세 diff 등)을 좌우 2열로 보여주는 카드
 function tvSummaryRows(list, valueKey, labelFn, fmtFn) {
     if (!list || !list.length) return '<div class="tv-summary-empty">데이터 없음</div>';
     return list.map(r => {
@@ -94,6 +95,41 @@ function tvSummaryCard(title, buyList, sellList, buyLabel, sellLabel, valueKey, 
     </div>`;
 }
 
+// 1일/5일/10일/30일을 나란히 보여주는 표 카드 (반짝 매수 vs 꾸준한 매수 판별용)
+const TV_FLOW_PERIOD_LABELS = { "1d": "1일", "5d": "5일", "10d": "10일", "30d": "30일" };
+function tvFlowTableRows(list, periods, valueKey, labelFn, fmtFn) {
+    if (!list || !list.length) {
+        return `<tr><td colspan="${periods.length + 1}"><div class="tv-summary-empty">데이터 없음</div></td></tr>`;
+    }
+    return list.map(r => {
+        const label = labelFn(r);
+        const cells = periods.map(p => {
+            const v = r[valueKey][p];
+            return `<td style="color:${tvColor(v)};">${fmtFn(v)}</td>`;
+        }).join("");
+        return `<tr><td class="tv-flow-name" title="${label}">${label}</td>${cells}</tr>`;
+    }).join("");
+}
+function tvFlowTable(title, periods, buyList, sellList, buyLabel, sellLabel, valueKey, labelFn, fmtFn) {
+    const colspan = periods.length + 1;
+    const header = `<tr><th></th>${periods.map(p => `<th>${TV_FLOW_PERIOD_LABELS[p] || p}</th>`).join("")}</tr>`;
+    return `
+    <div class="tv-summary-card">
+        <div class="tv-summary-title">${title}</div>
+        <div class="tv-flow-table-wrap">
+            <table class="tv-flow-table">
+                <thead>${header}</thead>
+                <tbody>
+                    <tr class="tv-flow-group-row"><td colspan="${colspan}">${buyLabel}</td></tr>
+                    ${tvFlowTableRows(buyList, periods, valueKey, labelFn, fmtFn)}
+                    <tr class="tv-flow-group-row"><td colspan="${colspan}">${sellLabel}</td></tr>
+                    ${tvFlowTableRows(sellList, periods, valueKey, labelFn, fmtFn)}
+                </tbody>
+            </table>
+        </div>
+    </div>`;
+}
+
 async function loadMoneyFlowSummary() {
     const wrap = document.getElementById("tv-summary-grid");
     try {
@@ -107,33 +143,33 @@ async function loadMoneyFlowSummary() {
 
 function renderMoneyFlowSummary(data) {
     const s = data.summary;
+    const periods = s.flow_periods || ["1d", "5d", "10d", "30d"];
     const genEl = document.getElementById("tv-summary-generated");
     if (genEl) {
-        const dateRange = s.flow_dates && s.flow_dates.length
-            ? `${tvShortDate(s.flow_dates[s.flow_dates.length - 1])}~${tvShortDate(s.flow_dates[0])}`
-            : "-";
-        genEl.textContent = `기준일: ${dateRange} · 생성 ${data.generated_at}`;
+        const r30 = s.period_ranges && s.period_ranges["30d"];
+        const rangeText = r30 ? `${tvShortDate(r30.start)}~${tvShortDate(r30.end)} (최근 30거래일)` : "-";
+        genEl.textContent = `기준일: ${rangeText} · 생성 ${data.generated_at}`;
     }
 
     const sectorLabel = r => tvStripMidPrefix(r.sector_mid);
     const stockLabel  = r => `${r.name} (${tvStripMidPrefix(r.sector_mid)})`;
 
     const cards = [
-        tvSummaryCard("섹터별 기관 순매수 (5일, 억원)",
+        tvFlowTable("섹터별 기관 순매수 (억원)", periods,
             s.inst_buy_sectors, s.inst_sell_sectors, "매수 상위", "매도 상위",
             "institution_eok", sectorLabel, tvFmtEok),
-        tvSummaryCard("섹터별 외국인 순매수 (5일, 억원)",
+        tvFlowTable("섹터별 외국인 순매수 (억원)", periods,
             s.foreign_buy_sectors, s.foreign_sell_sectors, "매수 상위", "매도 상위",
             "foreign_eok", sectorLabel, tvFmtEok),
+        tvFlowTable("시총 대비 기관 순매수 비중 상위 종목 (%)", periods,
+            s.mktcap_ratio_institution_buy, s.mktcap_ratio_institution_sell, "매수 비중 상위", "매도 비중 상위",
+            "institution_ratio_pct", stockLabel, tvFmtRatioPct),
+        tvFlowTable("시총 대비 외국인 순매수 비중 상위 종목 (%)", periods,
+            s.mktcap_ratio_foreign_buy, s.mktcap_ratio_foreign_sell, "매수 비중 상위", "매도 비중 상위",
+            "foreign_ratio_pct", stockLabel, tvFmtRatioPct),
         tvSummaryCard("거래대금비율 추세 (최근10일 vs 이전10일, %p)",
             s.steady_inflow_sectors, s.steady_outflow_sectors, "꾸준히 유입", "꾸준히 유출",
             "diff", sectorLabel, tvFmtRatioPct),
-        tvSummaryCard("시총 대비 기관 순매수 비중 상위 종목",
-            s.mktcap_ratio_institution_buy, s.mktcap_ratio_institution_sell, "매수 비중 상위", "매도 비중 상위",
-            "institution_ratio_pct", stockLabel, tvFmtRatioPct),
-        tvSummaryCard("시총 대비 외국인 순매수 비중 상위 종목",
-            s.mktcap_ratio_foreign_buy, s.mktcap_ratio_foreign_sell, "매수 비중 상위", "매도 비중 상위",
-            "foreign_ratio_pct", stockLabel, tvFmtRatioPct),
     ];
 
     document.getElementById("tv-summary-grid").innerHTML = cards.join("");
