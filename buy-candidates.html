@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>매수후보</title>
+<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/buy-candidates.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>매수후보</h1>
+            <div class="sub">국장 종목 중 거래량 급증·신고가·이평선 돌파 조건 스크리닝</div>
+        </div>
+        <nav class="site-nav">
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html">국장</a>
+            <a href="commodities.html">원자재</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="buy-candidates.html" class="active">매수후보</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="page-note">
+        <div class="page-note-kicker">국장(코스피 5000억 · 코스닥 3000억 이상) 유니버스</div>
+        <div class="page-note-title">매수후보 조건 (5개 중 1개 이상 충족 시 선별, OR)</div>
+        <div class="page-note-body">
+            ① 최근 거래일 거래량이 직전 10일 평균 거래량 대비 3배 이상<br>
+            ② 최근 거래일 종가가 전일대비 10% 이상 상승하면서 150일선을 당일 처음 돌파<br>
+            ③ 최근 거래일 종가가 최근 50거래일 중 최고가(종가 기준)<br>
+            ④ 최근 거래일 종가가 52주(최근 252거래일) 중 최고가(종가 기준)<br>
+            ⑤ 최근 거래일 거래량이 직전 거래일 대비 5배 이상이면서 종가 10% 이상 상승<br>
+            ☞ 카드 하단의 뉴스는 네이버 종목뉴스로, 급등 사유 파악 참고용입니다 (투자 조언 아님)
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <select id="bc-market-filter">
+            <option value="">전체 시장</option>
+            <option value="KOSPI">코스피</option>
+            <option value="KOSDAQ">코스닥</option>
+        </select>
+        <select id="bc-cond-filter">
+            <option value="">전체 조건</option>
+        </select>
+        <select id="bc-large-filter">
+            <option value="">전체 대분류</option>
+        </select>
+        <input type="text" id="bc-search" placeholder="종목명 또는 코드 검색">
+    </div>
+    <div class="summary-line" id="bc-count-line">불러오는 중...</div>
+
+    <div id="bc-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <div class="site-footer">데이터는 매 영업일 장마감 후 갱신됩니다.</div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/buy-candidates.js?v=1"></script>
+</body>
+</html>
