@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>종목분석 - 오늘의 시장</title>
+<link rel="stylesheet" href="assets/style.css?v=3">
+<style>
+.analysis-list { list-style: none; margin: 0; padding: 0; background: #fff; border: 1px solid #D7E0EC; border-radius: 6px; }
+.analysis-list li { border-bottom: 1px solid #EEF1F6; }
+.analysis-list li:last-child { border-bottom: none; }
+.analysis-list a {
+    display: flex; align-items: baseline; gap: 12px; padding: 14px 16px;
+    text-decoration: none; color: #14213D;
+}
+.analysis-list a:hover { background: #F5F8FC; }
+.al-name { font-weight: 700; font-size: 0.95rem; }
+.al-code { color: #888; font-size: 0.8rem; }
+.al-date { margin-left: auto; color: #2F5FA3; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.empty-note { color: #999; font-size: 0.85rem; padding: 24px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>오늘의 시장</h1>
+            <div class="sub">국내 증시 데일리 요약</div>
+        </div>
+        <nav class="site-nav">
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html">국장</a>
+            <a href="commodities.html">원자재</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="buy-candidates.html">매수후보</a>
+            <a href="analysis.html" class="active">종목분석</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="page-note">
+        <div class="page-note-kicker">종목분석</div>
+        <div class="page-note-title">개별 종목 심층 분석</div>
+        <div class="page-note-body">네이버금융·FnGuide·DART·한국투자증권 API 데이터를 바탕으로 작성한 개별 종목 분석입니다. 종목명을 클릭하면 상세 페이지로 이동합니다.</div>
+    </div>
+
+    <ul class="analysis-list" id="analysis-list">
+        <li class="empty-note">불러오는 중...</li>
+    </ul>
+</div>
+
+<script>
+fetch("data/analysis_list.json")
+    .then(r => r.json())
+    .then(items => {
+        const ul = document.getElementById("analysis-list");
+        if (!items || !items.length) {
+            ul.innerHTML = '<li class="empty-note">아직 등록된 분석이 없습니다.</li>';
+            return;
+        }
+        items.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+        ul.innerHTML = items.map(it => `
+            <li><a href="${it.file}">
+                <span class="al-name">${it.name}</span>
+                <span class="al-code">(${it.code})</span>
+                <span class="al-date">${it.date}</span>
+            </a></li>
+        `).join("");
+    })
+    .catch(() => {
+        document.getElementById("analysis-list").innerHTML = '<li class="empty-note">목록을 불러오지 못했습니다.</li>';
+    });
+</script>
+
+<div class="site-footer">© stock-screening</div>
+</body>
+</html>
