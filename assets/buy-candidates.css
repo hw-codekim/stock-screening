@@ -53,6 +53,7 @@
 .bc-card-mid { font-size: 0.68rem; color: #7a869a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .bc-card-market { font-size: 0.62rem; color: #A9B4C4; border: 1px solid #E1E7F0; border-radius: 3px; padding: 0 4px; white-space: nowrap; margin-left: 6px; }
 .bc-card-price { font-size: 0.78rem; color: #555; margin-bottom: 6px; }
+.bc-card-streak { font-size: 0.68rem; color: #D68910; font-weight: 600; margin-bottom: 4px; }
 
 .bc-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
 .bc-badge {

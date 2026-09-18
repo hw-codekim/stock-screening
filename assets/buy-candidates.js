@@ -115,6 +115,7 @@ function bcRender() {
                         </span>
                         <span class="bc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
                     </div>
+                    <div class="bc-card-streak">${bcStreakText(it.streak)}</div>
                     <div class="bc-card-sub">
                         <span class="bc-card-mid">${it.sector_mid}</span>
                         <span class="bc-card-market">${it.market === "코스피" ? "코스피" : it.market === "코스닥" ? "코스닥" : it.market}</span>
@@ -148,6 +149,11 @@ function bcNewsHtml(item) {
                 </a>
             `).join("")}
         </div>`;
+}
+
+function bcStreakText(streak) {
+    const n = streak || 1;
+    return n <= 1 ? '신규' : `${n}일째`;
 }
 
 function bcLastPriceText(item) {
