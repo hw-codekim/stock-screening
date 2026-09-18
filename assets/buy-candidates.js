@@ -1,6 +1,7 @@
 let BC_DATA = null;
 const BC_CHART_INSTANCES = new Map(); // code -> echarts instance
 let BC_LAZY_OBSERVER = null;
+const BC_WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
 
 async function bcLoad() {
     const body = document.getElementById("bc-body");
@@ -12,71 +13,59 @@ async function bcLoad() {
         return;
     }
 
-    document.getElementById("bc-market-filter").addEventListener("change", () => {
-        bcPopulateLargeFilter();
+    document.getElementById("bc-date-filter").addEventListener("change", () => {
+        bcPopulateCondFilter();
         bcRender();
     });
     document.getElementById("bc-cond-filter").addEventListener("change", bcRender);
-    document.getElementById("bc-large-filter").addEventListener("change", bcRender);
-    document.getElementById("bc-search").addEventListener("input", bcRender);
 
+    bcPopulateDateFilter();
     bcPopulateCondFilter();
-    bcPopulateLargeFilter();
     bcRender();
 }
 
-// ── 필터링 helpers ──────────────────────────────────
-function bcMarketFiltered() {
-    const marketVal = document.getElementById("bc-market-filter").value;
-    return (BC_DATA.items || []).filter(it => !marketVal || it.market === marketVal);
+// ── 날짜/조건 필터 ──────────────────────────────────
+function bcDateLabel(dateStr) {
+    const [y, m, d] = dateStr.split("-").map(Number);
+    return `${m}/${d}일(${BC_WEEKDAYS[new Date(y, m - 1, d).getDay()]})`;
+}
+
+function bcPopulateDateFilter() {
+    const sel = document.getElementById("bc-date-filter");
+    const days = BC_DATA.days || {};
+    const dates = BC_DATA.dates || [];
+    sel.innerHTML = dates.map(d =>
+        `<option value="${d}">${bcDateLabel(d)} · ${(days[d] || []).length}개</option>`
+    ).join("");
+    sel.value = BC_DATA.latest_date || dates[0] || "";
+}
+
+// 선택한 날짜의 후보 종목 + 종목별 메타/최근일 차트 데이터
+function bcDayItems() {
+    const dateVal = document.getElementById("bc-date-filter").value;
+    const stocks = BC_DATA.stocks || {};
+    return ((BC_DATA.days || {})[dateVal] || [])
+        .filter(it => stocks[it.code])
+        .map(it => ({ ...stocks[it.code], ...it }));
 }
 
 function bcPopulateCondFilter() {
     const sel = document.getElementById("bc-cond-filter");
+    const prev = sel.value;
     const conditions = BC_DATA.conditions || {};
     const counts = {};
-    (BC_DATA.items || []).forEach(it => (it.matched || []).forEach(c => { counts[c] = (counts[c] || 0) + 1; }));
+    bcDayItems().forEach(it => (it.matched || []).forEach(c => { counts[c] = (counts[c] || 0) + 1; }));
     const nums = Object.keys(conditions).sort((a, b) => Number(a) - Number(b));
     sel.innerHTML = '<option value="">전체 조건</option>' +
         nums.map(n => `<option value="${n}">${n}. ${conditions[n]} (${counts[n] || 0})</option>`).join("");
-}
-
-function bcPopulateLargeFilter() {
-    const sel = document.getElementById("bc-large-filter");
-    const prev = sel.value;
-    const counts = {};
-    bcMarketFiltered().forEach(it => { counts[it.sector_large] = (counts[it.sector_large] || 0) + 1; });
-    const sorted = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
-    sel.innerHTML = '<option value="">전체 대분류</option>' +
-        sorted.map(s => `<option value="${s}">${s} (${counts[s]})</option>`).join("");
-    sel.value = sorted.includes(prev) ? prev : "";
+    sel.value = prev;
 }
 
 function bcFilteredItems() {
-    const marketVal = document.getElementById("bc-market-filter").value;
-    const condVal   = document.getElementById("bc-cond-filter").value;
-    const largeVal  = document.getElementById("bc-large-filter").value;
-    const q         = document.getElementById("bc-search").value.trim().toLowerCase();
-    return (BC_DATA.items || []).filter(it =>
-        (!marketVal || it.market === marketVal) &&
-        (!condVal || (it.matched || []).includes(Number(condVal))) &&
-        (!largeVal || it.sector_large === largeVal) &&
-        (!q || it.name.toLowerCase().includes(q) || it.code.includes(q))
-    );
-}
-
-// 대분류별로 묶어 대분류 합산 시총 내림차순, 대분류 안에서는 종목 시총 내림차순
-function bcGroupBySector(items) {
-    const largeMap = {};
-    items.forEach(it => { (largeMap[it.sector_large] = largeMap[it.sector_large] || []).push(it); });
-
-    const groups = Object.keys(largeMap).map(sector => {
-        const sortedItems = largeMap[sector].slice().sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
-        const total = sortedItems.reduce((sum, it) => sum + (it.mktcap || 0), 0);
-        return { sector, items: sortedItems, total };
-    });
-    groups.sort((a, b) => b.total - a.total);
-    return groups;
+    const condVal = document.getElementById("bc-cond-filter").value;
+    return bcDayItems()
+        .filter(it => !condVal || (it.matched || []).includes(Number(condVal)))
+        .sort((a, b) => (b.mktcap || 0) - (a.mktcap || 0));
 }
 
 // ── 렌더 ────────────────────────────────────────────
@@ -88,49 +77,39 @@ function bcRender() {
     BC_CHART_INSTANCES.clear();
 
     const items = bcFilteredItems();
+    const dateVal = document.getElementById("bc-date-filter").value;
     const genText = BC_DATA.generated_at ? ` · 기준: ${BC_DATA.generated_at}` : "";
-    document.getElementById("bc-count-line").textContent = `${items.length}개 종목${genText}`;
+    document.getElementById("bc-count-line").textContent =
+        `${dateVal ? bcDateLabel(dateVal) + " " : ""}${items.length}개 종목${genText}`;
 
     if (items.length === 0) {
         body.innerHTML = '<p class="placeholder">조건에 맞는 종목이 없습니다.</p>';
         return;
     }
 
-    const groups = bcGroupBySector(items);
     const conditions = BC_DATA.conditions || {};
 
-    body.innerHTML = groups.map(g => `
-        <div class="bc-sector">
-            <div class="bc-sector-title">${g.sector}<span class="bc-sector-count">${g.items.length}개</span></div>
-            <div class="bc-grid">
-                ${g.items.map(it => `
-                <div class="bc-card">
-                    <div class="bc-card-label">
-                        <span class="bc-card-left">
-                            <span class="bc-card-name">${it.name}</span>
-                            <span class="bc-mini-legend">
-                                <i class="bc-legend-dot" style="background:#9B59B6;"></i>50
-                                <i class="bc-legend-dot" style="background:#27ae60;"></i>150
-                            </span>
-                        </span>
-                        <span class="bc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
-                    </div>
-                    <div class="bc-card-streak">${bcStreakText(it.streak)}</div>
-                    <div class="bc-card-sub">
-                        <span class="bc-card-mid">${it.sector_mid}</span>
-                        <span class="bc-card-market">${it.market === "코스피" ? "코스피" : it.market === "코스닥" ? "코스닥" : it.market}</span>
-                    </div>
-                    <div class="bc-badges">
-                        ${(it.matched || []).map(c => `<span class="bc-badge bc-badge-${c}" title="${conditions[c] || ''}">${c}. ${conditions[c] || ''}</span>`).join("")}
-                    </div>
-                    <div class="bc-card-price">${bcLastPriceText(it)}</div>
-                    <div class="bc-chart" id="bc-chart-${it.code}" data-code="${it.code}"></div>
-                    ${bcNewsHtml(it)}
-                </div>
-                `).join("")}
+    body.innerHTML = `<div class="bc-grid">${items.map(it => `
+        <div class="bc-card">
+            <div class="bc-card-label">
+                <span class="bc-card-left">
+                    <span class="bc-card-name">${it.name}</span>
+                    <span class="bc-mini-legend">
+                        <i class="bc-legend-dot" style="background:#9B59B6;"></i>50
+                        <i class="bc-legend-dot" style="background:#27ae60;"></i>150
+                    </span>
+                </span>
+                <span class="bc-card-mktcap">시총 ${Math.round(it.mktcap).toLocaleString()}억</span>
             </div>
-        </div>`
-    ).join("");
+            <div class="bc-card-streak">${bcStreakText(it.streak)}</div>
+            <div class="bc-badges">
+                ${(it.matched || []).map(c => `<span class="bc-badge bc-badge-${c}" title="${conditions[c] || ''}">${c}. ${conditions[c] || ''}</span>`).join("")}
+            </div>
+            <div class="bc-card-price">${bcLastPriceText(it)}</div>
+            <div class="bc-chart" id="bc-chart-${it.code}" data-code="${it.code}"></div>
+            ${bcNewsHtml(it)}
+        </div>
+    `).join("")}</div>`;
 
     bcSetupLazyRender();
 }
@@ -170,7 +149,7 @@ function bcLastPriceText(item) {
 }
 
 function bcFindItem(code) {
-    return (BC_DATA.items || []).find(it => it.code === code) || null;
+    return (BC_DATA.stocks || {})[code] || null;
 }
 
 function bcRenderChart(container) {
