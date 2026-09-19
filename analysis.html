@@ -12,6 +12,15 @@
 .analysis-list-item a { color: #14213D; text-decoration: none; font-weight: 600; }
 .analysis-list-item a:hover { text-decoration: underline; color: #2F5FA3; }
 .analysis-list-date { color: #999; font-size: 0.78rem; }
+@media (max-width: 700px) {
+    .site-header { position: static; padding: 12px 14px; }
+    .header-left { width: 100%; min-width: 0; }
+    .header-left > div:first-child { min-width: 0; }
+    .site-nav { min-width: 0; max-width: 100%; gap: 20px; margin-top: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-size: 0.9rem; flex: 0 0 auto; }
+    .header-right { width: 100%; }
+}
 </style>
 </head>
 <body>
