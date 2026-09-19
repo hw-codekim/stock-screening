@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기가비스(420770)</title>
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+.viz-root {
+    --series-blue: #2a78d6;
+    --series-orange: #eb6834;
+    --series-blue-soft: rgba(42,120,214,0.35);
+    --series-orange-soft: rgba(235,104,52,0.35);
+}
+.analysis-body, .analysis-body * { font-family: 'Noto Sans KR', sans-serif; }
+.tag-blue { font-size: 0.8rem; font-weight: 700; color: #2F5FD8; margin-bottom: 4px; }
+.analysis-title { font-size: 1.55rem; font-weight: 800; color: #14151A; margin: 2px 0 2px; }
+.analysis-sub { font-size: 0.82rem; color: #6B7280; margin-bottom: 12px; }
+.divider { border-top: 1px solid #E5E7EB; margin: 4px 0 14px; }
+.lead { font-size: 0.88rem; color: #6B7280; line-height: 1.75; max-width: 680px; margin-bottom: 18px; }
+.tnum { font-variant-numeric: tabular-nums; }
+.section-title { font-size: 1.1rem; font-weight: 800; color: #14151A; margin: 30px 0 12px; }
+.cards-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.card { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 2px rgba(16,24,40,.04); padding: 18px 20px; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+.card-title { font-size: 0.95rem; font-weight: 700; color: #14151A; }
+.card-date { font-size: 0.78rem; color: #8B92A0; }
+.row, .row-block { padding: 9px 0; border-bottom: 1px solid #F0F1F3; }
+.row:last-child, .row-block:last-child, .row.no-border, .row-block.no-border { border-bottom: none; }
+.row, .row-line { display: flex; justify-content: space-between; align-items: baseline; }
+.lab { font-size: 0.85rem; color: #4B5160; }
+.val { font-size: 0.9rem; font-weight: 700; color: #14151A; }
+.sub { font-size: 0.72rem; color: #9AA1AC; margin-top: 2px; }
+.up { color: #E5484D; }
+.down { color: #2F5FD8; }
+.pill { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
+.pill-up { background: #FDECEC; color: #E5484D; }
+.pill-down { background: #EAF0FE; color: #2F5FD8; }
+.chart-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.chart-box { flex: 1 1 420px; background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 2px rgba(16,24,40,.04); padding: 18px 20px; min-width: 320px; }
+.chart-box-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.chart-box-title { font-size: 0.85rem; font-weight: 700; color: #14151A; }
+.chart-stat-val { font-size: 1.05rem; font-weight: 800; color: #14151A; margin-left: 8px; }
+.chart-box canvas { max-height: 300px; }
+.legend-note { font-size: 0.7rem; color: #9AA1AC; text-align: center; margin-top: 6px; }
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+table.data-table th { text-align: right; font-weight: 600; font-size: 0.75rem; color: #6B7280; padding: 8px 6px; border-bottom: 2px solid #14151A; }
+table.data-table th:first-child, table.data-table td:first-child { text-align: left; }
+table.data-table td { text-align: right; padding: 8px 6px; border-bottom: 1px solid #F0F1F3; color: #14151A; }
+table.data-table tr:last-child td { border-bottom: none; font-weight: 700; }
+.table-scroll { overflow-x: auto; }
+table.report-table th:nth-child(-n+3), table.report-table td:nth-child(-n+3) { text-align: left; }
+table.report-table th:nth-child(4), table.report-table td:nth-child(4) { text-align: center; }
+table.report-table tr:last-child td { font-weight: 400; }
+table.report-table td.rp-title a { color: #14151A; text-decoration: none; }
+table.report-table td.rp-title a:hover { text-decoration: underline; color: #2F5FD8; }
+table.report-table td.rp-title { white-space: normal; min-width: 220px; }
+.pill-gray { background: #F1F2F4; color: #6B7280; }
+table.report-table tr.rp-main td { border-bottom: none; padding-bottom: 2px; }
+table.report-table tr.rp-sum td { padding: 0 6px 12px; color: #6B7280; font-size: 0.78rem; line-height: 1.65; }
+table.report-table tr.rp-sum td div { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; }
+.pill.flat { margin-left: 0; }
+table.sales-table { font-size: 0.72rem; }
+table.sales-table th, table.sales-table td { padding: 7px 4px; white-space: nowrap; }
+table.sales-table td:first-child { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+table.sales-table td.na { color: #C5C9D0; }
+.news-list { list-style: none; margin: 0; padding: 0; }
+.news-item { display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F0F1F3; font-size: 0.85rem; }
+.news-item:last-child { border-bottom: none; }
+.news-date { flex: 0 0 62px; color: #9AA1AC; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.news-item a { flex: 1 1 auto; color: #14151A; text-decoration: none; }
+.news-item a:hover { text-decoration: underline; color: #2F5FD8; }
+.news-source { flex: 0 0 auto; font-size: 0.72rem; color: #aaa; }
+.foot-note { font-size: 0.72rem; color: #9AA1AC; margin-top: 30px; line-height: 1.6; }
+</style>
+</head>
+<body class="viz-root">
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>오늘의 시장</h1>
+            <div class="sub">국내 증시 데일리 요약</div>
+        </div>
+        <nav class="site-nav">
+            <a href="../index.html">TODAY</a>
+            <a href="../q2.html">2Q26실적</a>
+            <a href="../forward.html">포워드실적</a>
+            <a href="../us-charts.html">미장</a>
+            <a href="../kr-charts.html">국장</a>
+            <a href="../commodities.html">원자재</a>
+            <a href="../cashflow.html">현금흐름</a>
+            <a href="../buy-candidates.html">매수후보</a>
+            <a href="../analysis.html" class="active">종목분석</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container analysis-body">
+    <div class="tag-blue">종목분석</div>
+    <div class="analysis-title">기가비스(420770)</div>
+    <div class="analysis-sub">반도체 · PCB_부품소재 · 반도체 기판 자동광학검사기(AOI) · KOSDAQ</div>
+    <div class="divider"></div>
+    <div class="lead">당일 시세와 최근 실적, 외국인·기관 수급 흐름을 통해 기가비스의 현재 상태를 확인할 수 있습니다. 실적 추이와 매출 구성, 수급 강도, 직원 현황과 최근 뉴스를 한 페이지에서 비교할 수 있습니다.</div>
+
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;">
+        <div class="card-head"><span class="card-title">시세 정보</span><span class="card-date">2026.09.18</span></div>
+        <div class="row"><span class="lab">주가</span><span class="val tnum">113,100원<span class="pill pill-up">▲13.10%</span></span></div>
+        <div class="row"><span class="lab">시가총액</span><span class="val tnum">14,336억원</span></div>
+        <div class="row-block">
+            <div class="row-line"><span class="lab">거래량</span><span class="val tnum">358,393주</span></div>
+            <div class="sub">10일 평균 139,615주 (분석일 제외)</div>
+        </div>
+        <div class="row"><span class="lab">거래대금</span><span class="val tnum">약 405.3억원</span></div>
+        <div class="row no-border"><span class="lab">52주 최고 / 최저</span><span class="val tnum"><span class="up">206,000</span> / <span class="down">29,800</span></span></div>
+    </div>
+        <div class="card" style="flex:1 1 300px;">
+        <div class="card-head"><span class="card-title">밸류에이션·수익률</span><span class="card-date">2026.09.18</span></div>
+        <div class="row"><span class="lab">발행주식수</span><span class="val tnum">12,675,758주</span></div>
+        <div class="row"><span class="lab">유통비율</span><span class="val tnum">49.25%</span></div>
+        <div class="row"><span class="lab">외국인 지분율</span><span class="val tnum">7.17%</span></div>
+        <div class="row-block no-border">
+            <div class="row-line"><span class="lab">수익률 (1M/3M/6M/1Y)</span></div>
+            <div class="tnum" style="text-align:right; font-weight:700; font-size:0.85rem; margin-top:4px;"><span class="down">-12.12%</span> / <span class="down">-18.63%</span> / <span class="up">+43.71%</span> / <span class="up">+211.57%</span></div>
+        </div>
+    </div>
+    </div>
+
+    <div class="section-title">실적</div>
+    <div class="chart-row">
+        <div class="chart-box"><div class="chart-box-head"><span class="chart-box-title">분기 실적 (2022~2026.2Q, 공시 기준, 연결)</span><span class="chart-stat-val tnum">223억원</span><span class="pill pill-up">▲271.67%</span><span class="card-date" style="margin-left:8px;">기준: 2026.2Q · 영업이익률 29.60%</span></div><canvas id="chartFinActual"></canvas><div class="legend-note">막대: 매출(억원, 좌축) · 선: 영업이익률(%, 우축)</div></div>
+        <div class="chart-box"><div class="chart-box-head"><span class="chart-box-title">FnGuide 컨센서스 (분기)</span><span class="card-date">컨센서스</span></div><canvas id="chartConsQ"></canvas><div class="legend-note">막대: 매출(억원, 좌축) · 선: 영업이익률(%, 우축) · 옅은 색=추정치</div></div>
+    </div>
+    <div class="chart-row" style="margin-top:14px;">
+        <div class="chart-box" style="flex-basis:100%;"><div class="chart-box-head"><span class="chart-box-title">FnGuide 컨센서스 (연간)</span><span class="card-date">컨센서스</span></div><canvas id="chartConsA"></canvas><div class="legend-note">막대: 매출(억원, 좌축) · 선: 영업이익률(%, 우축) · 옅은 색=추정치</div></div>
+    </div>
+
+    <div class="section-title">매출 실적</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 440px; min-width:0;"><div class="card-head"><span class="card-title">분기별 매출 (원본)</span><span class="card-date">단위: 억원</span></div><div class="table-scroll"><table class="data-table sales-table"><thead><tr><th>매출 항목 (억원)</th><th>24.3Q</th><th>25.1Q</th><th>25.3Q</th><th>25.4Q</th><th>26.1Q</th><th>26.2Q</th></tr></thead><tbody><tr><td title="제품">제품</td><td>0</td><td>190</td><td>57</td><td>294</td><td>40</td><td>200</td></tr><tr><td title="용역">용역</td><td>0</td><td>64</td><td>15</td><td>22</td><td>20</td><td>22</td></tr><tr><td title="임대">임대</td><td>0</td><td>7</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td title="계">계</td><td>0</td><td>261</td><td>72</td><td>317</td><td>60</td><td>223</td></tr></tbody></table></div></div>
+        <div class="card" style="flex:1 1 440px; min-width:0;"><div class="card-head"><span class="card-title">분기별 매출 비중</span><span class="card-date">총매출 대비</span></div><div class="table-scroll"><table class="data-table sales-table"><thead><tr><th>매출 항목 (%)</th><th>24.3Q</th><th>25.1Q</th><th>25.3Q</th><th>25.4Q</th><th>26.1Q</th><th>26.2Q</th></tr></thead><tbody><tr><td title="제품">제품</td><td class="na">-</td><td>73%</td><td>78%</td><td>93%</td><td>66%</td><td>90%</td></tr><tr><td title="용역">용역</td><td class="na">-</td><td>25%</td><td>21%</td><td>7%</td><td>33%</td><td>10%</td></tr><tr><td title="임대">임대</td><td class="na">-</td><td>3%</td><td>1%</td><td>0%</td><td>1%</td><td>0%</td></tr><tr><td title="계">계</td><td class="na">-</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td></tr></tbody></table></div></div>
+    </div>
+    <div class="legend-note" style="text-align:left;">DART 정기보고서 '매출 및 수주상황' 매출실적 표 기준. 1분기·반기·3분기 보고서는 누적값이라 차감해 분기값을 만들었고 4분기는 사업보고서(연간) − 3분기 누적으로 계산했습니다. 보고서 간 품목명이 달라져 계산할 수 없는 칸은 '-'입니다. 24.3Q, 25.1Q는 재무제표(FnGuide) 분기 매출과 5% 이상 차이가 납니다(연결/별도 기준 차이 등).</div>
+
+    <div class="section-title">수급</div>
+    <div class="lead">외국인 지분율: 2개월전(2026-07-20) 2.32% → 1개월전(2026-08-19) 5.31% → 당일 7.17% (3개월전 수치는 DB 이력 부족으로 생략)<br>최근 1개월 누적: 기관 -274,848주, 외국인 +285,611주 · 최근 6개월(2026-03-18~2026-09-18) 누적: 기관 +1,042,406주, 외국인 +349,701주 (한국투자증권 KIS API 기준)</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">외국인 순매수 상위일</span><span class="card-date">최근 6개월</span></div><div class="row-block"><div class="row-line"><span class="lab"><b>1.</b> 07-23</span><span class="val up tnum">+311,474주</span></div><div class="sub">종가 130,100원</div></div><div class="row-block"><div class="row-line"><span class="lab"><b>2.</b> 05-26</span><span class="val up tnum">+96,327주</span></div><div class="sub">종가 142,200원</div></div><div class="row-block no-border"><div class="row-line"><span class="lab"><b>3.</b> 07-07</span><span class="val up tnum">+87,650주</span></div><div class="sub">종가 140,000원</div></div></div>
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">기관 순매수 상위일</span><span class="card-date">최근 6개월</span></div><div class="row-block"><div class="row-line"><span class="lab"><b>1.</b> 07-31</span><span class="val up tnum">+149,889주</span></div><div class="sub">종가 103,500원</div></div><div class="row-block"><div class="row-line"><span class="lab"><b>2.</b> 06-11</span><span class="val up tnum">+149,788주</span></div><div class="sub">종가 147,600원</div></div><div class="row-block no-border"><div class="row-line"><span class="lab"><b>3.</b> 06-23</span><span class="val up tnum">+104,413주</span></div><div class="sub">종가 157,300원</div></div></div>
+    </div>
+    <div class="chart-row">
+        <div class="chart-box" style="flex-basis:100%;"><div class="chart-box-head"><span class="chart-box-title">누적 수급 &amp; 종가 (최근 6개월)</span><span class="chart-stat-val tnum">112,100원</span><span class="card-date" style="margin-left:8px;">날짜: 2026-09-18</span></div><canvas id="chartFlow"></canvas><div class="legend-note">선: 외국인·기관 누적 순매수(주, 좌축) · 종가(원, 우축, 옅은 채움)</div></div>
+    </div>
+<div class="card" style="margin-top:14px;"><div class="card-head"><span class="card-title">최근 6일 수급 요약</span><span class="card-date">단위: 주</span></div><table class="data-table"><thead><tr><th>날짜</th><th>종가</th><th>외국인</th><th>기관</th></tr></thead><tbody><tr><td>09-11</td><td>93,800</td><td class="up">+20,543</td><td class="down">-35,452</td></tr><tr><td>09-14</td><td>93,900</td><td class="up">+27,874</td><td class="down">-11,694</td></tr><tr><td>09-15</td><td>98,700</td><td class="down">-22,526</td><td class="up">+64,153</td></tr><tr><td>09-16</td><td>105,800</td><td class="down">-27,044</td><td class="up">+36,489</td></tr><tr><td>09-17</td><td>100,000</td><td class="up">+10,212</td><td class="down">-20,216</td></tr><tr><td>09-18</td><td>112,100</td><td class="up">+20,775</td><td class="up">+38,216</td></tr></tbody></table></div>
+
+    <div class="section-title">직원수</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">분기별 직원수</span><span class="card-date">DART 정기보고서 기준</span></div><table class="data-table"><thead><tr><th>분기</th><th>직원수</th></tr></thead><tbody><tr><td>2023.2Q</td><td>109명</td></tr><tr><td>2023.3Q</td><td>117명</td></tr><tr><td>2023.4Q</td><td>121명</td></tr><tr><td>2024.1Q</td><td>119명</td></tr><tr><td>2024.2Q</td><td>126명</td></tr><tr><td>2024.4Q</td><td>135명</td></tr><tr><td>2025.2Q</td><td>139명</td></tr><tr><td>2025.4Q</td><td>138명</td></tr><tr><td>2026.2Q</td><td>142명</td></tr></tbody></table><div class="legend-note" style="text-align:left; margin-top:6px;">정기보고서(1분기·반기·3분기·사업보고서) "임원 및 직원 등의 현황" 합계 기준.</div></div>
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">직원 1인당 매출</span><span class="card-date">분기 매출 ÷ 직원수</span></div><table class="data-table"><thead><tr><th>분기</th><th>1인당 매출</th></tr></thead><tbody><tr><td>2023.2Q</td><td>245.0백만원/명</td></tr><tr><td>2023.3Q</td><td>95.7백만원/명</td></tr><tr><td>2023.4Q</td><td>172.7백만원/명</td></tr><tr><td>2024.1Q</td><td>52.1백만원/명</td></tr><tr><td>2024.2Q</td><td>71.4백만원/명</td></tr><tr><td>2024.4Q</td><td>51.1백만원/명</td></tr><tr><td>2025.2Q</td><td>64.0백만원/명</td></tr><tr><td>2025.4Q</td><td>229.0백만원/명</td></tr><tr><td>2026.2Q</td><td>157.0백만원/명</td></tr></tbody></table><div class="legend-note" style="text-align:left; margin-top:6px;">분기 매출은 FnGuide 공시 기준.</div></div>
+    </div>
+
+    <div class="section-title">뉴스</div>
+    <div class="card">
+        <div class="card-head"><span class="card-title">관련 뉴스</span><span class="card-date">최근 10건</span></div>
+        <ul class="news-list">
+<li class="news-item"><span class="news-date">2026-09-18</span><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE12QUhRSnNUWTFDYURHY3ptOGhnRUJ6QUppVmRnZXNUZGMxQVEwQ2QwQTZSTnlScmlCc1J4STE2U0dfWi1Uek05VGtrSFdxVnlDTmtaZW1SR0V2R2E2?oc=5" target="_blank" rel="noopener">[특징주] 美 반도체 훈풍에 장비株 강세…기가비스 5%↑</a><span class="news-source">newspim.com</span></li>
+<li class="news-item"><span class="news-date">2026-09-17</span><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFAyY3NFdEpuSnR0V3NjYVBCbDJHa3M3NnpmS0dFdWZFTTBOeFRLMm9RYjZiZGVkOWgzeHdUcldwQ3ZVUjVpN1ZFM004anZsM2ZodHBDUTlDOXFQZElZQk5URHRlelcxdDZj?oc=5" target="_blank" rel="noopener">[속보] 기가비스, 129억5273만원 규모 반도체 기판 검사·수리장비 공급계약</a><span class="news-source">CBC뉴스</span></li>
+<li class="news-item"><span class="news-date">2026-09-16</span><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9xN1p6TTgxYW5PM1lHalFNcm1iV1V5b24zT1YweW5OYU5Ea1VtUzdST2duVUp6TzFfLUdGYlNDYm9JaVJTeGtCdkJZWFZ5UlBDUm45MVBTTXlLZThmbEZVandNczlqaGpORmhv0gFvQVVfeXFMTjlCYWpsNHh3eEptYXl5WGgxNnRwei1RM1FoT2ZUVURaei10QUdIaVRZR1ZnWXQtQTFIa2RUeEx1dldmQjNxajJRRkdOa1FPbHUwUDd2TzhYQ1FWWmUzZ2t1aS1UNGtlT2hya2VQanlJ?oc=5" target="_blank" rel="noopener">[종목 포커스] 기가비스, 대형 고객사 AIDC용 기판 발주 개시로 주가 탄력?</a><span class="news-source">데일리인베스트</span></li>
+<li class="news-item"><span class="news-date">2026-09-15</span><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9jdWNoN1ZFQUR1VnQyMXlhYXVUV2loejBSOXJ4aGc2bmh1aWh6QWRsbTIycDJVd1c3MzZCVnppQk9SMXBDSDhoQ2l6WEdlYVhkVVd6azR6dklXM0d4MlBac1g5NWNHYld1OUY1MHFoSFFSbTjSAXdBVV95cUxNbjlnelF1NXNWeU1MX0JOYU5JUTJKdkxEbFotVDRMcE5BVGN3emdVRl9zb2dCU3BGcWlUNW55NkNYUEsyZ2hiSzlxaU1OYlVVXzBzV0ZtaTRjMTBUVTBLVld2VDM1bEZiVC03T1RfdmFBUmdsTE45OA?oc=5" target="_blank" rel="noopener">[코스닥 기관] 에코프로·올릭스· 실리콘투· 기가비스 쓸어 담았다</a><span class="news-source">핀포인트뉴스</span></li>
+<li class="news-item"><span class="news-date">2026-09-15</span><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBqOUFyRFhBRl90d1ZvMkI0LXBaaG1ZR0pvYWFTaUFZV2Z6ME1wVk5mMzRSc1lIcW9DWW5tckNWamhTTFgzT29JS19wRkFNeF9EeUt4OGRnU3pCdlRs?oc=5" target="_blank" rel="noopener">기가비스(420770)밀릴때마다 물량 모아둘 기회로 보이며 이후 전망 및 대응전략.</a><span class="news-source">씽크풀 AI</span></li>
+<li class="news-item"><span class="news-date">2026-09-15</span><a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBnZ3lMUVNXTUtKQlEyN3NLTTRWeDFNODhQTTBRbmtkZVFHY3RqQVBxenN1dDBWWUNkeHBfM1d4OUZXa2xQV2twQzBZWDU1YWFPV3dDRmgzTjVJSm5UNk5fUFlwekEtRm4zMUVDcy01aUNRS2JCcFhILUNrWQ?oc=5" target="_blank" rel="noopener">기가비스, 일본 반도체 기판 제조사에 검사·수리장비 129억원 규모 공급 계약</a><span class="news-source">digitaltoday.co.kr</span></li>
+<li class="news-item"><span class="news-date">2026-09-15</span><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTFAxdFQ3UjV6WTNlaE1tMktYV2NuUU1kQTI0Znl0OFJ1TjZTZlpFbEdzcjhYSUJ6aGZVaC1Yd2NQMHlzdTRuN0k4TENmblRZY3dpcFR4TkdobWw4TU1hRG1mZVlxVkc1TGI4NjZ3Y296YU9FcVU?oc=5" target="_blank" rel="noopener">기가비스, 129억원 규모 반도체 기판 검사 및 수리장비 외 계약</a><span class="news-source">datatooza.com</span></li>
+<li class="news-item"><span class="news-date">2026-09-14</span><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE5BZ0E3b2oyNmU2d3c2N05CcGZYZVRfRHllSUNoSXFIWi1aWWp1S0JOcFBtSUZQeGhRR3lnRFc2NUdvUnBfMGVIOGlJeWlNRjFPQUZxYUJkOWRaMzAt?oc=5" target="_blank" rel="noopener">[리포트 브리핑]기가비스, '기가비스 화성 신사옥(제2공장) 탐방기' 목표가 155,000원 - iM증권</a><span class="news-source">newspim.com</span></li>
+<li class="news-item"><span class="news-date">2026-09-06</span><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTFBNT2ZaZUR3V1lGS0lGSnhnVzJNaUlKU3ZMQXFUdGFXN25qTmp6V0ZTX0luTUh0NWwwWjQtWnVkNFMxWmpFZHg3dWdOaVl6ZVB4d0tGVmpsNXc2VU1yd3MwSkYxWG5CT3E3MXRPczBrVHVzN2s?oc=5" target="_blank" rel="noopener">기가비스 투자분석 2026. 09. 06</a><span class="news-source">주달</span></li>
+<li class="news-item"><span class="news-date">2026-08-30</span><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTFBlaUR6YnpxZTB1cThzdWRSTVczeGxXemk4VW83LVBsR1gwNjBrLWdxZ1dHQkVBWUM0Qzd4VGkybVlWWGlHSXhBMDlnVGRBR0s4enIxVjU5YV9teC0tMFhHR1piZDJmOU9FelpuOHFzdmQzYXc?oc=5" target="_blank" rel="noopener">기가비스 투자분석 2026. 08. 30</a><span class="news-source">주달</span></li>
+        </ul>
+    </div>
+
+    <div class="section-title">증권사 리포트</div>
+    <div class="card"><div class="card-head"><span class="card-title">최근 1년 리포트 11건</span><span class="card-date">출처: 네이버 증권 리서치</span></div><div class="table-scroll"><table class="data-table report-table"><thead><tr><th>날짜</th><th>증권사</th><th>제목</th><th>투자의견</th><th>목표주가</th><th>조회수</th></tr></thead><tbody><tr class="rp-main"><td>2026-09-14</td><td>iM증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/61/20260914_company_375488000.pdf" target="_blank" rel="noopener">기가비스 화성 신사옥(제2공장) 탐방기</a></td><td><span class="pill flat pill-up">매수</span></td><td>155,000원</td><td>1,553</td></tr><tr class="rp-sum"><td colspan="6"><div>기가비스 화성 신사옥(제2공장) 준공 완료 동사는 ‘26년 9월 11일 화성 제2공장 오픈식을 개최했다. 오픈식에는 여려 주요 고객사 관계자가 참석하는 등 동사와 글로벌 FC-BGA 업체와의 긴밀한 협력 관계를 확인할 수 있었다. 화성 공장의 연면적은 약 3,000평으로, 기존 평택 1공장 연면적 1,000평 대비 약 3배 수준이다. 기본생산 라인과 클린룸을 합산한연 CAPA는 단설비 매출 기준 약 3,000억원 수준으로, 향후 기가비스의 주력 생산 거점으로 활용될 전망이다. 기존 평택 제1공장은 당장 매각하기보다 완성 장비의 출하 전 보관 장소와 보조 생산라인으로 활용할 계획이다. 이에 따라 수주 증가 시 두 공장을 동시에 가동해 생산 물량에 탄력적으로 대응할 수 있을 것으로 예상한다. 신공장 건설에 투입된 CAPEX는 약 400억원으로, 대규모 생산설비 도입이 아닌 장비 조립 공간을 확보하는 데 투자의 초점이 맞춰진 만큼, 증설에 따른 감가상각비 부담은 제한적이다. 이번 증설을 통해 동사는 현재 확보한 수주잔고 1,700억원(2Q 수주잔고 657억원 + 7~9월 신규수주 공시 1,039억원)과 향후 국내외 대형 고객사로부터 예상되는 신규 수주에 대응할 수 있는 생산 기반을 갖췄다. 올해 신규 수주는 주로 중화권 FC-BGA 후발업체와 국내 중소형 FC-BGA 제조사를 중심으로 이뤄졌으나, 올해 하반기부터 국내외 대형 고객사의 발주…</div></td></tr><tr class="rp-main"><td>2026-09-14</td><td>한국IR협의회</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/74/20260914_company_174099000.pdf" target="_blank" rel="noopener">[AI] 반도체 기판 광학 검사·수리 장비 전문기업</a></td><td>-</td><td>-</td><td>1,259</td></tr><tr class="rp-sum"><td colspan="6"><div>1 주요 제품 및 연혁 기가비스는 2004년 2월 18일 설립된 반도체 장비 기업으로, 반도체 기판 자동광학검사기(AOI: Automatic Optical Inspection)와 자동광학수리기(AOR: Automatic Optical Repair)를 제작·판매하며, 광학기술을 통해 반도체 기판의 결함을 검사하고 레이저 가공 기술을 통해 불량을 수리하여 수율을 향상시키는 장비를 생산한다. 반도체 기판의 결함 검출, 불량 수리, 결함 데이터 관리로 이어지는 Total Solution을 제공하며, AOI·VRS·AOR과 같은 단독 설비, 자동화 설비인 FA(In-Line 등), 이들 설비의 운용을 위한 소프트웨어(DTS 등)를 제작하여 판매한다. 소프트웨어 제품군에는 GVIS CAM, VMS, DTS, GiDC 등이 있다. 2026년 반기 공시 기준 연결기준 매출 구성을 보면 AOI가 139억9,000만원으로 전체의 49.44%를 차지한다. FA는 47억 2,000만원(16.68%), 용역은 41억6,900만원(14.73%), AOR은 29억6,700만원(10.49%), SOFTWARE는 12억9,000만원(4.56%), VRS는 10억1,200만원(3.58%)을 기록했다. 지역별로는 본사 소재지 국가 95억원, 일본 96억원, 대만 54억원, 싱가포르 26억원의 수익이 발생하여 매출의 상당 부분이 해외에서 창출되는 구조다.</div></td></tr><tr class="rp-main"><td>2026-08-18</td><td>iM증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/61/20260818_company_845033000.pdf" target="_blank" rel="noopener">예상보다 가파르게 증가하는 수주잔고</a></td><td><span class="pill flat pill-up">매수</span></td><td>155,000원</td><td>4,757</td></tr><tr class="rp-sum"><td colspan="6"><div>2Q26 Review: 이견이 없는 좋은 업황, 본격적인 매출 증가 시작 2Q26 동사는 매출액 223억원(+272.4% QoQ, +150.8% YoY), 영업이익 66억원(흑자전환 QoQ, +225.1% YoY, OPM 29.6%)을 기록했다. 매출액, 영업이익은 컨센서스를 각각 +20%, +6% 상회했다. 매출액을 Breakdown 해보면 AOI (광학검사장비)가 116억원, VRS(확인장비)가 3.3억원, AOR(광학수리장비)가 30억원, FA(세트설비)가 42억원으로 장비매출액이 200억원(+184% YoY)을 기록했으며, 장비 수주 호조세에 힘입어 CS매출 역시 23억원(+25% YoY)으로 고성장을 시현했다. ‘25년 이연된 수주건과 더불어 올해 초 수주 물량이 고객사로 인도되기 시작하며 탑라인 성장이 본격적으로 나타나고 있다. 비용단에서 특이사항은 2분기 인건비가 46.5억원(+28% QoQ +116% YoY)으로 증가했는데, 올해 9월 오픈할 화성 신사옥(제2공장) 준공에 따른 신규 인력 충원에 비롯된 것으로 파악된다.</div></td></tr><tr class="rp-main"><td>2026-07-31</td><td>iM증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/61/20260731_company_927182000.pdf" target="_blank" rel="noopener">실적 성장의 방향성은 명확하다</a></td><td><span class="pill flat pill-up">매수</span></td><td>120,000원</td><td>3,289</td></tr><tr class="rp-sum"><td colspan="6"><div>2Q26 Preview: 계단식 실적 성장 전망 2Q26 동사는 매출액 227억원(+279% QoQ, +155% YoY), 영업이익 79.3억원(+920% QoQ, OPM 34.9%)을 기록할 것으로 전망한다. 서버용 FC-BGA 기판의 공급 병목이 지속되는 가운데 고객사의 장비 발주가 예상보다 빠르게 진행되면서, 동사의 신규 수주와 수주잔고가 가파르게 증가하고 있다. 2분기 수주 공시금액만 약 731억원에 달하며[표1] 이는 이미 동사의 작년 매출 523억원을 초과하는 수치이다. 공시 기준에 미달하는 수주도 다수 존재하는 것으로 파악되어, 순차적 장비 출고와 함께 하반기 실적은 계단식으로 성장할 것으로 전망된다.</div></td></tr><tr class="rp-main"><td>2026-05-08</td><td>SK증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/64/20260508_company_554693000.pdf" target="_blank" rel="noopener">FCBGA의 하반기 화두는 &#x27;증설투자&#x27;</a></td><td>-</td><td>-</td><td>8,061</td></tr><tr class="rp-sum"><td colspan="6"><div>샘플과 수주 동향에서 확인되는 26 년 반등과 27 년 성장 일본, 한국, 대만의 다수 FCBGA 기업들로부터 수주가 임박했다. 기판 기업들은 증설을 서두르고 있다. ① FCBGA 쇼티지가 우려되고, ② CPU 반도체 기업들의 전환 투자가 본격화되며, ③ 기술변화에 따른 기판의 제조 수율 하락 때문이다. 동사는 2 분기부터 반등이 시작된다. 본격적인 회복은 하반기로 예상한다. 26 년 연간실적 개선은 확실시되며, 27 년 실적은 역대 최고치를 경신할 것으로 전망한다. 26년은 매출액 662 억원, 영업이익 138 억원, 27 년은 매출액 1,359 억원, 영업이익 530 억원으로 추정한다. 현재 다수 고객사들의 증설 계획을 고려하면, 추가 실적 상향 여력도 존재한다. FCBGA 쇼티지 이후에는 동사 기판 검사장비의 병목이 발생할 수 있다.</div></td></tr><tr class="rp-main"><td>2026-02-13</td><td>미래에셋증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/56/20260213_company_202838000.pdf" target="_blank" rel="noopener">FC-BGA 업사이클 시동</a></td><td>-</td><td>-</td><td>9,820</td></tr><tr class="rp-sum"><td colspan="6"><div>FC-BGA 검사장비 전문기업 기가비스는 FC-BGA 기판의 빌드업 공정에서 내층 회로 패턴을 검사·확인·수리하는 광학 장비 전문기업이다. FC-BGA 검사장비 기준 글로벌 시장점유율 약 60%를 확보하고 있다. 25년 잠정 연간 매출 524억원(+101% YoY), 영업이익 121억원(흑자전환 YoY, 영업이익률 23%)을 기록했다.</div></td></tr><tr class="rp-main"><td>2026-02-04</td><td>키움증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/39/20260204_company_506636000.pdf" target="_blank" rel="noopener">다시 돌아올 투자 사이클</a></td><td>-</td><td>-</td><td>6,744</td></tr><tr class="rp-sum"><td colspan="6"><div>뚜렷한 투자포인트: 1)제한적인 경쟁, 2)기판 고사양화 수혜 동사는 패키지 기판 내부 회로 패턴을 검사하는 장비(AOI)와 불량을 수리하는 장비(AOR)를 제조한다. 그간 기판 미세화 트렌드에 맞춰, 검사 장비 선폭 역시 과거 10μm에서 최근에는 5/5μm급이 주류로 자리잡고 있다. 해당 장비의 경우, 동사와 KLA가 시장을 양분하고 있다. 다만 5/5μm급 시장으로 오면서 과거 대비 동사의 시장 점유율은 더욱 높아진 것으로 파악된다. 패키지 기판이 미세화, 다층화, 대형화되면서 제작 난이도 역시 높아지고 있다. 이는 곧 기판 검사 수요 증가로 귀결된다. 최근 AI 가속기/서버향 기판 수요가 급증하면서, 이러한 트렌드는 가속화될 전망이다. 국내 S사는 2H26 FCBGA 풀캐파를 전망하고 있으며, 일본 I사, 대만 U사도 비슷한 상황일 것으로 예상한다. 기판 제조 업체들의 증설 필요성은 점증하고 있는 셈이다.</div></td></tr><tr class="rp-main"><td>2026-01-28</td><td>iM증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/61/20260128_company_941429000.pdf" target="_blank" rel="noopener">2027년을 향하는 시선</a></td><td><span class="pill flat pill-up">매수</span></td><td>65,000원</td><td>4,611</td></tr><tr class="rp-sum"><td colspan="6"><div>4Q25 Preview: 2025년 연간 영업이익 흑자 전환 전망 4Q25E 동사는 매출액 302억원(+QoQ 319%), 영업이익 105억원(+1,105% QoQ)을 기록할 것으로 전망된다. 2025년 초 싱가폴향 대규모 수주 물량이 4분기 대부분 매출로 인식되며 호실적을 견인할 것으로 보인다. 이에 따라 2025년 매출액은 510억원(+95% YoY), 영업이익 115억원(OPM 23%)의 흑자 전환이 기대된다.</div></td></tr><tr class="rp-main"><td>2026-01-19</td><td>하나증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/57/20260119_company_493612000.pdf" target="_blank" rel="noopener">기판 검사장비 구조적 성장 구간 진입</a></td><td><span class="pill flat pill-up">매수</span></td><td>82,000원</td><td>4,693</td></tr><tr class="rp-sum"><td colspan="6"><div>투자의견 BUY, 목표주가 8.2만원으로 커버리지 개시 기가비스에 대한 투자의견 BUY 목표주가 8.2만원으로 커버리지를 개시한다. 목표주가는 27년 예상 EPS 3,992원에 Target PER 20.6배를 적용했다. Target PER은 검사 장비 기업인 KLA, Onto Innovation, Camtek 평균 PER에 기가비스의 전방 산업이 패키지 기판에 한정되어 있다는 점을 감안해 50% 할인율을 적용했다. 기가비스의 투자포인트는 FCBGA 증설 사이클 진입으로 실적 개선세 지속되고 있으며 FCBGA 대면적화 및 고다층화로 검사 및 수리 장비의 구조적 성장이 기대된다는 점이다.</div></td></tr><tr class="rp-main"><td>2025-11-18</td><td>iM증권</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/61/20251118_company_208699000.pdf" target="_blank" rel="noopener">전방산업 증설 효과가 나타날 시기</a></td><td><span class="pill flat pill-up">매수</span></td><td>45,000원</td><td>4,943</td></tr><tr class="rp-sum"><td colspan="6"><div>AI 서버향 FC-BGA 증설 사이클 수혜주 기가비스는 2004년 설립된 반도체 기판 검사장비 제조 업체로, 반도체 기판의 내층 검사(AOI) 및 수리(AOR) 장비를 제조하는 기업이다. 2um/2um 선폭까지 검사 및 수리 가능한 기술력을 갖췄으며, 현재 차세대 패키징 기술인 PLP(Panel Level Package) 검사 장비를 개발중이다. 2024년 기준 글로벌 AOI/AOR 기판 검사장비 시장에서 50%의 점유율을 확보하고 있다. 동사는 2025년 매출액 505억원(+93.0%, YoY)/영업이익 130억원(흑전)의 실적 턴어라운드가 예상된다. 더 나아가 2026년 역시 매출액 623억원(+23%, YoY), 영업이익 212억원(+64%, YoY)의 견조한 성장세가 나타날 것으로 전망한다. AI 서버향 FC-BGA 수요 증가에 따른 전방 고객사들의 CAPEX 사이클은 기판 검사장비 수요 증가로 연결되고 있다. 이에 따라 동사 역시 CAPA확대를 위해 화성 2공장을 증설 중이며 이는 2026년 상반기 준공될 예정이다. 2공장이 가동될 2026년 하반기부터는 판가가 높은 In-Line FA 설비(AOI-VRS-AOR 자동화 세트설비) 출하 증가와 함께 성장 모멘텀이 확대될 것으로 전망한다.</div></td></tr><tr class="rp-main"><td>2025-10-02</td><td>한국IR협의회</td><td class="rp-title"><a href="https://stock.pstatic.net/stock-research/company/74/20251015_company_673782000.pdf" target="_blank" rel="noopener">FC-BGA CAPEX 증설 사이클 핵심 수혜주</a></td><td>-</td><td>-</td><td>7,146</td></tr><tr class="rp-sum"><td colspan="6"><div>■ 기가비스는 FC-BGA 기판 검사(AOI) 및 수리(AOR) 장비 분야에서 글로벌 점유율 1위 기업. 주요 고객사는 이비덴·유니마이크론, 삼성전기 등 글로벌 톱티어 기판사이며, 최근 AI 및 서버향 FC-BGA 수요 급증에 따라 고객사의 증설 투자가 확대되면서 동사의 검사 장비 수요 역시 동반 성장 기대 ■ 2024년 전방 CAPEX 급감으로 매출이 전년 대비 70% 이상 감소했으나, 2025년 상반기 흑자 전환에 성공. 하반기 중 350억 원 이상의 기 수주분이 매출로 인식되어 2025년 연간 매출은 485억 원(YoY +85%), 영업이익률도 20%까지 회복하며 본격적인 턴어라운드 기대 ■ FC-BGA 검사 장비에서 확보한 기술 경쟁력을 바탕으로, PLP(Panel Level Package)와 유리기판(Glass Substrate) 시장에서도 선제적으로 입지 확대 중. 고객군을 기존 기판사에서 파운드리·반도체 제조사로 확장할 수 있는 기회, ASP 상승과 신규 수요 선점 효과를 통해 중장기 성장성을 담보하는 핵심 모멘텀으로 작용할 전망</div></td></tr></tbody></table></div><div class="legend-note" style="text-align:left; margin-top:6px;">제목을 누르면 증권사 리포트 원문(PDF)으로 이동합니다. 제목 아래 요약은 네이버 증권이 제공하는 증권사 작성 요약문의 앞부분(최대 5줄)입니다.</div></div>
+
+    <div class="foot-note">
+        본 페이지는 stock_price 파이프라인이 DB(FnGuide 공시/컨센서스), 한국투자증권 KIS API(투자자별 매매동향), DART(직원현황), 구글뉴스(관련기사), 네이버 증권 리서치(증권사 리포트)를 조회해 자동 생성했습니다.
+        거래대금은 종가×거래량 기준 추정치입니다.
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+const DATA = {"fin":{"quarters":["20222Q","20223Q","20231Q","20232Q","20233Q","20234Q","20241Q","20242Q","20243Q","20244Q","20251Q","20252Q","20253Q","20254Q","20261Q","20262Q"],"revenue":[110,369,326,267,112,209,62,90,40,69,46,89,72,316,60,223],"op_income":[51,29,168,78,23,81,-9,3,-3,-9,-19,20,9,110,-10,66],"opm":[46.36,7.86,51.53,29.21,20.54,38.76,-14.52,3.33,-7.5,-13.04,-41.3,22.47,12.5,34.81,-16.67,29.6],"yoy_quarters":["20232Q","20233Q","20241Q","20242Q","20243Q","20244Q","20251Q","20252Q","20253Q","20254Q","20261Q","20262Q"],"rev_yoy":[142.73,-69.65,-80.98,-66.29,-64.29,-66.99,-25.81,-1.11,80.0,357.97,30.43,150.56],"op_yoy":[52.94,-20.69,-105.36,-96.15,-113.04,-111.11,-111.11,566.67,400.0,1322.22,47.37,230.0],"opm_at_yoy":[29.21,20.54,-14.52,3.33,-7.5,-13.04,-41.3,22.47,12.5,34.81,-16.67,29.6]},"cons":{"quarterly":[{"period":"2025/09","revenue":72,"op_income":9,"opm":12.5,"is_estimate":false},{"period":"2025/12","revenue":317,"op_income":111,"opm":35.02,"is_estimate":false},{"period":"2026/03","revenue":60,"op_income":-10,"opm":-16.67,"is_estimate":false},{"period":"2026/06","revenue":223,"op_income":66,"opm":29.6,"is_estimate":false},{"period":"2026/09","revenue":327,"op_income":122,"opm":37.31,"is_estimate":true},{"period":"2026/12","revenue":440,"op_income":187,"opm":42.5,"is_estimate":true},{"period":"2027/03","revenue":585,"op_income":264,"opm":45.13,"is_estimate":true}],"annual":[{"period":"2024/12","revenue":261,"op_income":-18,"opm":-6.9,"is_estimate":false},{"period":"2025/12","revenue":524,"op_income":121,"opm":23.09,"is_estimate":false},{"period":"2026/12","revenue":1019,"op_income":346,"opm":33.95,"is_estimate":true},{"period":"2027/12","revenue":2118,"op_income":932,"opm":44.0,"is_estimate":true},{"period":"2028/12","revenue":1988,"op_income":846,"opm":42.56,"is_estimate":true}]},"flow":[{"date":"2026-03-18","foreign_qty":-4819,"inst_qty":48491,"close":77300,"cum_foreign":-4819,"cum_inst":48491},{"date":"2026-03-19","foreign_qty":2858,"inst_qty":27077,"close":78400,"cum_foreign":-1961,"cum_inst":75568},{"date":"2026-03-20","foreign_qty":-17083,"inst_qty":23021,"close":78700,"cum_foreign":-19044,"cum_inst":98589},{"date":"2026-03-23","foreign_qty":18898,"inst_qty":-1840,"close":70800,"cum_foreign":-146,"cum_inst":96749},{"date":"2026-03-24","foreign_qty":-22640,"inst_qty":29239,"close":70000,"cum_foreign":-22786,"cum_inst":125988},{"date":"2026-03-25","foreign_qty":12228,"inst_qty":43620,"close":75500,"cum_foreign":-10558,"cum_inst":169608},{"date":"2026-03-26","foreign_qty":11204,"inst_qty":36396,"close":76800,"cum_foreign":646,"cum_inst":206004},{"date":"2026-03-27","foreign_qty":-22749,"inst_qty":62727,"close":78000,"cum_foreign":-22103,"cum_inst":268731},{"date":"2026-03-30","foreign_qty":-2549,"inst_qty":6552,"close":75200,"cum_foreign":-24652,"cum_inst":275283},{"date":"2026-03-31","foreign_qty":7468,"inst_qty":-8342,"close":72700,"cum_foreign":-17184,"cum_inst":266941},{"date":"2026-04-01","foreign_qty":31503,"inst_qty":36645,"close":86800,"cum_foreign":14319,"cum_inst":303586},{"date":"2026-04-02","foreign_qty":-3904,"inst_qty":45250,"close":86200,"cum_foreign":10415,"cum_inst":348836},{"date":"2026-04-03","foreign_qty":-36157,"inst_qty":51679,"close":83200,"cum_foreign":-25742,"cum_inst":400515},{"date":"2026-04-06","foreign_qty":-43721,"inst_qty":59356,"close":80700,"cum_foreign":-69463,"cum_inst":459871},{"date":"2026-04-07","foreign_qty":-19628,"inst_qty":24235,"close":78500,"cum_foreign":-89091,"cum_inst":484106},{"date":"2026-04-08","foreign_qty":2055,"inst_qty":-63035,"close":81400,"cum_foreign":-87036,"cum_inst":421071},{"date":"2026-04-09","foreign_qty":-14735,"inst_qty":22399,"close":80700,"cum_foreign":-101771,"cum_inst":443470},{"date":"2026-04-10","foreign_qty":4637,"inst_qty":31170,"close":85500,"cum_foreign":-97134,"cum_inst":474640},{"date":"2026-04-13","foreign_qty":-7320,"inst_qty":16137,"close":88900,"cum_foreign":-104454,"cum_inst":490777},{"date":"2026-04-14","foreign_qty":-14670,"inst_qty":28150,"close":88300,"cum_foreign":-119124,"cum_inst":518927},{"date":"2026-04-15","foreign_qty":-25566,"inst_qty":3579,"close":86800,"cum_foreign":-144690,"cum_inst":522506},{"date":"2026-04-16","foreign_qty":9026,"inst_qty":-30558,"close":86400,"cum_foreign":-135664,"cum_inst":491948},{"date":"2026-04-17","foreign_qty":-152,"inst_qty":12714,"close":87000,"cum_foreign":-135816,"cum_inst":504662},{"date":"2026-04-20","foreign_qty":-5787,"inst_qty":24656,"close":88000,"cum_foreign":-141603,"cum_inst":529318},{"date":"2026-04-21","foreign_qty":-23033,"inst_qty":64595,"close":94400,"cum_foreign":-164636,"cum_inst":593913},{"date":"2026-04-22","foreign_qty":5520,"inst_qty":-17783,"close":93500,"cum_foreign":-159116,"cum_inst":576130},{"date":"2026-04-23","foreign_qty":-44878,"inst_qty":30996,"close":91600,"cum_foreign":-203994,"cum_inst":607126},{"date":"2026-04-24","foreign_qty":39729,"inst_qty":21693,"close":100200,"cum_foreign":-164265,"cum_inst":628819},{"date":"2026-04-27","foreign_qty":-16987,"inst_qty":29908,"close":100900,"cum_foreign":-181252,"cum_inst":658727},{"date":"2026-04-28","foreign_qty":-13982,"inst_qty":42409,"close":105300,"cum_foreign":-195234,"cum_inst":701136},{"date":"2026-04-29","foreign_qty":-13892,"inst_qty":11390,"close":109100,"cum_foreign":-209126,"cum_inst":712526},{"date":"2026-04-30","foreign_qty":-3090,"inst_qty":-4213,"close":103900,"cum_foreign":-212216,"cum_inst":708313},{"date":"2026-05-04","foreign_qty":-2103,"inst_qty":-3722,"close":109500,"cum_foreign":-214319,"cum_inst":704591},{"date":"2026-05-06","foreign_qty":-14406,"inst_qty":-42312,"close":103400,"cum_foreign":-228725,"cum_inst":662279},{"date":"2026-05-07","foreign_qty":14905,"inst_qty":-2152,"close":105000,"cum_foreign":-213820,"cum_inst":660127},{"date":"2026-05-08","foreign_qty":7940,"inst_qty":-3901,"close":102600,"cum_foreign":-205880,"cum_inst":656226},{"date":"2026-05-11","foreign_qty":30529,"inst_qty":14524,"close":106700,"cum_foreign":-175351,"cum_inst":670750},{"date":"2026-05-12","foreign_qty":34793,"inst_qty":47925,"close":114800,"cum_foreign":-140558,"cum_inst":718675},{"date":"2026-05-13","foreign_qty":-8693,"inst_qty":38947,"close":127100,"cum_foreign":-149251,"cum_inst":757622},{"date":"2026-05-14","foreign_qty":-6441,"inst_qty":18501,"close":126000,"cum_foreign":-155692,"cum_inst":776123},{"date":"2026-05-15","foreign_qty":2971,"inst_qty":37422,"close":119800,"cum_foreign":-152721,"cum_inst":813545},{"date":"2026-05-18","foreign_qty":-7939,"inst_qty":34235,"close":124900,"cum_foreign":-160660,"cum_inst":847780},{"date":"2026-05-19","foreign_qty":-10601,"inst_qty":12339,"close":119800,"cum_foreign":-171261,"cum_inst":860119},{"date":"2026-05-20","foreign_qty":587,"inst_qty":8769,"close":121000,"cum_foreign":-170674,"cum_inst":868888},{"date":"2026-05-21","foreign_qty":-26039,"inst_qty":14572,"close":125600,"cum_foreign":-196713,"cum_inst":883460},{"date":"2026-05-22","foreign_qty":-4778,"inst_qty":-48349,"close":119800,"cum_foreign":-201491,"cum_inst":835111},{"date":"2026-05-26","foreign_qty":96327,"inst_qty":-24501,"close":142200,"cum_foreign":-105164,"cum_inst":810610},{"date":"2026-05-27","foreign_qty":26373,"inst_qty":-29734,"close":123400,"cum_foreign":-78791,"cum_inst":780876},{"date":"2026-05-28","foreign_qty":-11891,"inst_qty":29753,"close":130700,"cum_foreign":-90682,"cum_inst":810629},{"date":"2026-05-29","foreign_qty":-11440,"inst_qty":46753,"close":141400,"cum_foreign":-102122,"cum_inst":857382},{"date":"2026-06-01","foreign_qty":69810,"inst_qty":-48622,"close":134200,"cum_foreign":-32312,"cum_inst":808760},{"date":"2026-06-02","foreign_qty":29060,"inst_qty":-20945,"close":125400,"cum_foreign":-3252,"cum_inst":787815},{"date":"2026-06-04","foreign_qty":28909,"inst_qty":27213,"close":139400,"cum_foreign":25657,"cum_inst":815028},{"date":"2026-06-05","foreign_qty":-20625,"inst_qty":72677,"close":144000,"cum_foreign":5032,"cum_inst":887705},{"date":"2026-06-08","foreign_qty":22535,"inst_qty":-24328,"close":123500,"cum_foreign":27567,"cum_inst":863377},{"date":"2026-06-09","foreign_qty":8322,"inst_qty":-76888,"close":124700,"cum_foreign":35889,"cum_inst":786489},{"date":"2026-06-10","foreign_qty":25502,"inst_qty":4206,"close":130900,"cum_foreign":61391,"cum_inst":790695},{"date":"2026-06-11","foreign_qty":-93848,"inst_qty":149788,"close":147600,"cum_foreign":-32457,"cum_inst":940483},{"date":"2026-06-12","foreign_qty":-39078,"inst_qty":39965,"close":146000,"cum_foreign":-71535,"cum_inst":980448},{"date":"2026-06-15","foreign_qty":-19362,"inst_qty":6396,"close":140200,"cum_foreign":-90897,"cum_inst":986844},{"date":"2026-06-16","foreign_qty":-31103,"inst_qty":18897,"close":141900,"cum_foreign":-122000,"cum_inst":1005741},{"date":"2026-06-17","foreign_qty":-1468,"inst_qty":-14319,"close":140700,"cum_foreign":-123468,"cum_inst":991422},{"date":"2026-06-18","foreign_qty":9487,"inst_qty":-3193,"close":140300,"cum_foreign":-113981,"cum_inst":988229},{"date":"2026-06-19","foreign_qty":415,"inst_qty":-18932,"close":139000,"cum_foreign":-113566,"cum_inst":969297},{"date":"2026-06-22","foreign_qty":58568,"inst_qty":13172,"close":159200,"cum_foreign":-54998,"cum_inst":982469},{"date":"2026-06-23","foreign_qty":-59360,"inst_qty":104413,"close":157300,"cum_foreign":-114358,"cum_inst":1086882},{"date":"2026-06-24","foreign_qty":-57961,"inst_qty":101930,"close":155800,"cum_foreign":-172319,"cum_inst":1188812},{"date":"2026-06-25","foreign_qty":-40638,"inst_qty":54815,"close":161500,"cum_foreign":-212957,"cum_inst":1243627},{"date":"2026-06-26","foreign_qty":-42633,"inst_qty":74231,"close":166700,"cum_foreign":-255590,"cum_inst":1317858},{"date":"2026-06-29","foreign_qty":-20102,"inst_qty":30627,"close":175500,"cum_foreign":-275692,"cum_inst":1348485},{"date":"2026-06-30","foreign_qty":-1442,"inst_qty":20704,"close":192200,"cum_foreign":-277134,"cum_inst":1369189},{"date":"2026-07-01","foreign_qty":-8199,"inst_qty":9210,"close":189200,"cum_foreign":-285333,"cum_inst":1378399},{"date":"2026-07-02","foreign_qty":12569,"inst_qty":2802,"close":174800,"cum_foreign":-272764,"cum_inst":1381201},{"date":"2026-07-03","foreign_qty":1873,"inst_qty":84,"close":167000,"cum_foreign":-270891,"cum_inst":1381285},{"date":"2026-07-06","foreign_qty":9483,"inst_qty":-15396,"close":151500,"cum_foreign":-261408,"cum_inst":1365889},{"date":"2026-07-07","foreign_qty":87650,"inst_qty":-70218,"close":140000,"cum_foreign":-173758,"cum_inst":1295671},{"date":"2026-07-08","foreign_qty":-5205,"inst_qty":9929,"close":145500,"cum_foreign":-178963,"cum_inst":1305600},{"date":"2026-07-09","foreign_qty":8766,"inst_qty":-6391,"close":151500,"cum_foreign":-170197,"cum_inst":1299209},{"date":"2026-07-10","foreign_qty":3643,"inst_qty":-10755,"close":164500,"cum_foreign":-166554,"cum_inst":1288454},{"date":"2026-07-13","foreign_qty":-14012,"inst_qty":15645,"close":162000,"cum_foreign":-180566,"cum_inst":1304099},{"date":"2026-07-14","foreign_qty":36961,"inst_qty":-45337,"close":156500,"cum_foreign":-143605,"cum_inst":1258762},{"date":"2026-07-15","foreign_qty":-19274,"inst_qty":14090,"close":167100,"cum_foreign":-162879,"cum_inst":1272852},{"date":"2026-07-16","foreign_qty":810,"inst_qty":9594,"close":162800,"cum_foreign":-162069,"cum_inst":1282446},{"date":"2026-07-20","foreign_qty":19373,"inst_qty":-28158,"close":143000,"cum_foreign":-142696,"cum_inst":1254288},{"date":"2026-07-21","foreign_qty":5486,"inst_qty":-5774,"close":142600,"cum_foreign":-137210,"cum_inst":1248514},{"date":"2026-07-22","foreign_qty":-9236,"inst_qty":4927,"close":130800,"cum_foreign":-146446,"cum_inst":1253441},{"date":"2026-07-23","foreign_qty":311474,"inst_qty":5842,"close":130100,"cum_foreign":165028,"cum_inst":1259283},{"date":"2026-07-24","foreign_qty":79682,"inst_qty":-116232,"close":113200,"cum_foreign":244710,"cum_inst":1143051},{"date":"2026-07-27","foreign_qty":6398,"inst_qty":1642,"close":115600,"cum_foreign":251108,"cum_inst":1144693},{"date":"2026-07-28","foreign_qty":63732,"inst_qty":-43989,"close":100000,"cum_foreign":314840,"cum_inst":1100704},{"date":"2026-07-29","foreign_qty":62973,"inst_qty":-50735,"close":92000,"cum_foreign":377813,"cum_inst":1049969},{"date":"2026-07-30","foreign_qty":-1331,"inst_qty":-2243,"close":84200,"cum_foreign":376482,"cum_inst":1047726},{"date":"2026-07-31","foreign_qty":-147430,"inst_qty":149889,"close":103500,"cum_foreign":229052,"cum_inst":1197615},{"date":"2026-08-03","foreign_qty":-69408,"inst_qty":92082,"close":116300,"cum_foreign":159644,"cum_inst":1289697},{"date":"2026-08-04","foreign_qty":-30070,"inst_qty":19910,"close":114800,"cum_foreign":129574,"cum_inst":1309607},{"date":"2026-08-05","foreign_qty":-27887,"inst_qty":18453,"close":116400,"cum_foreign":101687,"cum_inst":1328060},{"date":"2026-08-06","foreign_qty":-4596,"inst_qty":11226,"close":113200,"cum_foreign":97091,"cum_inst":1339286},{"date":"2026-08-07","foreign_qty":27232,"inst_qty":-38416,"close":110300,"cum_foreign":124323,"cum_inst":1300870},{"date":"2026-08-10","foreign_qty":-13031,"inst_qty":19460,"close":117300,"cum_foreign":111292,"cum_inst":1320330},{"date":"2026-08-11","foreign_qty":-18344,"inst_qty":2898,"close":117400,"cum_foreign":92948,"cum_inst":1323228},{"date":"2026-08-12","foreign_qty":10791,"inst_qty":-13352,"close":117700,"cum_foreign":103739,"cum_inst":1309876},{"date":"2026-08-13","foreign_qty":3626,"inst_qty":-15537,"close":117900,"cum_foreign":107365,"cum_inst":1294339},{"date":"2026-08-14","foreign_qty":-1067,"inst_qty":-1870,"close":120100,"cum_foreign":106298,"cum_inst":1292469},{"date":"2026-08-18","foreign_qty":7759,"inst_qty":20382,"close":128100,"cum_foreign":114057,"cum_inst":1312851},{"date":"2026-08-19","foreign_qty":-19023,"inst_qty":-2825,"close":128700,"cum_foreign":95034,"cum_inst":1310026},{"date":"2026-08-20","foreign_qty":-30944,"inst_qty":7228,"close":121600,"cum_foreign":64090,"cum_inst":1317254},{"date":"2026-08-21","foreign_qty":29054,"inst_qty":-37854,"close":105300,"cum_foreign":93144,"cum_inst":1279400},{"date":"2026-08-24","foreign_qty":27660,"inst_qty":-35846,"close":104600,"cum_foreign":120804,"cum_inst":1243554},{"date":"2026-08-25","foreign_qty":69149,"inst_qty":-76845,"close":107600,"cum_foreign":189953,"cum_inst":1166709},{"date":"2026-08-26","foreign_qty":3860,"inst_qty":-11480,"close":104500,"cum_foreign":193813,"cum_inst":1155229},{"date":"2026-08-27","foreign_qty":3791,"inst_qty":4664,"close":108200,"cum_foreign":197604,"cum_inst":1159893},{"date":"2026-08-28","foreign_qty":1089,"inst_qty":4441,"close":109800,"cum_foreign":198693,"cum_inst":1164334},{"date":"2026-08-31","foreign_qty":-6576,"inst_qty":3650,"close":112700,"cum_foreign":192117,"cum_inst":1167984},{"date":"2026-09-01","foreign_qty":-39300,"inst_qty":3337,"close":104800,"cum_foreign":152817,"cum_inst":1171321},{"date":"2026-09-02","foreign_qty":50255,"inst_qty":-58362,"close":102300,"cum_foreign":203072,"cum_inst":1112959},{"date":"2026-09-03","foreign_qty":-451,"inst_qty":-3106,"close":99900,"cum_foreign":202621,"cum_inst":1109853},{"date":"2026-09-04","foreign_qty":2528,"inst_qty":-1406,"close":101200,"cum_foreign":205149,"cum_inst":1108447},{"date":"2026-09-07","foreign_qty":-6676,"inst_qty":-35451,"close":101800,"cum_foreign":198473,"cum_inst":1072996},{"date":"2026-09-08","foreign_qty":6394,"inst_qty":-36291,"close":98500,"cum_foreign":204867,"cum_inst":1036705},{"date":"2026-09-09","foreign_qty":63566,"inst_qty":-41626,"close":96300,"cum_foreign":268433,"cum_inst":995079},{"date":"2026-09-10","foreign_qty":51434,"inst_qty":-24169,"close":97600,"cum_foreign":319867,"cum_inst":970910},{"date":"2026-09-11","foreign_qty":20543,"inst_qty":-35452,"close":93800,"cum_foreign":340410,"cum_inst":935458},{"date":"2026-09-14","foreign_qty":27874,"inst_qty":-11694,"close":93900,"cum_foreign":368284,"cum_inst":923764},{"date":"2026-09-15","foreign_qty":-22526,"inst_qty":64153,"close":98700,"cum_foreign":345758,"cum_inst":987917},{"date":"2026-09-16","foreign_qty":-27044,"inst_qty":36489,"close":105800,"cum_foreign":318714,"cum_inst":1024406},{"date":"2026-09-17","foreign_qty":10212,"inst_qty":-20216,"close":100000,"cum_foreign":328926,"cum_inst":1004190},{"date":"2026-09-18","foreign_qty":20775,"inst_qty":38216,"close":112100,"cum_foreign":349701,"cum_inst":1042406}]};
+
+const COLOR_BLUE = "#2a78d6";
+const COLOR_ORANGE = "#eb6834";
+const COLOR_GREEN = "#2f9e6e";
+const COLOR_BLUE_SOFT = "rgba(42,120,214,0.35)";
+const COLOR_ORANGE_SOFT = "rgba(235,104,52,0.35)";
+
+function dualAxisChart(canvasId, labels, revenue, opm, estimateMask) {
+    if (!document.getElementById(canvasId)) return;
+    const revColors = labels.map((_, i) => (estimateMask && estimateMask[i]) ? COLOR_BLUE_SOFT : COLOR_BLUE);
+    const opmPointColors = labels.map((_, i) => (estimateMask && estimateMask[i]) ? COLOR_ORANGE_SOFT : COLOR_ORANGE);
+    return new Chart(document.getElementById(canvasId), {
+        data: {
+            labels: labels,
+            datasets: [
+                { type: "bar", label: "매출(억원)", data: revenue, backgroundColor: revColors, yAxisID: "y", order: 2 },
+                {
+                    type: "line", label: "영업이익률(%)", data: opm,
+                    borderColor: COLOR_ORANGE, backgroundColor: COLOR_ORANGE,
+                    pointBackgroundColor: opmPointColors, pointRadius: 3, borderWidth: 2,
+                    yAxisID: "y1", tension: 0.15, order: 1,
+                    segment: estimateMask ? {
+                        borderDash: ctx => (estimateMask[ctx.p0DataIndex] || estimateMask[ctx.p1DataIndex]) ? [5,4] : undefined,
+                    } : undefined,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            interaction: { mode: "index", intersect: false },
+            plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 10 } } } },
+            scales: {
+                x: { ticks: { font: { size: 9 }, maxRotation: 60, minRotation: 45 } },
+                y: { position: "left", title: { display: true, text: "매출(억원)", font: { size: 10 } }, ticks: { font: { size: 9 } } },
+                y1: { position: "right", title: { display: true, text: "영업이익률(%)", font: { size: 10 } }, grid: { drawOnChartArea: false }, ticks: { font: { size: 9 } } },
+            },
+        },
+    });
+}
+
+if (DATA.fin) {
+    dualAxisChart("chartFinActual", DATA.fin.quarters, DATA.fin.revenue, DATA.fin.opm, null);
+}
+if (DATA.cons) {
+    const consQ = DATA.cons.quarterly;
+    if (consQ.length) dualAxisChart("chartConsQ", consQ.map(d => d.period), consQ.map(d => d.revenue), consQ.map(d => d.opm), consQ.map(d => d.is_estimate));
+    const consA = DATA.cons.annual;
+    if (consA.length) dualAxisChart("chartConsA", consA.map(d => d.period.slice(0,4)), consA.map(d => d.revenue), consA.map(d => d.opm), consA.map(d => d.is_estimate));
+}
+if (DATA.flow && DATA.flow.length) {
+    const flow = DATA.flow;
+    new Chart(document.getElementById("chartFlow"), {
+        data: {
+            labels: flow.map(d => d.date.slice(5)),
+            datasets: [
+                { type: "line", label: "외국인 누적순매수(주)", data: flow.map(d => d.cum_foreign), borderColor: COLOR_BLUE, backgroundColor: COLOR_BLUE, pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y" },
+                { type: "line", label: "기관 누적순매수(주)", data: flow.map(d => d.cum_inst), borderColor: COLOR_ORANGE, backgroundColor: COLOR_ORANGE, pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y" },
+                { type: "line", label: "종가(원)", data: flow.map(d => d.close), borderColor: COLOR_GREEN, backgroundColor: "rgba(47,158,110,0.10)", fill: "origin", pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y1" },
+            ],
+        },
+        options: {
+            responsive: true,
+            interaction: { mode: "index", intersect: false },
+            plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 10 } } } },
+            scales: {
+                x: { ticks: { font: { size: 9 }, maxRotation: 60, minRotation: 45, autoSkip: true, maxTicksLimit: 15 } },
+                y: { position: "left", title: { display: true, text: "누적 순매수(주)", font: { size: 10 } }, ticks: { font: { size: 9 } } },
+                y1: { position: "right", title: { display: true, text: "종가(원)", font: { size: 10 } }, grid: { drawOnChartArea: false }, ticks: { font: { size: 9 } } },
+            },
+        },
+    });
+}
+</script>
+
+<div class="site-footer">© stock-screening</div>
+</body>
+</html>
