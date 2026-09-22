@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주별등락률</title>
+<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/weekly-returns.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>주별등락률</h1>
+            <div class="sub">매수후보와 같은 국장 유니버스의 종목별 주간 등락률</div>
+        </div>
+        <nav class="site-nav">
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html">국장</a>
+            <a href="commodities.html">원자재</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="buy-candidates.html">매수후보</a>
+            <a href="analysis.html">종목분석</a>
+            <a href="weekly-returns.html" class="active">주별등락률</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="wr-note">
+        코스피 시가총액 5000억 이상 + 코스닥 시가총액 3000억 이상(매수후보와 같은 유니버스) · 최근 약 2개월, 주(월~금) 단위 등락률
+        · 대분류별로 묶어 대분류→중분류→종목 순 시가총액 내림차순 정렬 · <span id="wr-generated-at"></span>
+    </p>
+    <div class="summary-line" id="wr-count-line">불러오는 중...</div>
+
+    <div id="wr-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <div class="site-footer">
+        등락률 = 그 주 마지막 거래일 종가 ÷ 직전 주 마지막 거래일 종가 - 1. 마지막 열이 진행 중인 주면 그 주 최근 거래일까지의 등락률입니다.
+        데이터가 없는 종목(상장 전·거래정지 등)은 "-"로 표시됩니다. 데이터는 매 영업일 장마감 후 갱신됩니다.
+    </div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/weekly-returns.js?v=1"></script>
+</body>
+</html>

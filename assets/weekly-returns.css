@@ -1,0 +1,83 @@
+.wr-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 14px;
+}
+
+.wr-section { margin-bottom: 28px; }
+.wr-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #14315C;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D7E0EC;
+}
+.wr-section-title .wr-section-count {
+    font-weight: 400;
+    color: #888;
+    font-size: 0.8rem;
+    margin-left: 6px;
+}
+
+.wr-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #D7E0EC;
+    border-radius: 3px;
+}
+
+table.wr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 720px;
+}
+table.wr-table th {
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: #6B7280;
+    padding: 8px 7px;
+    border-bottom: 2px solid #14151A;
+    background: #FAFBFD;
+}
+table.wr-table td {
+    text-align: right;
+    padding: 7px 7px;
+    border-bottom: 1px solid #F0F1F3;
+    color: #14151A;
+}
+table.wr-table tr:last-child td { border-bottom: none; }
+table.wr-table tr:nth-child(even) td { background: #FAFBFD; }
+
+table.wr-table th:first-child, table.wr-table td:first-child {
+    text-align: left;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #fff;
+    box-shadow: 1px 0 0 #E5E7EB;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+table.wr-table tr:nth-child(even) td:first-child { background: #FAFBFD; }
+table.wr-table td:first-child .wr-code { color: #999; font-weight: 400; font-size: 0.7rem; margin-left: 4px; }
+
+table.wr-table th:nth-child(2), table.wr-table td:nth-child(2),
+table.wr-table th:nth-child(3), table.wr-table td:nth-child(3) { text-align: center; color: #7a869a; font-size: 0.72rem; }
+table.wr-table td:nth-child(4) { color: #14213D; }
+
+table.wr-table td.up { color: #B4342A; font-weight: 600; }
+table.wr-table td.down { color: #2E5FA3; font-weight: 600; }
+table.wr-table td.na { color: #C5C9D0; }
+
+@media (max-width: 700px) {
+    table.wr-table { font-size: 0.72rem; }
+    table.wr-table th, table.wr-table td { padding: 6px 5px; }
+    table.wr-table td:first-child { max-width: 92px; }
+    table.wr-table th:nth-child(3), table.wr-table td:nth-child(3) { display: none; }  /* 중분류는 좁은 화면에서 숨김 */
+}
