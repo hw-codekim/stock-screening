@@ -40,7 +40,7 @@ async function wrLoad() {
             <div class="wr-table-wrap">
                 <table class="wr-table">
                     <thead><tr>
-                        <th>종목명</th><th>시장</th><th>중분류</th><th>시총(억)</th>${weekHead}
+                        <th>종목명</th><th>시장</th><th>중분류</th><th>시총(억)</th><th>YTD</th>${weekHead}
                     </tr></thead>
                     <tbody>
                         ${sec.items.map(it => `
@@ -49,6 +49,7 @@ async function wrLoad() {
                             <td>${it.market}</td>
                             <td>${it.sector_mid}</td>
                             <td>${Math.round(it.mktcap).toLocaleString()}</td>
+                            ${wrCell(it.ytd)}
                             ${it.rets.map(wrCell).join("")}
                         </tr>`).join("")}
                     </tbody>

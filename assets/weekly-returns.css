@@ -70,6 +70,7 @@ table.wr-table td:first-child .wr-code { color: #999; font-weight: 400; font-siz
 table.wr-table th:nth-child(2), table.wr-table td:nth-child(2),
 table.wr-table th:nth-child(3), table.wr-table td:nth-child(3) { text-align: center; color: #7a869a; font-size: 0.72rem; }
 table.wr-table td:nth-child(4) { color: #14213D; }
+table.wr-table th:nth-child(5), table.wr-table td:nth-child(5) { border-right: 1px solid #E5E7EB; }
 
 table.wr-table td.up { color: #B4342A; font-weight: 600; }
 table.wr-table td.down { color: #2E5FA3; font-weight: 600; }
