@@ -76,6 +76,9 @@ table.wr-table td.up { color: #B4342A; font-weight: 600; }
 table.wr-table td.down { color: #2E5FA3; font-weight: 600; }
 table.wr-table td.na { color: #C5C9D0; }
 
+table.wr-table td.wr-hi { background: #E3F6E8; }                       /* 주간 등락률 +20% 이상 */
+table.wr-table tr:nth-child(even) td.wr-hi { background: #DCF2E2; }
+
 @media (max-width: 700px) {
     table.wr-table { font-size: 0.72rem; }
     table.wr-table th, table.wr-table td { padding: 6px 5px; }

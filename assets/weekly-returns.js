@@ -50,7 +50,7 @@ async function wrLoad() {
                             <td>${it.sector_mid}</td>
                             <td>${Math.round(it.mktcap).toLocaleString()}</td>
                             ${wrCell(it.ytd)}
-                            ${it.rets.map(wrCell).join("")}
+                            ${it.rets.map(r => wrCell(r, true)).join("")}
                         </tr>`).join("")}
                     </tbody>
                 </table>
@@ -59,11 +59,12 @@ async function wrLoad() {
     ).join("");
 }
 
-function wrCell(pct) {
+function wrCell(pct, highlight) {
     if (pct === null || pct === undefined) return '<td class="na">-</td>';
     const cls = pct > 0 ? "up" : pct < 0 ? "down" : "";
+    const hi = highlight && pct >= 20 ? " wr-hi" : "";   // YTD는 제외, 주간 등락률 칸만 +20% 이상이면 연한 녹색
     const sign = pct > 0 ? "+" : "";
-    return `<td class="${cls}">${sign}${pct.toFixed(1)}%</td>`;
+    return `<td class="${cls}${hi}">${sign}${pct.toFixed(1)}%</td>`;
 }
 
 const wrScrollTopBtn = document.getElementById("scroll-top-btn");
