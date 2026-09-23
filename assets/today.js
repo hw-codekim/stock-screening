@@ -26,7 +26,7 @@ function tFmtTradeValue(v) {
     return Math.round(v / 1e8).toLocaleString() + "억";
 }
 
-const MAJOR_INVESTOR_TYPES = new Set(["개인", "외국인", "기관계"]);
+const MAJOR_INVESTOR_TYPES = new Set(["개인", "외국인"]);   // '기관계'는 소스(money_flow) 한계로 더 이상 안 낸다
 
 async function loadToday() {
     let data;
