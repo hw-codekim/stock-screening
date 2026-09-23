@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로티나(468530)</title>
+<link rel="stylesheet" href="../assets/style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+.viz-root {
+    --series-blue: #2a78d6;
+    --series-orange: #eb6834;
+    --series-blue-soft: rgba(42,120,214,0.35);
+    --series-orange-soft: rgba(235,104,52,0.35);
+}
+.analysis-body, .analysis-body * { font-family: 'Noto Sans KR', sans-serif; }
+.tag-blue { font-size: 0.8rem; font-weight: 700; color: #2F5FD8; margin-bottom: 4px; }
+.analysis-title { font-size: 1.55rem; font-weight: 800; color: #14151A; margin: 2px 0 2px; }
+.analysis-sub { font-size: 0.82rem; color: #6B7280; margin-bottom: 12px; }
+.divider { border-top: 1px solid #E5E7EB; margin: 4px 0 14px; }
+.lead { font-size: 0.88rem; color: #6B7280; line-height: 1.75; max-width: 680px; margin-bottom: 18px; }
+.tnum { font-variant-numeric: tabular-nums; }
+.section-title { font-size: 1.1rem; font-weight: 800; color: #14151A; margin: 30px 0 12px; }
+.cards-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.card { background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 2px rgba(16,24,40,.04); padding: 18px 20px; }
+.card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 8px; flex-wrap: wrap; }
+.card-title { font-size: 0.95rem; font-weight: 700; color: #14151A; }
+.card-date { font-size: 0.78rem; color: #8B92A0; }
+.row, .row-block { padding: 9px 0; border-bottom: 1px solid #F0F1F3; }
+.row:last-child, .row-block:last-child, .row.no-border, .row-block.no-border { border-bottom: none; }
+.row, .row-line { display: flex; justify-content: space-between; align-items: baseline; }
+.lab { font-size: 0.85rem; color: #4B5160; }
+.val { font-size: 0.9rem; font-weight: 700; color: #14151A; }
+.sub { font-size: 0.72rem; color: #9AA1AC; margin-top: 2px; }
+.up { color: #E5484D; }
+.down { color: #2F5FD8; }
+.pill { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
+.pill-up { background: #FDECEC; color: #E5484D; }
+.pill-down { background: #EAF0FE; color: #2F5FD8; }
+.chart-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.chart-box { flex: 1 1 420px; background: #fff; border: 1px solid #E5E7EB; border-radius: 12px; box-shadow: 0 1px 2px rgba(16,24,40,.04); padding: 18px 20px; min-width: 0; }
+.chart-box-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.chart-box-title { font-size: 0.85rem; font-weight: 700; color: #14151A; }
+.chart-stat-val { font-size: 1.05rem; font-weight: 800; color: #14151A; margin-left: 8px; }
+.chart-box canvas { max-height: 300px; }
+.legend-note { font-size: 0.7rem; color: #9AA1AC; text-align: center; margin-top: 6px; }
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+table.data-table th { text-align: right; font-weight: 600; font-size: 0.75rem; color: #6B7280; padding: 8px 6px; border-bottom: 2px solid #14151A; }
+table.data-table th:first-child, table.data-table td:first-child { text-align: left; }
+table.data-table td.up { color: #E5484D; }
+table.data-table td.down { color: #2F5FD8; }
+table.data-table td { text-align: right; padding: 8px 6px; border-bottom: 1px solid #F0F1F3; color: #14151A; }
+table.data-table tr:last-child td { border-bottom: none; font-weight: 700; }
+.table-scroll { overflow-x: auto; }
+.price-chart { width: 100%; height: 320px; background: #F5F7FA; border-radius: 2px; }
+.mini-legend { font-size: 0.7rem; color: #999; font-weight: 400; margin-left: 8px; white-space: nowrap; }
+.mini-legend .legend-dot { display: inline-block; width: 6px; height: 6px; border-radius: 2px; margin: 0 3px 0 8px; vertical-align: middle; }
+table.report-table th:nth-child(-n+3), table.report-table td:nth-child(-n+3) { text-align: left; }
+table.report-table th:nth-child(4), table.report-table td:nth-child(4) { text-align: center; }
+table.report-table tr:last-child td { font-weight: 400; }
+table.report-table td.rp-title a { color: #14151A; text-decoration: none; }
+table.report-table td.rp-title a:hover { text-decoration: underline; color: #2F5FD8; }
+table.report-table td.rp-title { white-space: normal; min-width: 220px; }
+.pill-gray { background: #F1F2F4; color: #6B7280; }
+table.report-table tr.rp-main td { border-bottom: none; padding-bottom: 2px; }
+table.report-table tr.rp-sum td { padding: 0 6px 12px; color: #6B7280; font-size: 0.78rem; line-height: 1.65; }
+table.report-table tr.rp-sum td div { display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; }
+.pill.flat { margin-left: 0; }
+table.sales-table { font-size: 0.72rem; }
+table.sales-table th, table.sales-table td { padding: 7px 4px; white-space: nowrap; }
+table.sales-table td:first-child { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+table.sales-table td.na { color: #C5C9D0; }
+table.price-table tr:last-child td { font-weight: 400; }
+table.earn-table tr:last-child td { font-weight: 400; }
+table.contract-table, table.holder-table { min-width: 760px; font-size: 0.78rem; }
+table.contract-table td, table.holder-table td { white-space: nowrap; padding: 8px 6px; }
+table.contract-table th, table.holder-table th { padding: 8px 6px; }
+table.contract-table th:nth-child(-n+3), table.contract-table td:nth-child(-n+3),
+table.contract-table th:nth-child(n+6), table.contract-table td:nth-child(n+6) { text-align: left; }
+table.contract-table td:nth-child(3) { white-space: normal; min-width: 220px; }
+table.contract-table td:nth-child(6) { white-space: normal; min-width: 130px; }
+table.holder-table th:nth-child(-n+3), table.holder-table td:nth-child(-n+3),
+table.holder-table th:nth-child(8), table.holder-table td:nth-child(8) { text-align: left; }
+table.holder-table td:nth-child(8) { white-space: normal; min-width: 200px; }
+table.contract-table tr:last-child td, table.holder-table tr:last-child td { font-weight: 400; }
+table.contract-table td a, table.holder-table td a { color: #14151A; text-decoration: none; }
+table.contract-table td a:hover, table.holder-table td a:hover { text-decoration: underline; color: #2F5FD8; }
+table.earn-table th.est-col, table.earn-table td.est-col { background: #F8F9FB; }
+table.earn-table th.est-first, table.earn-table td.est-first { border-left: 2px solid #D7DCE5; }
+table.earn-table td.na { color: #C5C9D0; }
+table.price-table tr.grp td { background: #F8F9FB; font-weight: 700; color: #14151A; text-align: left; }
+table.price-table tr.qoq td { padding-top: 2px; font-size: 0.7rem; }
+table.price-table td.est { color: #6B7280; font-style: italic; }
+.news-list { list-style: none; margin: 0; padding: 0; }
+.news-item { display: flex; align-items: baseline; gap: 10px; padding: 10px 0; border-bottom: 1px solid #F0F1F3; font-size: 0.85rem; }
+.news-item:last-child { border-bottom: none; }
+.news-date { flex: 0 0 62px; color: #9AA1AC; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.news-item a { flex: 1 1 auto; color: #14151A; text-decoration: none; }
+.news-item a:hover { text-decoration: underline; color: #2F5FD8; }
+.news-source { flex: 0 0 auto; font-size: 0.72rem; color: #aaa; }
+.foot-note { font-size: 0.72rem; color: #9AA1AC; margin-top: 30px; line-height: 1.6; }
+
+/* 모바일/좁은 화면: 표는 카드 안에서 가로 스크롤(첫 열 고정), 카드/차트/글자 크기 축소 */
+.cards-row > .card { min-width: 0; }
+.table-scroll { -webkit-overflow-scrolling: touch; }
+table.sales-table { min-width: 560px; }
+table.earn-table, table.price-table { min-width: 700px; }
+table.report-table { min-width: 560px; }
+table.sales-table th:first-child, table.sales-table td:first-child { position: sticky; left: 0; z-index: 1; background: #fff; box-shadow: 1px 0 0 #E5E7EB; }
+table.sales-table tr.grp td:first-child { background: #F8F9FB; }
+@media (max-width: 700px) {
+    .analysis-title { font-size: 1.3rem; }
+    .lead { font-size: 0.84rem; margin-bottom: 14px; }
+    .section-title { font-size: 1.02rem; margin: 24px 0 10px; }
+    .card, .chart-box { padding: 14px; border-radius: 10px; }
+    .cards-row, .chart-row { gap: 12px; }
+    .card-head { margin-bottom: 8px; }
+    .card-title { font-size: 0.9rem; }
+    .card-date { font-size: 0.72rem; }
+    .lab { font-size: 0.82rem; }
+    .val { font-size: 0.86rem; }
+    .price-chart { height: 240px; }
+    table.sales-table td:first-child { max-width: 112px; }
+    table.report-table th:nth-child(6), table.report-table td:nth-child(6) { display: none; }
+    table.report-table td.rp-title { min-width: 170px; }
+    .news-source { display: none; }
+    .news-date { flex-basis: 54px; }
+    .legend-note { font-size: 0.68rem; }
+}
+@media (max-width: 700px) {
+    .site-header { position: static; padding: 12px 14px; }
+    .header-left { width: 100%; min-width: 0; }
+    .header-left > div:first-child { min-width: 0; }
+    .site-nav { min-width: 0; max-width: 100%; gap: 20px; margin-top: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-size: 0.9rem; flex: 0 0 auto; }
+    .header-right { width: 100%; }
+}
+</style>
+</head>
+<body class="viz-root">
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>오늘의 시장</h1>
+            <div class="sub">국내 증시 데일리 요약</div>
+        </div>
+        <nav class="site-nav">
+            <a href="../index.html">TODAY</a>
+            <a href="../q2.html">2Q26실적</a>
+            <a href="../forward.html">포워드실적</a>
+            <a href="../us-charts.html">미장</a>
+            <a href="../kr-charts.html">국장</a>
+            <a href="../commodities.html">원자재</a>
+            <a href="../cashflow.html">현금흐름</a>
+            <a href="../buy-candidates.html">매수후보</a>
+            <a href="../analysis.html" class="active">종목분석</a>
+            <a href="../weekly-returns.html">주별등락률</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container analysis-body">
+    <div class="tag-blue">종목분석</div>
+    <div class="analysis-title">프로티나(468530)</div>
+    <div class="analysis-sub">헬스케어 · 바이오_연구개발 · 항체치료제 · KOSDAQ</div>
+    <div class="divider"></div>
+    <div class="lead">당일 시세와 최근 실적, 외국인·기관 수급 흐름을 통해 프로티나의 현재 상태를 확인할 수 있습니다. 실적 추이와 매출 구성, 수급 강도, 직원 현황과 최근 뉴스를 한 페이지에서 비교할 수 있습니다.</div>
+
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;">
+        <div class="card-head"><span class="card-title">시세 정보</span><span class="card-date">2026.09.23</span></div>
+        <div class="row"><span class="lab">주가</span><span class="val tnum">47,250원<span class="pill pill-up">▲18.27%</span></span></div>
+        <div class="row"><span class="lab">시가총액</span><span class="val tnum">5,247억원</span></div>
+        <div class="row-block">
+            <div class="row-line"><span class="lab">거래량</span><span class="val tnum">416,869주</span></div>
+            <div class="sub">10일 평균 92,439주 (분석일 제외)</div>
+        </div>
+        <div class="row"><span class="lab">거래대금</span><span class="val tnum">약 197.0억원</span></div>
+        <div class="row no-border"><span class="lab">52주 최고 / 최저</span><span class="val tnum"><span class="up">120,100</span> / <span class="down">15,500</span></span></div>
+    </div>
+        <div class="card" style="flex:1 1 300px;">
+        <div class="card-head"><span class="card-title">밸류에이션·수익률</span><span class="card-date">2026.09.23</span></div>
+        <div class="row"><span class="lab">발행주식수</span><span class="val tnum">11,105,148주</span></div>
+        <div class="row"><span class="lab">유통비율</span><span class="val tnum">76.57%</span></div>
+        <div class="row"><span class="lab">외국인 지분율</span><span class="val tnum">2.65%</span></div>
+        <div class="row-block no-border">
+            <div class="row-line"><span class="lab">수익률 (1M/3M/6M/1Y)</span></div>
+            <div class="tnum" style="text-align:right; font-weight:700; font-size:0.85rem; margin-top:4px;"><span class="up">+37.55%</span> / <span class="up">+60.71%</span> / <span class="down">-35.10%</span> / <span class="up">+8.87%</span></div>
+        </div>
+    </div>
+    </div>
+    <div class="section-title">주가 차트</div>
+    <div class="card"><div class="card-head"><span class="card-title">최근 6개월 일봉<span class="mini-legend"><i class="legend-dot" style="background:#9B59B6;"></i>50일선<i class="legend-dot" style="background:#27ae60;"></i>150일선</span></span><span class="card-date">마지막 거래일 2026-09-23 · 캔들·거래량</span></div><div class="price-chart" id="priceChart"></div></div>
+
+    <div class="section-title">실적</div>
+    <div class="card" style="margin-bottom:14px;"><div class="card-head"><span class="card-title">분기 실적</span><span class="card-date">공시 실적(별도) + FnGuide 컨센서스(E, 음영)</span></div><div class="table-scroll"><table class="data-table sales-table earn-table"><thead><tr><th>항목</th><th class="">24.3Q</th><th class="">24.4Q</th><th class="">25.1Q</th><th class="">25.2Q</th><th class="">25.3Q</th><th class="">25.4Q</th><th class="">26.1Q</th><th class="">26.2Q</th></tr></thead><tbody><tr><td>매출(억원)</td><td>8</td><td>8</td><td>11</td><td>10</td><td>6</td><td>3</td><td>2</td><td>3</td></tr><tr><td>영업이익(억원)</td><td class="down">-20</td><td class="down">-28</td><td class="down">-16</td><td class="down">-24</td><td class="down">-29</td><td class="down">-44</td><td class="down">-47</td><td class="down">-40</td></tr><tr><td>OPM(%)</td><td class="down">-250.0%</td><td class="down">-350.0%</td><td class="down">-145.5%</td><td class="down">-240.0%</td><td class="down">-483.3%</td><td class="down">-1466.7%</td><td class="down">-2350.0%</td><td class="down">-1333.3%</td></tr><tr><td>순이익(억원)</td><td class="down">-15</td><td class="down">-18</td><td class="down">-14</td><td class="down">-20</td><td class="down">-26</td><td class="down">-30</td><td class="down">-33</td><td class="down">-31</td></tr><tr><td>영업이익 YoY</td><td class="na">-</td><td class="na">-</td><td class="down">적지</td><td class="down">적지</td><td class="down">적지</td><td class="down">적지</td><td class="down">적지</td><td class="down">적지</td></tr><tr><td>PER(배)</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td></tr><tr><td>ROE(%)</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td><td class="na">-</td></tr></tbody></table></div></div>
+    <div class="card" style="margin-bottom:14px;"><div class="card-head"><span class="card-title">연간 실적</span><span class="card-date">공시 실적(별도) + FnGuide 컨센서스(E, 음영)</span></div><div class="table-scroll"><table class="data-table sales-table earn-table"><thead><tr><th>항목</th><th class="">2025</th></tr></thead><tbody><tr><td>매출(억원)</td><td>30</td></tr><tr><td>영업이익(억원)</td><td class="down">-114</td></tr><tr><td>OPM(%)</td><td class="down">-380.0%</td></tr><tr><td>순이익(억원)</td><td class="down">-90</td></tr><tr><td>영업이익 YoY</td><td class="down">적지</td></tr><tr><td>PER(배)</td><td class="na">-</td></tr><tr><td>ROE(%)</td><td class="down">-34.9%</td></tr></tbody></table></div></div>
+    <div class="legend-note" style="text-align:left;">매출·영업이익·순이익 단위는 억원. 공시 실적은 financial_results(연결 우선, 없으면 별도), (E)는 FnGuide 컨센서스 추정입니다. 영업이익 YoY는 전년 동기(연간은 전년) 대비이며, 전년이 적자(0 이하)면 %가 의미 없어 흑전(적자→흑자)·적전(흑자→적자)·적지(적자 지속)로 표기했습니다. PER은 FnGuide 값(분기는 제공되는 분기만), ROE는 EPS÷BPS(기말)로 계산한 값이며 분기 ROE는 그 분기 단독(연환산 아님)입니다.</div>
+
+    <div class="section-title">매출 실적</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 440px; min-width:0;"><div class="card-head"><span class="card-title">분기별 매출 (원본)</span><span class="card-date">단위: 억원</span></div><div class="table-scroll"><table class="data-table sales-table"><thead><tr><th>매출 항목 (억원)</th><th>25.3Q</th><th>25.4Q</th><th>26.1Q</th><th>26.2Q</th></tr></thead><tbody><tr><td title="PPI PathFinder® · 서비스 · 수출">PPI PathFinder® · 서비스 · 수출</td><td class="na">-</td><td class="na">-</td><td>0</td><td>1</td></tr><tr><td title="PPI PathFinder® · 서비스 · 합계">PPI PathFinder® · 서비스 · 합계</td><td class="na">-</td><td class="na">-</td><td>0</td><td>1</td></tr><tr><td title="PPI Landscape® · 서비스 · 내수">PPI Landscape® · 서비스 · 내수</td><td class="na">-</td><td class="na">-</td><td>1</td><td>2</td></tr><tr><td title="PPI Landscape® · 서비스 · 합계">PPI Landscape® · 서비스 · 합계</td><td class="na">-</td><td class="na">-</td><td>1</td><td>2</td></tr><tr><td title="SPID Platform Systems · 제품 · 수출">SPID Platform Systems · 제품 · 수출</td><td class="na">-</td><td class="na">-</td><td>0</td><td>0</td></tr><tr><td title="SPID Platform Systems · 제품 · 내수">SPID Platform Systems · 제품 · 내수</td><td class="na">-</td><td class="na">-</td><td>0</td><td>1</td></tr><tr><td title="SPID Platform Systems · 제품 · 합계">SPID Platform Systems · 제품 · 합계</td><td class="na">-</td><td class="na">-</td><td>0</td><td>1</td></tr><tr><td title="합계 · 수출">합계 · 수출</td><td>0</td><td>0</td><td>0</td><td>1</td></tr><tr><td title="합계 · 내수">합계 · 내수</td><td>5</td><td>3</td><td>1</td><td>3</td></tr><tr><td title="합계">합계</td><td>6</td><td>3</td><td>2</td><td>3</td></tr></tbody></table></div></div>
+        <div class="card" style="flex:1 1 440px; min-width:0;"><div class="card-head"><span class="card-title">분기별 매출 비중</span><span class="card-date">총매출 대비</span></div><div class="table-scroll"><table class="data-table sales-table"><thead><tr><th>매출 항목 (%)</th><th>25.3Q</th><th>25.4Q</th><th>26.1Q</th><th>26.2Q</th></tr></thead><tbody><tr><td title="PPI PathFinder® · 서비스 · 수출">PPI PathFinder® · 서비스 · 수출</td><td class="na">-</td><td class="na">-</td><td>30%</td><td>23%</td></tr><tr><td title="PPI PathFinder® · 서비스 · 합계">PPI PathFinder® · 서비스 · 합계</td><td class="na">-</td><td class="na">-</td><td>30%</td><td>23%</td></tr><tr><td title="PPI Landscape® · 서비스 · 내수">PPI Landscape® · 서비스 · 내수</td><td class="na">-</td><td class="na">-</td><td>59%</td><td>54%</td></tr><tr><td title="PPI Landscape® · 서비스 · 합계">PPI Landscape® · 서비스 · 합계</td><td class="na">-</td><td class="na">-</td><td>59%</td><td>54%</td></tr><tr><td title="SPID Platform Systems · 제품 · 수출">SPID Platform Systems · 제품 · 수출</td><td class="na">-</td><td class="na">-</td><td>0%</td><td>2%</td></tr><tr><td title="SPID Platform Systems · 제품 · 내수">SPID Platform Systems · 제품 · 내수</td><td class="na">-</td><td class="na">-</td><td>11%</td><td>21%</td></tr><tr><td title="SPID Platform Systems · 제품 · 합계">SPID Platform Systems · 제품 · 합계</td><td class="na">-</td><td class="na">-</td><td>11%</td><td>22%</td></tr><tr><td title="합계 · 수출">합계 · 수출</td><td>8%</td><td>1%</td><td>30%</td><td>25%</td></tr><tr><td title="합계 · 내수">합계 · 내수</td><td>92%</td><td>99%</td><td>70%</td><td>75%</td></tr><tr><td title="합계">합계</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td></tr></tbody></table></div></div>
+    </div>
+    <div class="legend-note" style="text-align:left;">DART 정기보고서 '매출 및 수주상황' 매출실적 표 기준. 1분기·반기·3분기 보고서는 누적값이라 차감해 분기값을 만들었고 4분기는 사업보고서(연간) − 3분기 누적으로 계산했습니다. 보고서 간 품목명이 달라져 계산할 수 없는 칸은 '-'입니다. 25.4Q, 26.1Q, 26.2Q는 재무제표(FnGuide) 분기 매출과 5% 이상 차이가 납니다(연결/별도 기준 차이 등).</div>
+
+
+    <div class="section-title">수급</div>
+    <div class="lead">외국인 지분율: 2개월전(2026-07-25) 5.16% → 1개월전(2026-08-24) 1.72% → 당일 2.65% (3개월전 수치는 DB 이력 부족으로 생략)<br>최근 1개월 누적: 기관 +74,133주, 외국인 -22,065주 · 최근 6개월(2026-03-23~2026-09-23) 누적: 기관 -326,350주, 외국인 +136,041주 (한국투자증권 KIS API 기준)</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">외국인 순매수 상위일</span><span class="card-date">최근 6개월</span></div><div class="row-block"><div class="row-line"><span class="lab"><b>1.</b> 04-08</span><span class="val up tnum">+71,573주</span></div><div class="sub">종가 57,800원</div></div><div class="row-block"><div class="row-line"><span class="lab"><b>2.</b> 04-07</span><span class="val up tnum">+62,250주</span></div><div class="sub">종가 56,900원</div></div><div class="row-block no-border"><div class="row-line"><span class="lab"><b>3.</b> 06-02</span><span class="val up tnum">+42,156주</span></div><div class="sub">종가 36,050원</div></div></div>
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">기관 순매수 상위일</span><span class="card-date">최근 6개월</span></div><div class="row-block"><div class="row-line"><span class="lab"><b>1.</b> 09-23</span><span class="val up tnum">+72,001주</span></div><div class="sub">종가 47,250원</div></div><div class="row-block"><div class="row-line"><span class="lab"><b>2.</b> 08-14</span><span class="val up tnum">+65,607주</span></div><div class="sub">종가 37,600원</div></div><div class="row-block no-border"><div class="row-line"><span class="lab"><b>3.</b> 08-19</span><span class="val up tnum">+45,971주</span></div><div class="sub">종가 34,250원</div></div></div>
+    </div>
+    <div class="chart-row">
+        <div class="chart-box" style="flex-basis:100%;"><div class="chart-box-head"><span class="chart-box-title">누적 수급 &amp; 종가 (최근 6개월)</span><span class="chart-stat-val tnum">47,250원</span><span class="card-date" style="margin-left:8px;">날짜: 2026-09-23</span></div><canvas id="chartFlow"></canvas><div class="legend-note">선: 외국인·기관 누적 순매수(주, 좌축) · 종가(원, 우축, 옅은 채움)</div></div>
+    </div>
+<div class="card" style="margin-top:14px;"><div class="card-head"><span class="card-title">최근 6일 수급 요약</span><span class="card-date">단위: 주</span></div><table class="data-table"><thead><tr><th>날짜</th><th>종가</th><th>외국인</th><th>기관</th></tr></thead><tbody><tr><td>09-16</td><td>32,550</td><td class="down">-6,105</td><td class="up">+2,731</td></tr><tr><td>09-17</td><td>33,900</td><td class="down">-16,204</td><td class="up">+26,061</td></tr><tr><td>09-18</td><td>35,050</td><td class="up">+7,203</td><td class="up">+6,143</td></tr><tr><td>09-21</td><td>39,450</td><td class="down">-2,448</td><td class="up">+19,164</td></tr><tr><td>09-22</td><td>39,950</td><td class="down">-12,305</td><td class="up">+13,900</td></tr><tr><td>09-23</td><td>47,250</td><td class="up">+488</td><td class="up">+72,001</td></tr></tbody></table></div>
+
+
+    <div class="section-title">직원수</div>
+    <div class="cards-row">
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">분기별 직원수</span><span class="card-date">DART 정기보고서 기준</span></div><table class="data-table"><thead><tr><th>분기</th><th>직원수</th></tr></thead><tbody><tr><td>2025.2Q</td><td>52명</td></tr><tr><td>2025.3Q</td><td>51명</td></tr><tr><td>2025.4Q</td><td>53명</td></tr><tr><td>2026.1Q</td><td>53명</td></tr><tr><td>2026.2Q</td><td>56명</td></tr></tbody></table><div class="legend-note" style="text-align:left; margin-top:6px;">정기보고서(1분기·반기·3분기·사업보고서) "임원 및 직원 등의 현황" 합계 기준.</div></div>
+        <div class="card" style="flex:1 1 300px;"><div class="card-head"><span class="card-title">직원 1인당 매출</span><span class="card-date">분기 매출 ÷ 직원수</span></div><table class="data-table"><thead><tr><th>분기</th><th>1인당 매출</th></tr></thead><tbody><tr><td>2025.2Q</td><td>19.2백만원/명</td></tr><tr><td>2025.3Q</td><td>11.8백만원/명</td></tr><tr><td>2025.4Q</td><td>5.7백만원/명</td></tr><tr><td>2026.1Q</td><td>3.8백만원/명</td></tr><tr><td>2026.2Q</td><td>5.4백만원/명</td></tr></tbody></table><div class="legend-note" style="text-align:left; margin-top:6px;">분기 매출은 FnGuide 공시 기준.</div></div>
+    </div>
+
+    <div class="section-title">공급계약 공시</div>
+    <div class="card"><div class="card-head"><span class="card-title">최근 3년 단일판매·공급계약 1건</span><span class="card-date">출처: DART · 제목 클릭 시 공시 원문</span></div><div class="table-scroll"><table class="data-table contract-table"><thead><tr><th>공시일</th><th>구분</th><th>계약명</th><th>금액(억원)</th><th>매출 대비</th><th>계약상대</th><th>계약기간</th></tr></thead><tbody><tr><td>2025-09-17</td><td><span class="pill flat pill-up">체결</span></td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250917900178" target="_blank" rel="noopener">임상검체 분석 서비스 공급 계약</a></td><td>12</td><td>51.1%</td><td>계약상대방의 대금지급 청구(recepient and invocie) 승인일로부터 90일 이내에 수령</td><td>2025-09-11 ~ 2028-12-31</td></tr></tbody></table></div><div class="legend-note" style="text-align:left; margin-top:6px;">구분: 체결=최초 공시, 정정=기재정정, 자율=자율공시, 해지=계약해지. 매출 대비는 최근 사업연도 매출액 대비 비율(공시 기재값)입니다.</div></div>
+
+    <div class="section-title">대주주 지분 변동 공시</div>
+    <div class="card"><div class="card-head"><span class="card-title">최근 2년 지분율 증가·감소 16건</span><span class="card-date">출처: DART · 보고자 클릭 시 공시 원문</span></div><div class="table-scroll"><table class="data-table holder-table"><thead><tr><th>공시일</th><th>구분</th><th>보고자</th><th>보유주식수</th><th>지분율</th><th>증감(%p)</th><th>증감주식수</th><th>사유</th></tr></thead><tbody><tr><td>2026-08-25</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000186" target="_blank" rel="noopener">윤태영</a></td><td>2,934,405</td><td>25.63%</td><td class="down">-0.13</td><td class="down">+0</td><td>특별관계자의 주식매수선택권 행사에 따른 보유형태 / (보유→소유) 변경 보고 / ※주식매수선택권행사로 발행주식수 증가 및 비율 변경</td></tr><tr><td>2026-04-30</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430001810" target="_blank" rel="noopener">윤태영</a></td><td>2,934,405</td><td>25.76%</td><td class="up">+0.05</td><td class="up">+12,000</td><td>특별관계자의 주식매수선택권 행사에 따른 보유형태 / (보유→소유) 변경 보고 / ※주식매수선택권행사로 발행주식수 증가 및 비율 변경</td></tr><tr><td>2025-11-27</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251127001187" target="_blank" rel="noopener">윤태영</a></td><td>2,922,405</td><td>25.71%</td><td class="down">-0.33</td><td class="down">+0</td><td>특별관계자의 주식매수선택권 행사에 따른 보유형태 / (보유→소유) 변경 보고</td></tr><tr><td>2025-10-13</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251013000346" target="_blank" rel="noopener">LB인베스트먼트</a></td><td>480,959</td><td>4.42%</td><td class="down">-1.80</td><td class="down">-195,267</td><td>코스닥 장내매도에 따른 보유지분 변동</td></tr><tr><td>2025-09-16</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250916000269" target="_blank" rel="noopener">한국산업은행</a></td><td>500,500</td><td>4.60%</td><td class="down">-2.36</td><td class="down">-250,250</td><td>보유주식 일부 장내매각에 따른 변동보고</td></tr><tr><td>2025-09-10</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250910000400" target="_blank" rel="noopener">JPMorganAssetManagement(AsiaPacific)Limited</a></td><td>314,471</td><td>2.89%</td><td class="down">-2.27</td><td class="down">-246,029</td><td>보유비율 변동</td></tr><tr><td>2025-09-08</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250908000283" target="_blank" rel="noopener">LB인베스트먼트</a></td><td>676,226</td><td>6.22%</td><td class="down">-1.76</td><td class="down">-191,978</td><td>코스닥 장내매도에 따른 보유지분 변동</td></tr><tr><td>2025-09-04</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250903000390" target="_blank" rel="noopener">케이런벤처스</a></td><td>389,396</td><td>3.58%</td><td class="down">-1.84</td><td class="down">-194,699</td><td>코스닥 장내매도에 따른 보유지분 변동</td></tr><tr><td>2025-09-03</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250903000267" target="_blank" rel="noopener">JPMorganAssetManagement(AsiaPacific)Limited</a></td><td>560,500</td><td>5.16%</td><td class="up">+5.16</td><td class="up">+560,500</td><td>신규보고의무 발생</td></tr><tr><td>2025-08-27</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250827000584" target="_blank" rel="noopener">LB인베스트먼트</a></td><td>868,204</td><td>7.98%</td><td class="down">-1.34</td><td class="down">-137,716</td><td>코스닥 장내매도에 따른 보유지분 변동</td></tr><tr><td>2025-08-05</td><td>임원·주요주주(10%이상주주)</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250805000210" target="_blank" rel="noopener">윤태영</a></td><td>1,959,150</td><td>18.17%</td><td class="up">+18.17</td><td class="up">+1,959,150</td><td>-</td></tr><tr><td>2025-08-05</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250805000200" target="_blank" rel="noopener">윤태영</a></td><td>2,922,405</td><td>26.04%</td><td class="up">+26.04</td><td class="up">+2,922,405</td><td>코스닥시장 상장에 따른 신규보고</td></tr><tr><td>2025-08-04</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250804000276" target="_blank" rel="noopener">케이런벤처스</a></td><td>584,095</td><td>5.42%</td><td class="up">+5.42</td><td class="up">+584,095</td><td>코스닥 상장에 따른 신규 보고 및 장내매도</td></tr><tr><td>2025-08-04</td><td>임원·주요주주(10%이상주주)</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250804000249" target="_blank" rel="noopener">LB인베스트먼트</a></td><td>1,005,920</td><td>9.32%</td><td class="up">+9.32</td><td class="up">+1,005,920</td><td>-</td></tr><tr><td>2025-08-04</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250804000244" target="_blank" rel="noopener">LB인베스트먼트</a></td><td>1,005,920</td><td>9.32%</td><td class="up">+9.32</td><td class="up">+1,005,920</td><td>코스닥 상장에 따른 신규 보고 및 장내매도에 따른 보유지분 변동</td></tr><tr><td>2025-07-30</td><td>대량보유</td><td><a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20250730000259" target="_blank" rel="noopener">한국산업은행</a></td><td>750,750</td><td>6.96%</td><td class="up">+6.96</td><td class="up">+750,750</td><td>코스닥 신규 상장에 따른 신규 보고</td></tr></tbody></table></div><div class="legend-note" style="text-align:left; margin-top:6px;">대량보유상황보고(5% 이상 보유자)와 임원·주요주주 소유보고 중 10% 이상 주주·사실상 지배주주(보유 1% 이상) 보고에서, 지분율이나 주식수가 실제로 늘거나 줄어든 건만 표시했습니다(증가 빨강, 감소 파랑).</div></div>
+
+    <div class="section-title">뉴스</div>
+    <div class="card">
+        <div class="card-head"><span class="card-title">관련 뉴스</span><span class="card-date">최근 10건</span></div>
+        <ul class="news-list">
+<li class="news-item"><span class="news-date">2026-09-23</span><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE51eXEwMUNQYW5XTzMtdkJUR1dnTUc1ZUZxdERjU1Y2YUR3bzRlYnROU1dPbHA2NjZuT3RyWmNjcnEyZEtiRkxyak1qTXZzTFFFM19GR1RrSVZ1V19SbkJQcjZ5eUVGaHA0WkxlNUpB0gFyQVVfeXFMTmRUbmNqNE9ySmtOQlZxNnFPSVQ4VXNNb0s3S3pXTDdJZ2hSb0xSS3o0eDkwQzgzYjRfR3J1cG81RzA4SFc4dEVxSEdKTEtGZzFIdm11NU9mcmY5TkNuUTZ5VzFmemc3Y29KTFhlLUNMVTNR?oc=5" target="_blank" rel="noopener">프로티나 19% 폭등…4만원 초반서 4만9000원까지</a><span class="news-source">잡포스트</span></li>
+<li class="news-item"><span class="news-date">2026-09-23</span><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFBmRERzZGtaNk1HSzhpbGl0blJEczFjY3lCallMZEpZeUFTS2tsY1BtakF3OEpHQW9KSi1aZ1NCeDlzdTF2Rl9ta2VuX3ZhM2duajdBMDFhNjlrUnZo?oc=5" target="_blank" rel="noopener">[장중수급포착] 프로티나, 외국인/기관 동시 순매수… 주가 +21.65%</a><span class="news-source">newspim.com</span></li>
+<li class="news-item"><span class="news-date">2026-09-22</span><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNRDZxaE1sT01Zclc5ZGpGbXVYVHJGcVlsOTNmM0F1QXA3UHRkMHpQdWR3ZVBWRmUyNjhLZGNueFRMaXo3T1VVYUF0dGpNaWxaeUR5REJQVVJVN01iY3BJRnE0SlVJR3V4VUlpXzBTSUI4eFh4T0FiOGY2dTc0QW9FVU9qQUlZc2FuZXZOQXpKZTF2SWNGLUlXS0FZTFJlV0dHZW1adA?oc=5" target="_blank" rel="noopener">프로티나,'골관절염 치료제 후보물질 혁신신약 개발' 과제 선정</a><span class="news-source">약업신문</span></li>
+<li class="news-item"><span class="news-date">2026-09-22</span><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxQY2F3OFBYM01NbHFLSW5zTDNlOWxqaFhCbVZmbGxjdjdyTmpPek1kY3dvWkQyM2VkNE56bTN2Z0JjS3dWdzYyU1V4ZkFGRFM5OUlxcy1LYUliRzlOeG01bTBfUkZQT0M0eXd4VlhCZVhGd1lYYkJsU1hyNndNVmF3QVRxX2xDejBMSUdsajVYa1I3cFpiZTEwTzBOX2NXQzdDdVVqdg?oc=5" target="_blank" rel="noopener">"프로티나, SPID 플랫폼 기반 자체 파이프라인 확대"</a><span class="news-source">약업신문</span></li>
+<li class="news-item"><span class="news-date">2026-09-22</span><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE41MU1mRE9hS1VobzZFZVViVmE0ckJtcnFqcjd3clBsQlIzN0pwNm12TV9KTDdxT2h3ZHd0NlE1WGxGNE9za2Yyek15WDJHd09teFd3TGtLelAySWtLUjhPaFJIU25DZ0Vs?oc=5" target="_blank" rel="noopener">삼성바이오에피스, 프로티나와 항체</a><span class="news-source">이투데이</span></li>
+<li class="news-item"><span class="news-date">2026-09-18</span><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9HZDNmUGFDTmNvaTRjNkFzQTJSalJvX2FIaWRIbmtES2RGU1hGS1hhdkd5V2dfbEdyUlV2TzdOSy1UWVgtV0V2LTlDVmVQMm5ZZUVqVGtHbjBkQ3lObUwtUV9yNjNrdlRVV2dxZzlZUXZZRTQ?oc=5" target="_blank" rel="noopener">프로티나 투자분석 2026. 09. 18</a><span class="news-source">주달</span></li>
+<li class="news-item"><span class="news-date">2026-09-18</span><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE1yd3Riei1IR00tZUZfZFp5Z214WUJiZDFIaDNNLVFqbFAtYVotNV9TeXBib1drdzQzUFVtaW05RGZra2JzRHJaZnh3MVZoVzB5WnAtZFBEenMyQ3Uz?oc=5" target="_blank" rel="noopener">[장중수급포착] 프로티나, 외국인/기관 동시 순매수… 주가 +8.11%</a><span class="news-source">newspim.com</span></li>
+<li class="news-item"><span class="news-date">2026-09-18</span><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPWFJsQkY5MUk0amNIZTdjRnZOdGRMclE4SHEyZDdfaEVDSkVCU2JEMlpKcms3dEVFcURJQXpYSHJTLWJaclhxckZwZVBYTThCUDdJTTEzczVsZGpNT1dCS3pQNEZvNmZzMk1wYWZySFpVX0ZRcHZ0SFRJa25jMDZpc0ZhZldOTng1cTBLR2haQlk1OUdHa3RtX2ZpeGU?oc=5" target="_blank" rel="noopener">프로티나,골관절염치료제 ‘PRT-101’ 선두약물 비교 데이터..주요 지표 우위</a><span class="news-source">약업신문</span></li>
+<li class="news-item"><span class="news-date">2026-09-09</span><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5ZSUVxMTJWZndVZk04ZThRZWx0YzN0N1FrVVVLMUlCVlk2M3U2dHZicjc1SllpNVJxV256YjVfWVhySmItdUljeDdrUVQzd2R0YlBNRzZfcW5MUWdFU3VtVWlyd3pTS3daZUZVdzRn?oc=5" target="_blank" rel="noopener">“AI 신약 10만개 중 진짜는?”…프로티나, 대규모 실험검증으로 후보물질 선별</a><span class="news-source">팜이데일리</span></li>
+<li class="news-item"><span class="news-date">2026-09-07</span><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBtelVWcnJFYklqbEV0WV9xMDlTZFZIclBCcjdzU1UyVjBIMXpsS1U1NmlRdjZvN1B4QUJIM3dZZmtlWG5Mc2xvNHg0c3hWWlQzT2ppVnBfQ1duRlhNZGZDV1pYZlNWZEtaYTJB?oc=5" target="_blank" rel="noopener">"프로티나, AI·SPID로 신약개발 '공장화'… 매년 2~3개 공개"</a><span class="news-source">히트뉴스</span></li>
+        </ul>
+    </div>
+
+    <div class="section-title">증권사 리포트</div>
+    <div class="card"><div class="sub">최근 1년 내 발행된 증권사 리포트가 없습니다.</div></div>
+
+    <div class="foot-note">
+        본 페이지는 stock_price 파이프라인이 DB(FnGuide 공시/컨센서스), 한국투자증권 KIS API(투자자별 매매동향), DART(직원현황), 구글뉴스(관련기사), 네이버 증권 리서치(증권사 리포트)를 조회해 자동 생성했습니다.
+        거래대금은 종가×거래량 기준 추정치입니다.
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+const DATA = {"flow":[{"date":"2026-03-23","foreign_qty":1199,"inst_qty":-12058,"close":72800,"cum_foreign":1199,"cum_inst":-12058},{"date":"2026-03-24","foreign_qty":13784,"inst_qty":-4187,"close":72200,"cum_foreign":14983,"cum_inst":-16245},{"date":"2026-03-25","foreign_qty":20,"inst_qty":-7072,"close":72800,"cum_foreign":15003,"cum_inst":-23317},{"date":"2026-03-26","foreign_qty":-4572,"inst_qty":37519,"close":77200,"cum_foreign":10431,"cum_inst":14202},{"date":"2026-03-27","foreign_qty":-24393,"inst_qty":14112,"close":76900,"cum_foreign":-13962,"cum_inst":28314},{"date":"2026-03-30","foreign_qty":-18858,"inst_qty":-8859,"close":71200,"cum_foreign":-32820,"cum_inst":19455},{"date":"2026-03-31","foreign_qty":-738,"inst_qty":-26211,"close":66600,"cum_foreign":-33558,"cum_inst":-6756},{"date":"2026-04-01","foreign_qty":7910,"inst_qty":-14804,"close":70100,"cum_foreign":-25648,"cum_inst":-21560},{"date":"2026-04-02","foreign_qty":-153,"inst_qty":-19750,"close":64400,"cum_foreign":-25801,"cum_inst":-41310},{"date":"2026-04-03","foreign_qty":-9328,"inst_qty":-11435,"close":63500,"cum_foreign":-35129,"cum_inst":-52745},{"date":"2026-04-06","foreign_qty":29474,"inst_qty":-24699,"close":59000,"cum_foreign":-5655,"cum_inst":-77444},{"date":"2026-04-07","foreign_qty":62250,"inst_qty":-43547,"close":56900,"cum_foreign":56595,"cum_inst":-120991},{"date":"2026-04-08","foreign_qty":71573,"inst_qty":-141766,"close":57800,"cum_foreign":128168,"cum_inst":-262757},{"date":"2026-04-09","foreign_qty":11941,"inst_qty":-49573,"close":55300,"cum_foreign":140109,"cum_inst":-312330},{"date":"2026-04-10","foreign_qty":22377,"inst_qty":-31628,"close":58200,"cum_foreign":162486,"cum_inst":-343958},{"date":"2026-04-13","foreign_qty":5483,"inst_qty":-107,"close":61000,"cum_foreign":167969,"cum_inst":-344065},{"date":"2026-04-14","foreign_qty":-24143,"inst_qty":-3119,"close":60800,"cum_foreign":143826,"cum_inst":-347184},{"date":"2026-04-15","foreign_qty":-1291,"inst_qty":-6820,"close":63200,"cum_foreign":142535,"cum_inst":-354004},{"date":"2026-04-16","foreign_qty":-17553,"inst_qty":1389,"close":63700,"cum_foreign":124982,"cum_inst":-352615},{"date":"2026-04-17","foreign_qty":-1937,"inst_qty":-1976,"close":63000,"cum_foreign":123045,"cum_inst":-354591},{"date":"2026-04-20","foreign_qty":5179,"inst_qty":-1239,"close":61600,"cum_foreign":128224,"cum_inst":-355830},{"date":"2026-04-21","foreign_qty":8416,"inst_qty":-64,"close":58400,"cum_foreign":136640,"cum_inst":-355894},{"date":"2026-04-22","foreign_qty":19741,"inst_qty":-10637,"close":59500,"cum_foreign":156381,"cum_inst":-366531},{"date":"2026-04-23","foreign_qty":32010,"inst_qty":-16913,"close":62500,"cum_foreign":188391,"cum_inst":-383444},{"date":"2026-04-24","foreign_qty":-4405,"inst_qty":19916,"close":63700,"cum_foreign":183986,"cum_inst":-363528},{"date":"2026-04-27","foreign_qty":-25885,"inst_qty":3718,"close":63500,"cum_foreign":158101,"cum_inst":-359810},{"date":"2026-04-28","foreign_qty":-6242,"inst_qty":-10508,"close":62000,"cum_foreign":151859,"cum_inst":-370318},{"date":"2026-04-29","foreign_qty":4252,"inst_qty":169,"close":61200,"cum_foreign":156111,"cum_inst":-370149},{"date":"2026-04-30","foreign_qty":-19880,"inst_qty":-39168,"close":56400,"cum_foreign":136231,"cum_inst":-409317},{"date":"2026-05-04","foreign_qty":-12310,"inst_qty":-1212,"close":55200,"cum_foreign":123921,"cum_inst":-410529},{"date":"2026-05-06","foreign_qty":16539,"inst_qty":1347,"close":53800,"cum_foreign":140460,"cum_inst":-409182},{"date":"2026-05-07","foreign_qty":7673,"inst_qty":-11796,"close":51800,"cum_foreign":148133,"cum_inst":-420978},{"date":"2026-05-08","foreign_qty":18270,"inst_qty":-13101,"close":51700,"cum_foreign":166403,"cum_inst":-434079},{"date":"2026-05-11","foreign_qty":20876,"inst_qty":1865,"close":51700,"cum_foreign":187279,"cum_inst":-432214},{"date":"2026-05-12","foreign_qty":-2878,"inst_qty":840,"close":51800,"cum_foreign":184401,"cum_inst":-431374},{"date":"2026-05-13","foreign_qty":-11500,"inst_qty":656,"close":49750,"cum_foreign":172901,"cum_inst":-430718},{"date":"2026-05-14","foreign_qty":12419,"inst_qty":2033,"close":51000,"cum_foreign":185320,"cum_inst":-428685},{"date":"2026-05-15","foreign_qty":11747,"inst_qty":-36,"close":48750,"cum_foreign":197067,"cum_inst":-428721},{"date":"2026-05-18","foreign_qty":28214,"inst_qty":2594,"close":44650,"cum_foreign":225281,"cum_inst":-426127},{"date":"2026-05-19","foreign_qty":37437,"inst_qty":324,"close":44300,"cum_foreign":262718,"cum_inst":-425803},{"date":"2026-05-20","foreign_qty":35318,"inst_qty":-4163,"close":41850,"cum_foreign":298036,"cum_inst":-429966},{"date":"2026-05-21","foreign_qty":17594,"inst_qty":-11013,"close":41800,"cum_foreign":315630,"cum_inst":-440979},{"date":"2026-05-22","foreign_qty":5720,"inst_qty":-13713,"close":46750,"cum_foreign":321350,"cum_inst":-454692},{"date":"2026-05-26","foreign_qty":-13856,"inst_qty":-4154,"close":46700,"cum_foreign":307494,"cum_inst":-458846},{"date":"2026-05-27","foreign_qty":38090,"inst_qty":-50783,"close":44200,"cum_foreign":345584,"cum_inst":-509629},{"date":"2026-05-28","foreign_qty":5313,"inst_qty":-643,"close":42750,"cum_foreign":350897,"cum_inst":-510272},{"date":"2026-05-29","foreign_qty":21993,"inst_qty":-1333,"close":39600,"cum_foreign":372890,"cum_inst":-511605},{"date":"2026-06-01","foreign_qty":40188,"inst_qty":-19470,"close":37950,"cum_foreign":413078,"cum_inst":-531075},{"date":"2026-06-02","foreign_qty":42156,"inst_qty":-25063,"close":36050,"cum_foreign":455234,"cum_inst":-556138},{"date":"2026-06-04","foreign_qty":7347,"inst_qty":-291,"close":37500,"cum_foreign":462581,"cum_inst":-556429},{"date":"2026-06-05","foreign_qty":-33275,"inst_qty":-91,"close":37650,"cum_foreign":429306,"cum_inst":-556520},{"date":"2026-06-08","foreign_qty":26229,"inst_qty":-240,"close":32000,"cum_foreign":455535,"cum_inst":-556760},{"date":"2026-06-09","foreign_qty":36511,"inst_qty":-768,"close":34850,"cum_foreign":492046,"cum_inst":-557528},{"date":"2026-06-10","foreign_qty":23101,"inst_qty":824,"close":32050,"cum_foreign":515147,"cum_inst":-556704},{"date":"2026-06-11","foreign_qty":13960,"inst_qty":201,"close":33150,"cum_foreign":529107,"cum_inst":-556503},{"date":"2026-06-12","foreign_qty":-13635,"inst_qty":17365,"close":34200,"cum_foreign":515472,"cum_inst":-539138},{"date":"2026-06-15","foreign_qty":-7433,"inst_qty":25477,"close":34100,"cum_foreign":508039,"cum_inst":-513661},{"date":"2026-06-16","foreign_qty":-20560,"inst_qty":21495,"close":36200,"cum_foreign":487479,"cum_inst":-492166},{"date":"2026-06-17","foreign_qty":-19644,"inst_qty":-106,"close":38000,"cum_foreign":467835,"cum_inst":-492272},{"date":"2026-06-18","foreign_qty":-15952,"inst_qty":-4048,"close":34500,"cum_foreign":451883,"cum_inst":-496320},{"date":"2026-06-19","foreign_qty":1732,"inst_qty":1017,"close":31550,"cum_foreign":453615,"cum_inst":-495303},{"date":"2026-06-22","foreign_qty":3739,"inst_qty":271,"close":32050,"cum_foreign":457354,"cum_inst":-495032},{"date":"2026-06-23","foreign_qty":10267,"inst_qty":-977,"close":28300,"cum_foreign":467621,"cum_inst":-496009},{"date":"2026-06-24","foreign_qty":11771,"inst_qty":751,"close":29400,"cum_foreign":479392,"cum_inst":-495258},{"date":"2026-06-25","foreign_qty":-695,"inst_qty":469,"close":29150,"cum_foreign":478697,"cum_inst":-494789},{"date":"2026-06-26","foreign_qty":11953,"inst_qty":401,"close":26300,"cum_foreign":490650,"cum_inst":-494388},{"date":"2026-06-29","foreign_qty":11192,"inst_qty":5412,"close":31300,"cum_foreign":501842,"cum_inst":-488976},{"date":"2026-06-30","foreign_qty":-10118,"inst_qty":-2249,"close":28250,"cum_foreign":491724,"cum_inst":-491225},{"date":"2026-07-01","foreign_qty":9727,"inst_qty":1296,"close":29250,"cum_foreign":501451,"cum_inst":-489929},{"date":"2026-07-02","foreign_qty":-6917,"inst_qty":-191,"close":27400,"cum_foreign":494534,"cum_inst":-490120},{"date":"2026-07-03","foreign_qty":14423,"inst_qty":-1033,"close":26550,"cum_foreign":508957,"cum_inst":-491153},{"date":"2026-07-06","foreign_qty":1820,"inst_qty":1393,"close":25700,"cum_foreign":510777,"cum_inst":-489760},{"date":"2026-07-07","foreign_qty":10554,"inst_qty":925,"close":24950,"cum_foreign":521331,"cum_inst":-488835},{"date":"2026-07-08","foreign_qty":8627,"inst_qty":-1434,"close":23250,"cum_foreign":529958,"cum_inst":-490269},{"date":"2026-07-09","foreign_qty":-2202,"inst_qty":1694,"close":23400,"cum_foreign":527756,"cum_inst":-488575},{"date":"2026-07-10","foreign_qty":-17691,"inst_qty":-3543,"close":26550,"cum_foreign":510065,"cum_inst":-492118},{"date":"2026-07-13","foreign_qty":-21136,"inst_qty":653,"close":23000,"cum_foreign":488929,"cum_inst":-491465},{"date":"2026-07-14","foreign_qty":6419,"inst_qty":461,"close":22450,"cum_foreign":495348,"cum_inst":-491004},{"date":"2026-07-15","foreign_qty":8720,"inst_qty":-809,"close":26200,"cum_foreign":504068,"cum_inst":-491813},{"date":"2026-07-16","foreign_qty":-18372,"inst_qty":409,"close":24100,"cum_foreign":485696,"cum_inst":-491404},{"date":"2026-07-20","foreign_qty":-6317,"inst_qty":-46,"close":21750,"cum_foreign":479379,"cum_inst":-491450},{"date":"2026-07-21","foreign_qty":426,"inst_qty":462,"close":21750,"cum_foreign":479805,"cum_inst":-490988},{"date":"2026-07-22","foreign_qty":-1337,"inst_qty":645,"close":21150,"cum_foreign":478468,"cum_inst":-490343},{"date":"2026-07-23","foreign_qty":8196,"inst_qty":360,"close":22300,"cum_foreign":486664,"cum_inst":-489983},{"date":"2026-07-24","foreign_qty":307,"inst_qty":155,"close":20850,"cum_foreign":486971,"cum_inst":-489828},{"date":"2026-07-27","foreign_qty":3404,"inst_qty":365,"close":20500,"cum_foreign":490375,"cum_inst":-489463},{"date":"2026-07-28","foreign_qty":4612,"inst_qty":993,"close":18830,"cum_foreign":494987,"cum_inst":-488470},{"date":"2026-07-29","foreign_qty":14069,"inst_qty":3661,"close":16410,"cum_foreign":509056,"cum_inst":-484809},{"date":"2026-07-30","foreign_qty":3286,"inst_qty":677,"close":15860,"cum_foreign":512342,"cum_inst":-484132},{"date":"2026-07-31","foreign_qty":6069,"inst_qty":3554,"close":18520,"cum_foreign":518411,"cum_inst":-480578},{"date":"2026-08-03","foreign_qty":-5052,"inst_qty":-1778,"close":21250,"cum_foreign":513359,"cum_inst":-482356},{"date":"2026-08-04","foreign_qty":-4440,"inst_qty":781,"close":23050,"cum_foreign":508919,"cum_inst":-481575},{"date":"2026-08-05","foreign_qty":-19338,"inst_qty":1518,"close":26100,"cum_foreign":489581,"cum_inst":-480057},{"date":"2026-08-06","foreign_qty":-43415,"inst_qty":950,"close":26750,"cum_foreign":446166,"cum_inst":-479107},{"date":"2026-08-07","foreign_qty":-10704,"inst_qty":-927,"close":25900,"cum_foreign":435462,"cum_inst":-480034},{"date":"2026-08-10","foreign_qty":-4038,"inst_qty":20170,"close":30500,"cum_foreign":431424,"cum_inst":-459864},{"date":"2026-08-11","foreign_qty":-66495,"inst_qty":-552,"close":31300,"cum_foreign":364929,"cum_inst":-460416},{"date":"2026-08-12","foreign_qty":-5724,"inst_qty":125,"close":29400,"cum_foreign":359205,"cum_inst":-460291},{"date":"2026-08-13","foreign_qty":-14989,"inst_qty":25536,"close":34450,"cum_foreign":344216,"cum_inst":-434755},{"date":"2026-08-14","foreign_qty":-94674,"inst_qty":65607,"close":37600,"cum_foreign":249542,"cum_inst":-369148},{"date":"2026-08-18","foreign_qty":-48193,"inst_qty":-7280,"close":32100,"cum_foreign":201349,"cum_inst":-376428},{"date":"2026-08-19","foreign_qty":-3880,"inst_qty":45971,"close":34250,"cum_foreign":197469,"cum_inst":-330457},{"date":"2026-08-20","foreign_qty":-41384,"inst_qty":-12092,"close":35600,"cum_foreign":156085,"cum_inst":-342549},{"date":"2026-08-21","foreign_qty":-4360,"inst_qty":-4964,"close":36700,"cum_foreign":151725,"cum_inst":-347513},{"date":"2026-08-24","foreign_qty":-3516,"inst_qty":-35482,"close":34350,"cum_foreign":148209,"cum_inst":-382995},{"date":"2026-08-25","foreign_qty":9897,"inst_qty":-17488,"close":34950,"cum_foreign":158106,"cum_inst":-400483},{"date":"2026-08-26","foreign_qty":27935,"inst_qty":-31808,"close":37550,"cum_foreign":186041,"cum_inst":-432291},{"date":"2026-08-27","foreign_qty":-8318,"inst_qty":-14311,"close":37800,"cum_foreign":177723,"cum_inst":-446602},{"date":"2026-08-28","foreign_qty":-40040,"inst_qty":-7191,"close":35900,"cum_foreign":137683,"cum_inst":-453793},{"date":"2026-08-31","foreign_qty":-5895,"inst_qty":6497,"close":35050,"cum_foreign":131788,"cum_inst":-447296},{"date":"2026-09-01","foreign_qty":-11977,"inst_qty":12752,"close":34400,"cum_foreign":119811,"cum_inst":-434544},{"date":"2026-09-02","foreign_qty":6033,"inst_qty":-16037,"close":30700,"cum_foreign":125844,"cum_inst":-450581},{"date":"2026-09-03","foreign_qty":2868,"inst_qty":57,"close":30750,"cum_foreign":128712,"cum_inst":-450524},{"date":"2026-09-04","foreign_qty":-6425,"inst_qty":-1008,"close":30750,"cum_foreign":122287,"cum_inst":-451532},{"date":"2026-09-07","foreign_qty":-1689,"inst_qty":-2788,"close":29750,"cum_foreign":120598,"cum_inst":-454320},{"date":"2026-09-08","foreign_qty":10157,"inst_qty":-258,"close":28600,"cum_foreign":130755,"cum_inst":-454578},{"date":"2026-09-09","foreign_qty":2898,"inst_qty":-2335,"close":29200,"cum_foreign":133653,"cum_inst":-456913},{"date":"2026-09-10","foreign_qty":1074,"inst_qty":2575,"close":28500,"cum_foreign":134727,"cum_inst":-454338},{"date":"2026-09-11","foreign_qty":5828,"inst_qty":-2804,"close":27450,"cum_foreign":140555,"cum_inst":-457142},{"date":"2026-09-14","foreign_qty":14407,"inst_qty":-7862,"close":26000,"cum_foreign":154962,"cum_inst":-465004},{"date":"2026-09-15","foreign_qty":10450,"inst_qty":-1346,"close":28650,"cum_foreign":165412,"cum_inst":-466350},{"date":"2026-09-16","foreign_qty":-6105,"inst_qty":2731,"close":32550,"cum_foreign":159307,"cum_inst":-463619},{"date":"2026-09-17","foreign_qty":-16204,"inst_qty":26061,"close":33900,"cum_foreign":143103,"cum_inst":-437558},{"date":"2026-09-18","foreign_qty":7203,"inst_qty":6143,"close":35050,"cum_foreign":150306,"cum_inst":-431415},{"date":"2026-09-21","foreign_qty":-2448,"inst_qty":19164,"close":39450,"cum_foreign":147858,"cum_inst":-412251},{"date":"2026-09-22","foreign_qty":-12305,"inst_qty":13900,"close":39950,"cum_foreign":135553,"cum_inst":-398351},{"date":"2026-09-23","foreign_qty":488,"inst_qty":72001,"close":47250,"cum_foreign":136041,"cum_inst":-326350}],"ohlcv":[["2026-03-18",87800,88100,80400,86100,309028,81572.0,63062.67],["2026-03-19",83600,85000,80900,81800,131243,81178.0,63493.93],["2026-03-20",79800,82900,77600,80900,166840,80780.0,63918.27],["2026-03-23",77300,77400,72400,72800,149883,80330.0,64278.0],["2026-03-24",76500,76600,70900,72200,98020,79958.0,64639.0],["2026-03-25",73600,74500,71000,72800,92252,79560.0,64997.67],["2026-03-26",76700,81000,75800,77200,210115,79200.0,65391.53],["2026-03-27",79700,81700,76000,76900,138545,78892.0,65772.67],["2026-03-30",72000,72600,70800,71200,90316,78432.0,66117.33],["2026-03-31",71000,73600,66500,66600,133552,77976.0,66436.93],["2026-04-01",69400,72100,68700,70100,91147,77626.0,66778.73],["2026-04-02",71800,71900,62400,64400,159639,77208.0,67093.2],["2026-04-03",66700,67300,62400,63500,93223,76766.0,67401.2],["2026-04-06",62800,63200,57600,59000,163910,76276.0,67684.2],["2026-04-07",59000,60700,55700,56900,161910,75896.0,67951.53],["2026-04-08",60500,60900,56700,57800,226959,75492.0,68228.6],["2026-04-09",58500,59100,54600,55300,115072,74932.0,68493.67],["2026-04-10",55800,58800,53000,58200,138891,74354.0,68778.53],["2026-04-13",57000,61200,55700,61000,74593,73862.0,69083.2],["2026-04-14",62000,63000,60700,60800,78720,73458.0,69371.87],["2026-04-15",61200,64400,59400,63200,91436,73082.0,69672.73],["2026-04-16",64500,66500,63700,63700,69773,72782.0,69977.87],["2026-04-17",65000,65000,62300,63000,36617,72536.0,70266.33],["2026-04-20",61800,63700,61500,61600,52728,72138.0,70513.0],["2026-04-21",61900,62200,57900,58400,126927,71696.0,70728.33],["2026-04-22",58200,60300,57200,59500,74813,71324.0,70947.67],["2026-04-23",61200,63600,60000,62500,118717,71128.0,71194.33],["2026-04-24",61200,65400,60000,63700,116196,70884.0,71443.33],["2026-04-27",66300,66300,63000,63500,94731,70636.0,71712.67],["2026-04-28",64900,65100,62000,62000,81174,70416.0,71967.33],["2026-04-29",60900,62800,60700,61200,49150,70172.0,72174.33],["2026-04-30",60800,61000,56000,56400,167574,69900.0,72328.33],["2026-05-04",57500,57600,55200,55200,65073,69540.0,72471.67],["2026-05-06",53700,54200,52000,53800,92237,69268.0,72600.33],["2026-05-07",53100,54500,51600,51800,94172,68798.0,72723.67],["2026-05-08",52000,54000,50500,51700,80239,68242.0,72845.67],["2026-05-11",50300,51900,48300,51700,90981,67720.0,72901.0],["2026-05-12",51400,53900,49000,51800,70136,67170.0,72956.0],["2026-05-13",52900,53400,49000,49750,66493,66523.0,73002.67],["2026-05-14",48950,51300,48200,51000,52008,65995.0,73066.67],["2026-05-15",51000,51000,47950,48750,63341,65730.0,73088.33],["2026-05-18",47500,47500,42850,44650,79940,65215.0,73089.33],["2026-05-19",43200,46500,41750,44300,98835,64539.0,73075.0],["2026-05-20",42400,43100,40550,41850,66837,63956.0,73046.33],["2026-05-21",42450,43600,41650,41800,62848,63330.0,72953.0],["2026-05-22",42500,48300,42500,46750,89508,62701.0,72881.33],["2026-05-26",48900,49950,45800,46700,56555,61949.0,72852.67],["2026-05-27",45450,46900,43000,44200,108738,61133.0,72784.67],["2026-05-28",45700,46100,41200,42750,64450,60172.0,72750.67],["2026-05-29",42000,42550,38500,39600,103073,59246.0,72717.67],["2026-06-01",39200,39200,35950,37950,132059,58283.0,72641.33],["2026-06-02",35550,37500,35250,36050,113764,57368.0,72561.0],["2026-06-04",35650,38700,35400,37500,56676,56500.0,72481.33],["2026-06-05",40200,40700,36950,37650,127381,55797.0,72415.33],["2026-06-08",33750,34400,31750,32000,75491,54993.0,72327.0],["2026-06-09",31000,38300,31000,34850,167658,54234.0,72221.33],["2026-06-10",33350,34500,30850,32050,84341,53331.0,72078.33],["2026-06-11",30300,33250,29650,33150,61278,52456.0,71920.67],["2026-06-12",34350,35300,33050,34200,72036,51716.0,71728.67],["2026-06-15",34950,34950,32500,34100,85055,51066.0,71533.33],["2026-06-16",33850,36500,33250,36200,69046,50388.0,71315.33],["2026-06-17",36700,38950,34900,38000,66382,49860.0,71103.33],["2026-06-18",37450,37450,34000,34500,61751,49280.0,70882.0],["2026-06-19",33300,33750,30500,31550,65859,48731.0,70665.0],["2026-06-22",30450,34000,30400,32050,60579,48234.0,70442.67],["2026-06-23",30850,32000,28000,28300,57258,47644.0,70195.33],["2026-06-24",27600,30550,27600,29400,48238,47126.0,69973.33],["2026-06-25",29150,30950,28100,29150,42002,46545.0,69715.0],["2026-06-26",29150,29150,25700,26300,61725,45851.0,69465.0],["2026-06-29",26000,31800,26000,31300,70230,45261.0,69279.0],["2026-06-30",29800,31000,28100,28250,52069,44562.0,69034.0],["2026-07-01",28800,30400,27400,29250,40444,43873.0,68788.33],["2026-07-02",28500,29700,27100,27400,33909,43161.0,68525.67],["2026-07-03",27250,27750,25150,26550,46356,42460.0,68252.0],["2026-07-06",26550,26550,24650,25700,30672,41806.0,67972.0],["2026-07-07",24900,26650,24350,24950,39290,41115.0,67695.0],["2026-07-08",24300,24650,22350,23250,62681,40330.0,67384.67],["2026-07-09",22600,24800,22400,23400,44984,39524.0,67007.33],["2026-07-10",27000,27900,25700,26550,170243,38785.0,66676.33],["2026-07-13",25600,26100,22850,23000,87957,38714.0,66652.67],["2026-07-14",22200,22650,20400,22450,55057,37994.0,66302.0],["2026-07-15",23100,26350,23100,26200,76143,37305.0,65941.0],["2026-07-16",26550,27200,23150,24100,67196,36584.0,65423.33],["2026-07-20",22900,23100,21700,21750,36637,35957.0,64956.33],["2026-07-21",21250,21850,20400,21750,36709,35363.0,64421.67],["2026-07-22",21800,22300,21000,21150,26490,34750.0,63904.67],["2026-07-23",20800,22350,20800,22300,28331,34174.0,63445.33],["2026-07-24",21700,22100,20600,20850,25691,33534.0,62960.67],["2026-07-27",20850,21700,20100,20500,42752,32937.0,62498.33],["2026-07-28",20000,20000,18310,18830,40362,32325.6,61988.2],["2026-07-29",19000,19300,15500,16410,88023,31667.2,61471.4],["2026-07-30",16560,17370,15730,15860,43234,31057.8,60919.27],["2026-07-31",16470,18750,16260,18520,51964,30546.2,60385.73],["2026-08-03",18360,22350,18360,21250,74760,30032.0,59905.0],["2026-08-04",20500,24900,20500,23050,73066,29601.4,59409.8],["2026-08-05",23150,26450,22800,26100,72342,29251.4,58929.8],["2026-08-06",28200,28200,25800,26750,95139,28790.4,58419.13],["2026-08-07",26750,26750,25000,25900,38354,28361.4,57918.8],["2026-08-10",27000,32750,26750,30500,213254,28104.4,57411.13],["2026-08-11",32150,35000,29950,31300,190627,27783.4,56845.13],["2026-08-12",31000,31000,29200,29400,81040,27563.4,56290.47],["2026-08-13",30950,35400,30500,34450,163094,27531.4,55795.47],["2026-08-14",34750,40350,33750,37600,302214,27461.4,55335.8],["2026-08-18",36000,36050,31200,32100,177398,27290.4,54856.8],["2026-08-19",33000,35950,32350,34250,140804,27332.4,54486.47],["2026-08-20",36950,38350,32300,35600,192995,27361.4,54104.13],["2026-08-21",34250,38450,33500,36700,236209,27371.4,53721.8],["2026-08-24",36000,38025,34200,34350,143267,27395.4,53308.8],["2026-08-25",33200,35950,31800,34950,85050,27478.4,52942.13],["2026-08-26",36500,41150,36200,37550,215395,27533.4,52560.47],["2026-08-27",37750,39600,36600,37800,154260,27555.4,52199.13],["2026-08-28",37900,38200,35150,35900,80691,27544.4,51852.8],["2026-08-31",34450,35200,32200,35050,87961,27523.4,51530.47],["2026-09-01",34550,34850,33100,34400,63030,27521.4,51189.13],["2026-09-02",33000,34750,30700,30700,76674,27534.4,50847.13],["2026-09-03",30700,31400,29650,30750,54579,27582.4,50570.8],["2026-09-04",30500,31900,29900,30750,55912,27630.4,50255.47],["2026-09-07",30750,31950,29450,29750,53427,27637.4,49898.47],["2026-09-08",29050,29800,28600,28600,56296,27626.4,49508.47],["2026-09-09",28050,30650,28050,29200,56940,27684.4,49132.47],["2026-09-10",28350,29100,27200,28500,36838,27628.4,48782.47],["2026-09-11",27550,28350,27050,27450,28330,27612.4,48418.8],["2026-09-14",27200,27450,25600,25800,38415,27609.4,48088.13],["2026-09-15",26700,30700,26425,28800,131098,27670.4,47789.13],["2026-09-16",29350,33150,27800,32150,168810,27722.4,47440.13],["2026-09-17",31950,34850,31450,33900,93827,27819.4,47107.13],["2026-09-18",33900,37350,33750,35400,119031,27993.4,46810.8],["2026-09-21",35350,40100,34800,39450,158266,28287.4,46581.8],["2026-09-22",41400,41800,39500,39950,92833,28537.4,46315.13],["2026-09-23",41050,49000,40900,47250,416869,28941.4,46120.8]]};
+
+// 주가 차트: 매수후보 페이지(assets/buy-candidates.js bcRenderChart)와 같은 캔들+거래량+MA50/150 옵션
+if (DATA.ohlcv && DATA.ohlcv.length && document.getElementById("priceChart")) {
+    (function () {
+        const bars = DATA.ohlcv;
+        const dates = bars.map(b => b[0]);
+        const closes = bars.map(b => b[4]);
+        const candleData = bars.map(b => [b[1], b[4], b[3], b[2]]);
+        const volColors = closes.map((c, i) =>
+            c >= (i > 0 ? closes[i - 1] : c) ? 'rgba(180,52,42,0.65)' : 'rgba(46,95,163,0.65)'
+        );
+        const hidden = { show: false };
+        const chart = echarts.init(document.getElementById("priceChart"), null, { devicePixelRatio: window.devicePixelRatio || 1 });
+        chart.setOption({
+            animation: false,
+            backgroundColor: '#ffffff',
+            tooltip: { show: false },
+            grid: [
+                { left: 6, right: 6, top: 16, bottom: '27%' },
+                { left: 6, right: 6, top: '75%', bottom: 2 },
+            ],
+            xAxis: [
+                { type: 'category', data: dates, gridIndex: 0, boundaryGap: true,
+                  axisLabel: hidden, axisLine: hidden, axisTick: hidden,
+                  splitLine: { show: true, lineStyle: { color: '#EFF2F6' } } },
+                { type: 'category', data: dates, gridIndex: 1,
+                  axisLabel: hidden, axisLine: hidden, axisTick: hidden,
+                  splitLine: { show: true, lineStyle: { color: '#EFF2F6' } } },
+            ],
+            yAxis: [
+                { scale: true, gridIndex: 0, axisLabel: hidden, axisLine: hidden, axisTick: hidden,
+                  splitLine: { show: true, lineStyle: { color: '#E7EBF1' } } },
+                { scale: true, gridIndex: 1, axisLabel: hidden, axisLine: hidden, axisTick: hidden,
+                  splitLine: { show: false } },
+            ],
+            series: [
+                { type: 'candlestick', name: '주가', xAxisIndex: 0, yAxisIndex: 0, data: candleData, barWidth: '70%',
+                  itemStyle: { color: '#C0392B', color0: '#2E5FA3', borderColor: '#C0392B', borderColor0: '#2E5FA3', borderWidth: 1.1 } },
+                { type: 'line', name: 'MA50', xAxisIndex: 0, yAxisIndex: 0, data: bars.map(b => b[6]),
+                  smooth: true, symbol: 'none', showSymbol: false, lineStyle: { color: '#9B59B6', width: 1.2 } },
+                { type: 'line', name: 'MA150', xAxisIndex: 0, yAxisIndex: 0, data: bars.map(b => b[7]),
+                  smooth: true, symbol: 'none', showSymbol: false, lineStyle: { color: '#27ae60', width: 1.2 } },
+                { type: 'bar', name: '거래량', xAxisIndex: 1, yAxisIndex: 1, data: bars.map(b => b[5]),
+                  itemStyle: { color: (params) => volColors[params.dataIndex] } },
+            ],
+        });
+        window.addEventListener("resize", () => chart.resize());
+    })();
+}
+
+const COLOR_BLUE = "#2a78d6";
+const COLOR_ORANGE = "#eb6834";
+const COLOR_GREEN = "#2f9e6e";
+
+if (DATA.flow && DATA.flow.length) {
+    const flow = DATA.flow;
+    new Chart(document.getElementById("chartFlow"), {
+        data: {
+            labels: flow.map(d => d.date.slice(5)),
+            datasets: [
+                { type: "line", label: "외국인 누적순매수(주)", data: flow.map(d => d.cum_foreign), borderColor: COLOR_BLUE, backgroundColor: COLOR_BLUE, pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y" },
+                { type: "line", label: "기관 누적순매수(주)", data: flow.map(d => d.cum_inst), borderColor: COLOR_ORANGE, backgroundColor: COLOR_ORANGE, pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y" },
+                { type: "line", label: "종가(원)", data: flow.map(d => d.close), borderColor: COLOR_GREEN, backgroundColor: "rgba(47,158,110,0.10)", fill: "origin", pointRadius: 0, borderWidth: 2, tension: 0.1, yAxisID: "y1" },
+            ],
+        },
+        options: {
+            responsive: true,
+            interaction: { mode: "index", intersect: false },
+            plugins: { legend: { position: "bottom", labels: { boxWidth: 12, font: { size: 10 } } } },
+            scales: {
+                x: { ticks: { font: { size: 9 }, maxRotation: 60, minRotation: 45, autoSkip: true, maxTicksLimit: 15 } },
+                y: { position: "left", title: { display: true, text: "누적 순매수(주)", font: { size: 10 } }, ticks: { font: { size: 9 } } },
+                y1: { position: "right", title: { display: true, text: "종가(원)", font: { size: 10 } }, grid: { drawOnChartArea: false }, ticks: { font: { size: 9 } } },
+            },
+        },
+    });
+}
+</script>
+
+<div class="site-footer">© stock-screening</div>
+</body>
+</html>
