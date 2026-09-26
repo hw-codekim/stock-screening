@@ -34,7 +34,29 @@ async function wrLoad() {
 
     const weekHead = weeks.map(w => `<th>${w.label}</th>`).join("");
 
-    body.innerHTML = sections.map(sec => `
+    // 코스피/코스닥 지수 - 페이지 최상단에 별도 표로 두고 각 섹션 종목과 비교하는 기준으로 쓴다
+    const indices = data.indices || [];
+    const indexHtml = indices.length === 0 ? "" : `
+        <div class="wr-section">
+            <div class="wr-section-title">코스피 · 코스닥 지수</div>
+            <div class="wr-table-wrap">
+                <table class="wr-table wr-index-table">
+                    <thead><tr>
+                        <th>지수</th><th>YTD</th>${weekHead}
+                    </tr></thead>
+                    <tbody>
+                        ${indices.map(ix => `
+                        <tr>
+                            <td>${ix.name}</td>
+                            ${wrCell(ix.ytd)}
+                            ${ix.rets.map(r => wrCell(r)).join("")}
+                        </tr>`).join("")}
+                    </tbody>
+                </table>
+            </div>
+        </div>`;
+
+    body.innerHTML = indexHtml + sections.map(sec => `
         <div class="wr-section">
             <div class="wr-section-title">${sec.sector}<span class="wr-section-count">${sec.items.length}개</span></div>
             <div class="wr-table-wrap">

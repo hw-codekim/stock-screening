@@ -76,6 +76,21 @@ table.wr-table td.up { color: #B4342A; font-weight: 600; }
 table.wr-table td.down { color: #2E5FA3; font-weight: 600; }
 table.wr-table td.na { color: #C5C9D0; }
 
+/* 최상단 코스피/코스닥 지수 표 - 종목 표와 달리 시장/중분류/시총 열이 없어 2번째 열이 YTD */
+table.wr-table.wr-index-table td { font-weight: 700; }
+table.wr-table.wr-index-table th:nth-child(2), table.wr-table.wr-index-table td:nth-child(2) {
+    text-align: right; font-size: inherit; border-right: 1px solid #E5E7EB;
+}
+table.wr-table.wr-index-table th:nth-child(2) { font-size: 0.72rem; color: #6B7280; }
+table.wr-table.wr-index-table th:nth-child(3), table.wr-table.wr-index-table td:nth-child(3) {
+    text-align: right; font-size: inherit;
+}
+table.wr-table.wr-index-table th:nth-child(3) { font-size: 0.72rem; color: #6B7280; }
+table.wr-table.wr-index-table th:nth-child(5), table.wr-table.wr-index-table td:nth-child(5) { border-right: none; }
+@media (max-width: 700px) {
+    table.wr-table.wr-index-table th:nth-child(3), table.wr-table.wr-index-table td:nth-child(3) { display: table-cell; }
+}
+
 table.wr-table td.wr-hi { background: #E3F6E8; }                       /* 주간 등락률 +20% 이상 */
 table.wr-table tr:nth-child(even) td.wr-hi { background: #DCF2E2; }
 
