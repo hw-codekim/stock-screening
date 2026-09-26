@@ -421,3 +421,22 @@ body {
     .graph-wrap canvas { height: 180px !important; }
     .price-chart-container { height: 200px; }
 }
+
+/* 스마트폰 공통(2026-09-26): 헤더를 얇게, 메뉴는 한 줄 가로 스크롤, 본문 여백 축소 */
+@media (max-width: 700px) {
+    .site-header { padding: 10px 12px 0; }
+    .site-header h1 { font-size: 1.05rem; }
+    .site-header .sub { display: none; }
+    .header-left { width: 100%; display: block; }
+    .header-left > div:first-child { min-width: 0; }
+    .site-nav {
+        gap: 18px; margin-top: 6px; padding-bottom: 2px;
+        overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        flex-wrap: nowrap; max-width: 100%;
+    }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a { font-size: 0.88rem; flex: 0 0 auto; padding-bottom: 8px; }
+    .header-right { display: none; }
+    .container { padding: 12px 10px 48px; }
+    .scroll-top-btn { right: 12px; bottom: 12px; }
+}
