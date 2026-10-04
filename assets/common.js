@@ -53,6 +53,16 @@ let lastFilteredItems = [];  // 현재 필터/정렬 반영된 전체 목록 (�
 let activeIndex = -1;
 const chartInstances = {};
 
+// 기준 분기(예: 2Q26) 숫자는 그대로 두고, 다음 분기(예: 3Q26) 실적이 이미 나온 기업은 색으로만 구분
+function isNewToday(s) {
+    return s.report_date === TODAY_KST || s.next_report_date === TODAY_KST;
+}
+function nextQuarterTitle(s) {
+    return `${listData.next_quarter_short} ${s.next_source || ""} (${s.next_report_date || "-"})&#10;` +
+        `매출 ${fmtEok(s.next_revenue)} (YoY ${fmtYoy(s.next_revenue_yoy)})&#10;` +
+        `영업이익 ${fmtEok(s.next_op_income)} (YoY ${fmtYoy(s.next_op_income_yoy)})`;
+}
+
 function activeItems() {
     const includeUnreported = document.getElementById("unreported-toggle").checked;
     return includeUnreported ? reportedItems.concat(unreportedItems) : reportedItems;
@@ -113,8 +123,15 @@ async function loadList() {
     reportedItems   = listData.items || [];
     unreportedItems = listData.unreported_items || [];
 
+    const nextQ = listData.next_quarter_short;
     document.getElementById("summary-line").innerHTML =
-        `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개`;
+        `<span class="summary-datetime">[${listData.generated_at}]</span> ${listData.quarter_label} 실적 발표 기업 ${listData.total_count}개` +
+        (nextQ ? ` · <span class="next-q-legend">${nextQ} 발표 ${listData.next_count}개</span>` : "");
+    const nextOpt = document.querySelector('#quick-filter option[value="nextq"]');
+    if (nextOpt) {
+        if (nextQ) nextOpt.textContent = `${nextQ} 실적 발표 기업`;
+        else nextOpt.remove();
+    }
 
     populateLargeFilter();
     populateMidFilter();
@@ -168,9 +185,9 @@ function renderList(sectors) {
     listBody.innerHTML = sectors.map(g => `
         ${g.sector != null ? `<div class="sr-sector-group-title">${g.sector} (${g.items.length})</div>` : ""}
         ${g.items.map((s, i) => `
-        <div class="sr-row${s.report_date === TODAY_KST ? " sr-row-today" : ""}" data-code="${s.code}" data-name="${s.name}">
+        <div class="sr-row${isNewToday(s) ? " sr-row-today" : ""}${s.next_reported ? " sr-row-next" : ""}" data-code="${s.code}" data-name="${s.name}">
             <span class="sr-arrow">▶</span>
-            <span class="sr-name">${i + 1}. ${s.name}${s.report_date === TODAY_KST ? '<span class="new-badge">NEW</span>' : ""}</span>
+            <span class="sr-name"${s.next_reported ? ` title="${nextQuarterTitle(s)}"` : ""}>${i + 1}. ${s.name}${s.next_reported ? `<span class="next-q-badge">${listData.next_quarter_short}</span>` : ""}${isNewToday(s) ? '<span class="new-badge">NEW</span>' : ""}</span>
             <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
             <span class="sr-market" data-label="시장">${s.market || "-"}</span>
             <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
@@ -196,7 +213,8 @@ function renderList(sectors) {
 
 // ── 빠른 필터 ─────────────────────────────────────
 const QUICK_FILTER_PREDICATES = {
-    newtoday: s => s.report_date === TODAY_KST,
+    newtoday: isNewToday,
+    nextq:   s => !!s.next_reported,
     op100:   s => s.op_income_yoy != null && s.op_income_yoy >= 100,
     opgtrev: s => s.op_income_yoy != null && s.revenue_yoy != null && s.op_income_yoy > s.revenue_yoy,
     opm10:   s => s.opm != null && s.opm >= 10,
@@ -307,12 +325,10 @@ function onUnreportedToggleChange() {
 // 아코디언 구조상 한 번에 하나만 열려 있으므로, 닫히는 카드의 차트 인스턴스는 즉시 정리해서
 // 여러 종목을 계속 눌러봐도 누적된 차트가 쌓여 느려지지 않게 한다.
 function disposeRowCharts(code) {
-    const opmId   = `chart-opm-${code}`;
-    const priceId = `chart-price-${code}`;
-    const opmChart = chartInstances[opmId];
-    if (opmChart) { opmChart.destroy(); delete chartInstances[opmId]; }
-    const priceChart = chartInstances[priceId];
-    if (priceChart) { priceChart.dispose(); delete chartInstances[priceId]; }
+    [`chart-opm-${code}`, `chart-opyoy-${code}`].forEach(id => {
+        const chart = chartInstances[id];
+        if (chart) { chart.destroy(); delete chartInstances[id]; }
+    });
     const detail = document.getElementById(`sr-detail-${code}`);
     if (detail) {
         delete detail.dataset.loaded;
@@ -320,9 +336,9 @@ function disposeRowCharts(code) {
     }
 }
 
-// 차트 영역(canvas/echarts 컨테이너)은 실제로 펼칠 때만 DOM에 생성한다.
+// 차트 영역(canvas)은 실제로 펼칠 때만 DOM에 생성한다.
 // 2500개가 넘는 행 전체에 미리 깔아두면 빈 컨테이너만으로도 문서 전체 노드 수가
-// 크게 늘어나 echarts.init() 등이 강제로 유발하는 레이아웃 계산 비용이 커진다.
+// 크게 늘어나 차트 초기화가 강제로 유발하는 레이아웃 계산 비용이 커진다.
 function detailMarkup(code, name) {
     return `
         <div class="screen-chart-status">차트 불러오는 중...</div>
@@ -337,8 +353,8 @@ function detailMarkup(code, name) {
                 </div>
                 <div class="chart-resize-handle" title="드래그해서 크기 조절"></div>
                 <div class="graph-wrap" data-pane="right">
-                    <div class="graph-title">${name} · 주가</div>
-                    <div id="chart-price-${code}" class="price-chart-container"></div>
+                    <div class="graph-title">${name} · 영업이익 YoY</div>
+                    <canvas id="chart-opyoy-${code}"></canvas>
                 </div>
             </div>
         </div>
@@ -407,12 +423,14 @@ async function downloadListExcel() {
         "종목명", "종목코드", "섹터", "시장", "시가총액(억원)",
         "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "OPM(%)",
         "26E PER(배)", "현재가", "최근등락(%)", "YTD(%)", "MDD(%)",
+        ...(listData.next_quarter_short ? [`${listData.next_quarter_short} 매출YoY(%)`, `${listData.next_quarter_short} 영업이익YoY(%)`] : []),
     ]];
     lastFilteredItems.forEach(s => {
         rows.push([
             s.name, s.code, stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
             s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.opm ?? "",
             s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", s.price_change ?? "", s.mdd ?? "",
+            ...(listData.next_quarter_short ? [s.next_revenue_yoy ?? "", s.next_op_income_yoy ?? ""] : []),
         ]);
     });
 
@@ -495,10 +513,6 @@ document.addEventListener("mousedown", onResizeMouseDown);
 document.addEventListener("mousemove", onResizeMouseMove);
 document.addEventListener("mouseup", onResizeMouseUp);
 
-function isMobileView() {
-    return window.innerWidth <= 700;
-}
-
 // 아코디언은 한 번에 하나만 열리므로, 매번 전체 행을 훑지 않고
 // "닫히는 행 1개 + 열리는 행 1개"만 건드린다 (행이 수천 개일 때 클릭이 느려지는 것 방지)
 function openRow(index) {
@@ -570,56 +584,8 @@ document.addEventListener("keydown", (e) => {
 });
 
 const smallScale = { ticks: { maxRotation: 90, minRotation: 90, font: { size: 9 } } };
+const OP_YOY_CAP = 500;
 let loadCounter = 0;
-
-// ── 매물대(가격대별 누적거래량) 계산 ────────────────────
-// 종목 상세 캔들차트 위에 반투명 가로 막대로 오버레이. 각 날의 거래량을 그날 고가~저가
-// 구간에 걸친 가격 버킷들에 겹치는 비율만큼 나눠 담는다(종가 하나에만 몰아넣는 것보다
-// 실제 매매가 이뤄진 가격대를 더 정확히 반영).
-function computeVolumeProfile(p, bins = 24) {
-    const highs = (p.high || []).filter(v => v != null);
-    const lows  = (p.low  || []).filter(v => v != null);
-    if (!highs.length || !lows.length) return { binSize: 0, buckets: [] };
-    const maxP = Math.max(...highs);
-    const minP = Math.min(...lows);
-    if (maxP <= minP) return { binSize: 0, buckets: [] };
-    const binSize = (maxP - minP) / bins;
-    const buckets = new Array(bins).fill(0);
-
-    for (let i = 0; i < p.dates.length; i++) {
-        const h = p.high[i], l = p.low[i], v = p.volume[i];
-        if (h == null || l == null || !v) continue;
-        if (h === l) {
-            const idx = Math.min(bins - 1, Math.max(0, Math.floor((h - minP) / binSize)));
-            buckets[idx] += v;
-            continue;
-        }
-        const startIdx = Math.max(0, Math.floor((l - minP) / binSize));
-        const endIdx   = Math.min(bins - 1, Math.floor((h - minP) / binSize));
-        for (let b = startIdx; b <= endIdx; b++) {
-            const bucketLow  = minP + b * binSize;
-            const bucketHigh = bucketLow + binSize;
-            const overlap = Math.max(0, Math.min(h, bucketHigh) - Math.max(l, bucketLow));
-            buckets[b] += v * (overlap / (h - l));
-        }
-    }
-
-    return {
-        binSize,
-        buckets: buckets.map((vol, idx) => ({ price: minP + (idx + 0.5) * binSize, volume: vol })),
-    };
-}
-
-// 종목 상세 차트 기본 표시 구간(6개월) 시작 인덱스 - 날짜 문자열 기준으로 정확히 계산
-// (전체 데이터 대비 %로 자르면 보관 기간이 늘어날 때마다 기본 노출 구간이 조용히 밀림)
-function findMonthsAgoIndex(dates, months) {
-    if (!dates || !dates.length) return 0;
-    const cutoff = new Date(dates[dates.length - 1]);
-    cutoff.setMonth(cutoff.getMonth() - months);
-    const cutoffStr = cutoff.toISOString().split("T")[0];
-    const idx = dates.findIndex(d => d >= cutoffStr);
-    return idx >= 0 ? idx : 0;
-}
 
 async function loadStockCharts(code, detail) {
     const myToken = ++loadCounter;
@@ -677,196 +643,47 @@ async function loadStockCharts(code, detail) {
             });
         }
 
-        if (data.price && data.price.dates && data.price.dates.length) {
-            const p = data.price;
-            const candleData = p.dates.map((_, i) => [p.open[i], p.close[i], p.low[i], p.high[i]]);
-            const volColors  = p.dates.map((_, i) =>
-                p.close[i] >= (i > 0 ? p.close[i - 1] : p.close[i]) ? "rgba(180,52,42,0.6)" : "rgba(46,95,163,0.6)"
-            );
-
-            const lastClose = p.close[p.close.length - 1];
-            let maxHighIdx = 0;
-            p.high.forEach((v, i) => { if (v > p.high[maxHighIdx]) maxHighIdx = i; });
-            const maxHigh = p.high[maxHighIdx];
-
-            const tooltipFormatter = (params) => {
-                if (!params || !params.length) return "";
-                const idx = params[0].dataIndex;
-                const close = p.close[idx];
-                const prevClose = idx > 0 ? p.close[idx - 1] : close;
-                const changeRate = prevClose ? (close - prevClose) / prevClose * 100 : 0;
-                const color = changeRate >= 0 ? "#B4342A" : "#2E5FA3";
-                return `${p.dates[idx]}<br/>` +
-                    `종가: ${close.toLocaleString()}<br/>` +
-                    `등락률: <span style="color:${color};font-weight:600;">${changeRate >= 0 ? "+" : ""}${changeRate.toFixed(2)}%</span><br/>` +
-                    `거래량: ${(p.volume[idx] || 0).toLocaleString()}`;
-            };
-
-            // 기본 표시 구간 = 최근 6개월
-            const sixMonthIdx = findMonthsAgoIndex(p.dates, 6);
-            const lastDateStr = p.dates[p.dates.length - 1];
-
-            // 모바일에서는 캔들+거래량+MA+데이터줌까지 다 보여주면 좁은 화면에 짓눌려서
-            // 봉이 찌그러지거나 축이 겹치는 문제가 있었음 - 종가 라인 하나로 단순화해서 보여준다.
-            const mobileOption = {
-                animation: false,
-                grid: { left: 45, right: 15, top: 20, bottom: 36 },
-                tooltip: { trigger: "axis", textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
-                dataZoom: [{ type: "inside", startValue: p.dates[sixMonthIdx], endValue: lastDateStr }],
-                xAxis: {
-                    type: "category", data: p.dates, boundaryGap: false,
-                    axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
+        if (data.financial && data.financial.yoy_quarters && data.financial.yoy_quarters.length) {
+            const d = data.financial;
+            // 적자 전환·흑자 전환처럼 기저가 작으면 YoY가 수천 %로 튀어 나머지 막대가 안 보이므로
+            // 막대는 ±OP_YOY_CAP%에서 자르고, 실제 값은 툴팁에 그대로 보여준다.
+            const clipped = d.op_yoy.map(v => v == null ? null : Math.max(-OP_YOY_CAP, Math.min(OP_YOY_CAP, v)));
+            const yoyCanvas = document.getElementById(`chart-opyoy-${code}`);
+            chartInstances[yoyCanvas.id] = new Chart(yoyCanvas, {
+                type: "bar",
+                data: {
+                    labels: d.yoy_quarters,
+                    datasets: [{
+                        label: "영업이익 YoY (%)", data: clipped,
+                        backgroundColor: d.op_yoy.map(v => v == null ? "#ccc" : v >= 0 ? "rgba(180,52,42,0.75)" : "rgba(47,95,163,0.75)"),
+                    }]
                 },
-                yAxis: { scale: true, axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() } },
-                series: [{
-                    name: "종가", type: "line", data: p.close,
-                    smooth: true, symbol: "none",
-                    lineStyle: { color: "#B4342A", width: 2 },
-                    areaStyle: { color: "rgba(180,52,42,0.08)" },
-                }],
-            };
-
-            // y축이 scale:true라 처음 화면에 보이는 구간(최근 6개월)의 고가/저가로 자동
-            // 범위가 잡힌다 - 매물대 가격 구간도 그 범위와 맞춰야 화면 밖으로 벗어나는
-            // 막대가 안 생긴다.
-            const visibleStart = sixMonthIdx;
-            const visibleP = {
-                dates:  p.dates.slice(visibleStart),
-                high:   p.high.slice(visibleStart),
-                low:    p.low.slice(visibleStart),
-                volume: p.volume.slice(visibleStart),
-            };
-            const volumeProfile = computeVolumeProfile(visibleP);
-            const maxProfileVol = Math.max(1, ...volumeProfile.buckets.map(b => b.volume));
-            const PROFILE_OCCUPY = 0.32; // 매물대 막대가 그리드 폭에서 최대로 차지할 비율(왼쪽부터)
-            // POC(Point of Control) - 매물대에서 거래량이 가장 많이 몰린 가격
-            const pocBucket = volumeProfile.buckets.reduce(
-                (max, b) => (b.volume > max.volume ? b : max), volumeProfile.buckets[0]
-            );
-
-            const desktopOption = {
-                animation: false,
-                grid: [
-                    { left: 15, right: 55, top: "16%", bottom: "26%" },
-                    { left: 15, right: 55, top: "78%", bottom: "6%" },
-                ],
-                tooltip: { trigger: "axis", axisPointer: { type: "cross" }, textStyle: { fontSize: 11 }, formatter: tooltipFormatter },
-                dataZoom: [
-                    { type: "inside", xAxisIndex: [0, 1], startValue: p.dates[sixMonthIdx], endValue: lastDateStr },
-                ],
-                xAxis: [
-                    { type: "category", data: p.dates, gridIndex: 0, boundaryGap: true, axisLabel: { show: false }, splitLine: { show: false } },
-                    {
-                        type: "category", data: p.dates, gridIndex: 1, boundaryGap: true,
-                        axisLabel: { fontSize: 9, formatter: v => v.slice(5).replace("-", "/") },
-                        splitLine: { show: false },
+                options: {
+                    responsive: true, maintainAspectRatio: false, animation: false,
+                    interaction: { mode: "index", intersect: false },
+                    plugins: {
+                        legend: { position: "top", labels: { boxWidth: 10, font: { size: 10 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    const v = d.op_yoy[ctx.dataIndex];
+                                    const i = d.quarters.indexOf(d.yoy_quarters[ctx.dataIndex]);
+                                    const op = i >= 0 ? d.op_income[i] : null;
+                                    return [`영업이익 YoY: ${fmtYoy(v)}`, `영업이익: ${fmtEok(op)}`];
+                                }
+                            }
+                        }
                     },
-                    // 매물대 전용 축 - dataZoom의 xAxisIndex:[0,1] 목록에 안 넣어서 줌 범위
-                    // 필터링 대상에서 제외한다. (같은 xAxisIndex:0을 쓰면 매물대 데이터의
-                    // dataIndex(0~23)가 캔들 dataZoom이 보여주는 구간(예: 122~242) 밖이라고
-                    // 판단돼서 6개월 기본 화면에선 안 보이고 전체로 줌아웃해야만 보이는 문제가 있었음)
-                    { type: "value", gridIndex: 0, show: false },
-                ],
-                yAxis: [
-                    { scale: true, gridIndex: 0, position: "right", axisLabel: { fontSize: 9, formatter: v => v.toLocaleString() }, splitLine: { lineStyle: { color: "#f5f7fa" } } },
-                    { scale: true, gridIndex: 1, axisLabel: { show: false }, splitLine: { show: false } },
-                ],
-                legend: {
-                    top: 0, left: "center",
-                    textStyle: { fontSize: 10 },
-                    itemWidth: 14, itemHeight: 8,
-                    data: [
-                        { name: "MA20", icon: "line", textStyle: { color: "#29B6F6" } },
-                        { name: "MA50", icon: "line", textStyle: { color: "#F5A623" } },
-                    ],
-                },
-                series: [
-                    {
-                        // 캔들 y축(가격, value축)과 x축(날짜, category축)을 그대로 재사용하되, bar 타입은
-                        // "두 축이 다 value/category가 아니면" 세로 막대로 그려버려서 의도한 가로 막대가
-                        // 안 나옴 - custom 시리즈로 직접 rect를 그려서 진짜 가로 막대를 만든다.
-                        name: "매물대", type: "custom", xAxisIndex: 2, yAxisIndex: 0, z: 1, silent: true,
-                        data: volumeProfile.buckets.map((_, i) => i),
-                        renderItem: (params, api) => {
-                            const b = volumeProfile.buckets[params.dataIndex];
-                            const coordSys = params.coordSys;
-                            const yCenter = api.coord([0, b.price])[1];
-                            const yTop    = api.coord([0, b.price + volumeProfile.binSize / 2])[1];
-                            const yBottom = api.coord([0, b.price - volumeProfile.binSize / 2])[1];
-                            const barHeight = Math.max(1, Math.abs(yBottom - yTop) - 1);
-                            const barMaxWidth = coordSys.width * PROFILE_OCCUPY;
-                            const barWidth = (b.volume / maxProfileVol) * barMaxWidth;
-                            return {
-                                type: "rect",
-                                shape: { x: coordSys.x, y: yCenter - barHeight / 2, width: barWidth, height: barHeight },
-                                style: { fill: "rgba(169,132,63,0.28)" },
-                            };
-                        },
-                    },
-                    {
-                        name: "종가", type: "candlestick", xAxisIndex: 0, yAxisIndex: 0, data: candleData, z: 3,
-                        itemStyle: { color: "#B4342A", color0: "#2E5FA3", borderColor: "#B4342A", borderColor0: "#2E5FA3" },
-                        markLine: {
-                            symbol: "none",
-                            silent: true,
-                            data: [
-                                {
-                                    yAxis: lastClose,
-                                    label: { show: false },
-                                    lineStyle: { color: "#A9843F", type: "dashed", width: 1.4 },
-                                },
-                                ...(pocBucket ? [{
-                                    // POC(매물대 최대 거래량 가격) - 우측 가격축에 뱃지로 표기
-                                    yAxis: pocBucket.price,
-                                    label: {
-                                        show: true,
-                                        formatter: "POC " + Math.round(pocBucket.price).toLocaleString(),
-                                        position: "end",
-                                        color: "#fff", backgroundColor: "#A9843F",
-                                        padding: [2, 6], borderRadius: 8, fontSize: 10, fontWeight: 600,
-                                    },
-                                    lineStyle: { color: "#A9843F", type: "solid", width: 1, opacity: 0.55 },
-                                }] : []),
-                            ],
-                        },
-                        markPoint: {
-                            symbol: "none",
-                            label: {
-                                show: true,
-                                formatter: () => maxHigh.toLocaleString(),
-                                position: "top",
-                                fontSize: 10,
-                                fontWeight: 600,
-                                color: "#B4342A",
-                            },
-                            data: [{ name: "최고점", coord: [maxHighIdx, maxHigh] }],
-                        },
-                    },
-                    {
-                        name: "MA20", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma20, z: 2,
-                        smooth: true, symbol: "none", showSymbol: false,
-                        lineStyle: { color: "#29B6F6", width: 1.5 },
-                    },
-                    {
-                        name: "MA50", type: "line", xAxisIndex: 0, yAxisIndex: 0, data: p.ma50, z: 2,
-                        smooth: true, symbol: "none", showSymbol: false,
-                        lineStyle: { color: "#F5A623", width: 1.5 },
-                    },
-                    {
-                        name: "거래량", type: "bar", xAxisIndex: 1, yAxisIndex: 1, data: p.volume,
-                        itemStyle: { color: (pr) => volColors[pr.dataIndex] },
-                    },
-                ],
-            };
-
-            const priceDiv = document.getElementById(`chart-price-${code}`);
-            setTimeout(() => {
-            if (detail.dataset.loadToken != myToken) return; // 그 사이 카드가 닫혔거나 다시 열림 - 폐기
-            const priceChart = echarts.init(priceDiv);
-            chartInstances[priceDiv.id] = priceChart;
-            priceChart.setOption(isMobileView() ? mobileOption : desktopOption);
-            priceChart.resize();
-            }, 0);
+                    scales: {
+                        x: smallScale,
+                        y: {
+                            title: { display: true, text: "YoY(%)", font: { size: 10 } },
+                            ticks: { font: { size: 10 }, callback: v => v + "%" },
+                            grid: { color: ctx => ctx.tick.value === 0 ? "#2F5FA3" : "rgba(0,0,0,0.06)" },
+                        }
+                    }
+                }
+            });
         }
     } catch (e) {
         statusEl.textContent = "차트 데이터를 불러올 수 없습니다.";
