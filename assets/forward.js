@@ -237,9 +237,9 @@ function renderForwardTable() {
     const thead = document.getElementById("fw-thead");
     thead.innerHTML = `
         <tr>
-            <th rowspan="2" class="fw-name-th">종목</th>
-            <th rowspan="2" class="fw-sector-cell">섹터</th>
-            <th rowspan="2" ${sortAttr("mktcap")}>시총</th>
+            <th rowspan="2" class="fw-name-th fw-fix fw-fix1">종목</th>
+            <th rowspan="2" class="fw-sector-cell fw-fix fw-fix2">섹터</th>
+            <th rowspan="2" class="${sortCls("mktcap")} fw-fix fw-fix3" onclick="setSort('mktcap')">시총</th>
             ${qPeriods.length ? `<th colspan="${qPeriods.length}" class="fw-group-border">${metricLabel}(분기,억)</th>` : ""}
             ${qPeriods.length ? `<th colspan="${qPeriods.length}" class="fw-group-border">OPM(분기,%)</th>` : ""}
             ${aPeriods.length ? `<th colspan="${aPeriods.length}" class="fw-group-border">${metricLabel}(연간,억)</th>` : ""}
@@ -272,9 +272,9 @@ function renderForwardTable() {
         const qArr = r._qArr, aArr = r._aArr, qOpm = r.quarter_opm || [];
         return `
         <tr>
-            <td class="fw-name-cell">${r.name}</td>
-            <td class="fw-sector-cell">${fwStripMidPrefix(r.sector_mid) || "-"}</td>
-            <td>${fwFmtMktcap(r.mktcap)}</td>
+            <td class="fw-name-cell fw-fix fw-fix1">${r.name}</td>
+            <td class="fw-sector-cell fw-fix fw-fix2">${fwStripMidPrefix(r.sector_mid) || "-"}</td>
+            <td class="fw-fix fw-fix3">${fwFmtMktcap(r.mktcap)}</td>
             ${qArr.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}">${fwFmtNum(v)}</td>`).join("")}
             ${qOpm.map((v, i) => `<td class="${i === 0 ? "fw-group-border" : ""}" style="${fwOpmStyle(v)}">${fwFmtPct1(v)}</td>`).join("")}
             ${aArr.map((v, i) => {
@@ -302,7 +302,7 @@ function renderForwardTable() {
     } else {
         const groups = groupByLarge(rows);
         tbody.innerHTML = groups.map(g => `
-            <tr class="fw-group-title-row"><td colspan="${colCount}">${g.large} (${g.items.length})</td></tr>
+            <tr class="fw-group-title-row"><td colspan="${colCount}"><span class="fw-group-title">${g.large} (${g.items.length})</span></td></tr>
             ${g.items.map(rowHtml).join("")}
         `).join("");
     }

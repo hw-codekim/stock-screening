@@ -77,3 +77,14 @@
 }
 
 .fw-count-line { font-size: 0.8rem; color: #14213D; margin-bottom: 10px; }
+
+/* 틀 고정: 종목·섹터·시총 3열은 가로 스크롤해도 왼쪽에 고정 (2026-10-05).
+   left 값이 앞 열 너비의 합이라 세 열 너비를 고정한다. 본문 셀은 배경이 있어야 뒤 칸이 비치지 않는다. */
+.fw-table .fw-fix { position: sticky; background: #fff; z-index: 3; box-sizing: border-box; overflow: hidden; text-overflow: ellipsis; }
+.fw-table .fw-fix1 { left: 0;     width: 120px; min-width: 120px; max-width: 120px; }
+.fw-table .fw-fix2 { left: 120px; width: 96px;  min-width: 96px;  max-width: 96px; }
+.fw-table .fw-fix3 { left: 216px; width: 72px;  min-width: 72px;  max-width: 72px; box-shadow: 2px 0 0 #D7E0EC; }
+.fw-table thead th.fw-fix { background: #FAFBFD; z-index: 6; }
+.fw-table tbody tr:hover td.fw-fix { background: #F5F8FC; }
+.fw-group-title-row td { position: static; }
+.fw-group-title { position: sticky; left: 8px; }
