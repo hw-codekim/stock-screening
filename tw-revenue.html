@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대만월매출</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/tw-revenue.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>대만월매출</h1>
+            <div class="sub">메리츠 Tech 채널이 추적하는 대만 기업 월매출 · MoM · YoY</div>
+        </div>
+        <nav class="site-nav">
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html">국장</a>
+            <a href="commodities.html">원자재</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="buy-candidates.html">매수후보</a>
+            <a href="canslim.html">캔슬림</a>
+            <a href="analysis.html">종목분석</a>
+            <a href="weekly-returns.html">주별등락률</a>
+            <a href="tw-revenue.html" class="active">대만월매출</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="tr-note">
+        텔레그램 메리츠 Tech(t.me/merITz_tech)가 매월 월매출을 소개하는 대만 기업 · 출처: MOPS(公開資訊觀測站) 월매출 공시 ·
+        단위 억 NTD · 섹터별로 묶어 최근월 매출 큰 순 · <span id="tr-generated-at"></span>
+    </p>
+
+    <div class="search-bar">
+        <select id="tr-sector-filter">
+            <option value="">전체 섹터</option>
+        </select>
+        <input type="text" id="tr-search" placeholder="기업명·코드 검색 (영문/중문/국내 Peer)">
+    </div>
+    <div class="summary-line" id="tr-count-line">불러오는 중...</div>
+
+    <div id="tr-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <div class="site-footer">
+        대만 상장사는 매월 10일까지 전월 매출을 공시합니다(회사 홈페이지 IR의 월매출과 같은 숫자). 좌측 차트 = 월매출(막대, 올해는 진한 색) + YoY(선, 오른쪽 축),
+        우측 차트 = MoM(전월 대비). 아직 공시 전인 달은 "-"로 표시됩니다. 데이터는 매 영업일 장마감 후 갱신됩니다.
+    </div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/tw-revenue.js?v=1"></script>
+</body>
+</html>

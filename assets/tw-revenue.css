@@ -1,0 +1,101 @@
+.tr-note {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0 0 14px;
+}
+
+.tr-sector { margin-bottom: 32px; }
+.tr-sector-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #14315C;
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #D7E0EC;
+}
+.tr-sector-title .tr-sector-count {
+    font-weight: 400;
+    color: #888;
+    font-size: 0.8rem;
+    margin-left: 6px;
+}
+
+/* 섹터 요약표 */
+.tr-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #D7E0EC;
+    border-radius: 3px;
+    margin-bottom: 12px;
+}
+table.tr-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    min-width: 640px;
+}
+table.tr-table th {
+    text-align: right;
+    font-weight: 600;
+    color: #14213D;
+    background: #FAFBFD;
+    padding: 6px 8px;
+    border-bottom: 1px solid #D7E0EC;
+}
+table.tr-table td {
+    text-align: right;
+    padding: 5px 8px;
+    border-bottom: 1px solid #EEF1F6;
+}
+table.tr-table tbody tr:last-child td { border-bottom: none; }
+table.tr-table tbody tr:hover { background: #F5F8FC; }
+table.tr-table th.tr-left, table.tr-table td.tr-left { text-align: left; }
+table.tr-table td.tr-name a { color: #14213D; text-decoration: none; font-weight: 600; }
+table.tr-table td.tr-name a:hover { text-decoration: underline; }
+table.tr-table .tr-zh { color: #888; font-weight: 400; margin-left: 4px; }
+table.tr-table .tr-desc { color: #7a869a; }
+.tr-up { color: #B4342A; }
+.tr-down { color: #2E5FA3; }
+.tr-na { color: #bbb; }
+
+/* 기업별 카드: 좌 월매출 / 우 MoM */
+.tr-card {
+    background: #ffffff;
+    border: 1px solid #D7E0EC;
+    border-radius: 3px;
+    padding: 8px 10px 10px;
+    margin-bottom: 12px;
+}
+.tr-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 10px;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: #14213D;
+}
+.tr-card-name { font-weight: 700; }
+.tr-card-name a { color: inherit; text-decoration: none; }
+.tr-card-name a:hover { text-decoration: underline; }
+.tr-card-meta { font-size: 0.72rem; color: #7a869a; }
+.tr-card-stat { font-size: 0.78rem; color: #555; margin-left: auto; white-space: nowrap; }
+.tr-card-stat b { font-weight: 600; }
+.tr-charts {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 10px;
+}
+.tr-chart {
+    width: 100%;
+    height: 230px;
+    background: #F5F7FA;
+    border-radius: 2px;
+}
+
+@media (max-width: 760px) {
+    .tr-charts { grid-template-columns: 1fr; }
+    .tr-card-stat { margin-left: 0; }
+}
