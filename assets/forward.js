@@ -126,13 +126,12 @@ const FW_QUICK_FILTER_PREDICATES = {
     },
 };
 
-// 하이라이트(행 전체 연노랑) - 아래 4조건 모두 충족(AND). 선택 지표와 무관하게 항상 같은 기준.
-// 1) 영업이익 YoY 27E > 26E  2) OPM 27E >= 10%  3) PER 27E 0~50배  4) 매출 YoY 27E > 26E
+// 하이라이트(행 전체 연노랑) - 아래 3조건 모두 충족(AND). 선택 지표와 무관하게 항상 같은 기준.
+// 1) 영업이익 YoY 27E > 26E  2) PER 27E 0~50배  3) 매출 YoY 27E > 26E
 // 매출 YoY는 annual_revenue([실적연도, 26E, 27E])로 직접 계산한다.
 function fwIsHighlight(r) {
-    const yoy = r.yoy || [], opm = r.opm || [], per = r.per || [], rev = r.annual_revenue || [];
+    const yoy = r.yoy || [], per = r.per || [], rev = r.annual_revenue || [];
     if (yoy[0] == null || yoy[1] == null || yoy[1] <= yoy[0]) return false;
-    if (opm[1] == null || opm[1] < 10) return false;
     if (per[1] == null || per[1] <= 0 || per[1] > 50) return false;
     if (rev.length < 3 || rev[0] == null || rev[1] == null || rev[2] == null || rev[0] <= 0 || rev[1] <= 0) return false;
     return rev[2] / rev[1] > rev[1] / rev[0];
