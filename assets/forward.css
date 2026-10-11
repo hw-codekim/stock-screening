@@ -86,5 +86,10 @@
 .fw-table .fw-fix3 { left: 216px; width: 72px;  min-width: 72px;  max-width: 72px; box-shadow: 2px 0 0 #D7E0EC; }
 .fw-table thead th.fw-fix { background: #FAFBFD; z-index: 6; }
 .fw-table tbody tr:hover td.fw-fix { background: #F5F8FC; }
+/* 하이라이트: 27E 영업이익·매출 성장 가속 + 27E OPM 10%↑ + 27E PER 50배↓ (forward.js fwIsHighlight) */
+.fw-table tbody tr.fw-highlight td,
+.fw-table tbody tr.fw-highlight td.fw-fix { background: #FFF8D6; }
+.fw-table tbody tr.fw-highlight:hover td,
+.fw-table tbody tr.fw-highlight:hover td.fw-fix { background: #FFF1B8; }
 .fw-group-title-row td { position: static; }
 .fw-group-title { position: sticky; left: 8px; }

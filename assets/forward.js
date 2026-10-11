@@ -126,6 +126,18 @@ const FW_QUICK_FILTER_PREDICATES = {
     },
 };
 
+// 하이라이트(행 전체 연노랑) - 아래 4조건 모두 충족(AND). 선택 지표와 무관하게 항상 같은 기준.
+// 1) 영업이익 YoY 27E > 26E  2) OPM 27E >= 10%  3) PER 27E 0~50배  4) 매출 YoY 27E > 26E
+// 매출 YoY는 annual_revenue([실적연도, 26E, 27E])로 직접 계산한다.
+function fwIsHighlight(r) {
+    const yoy = r.yoy || [], opm = r.opm || [], per = r.per || [], rev = r.annual_revenue || [];
+    if (yoy[0] == null || yoy[1] == null || yoy[1] <= yoy[0]) return false;
+    if (opm[1] == null || opm[1] < 10) return false;
+    if (per[1] == null || per[1] <= 0 || per[1] > 50) return false;
+    if (rev.length < 3 || rev[0] == null || rev[1] == null || rev[2] == null || rev[0] <= 0 || rev[1] <= 0) return false;
+    return rev[2] / rev[1] > rev[1] / rev[0];
+}
+
 function getFilteredRows() {
     const market = document.getElementById("fw-market-filter").value;
     const large  = document.getElementById("fw-large-filter").value;
@@ -225,7 +237,7 @@ function renderForwardTable() {
         r._aArr = r[aKey] || [];
     });
 
-    document.getElementById("fw-count-line").textContent = `${rows.length}개 종목`;
+    document.getElementById("fw-count-line").textContent = `${rows.length}개 종목 · 하이라이트 ${rows.filter(fwIsHighlight).length}개`;
 
     const sortCls = k => `fw-th-sortable${fwSort && fwSort.key === k ? " sort-active " + (fwSort.dir === "asc" ? "sort-asc" : "sort-desc") : ""}`;
     const sortAttr = k => `class="${sortCls(k)}" onclick="setSort('${k}')"`;
@@ -271,7 +283,7 @@ function renderForwardTable() {
     const rowHtml = r => {
         const qArr = r._qArr, aArr = r._aArr, qOpm = r.quarter_opm || [];
         return `
-        <tr>
+        <tr${fwIsHighlight(r) ? ' class="fw-highlight"' : ""}>
             <td class="fw-name-cell fw-fix fw-fix1">${r.name}</td>
             <td class="fw-sector-cell fw-fix fw-fix2">${fwStripMidPrefix(r.sector_mid) || "-"}</td>
             <td class="fw-fix fw-fix3">${fwFmtMktcap(r.mktcap)}</td>
