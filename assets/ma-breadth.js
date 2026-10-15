@@ -22,7 +22,7 @@ async function mbLoad() {
                     <thead><tr>
                         <th>날짜</th><th>${u.label.startsWith("코스피") ? "코스피" : "코스닥"}</th><th>등락</th>
                         ${mas.map((n, i) => `<th class="${i === 0 ? "mb-sep" : ""}">${n}일선 위</th>`).join("")}
-                        <th class="mb-sep">200일선 아래</th>
+                        <th class="mb-sep">200일선 아래</th><th>200일 미만 상장</th><th class="mb-sep">합계</th>
                     </tr></thead>
                     <tbody>
                         ${u.rows.map(r => `
@@ -30,8 +30,10 @@ async function mbLoad() {
                             <td class="mb-date">${r.date.slice(5).replace("-", "/")}</td>
                             <td>${r.index_close != null ? r.index_close.toLocaleString(undefined, {maximumFractionDigits: 2}) : "-"}</td>
                             ${mbChg(r.index_chg)}
-                            ${mas.map((n, i) => mbCell(r.above[n], r.base[n], false, i === 0)).join("")}
-                            ${mbCell(r.below200, r.base["200"], true, true)}
+                            ${mas.map((n, i) => mbCell(r.above[n], r.total, false, i === 0)).join("")}
+                            ${mbCell(r.below200, r.total, true, true)}
+                            <td class="na">${r.short || "-"}</td>
+                            <td class="mb-sep">${r.total}</td>
                         </tr>`).join("")}
                     </tbody>
                 </table>
@@ -49,8 +51,9 @@ function mbChg(p) {
 function mbCell(n, base, below, sep) {
     if (!base) return `<td class="na${sep ? " mb-sep" : ""}">-</td>`;
     const pct = n / base * 100;
-    const a = Math.min(0.55, Math.abs(pct - 50) / 50 * 0.55);
-    const rgb = (below ? pct >= 50 : pct < 50) ? "46,95,163" : "192,57,43";
+    // 칸끼리 중복이 없어(합계 = 대상 종목 수) 비율이 클수록 진하게. 이평선 위 칸은 빨강, 200일선 아래는 파랑
+    const a = Math.min(0.55, pct / (below ? 100 : 40) * 0.55);
+    const rgb = below ? "46,95,163" : "192,57,43";
     const bg = a > 0.04 ? `background: rgba(${rgb},${a.toFixed(2)});` : "";
     return `<td class="mb-cell${sep ? " mb-sep" : ""}" style="${bg}">${n}<span class="mb-pct">${pct.toFixed(0)}%</span></td>`;
 }
