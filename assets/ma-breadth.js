@@ -12,6 +12,16 @@ async function mbLoad() {
     const genEl = document.getElementById("mb-generated-at");
     if (genEl) genEl.textContent = data.generated_at ? `기준: ${data.generated_at}` : "";
 
+    try {
+        mbRender(body, data);
+    } catch (e) {
+        // 예전 스크립트가 브라우저에 남아 새 데이터 형식과 안 맞을 때 등 — '불러오는 중'에 멈추지 않게 안내
+        body.innerHTML = '<p class="placeholder">표를 그리지 못했습니다. 새로고침(Ctrl+F5) 해 주세요.</p>';
+        console.error(e);
+    }
+}
+
+function mbRender(body, data) {
     const mas = data.ma_list || [10, 20, 50, 150, 200];
     const unis = Object.values(data.universes || {});
     body.innerHTML = unis.map(u => `
