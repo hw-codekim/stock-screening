@@ -1,0 +1,10 @@
+table.mb-table { min-width: 640px; }
+table.mb-table td.mb-cell .mb-pct { color: #888; font-size: 0.7rem; margin-left: 4px; }
+table.mb-table td.mb-date { font-weight: 600; }
+table.mb-table th.mb-sep, table.mb-table td.mb-sep { border-left: 1px solid #D7E0EC; }
+.mb-tabs { display: flex; gap: 6px; margin: 0 0 12px; }
+.mb-tabs button {
+    border: 1px solid #D7E0EC; background: #fff; color: #14315C; padding: 6px 14px;
+    border-radius: 3px; font-size: 0.85rem; cursor: pointer;
+}
+.mb-tabs button.active { background: #14315C; color: #fff; border-color: #14315C; }

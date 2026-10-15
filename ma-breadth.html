@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이평선 위 종목수</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/weekly-returns.css?v=3">
+<link rel="stylesheet" href="assets/ma-breadth.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>이평선 위 종목수</h1>
+            <div class="sub">코스피200 · 코스닥150 중 이동평균선 위에 있는 종목 수 (최근 30거래일)</div>
+        </div>
+        <nav class="site-nav">
+            <a href="index.html">TODAY</a>
+            <a href="q2.html">2Q26실적</a>
+            <a href="forward.html">포워드실적</a>
+            <a href="us-charts.html">미장</a>
+            <a href="kr-charts.html">국장</a>
+            <a href="commodities.html">원자재</a>
+            <a href="cashflow.html">현금흐름</a>
+            <a href="buy-candidates.html">매수후보</a>
+            <a href="canslim.html">캔슬림</a>
+            <a href="analysis.html">종목분석</a>
+            <a href="weekly-returns.html">주별등락률</a>
+            <a href="ma-breadth.html" class="active">이평선</a>
+            <a href="tw-revenue.html">대만월매출</a>
+        </nav>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="wr-note">
+        코스피 시가총액 상위 200 · 코스닥 시가총액 상위 150 종목(우선주·스팩 제외, 지수 편입 종목 대체) · 날짜별 종가가 각 이동평균선 위에 있는 종목 수 · <span id="mb-generated-at"></span>
+    </p>
+    <div id="mb-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <div class="site-footer">
+        이동평균 = 그날 종가를 포함한 단순 평균(10·20·50·150·200거래일). "200일선 아래" = 종가가 200일선 이하인 종목 수.
+        괄호 안 %는 그 이평선을 계산할 만큼 일봉이 있는 종목 대비 비율(최근 상장 종목은 긴 이평선 칸에서 빠짐).
+        액면분할·증자로 종가가 끊긴 종목은 수정주가로 보정. 실제 코스피200·코스닥150 편입 종목과는 일부 다를 수 있습니다.
+        최근 30거래일만 표시하며 매 영업일 장마감 후 갱신됩니다.
+    </div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/ma-breadth.js?v=1"></script>
+</body>
+</html>
