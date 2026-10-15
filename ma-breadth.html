@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>이평선 위 종목수</title>
 <link rel="stylesheet" href="assets/style.css?v=4">
-<link rel="stylesheet" href="assets/weekly-returns.css?v=3">
-<link rel="stylesheet" href="assets/ma-breadth.css?v=3">
+<link rel="stylesheet" href="assets/ma-breadth.css?v=4">
 </head>
 <body>
 
@@ -38,25 +37,30 @@
 </header>
 
 <div class="container">
-    <p class="wr-note">
-        코스피 시가총액 상위 200 · 코스닥 시가총액 상위 150 종목(우선주·스팩 제외, 지수 편입 종목 대체) · 날짜별로 종목을 이동평균선 위치에 따라 한 칸씩 나눈 종목 수(중복 없음) · <span id="mb-generated-at"></span>
+    <p class="mb-note">
+        코스피 시총 상위 200 · 코스닥 시총 상위 150(우선주·스팩 제외) · 종목마다 이평선 위치에 따라 한 칸(중복 없음) · <span id="mb-generated-at"></span>
     </p>
+    <div class="mb-tabs" id="mb-tabs"></div>
     <div id="mb-body">
         <p class="placeholder">불러오는 중...</p>
     </div>
-    <div class="site-footer">
-        종목마다 한 칸에만 들어가 7칸의 합 = 합계(코스피 200 / 코스닥 150)입니다. 200일선 아래 종목은 "200일선 아래",
-        200일선 위 종목은 짧은 이평선부터 보고 처음 위에 있는 선의 칸에 넣습니다: 10일선 위 → "10일선 위",
-        10일선 아래·20일선 위 → "20일선 위", … 10·20·50·150일선 모두 아래이고 200일선만 위 → "200일선 위".
-        맨 오른쪽 "50일선 위 합계" = 10일선 위 + 20일선 위 + 50일선 위 칸의 합과 합계 대비 %입니다. 이동평균 = 그날 종가를 포함한 단순 평균. %는 합계 대비 비율. 200일선을 계산할 만큼 일봉이 없는 최근 상장 종목은 "200일 미만 상장" 칸에 따로 셉니다(합계는 항상 코스피 200 / 코스닥 150).
-        액면분할·증자로 종가가 끊긴 종목은 수정주가로 보정. 실제 코스피200·코스닥150 편입 종목과는 일부 다를 수 있습니다.
-        최근 30거래일만 표시하며 매 영업일 장마감 후 갱신됩니다.
-    </div>
+    <details class="mb-help">
+        <summary>계산 방법</summary>
+        <ul>
+            <li>종목마다 한 칸에만 들어가 7칸의 합 = 합계(코스피 200 / 코스닥 150)입니다.</li>
+            <li>200일선 아래 종목은 "200일 아래". 200일선 위 종목은 짧은 이평선부터 보고 처음 위에 있는 선의 칸:
+                10일선 위 → "10일", 10일선 아래·20일선 위 → "20일", … 10·20·50·150일선 모두 아래이고 200일선만 위 → "200일".</li>
+            <li>"50일 합계" = 10일 + 20일 + 50일 칸의 합, %는 합계 대비 비율.</li>
+            <li>이동평균 = 그날 종가를 포함한 단순 평균. 200일선을 계산할 만큼 일봉이 없는 최근 상장 종목은 "신규" 칸.</li>
+            <li>액면분할·증자로 종가가 끊긴 종목은 수정주가로 보정. 실제 코스피200·코스닥150 편입 종목과는 일부 다를 수 있습니다.</li>
+            <li>최근 30거래일, 매 영업일 장마감 후 갱신. 휴대폰·태블릿에서는 위 버튼으로 코스피/코스닥을 바꿔 봅니다.</li>
+        </ul>
+    </details>
 </div>
 
 <button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
 
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/ma-breadth.js?v=5"></script>
+<script src="assets/ma-breadth.js?v=6"></script>
 </body>
 </html>

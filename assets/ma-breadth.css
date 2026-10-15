@@ -1,11 +1,63 @@
-table.mb-table { min-width: 640px; }
-table.mb-table td.mb-cell .mb-pct { color: #888; font-size: 0.7rem; margin-left: 4px; }
-table.mb-table td.mb-date { font-weight: 600; }
-table.mb-table th.mb-sep, table.mb-table td.mb-sep { border-left: 1px solid #D7E0EC; }
-.mb-tabs { display: flex; gap: 6px; margin: 0 0 12px; }
+/* 이평선 위 종목수 — 모바일·태블릿 우선 (2026-10-16) */
+.mb-note { font-size: 0.8rem; color: #888; margin: 0 0 12px; line-height: 1.5; }
+
+.mb-tabs { display: none; gap: 6px; margin: 0 0 10px; }
 .mb-tabs button {
-    border: 1px solid #D7E0EC; background: #fff; color: #14315C; padding: 6px 14px;
-    border-radius: 3px; font-size: 0.85rem; cursor: pointer;
+    flex: 1 1 0; border: 1px solid #D7E0EC; background: #fff; color: #14315C;
+    padding: 9px 0; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
 }
 .mb-tabs button.active { background: #14315C; color: #fff; border-color: #14315C; }
-table.wr-table th.mb-a50, table.wr-table td.mb-a50 { border-left: 2px solid #14151A; }
+
+.mb-section { margin-bottom: 28px; }
+.mb-title { font-size: 0.95rem; font-weight: 700; color: #14315C; margin: 0 0 8px; }
+.mb-title .mb-count { font-weight: 400; color: #888; font-size: 0.8rem; margin-left: 6px; }
+.mb-latest { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.82rem; color: #444; margin: 0 0 10px; }
+.mb-latest b { font-size: 1rem; }
+
+.mb-wrap {
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    border: 1px solid #D7E0EC; border-radius: 4px;
+}
+table.mb-table {
+    width: 100%; border-collapse: collapse; white-space: nowrap;
+    font-size: 0.8rem; font-variant-numeric: tabular-nums;
+}
+table.mb-table th {
+    text-align: center; font-weight: 600; font-size: 0.72rem; color: #6B7280; line-height: 1.25;
+    padding: 7px 6px; border-bottom: 2px solid #14151A; background: #FAFBFD;
+}
+table.mb-table td { text-align: right; padding: 6px 7px; border-bottom: 1px solid #F0F1F3; color: #14151A; }
+table.mb-table tr:last-child td { border-bottom: none; }
+table.mb-table .sep { border-left: 1px solid #D7E0EC; }
+table.mb-table .sep2 { border-left: 2px solid #14151A; }
+table.mb-table th:first-child, table.mb-table td:first-child {
+    position: sticky; left: 0; z-index: 1; background: #fff; text-align: left;
+    font-weight: 600; box-shadow: 1px 0 0 #E5E7EB;
+}
+table.mb-table th:first-child { background: #FAFBFD; }
+table.mb-table td.up { color: #B4342A; font-weight: 600; }
+table.mb-table td.down { color: #2E5FA3; font-weight: 600; }
+table.mb-table td.na { color: #C5C9D0; text-align: center; }
+table.mb-table td.c b { font-weight: 600; }
+table.mb-table td.c small { color: #666; font-size: 0.68rem; margin-left: 4px; }
+table.mb-table td.a50 b { font-weight: 800; }
+
+/* 태블릿 이하: 코스피/코스닥 탭으로 하나씩 */
+@media (max-width: 1024px) {
+    .mb-tabs { display: flex; }
+    .mb-section.mb-off { display: none; }
+}
+
+/* 휴대폰: 지수 종가·합계 열 숨김, %는 숫자 아래 줄로, 글자·여백 축소 */
+@media (max-width: 700px) {
+    table.mb-table { font-size: 0.74rem; }
+    table.mb-table th { font-size: 0.66rem; padding: 6px 3px; }
+    table.mb-table td { padding: 5px 4px; text-align: center; }
+    table.mb-table td.c small { display: block; margin: 1px 0 0; font-size: 0.62rem; }
+    table.mb-table .m-hide { display: none; }
+    .mb-note { font-size: 0.74rem; }
+}
+
+.mb-help { margin-top: 16px; font-size: 0.8rem; color: #666; }
+.mb-help summary { cursor: pointer; color: #14315C; font-weight: 600; padding: 6px 0; }
+.mb-help ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.6; }
