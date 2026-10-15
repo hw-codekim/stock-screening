@@ -8,3 +8,4 @@ table.mb-table th.mb-sep, table.mb-table td.mb-sep { border-left: 1px solid #D7E
     border-radius: 3px; font-size: 0.85rem; cursor: pointer;
 }
 .mb-tabs button.active { background: #14315C; color: #fff; border-color: #14315C; }
+table.wr-table th.mb-a50, table.wr-table td.mb-a50 { border-left: 2px solid #14151A; }
