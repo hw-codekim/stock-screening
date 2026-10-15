@@ -32,7 +32,7 @@ function mbRender(body, data) {
                     <thead><tr>
                         <th>날짜</th><th>${u.label.startsWith("코스피") ? "코스피" : "코스닥"}</th><th>등락</th>
                         ${mas.map((n, i) => `<th class="${i === 0 ? "mb-sep" : ""}">${n}일선 위</th>`).join("")}
-                        <th class="mb-sep">200일선 아래</th><th>200일 미만 상장</th><th class="mb-sep">합계</th><th class="mb-sep mb-a50" title="종가가 50일선 위인 종목 전체(200일선 아래 종목 포함) — 왼쪽 칸 나누기와 별개">50일선 위 합계</th>
+                        <th class="mb-sep">200일선 아래</th><th>200일 미만 상장</th><th class="mb-sep">합계</th><th class="mb-sep mb-a50" title="왼쪽 10·20·50일선 위 칸의 합">50일선 위 합계</th>
                     </tr></thead>
                     <tbody>
                         ${u.rows.map(r => `
@@ -44,7 +44,7 @@ function mbRender(body, data) {
                             ${mbCell(r.below200, r.total, true, true)}
                             <td class="na">${r.short || "-"}</td>
                             <td class="mb-sep">${r.total}</td>
-                            ${mbA50(r.above50, r.total)}
+                            ${mbA50(r.above[10] + r.above[20] + r.above[50], r.total)}
                         </tr>`).join("")}
                     </tbody>
                 </table>
@@ -69,7 +69,7 @@ function mbCell(n, base, below, sep) {
     return `<td class="mb-cell${sep ? " mb-sep" : ""}" style="${bg}">${n}<span class="mb-pct">${pct.toFixed(0)}%</span></td>`;
 }
 
-// 50일선 위 전체 종목 수와 비율 — 50% 기준으로 위면 빨강, 아래면 파랑
+// 10·20·50일 칸의 합과 합계 대비 비율 — 50% 기준으로 위면 빨강, 아래면 파랑
 function mbA50(n, total) {
     if (n === undefined || n === null || !total) return '<td class="na mb-sep">-</td>';
     const pct = n / total * 100;
