@@ -28,7 +28,9 @@ function mbRender(body, data) {
 
     body.innerHTML = keys.map(k => {
         const u = data.universes[k];
-        const idx = u.label.startsWith("코스피") ? "코스피" : "코스닥";
+        // 업종 표(반도체·배터리)는 지수 종가가 없어 종가 열을 빼고, 등락 = 대상 종목 동일가중 평균
+        const sector = u.kind === "sector";
+        const idx = u.index_label || (u.label.startsWith("코스피") ? "코스피" : "코스닥");
         const r0 = u.rows[0];
         const s50 = r0 ? r0.above[10] + r0.above[20] + r0.above[50] : 0;
         return `
@@ -43,7 +45,7 @@ function mbRender(body, data) {
             <div class="mb-wrap">
                 <table class="mb-table">
                     <thead><tr>
-                        <th>날짜</th><th class="m-hide">${idx}</th><th>등락</th>
+                        <th>날짜</th>${sector ? "" : `<th class="m-hide">${idx}</th>`}<th${sector ? ' title="대상 종목 동일가중 평균"' : ""}>${sector ? "평균<br>등락" : "등락"}</th>
                         ${mas.map((n, i) => `<th class="${i === 0 ? "sep" : ""}">${n}일<br>위</th>`).join("")}
                         <th class="sep">200일<br>아래</th><th>신규</th><th class="sep m-hide">합계</th>
                         <th class="sep2" title="10·20·50일 칸의 합">50일<br>합계</th>
@@ -52,7 +54,7 @@ function mbRender(body, data) {
                         ${u.rows.map(r => `
                         <tr>
                             <td>${r.date.slice(5).replace("-", "/")}</td>
-                            <td class="m-hide">${r.index_close != null ? r.index_close.toLocaleString(undefined, {maximumFractionDigits: 2}) : "-"}</td>
+                            ${sector ? "" : `<td class="m-hide">${r.index_close != null ? r.index_close.toLocaleString(undefined, {maximumFractionDigits: 2}) : "-"}</td>`}
                             ${mbChg(r.index_chg)}
                             ${mas.map((n, i) => mbCell(r.above[n], r.total, false, i === 0 ? "sep" : "")).join("")}
                             ${mbCell(r.below200, r.total, true, "sep")}

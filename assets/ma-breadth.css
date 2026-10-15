@@ -1,7 +1,7 @@
 /* 이평선 위 종목수 — 모바일·태블릿 우선 (2026-10-16) */
 .mb-note { font-size: 0.8rem; color: #888; margin: 0 0 12px; line-height: 1.5; }
 
-.mb-tabs { display: none; gap: 6px; margin: 0 0 10px; }
+.mb-tabs { display: none; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
 .mb-tabs button {
     flex: 1 1 0; border: 1px solid #D7E0EC; background: #fff; color: #14315C;
     padding: 9px 0; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
@@ -56,6 +56,7 @@ table.mb-table td.a50 b { font-weight: 800; }
     table.mb-table td.c small { display: block; margin: 1px 0 0; font-size: 0.62rem; }
     table.mb-table .m-hide { display: none; }
     .mb-note { font-size: 0.74rem; }
+    .mb-tabs button { font-size: 0.8rem; padding: 8px 0; }
 }
 
 .mb-help { margin-top: 16px; font-size: 0.8rem; color: #666; }
