@@ -1,0 +1,66 @@
+/* 지수 분석 (2026-10-16) — 이평선 페이지(ma-breadth.css)와 같은 톤, 모바일 우선 */
+.id-note { font-size: 0.8rem; color: #888; margin: 0 0 12px; line-height: 1.5; }
+
+.id-tabs { display: flex; gap: 6px; margin: 0 0 12px; max-width: 520px; }
+.id-tabs button {
+    flex: 1 1 0; border: 1px solid #D7E0EC; background: #fff; color: #14315C;
+    padding: 9px 0; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+}
+.id-tabs button.active { background: #14315C; color: #fff; border-color: #14315C; }
+
+.id-latest { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-size: 0.85rem; color: #444; margin: 0 0 12px; }
+.id-latest .d { font-weight: 700; color: #14315C; }
+.id-latest .v { font-size: 1.25rem; font-weight: 800; color: #14151A; font-variant-numeric: tabular-nums; }
+.id-latest .up { color: #B4342A; font-weight: 700; }
+.id-latest .down { color: #2E5FA3; font-weight: 700; }
+
+.id-kind { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
+.k-vuu { background: #FBE3E0; color: #A8281C; }      /* 거래량↑ 상승 */
+.k-vud { background: #DCE7F7; color: #1F4E8C; }      /* 거래량↑ 하락 */
+.k-vdu { background: #FDF1E3; color: #9A5B13; }      /* 거래량↓ 상승 */
+.k-vdd { background: #EEF0F3; color: #555; }         /* 거래량↓ 하락 */
+
+.id-stats { margin: 0 0 14px; }
+.id-stats table { border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.id-stats th { font-weight: 600; color: #6B7280; font-size: 0.72rem; text-align: left; padding: 5px 10px 5px 0; border-bottom: 1px solid #D7E0EC; }
+.id-stats td { padding: 5px 12px 5px 0; border-bottom: 1px solid #F0F1F3; white-space: nowrap; }
+.id-stats td small { color: #888; margin-left: 4px; }
+.id-stats .up { color: #B4342A; font-weight: 600; }
+.id-stats .down { color: #2E5FA3; font-weight: 600; }
+.id-stats p { font-size: 0.72rem; color: #999; margin: 4px 0 0; }
+
+.id-chart { width: 100%; height: 440px; margin: 0 0 14px; }
+
+.id-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid #D7E0EC; border-radius: 4px; }
+table.id-table { width: 100%; border-collapse: collapse; white-space: nowrap; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+table.id-table th {
+    text-align: center; font-weight: 600; font-size: 0.72rem; color: #6B7280; line-height: 1.25;
+    padding: 7px 6px; border-bottom: 2px solid #14151A; background: #FAFBFD;
+}
+table.id-table td { text-align: right; padding: 6px 7px; border-bottom: 1px solid #F0F1F3; color: #14151A; }
+table.id-table tr:last-child td { border-bottom: none; }
+table.id-table .sep { border-left: 1px solid #D7E0EC; }
+table.id-table th:first-child, table.id-table td:first-child {
+    position: sticky; left: 0; z-index: 1; background: #fff; text-align: left; font-weight: 600; box-shadow: 1px 0 0 #E5E7EB;
+}
+table.id-table th:first-child { background: #FAFBFD; }
+table.id-table td.b { font-weight: 700; }
+table.id-table td.up, table.id-table small.up { color: #B4342A; }
+table.id-table td.down, table.id-table small.down { color: #2E5FA3; }
+table.id-table td.na { color: #C5C9D0; text-align: center; }
+table.id-table td.ma small { display: block; font-size: 0.66rem; }
+table.id-table td:last-child { text-align: center; }
+
+@media (max-width: 700px) {
+    .id-tabs { max-width: none; }
+    .id-chart { height: 340px; }
+    table.id-table { font-size: 0.74rem; }
+    table.id-table th { font-size: 0.66rem; padding: 6px 3px; }
+    table.id-table td { padding: 5px 4px; }
+    .id-stats table { font-size: 0.74rem; }
+    .id-note { font-size: 0.74rem; }
+}
+
+.id-help { margin-top: 16px; font-size: 0.8rem; color: #666; }
+.id-help summary { cursor: pointer; color: #14315C; font-weight: 600; padding: 6px 0; }
+.id-help ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.6; }
