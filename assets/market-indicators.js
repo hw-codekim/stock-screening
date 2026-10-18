@@ -73,7 +73,7 @@ function miRender() {
     miCharts = [];
     const panels = miData.panels || [];
     const intra = miData.intraday || {};
-    body.innerHTML = miSummary(panels) + panels.map((p, i) => `
+    body.innerHTML = miOscHtml(miData.osc) + miSummary(panels) + panels.map((p, i) => `
         <section class="mi-sec" id="sec-${p.key}">
             <h2>${p.title}</h2>
             <p class="desc">${p.desc || ""}</p>
@@ -97,6 +97,42 @@ function miRender() {
         if (p[m] && p[m].lines) miDaily(`d-${i}-${m}`, p[m], from, p, m);
     }));
     ["kr", "us"].forEach(m => (intra[m] || []).forEach((x, j) => miIntra(`i-${m}-${j}`, x)));
+    ["kr", "us"].forEach(m => {
+        const o = (miData.osc || {})[m];
+        if (o && o.lines) miDaily(`osc-${m}`, { ...o, refs: [{ y: 70, label: "강세 70" }, { y: 30, label: "약세 30" }] }, from, { step: false }, m);
+    });
+}
+
+// ── 종합 오실레이터 (맨 위) ─────────────────────────
+function miZone(v) { return v == null ? ["-", ""] : v >= 70 ? ["강세", "bull"] : v <= 30 ? ["약세", "bear"] : v >= 55 ? ["중립·강세 쪽", "mid"] : v <= 45 ? ["중립·약세 쪽", "mid"] : ["중립", "mid"]; }
+
+function miOscHtml(osc) {
+    if (!osc) return "";
+    const card = m => {
+        const o = osc[m];
+        const mk = m === "kr" ? "국장" : "미장";
+        if (!o || !o.lines) return `<div class="mi-card"><div class="hd">${mk}</div><div class="mi-empty">데이터 없음</div></div>`;
+        const [zl, zc] = miZone(o.value);
+        return `<div class="mi-card osc">
+            <div class="osc-hd">
+                <span class="mk">${mk} 오실레이터</span>
+                <span class="big ${zc}">${o.value ?? "-"}</span>
+                <span class="zone ${zc}">${zl}</span>
+                <small>5일 평균 · 오늘 ${o.today ?? "-"} · ${o.date.slice(2).replace(/-/g, "/")}</small>
+            </div>
+            <div class="mi-chart" id="osc-${m}"></div>
+            <div class="osc-comp">${o.components.map(c => `<a href="#sec-${c.key}" class="mi-score ${miScoreCls(c.score)}" title="${c.title}">${c.title.replace(/^[①-⑫]\s*/, "")} ${c.score}</a>`).join("")}</div>
+            ${miStatsHtml(o.stats, m).replace("대표 선 분위", "오실레이터 분위")}
+        </div>`;
+    };
+    return `
+        <section class="mi-sec mi-osc">
+            <h2>종합 오실레이터</h2>
+            <p class="desc">아래 지표들의 점수(0~100, 책 해석 방향 기준 — 높을수록 강세 쪽)를 시장별로 같은 비중으로 평균한 값의 5일 평균.
+               지표마다 이력 시작이 달라(2010년~ / 2022년~ / 2024년~) 그날 점수가 있는 지표만 평균한다(최소 4개). 발표가 늦는 지표는 직전 점수를 5거래일까지 이어 쓴다.
+               70↑ 강세 · 30↓ 약세 · 그 사이 중립. 아래 칩 = 지금 구성 지표별 점수(누르면 해당 그래프로)</p>
+            <div class="mi-grid">${card("kr")}${card("us")}</div>
+        </section>`;
 }
 
 function miLastTxt(side) {

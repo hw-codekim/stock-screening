@@ -48,3 +48,17 @@
 .mi-sum td.sp.ok { color: #1E7B3C; } .mi-sum td.sp.ng { color: #B4342A; }
 .mi-sum p { font-size: 0.72rem; color: #888; margin: 6px 0 0; line-height: 1.5; }
 .mi-sum b.bull { color: #A8281C; } .mi-sum b.bear { color: #1F4E8C; }
+
+/* 종합 오실레이터 (2026-10-18) */
+.mi-osc h2 { font-size: 1.1rem; }
+.mi-card.osc { border-color: #14315C; }
+.osc-hd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 2px 0 4px; }
+.osc-hd .mk { font-weight: 700; font-size: 0.9rem; color: #14151A; }
+.osc-hd .big { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.osc-hd .zone { font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 10px; }
+.osc-hd small { color: #888; font-size: 0.74rem; }
+.osc-hd .big.bull, .osc-hd .zone.bull { color: #A8281C; } .osc-hd .zone.bull { background: #FBE3E0; }
+.osc-hd .big.bear, .osc-hd .zone.bear { color: #1F4E8C; } .osc-hd .zone.bear { background: #DCE7F7; }
+.osc-hd .big.mid { color: #14151A; } .osc-hd .zone.mid { background: #EEF0F3; color: #555; }
+.osc-comp { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 2px; }
+.osc-comp .mi-score { margin: 0; font-weight: 600; text-decoration: none; font-size: 0.72rem; }
