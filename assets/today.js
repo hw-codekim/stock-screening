@@ -46,7 +46,7 @@ async function loadToday() {
     renderInvestorFlow(data.investor_net_buy);
     renderStockCards("upper-limit-cards", data.upper_limit);
     renderStockCards("bullish-cards", data.bullish_alignment);
-    renderStockCards("low-mdd-cards", data.low_mdd);
+    renderNewHighCards("low-mdd-cards", data.low_mdd);
     renderDaily5Top10(data.top_mktcap);
     renderDaily5TradeValue(data.top_trade_value);
     renderDaily5Sectors(data.top_sectors, data.top_sectors_rate);
@@ -122,6 +122,25 @@ function renderStockCards(elId, rows) {
             <div class="sc-meta">
                 <span>${tFmtPrice(r.close_price)}원</span>
                 <span>${tFmtMktcap(r.mktcap)}</span>
+            </div>
+        </div>
+    `).join("");
+}
+
+// ── MDD -10% 이내 - 52주/역사적 신고가 구분 + 신고가 일자 (가격 대신) ──
+const HIGH_TYPE_LABEL = { ath: "역사적 신고가", "52w": "52주 신고가" };
+function renderNewHighCards(elId, rows) {
+    const el = document.getElementById(elId);
+    if (!rows || !rows.length) { el.innerHTML = '<p class="today-empty">해당 종목 없음</p>'; return; }
+    el.innerHTML = rows.map(r => `
+        <div class="stock-card${r.high_today ? " nh-today" : ""}">
+            <div class="sc-head">
+                <span class="sc-name" title="${r.name}">${r.name}</span>
+                <span class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</span>
+            </div>
+            <div class="sc-meta">
+                <span class="${r.high_type === "ath" ? "sc-high-ath" : ""}">${HIGH_TYPE_LABEL[r.high_type] || "-"}</span>
+                <span>${r.high_date || "-"}</span>
             </div>
         </div>
     `).join("");
