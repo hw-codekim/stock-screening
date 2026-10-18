@@ -115,6 +115,13 @@
 /* MDD -10% 카드: 최근 거래일이 신고가면 연한 노랑, 역사적 신고가 라벨 강조 */
 .stock-card.nh-today { background: #FFF8D6; border-color: #F2E3A0; }
 .stock-card .sc-high-ath { color: #B4342A; font-weight: 700; }
+/* MDD -10% 탈락 종목 - 섹터 소제목 */
+.dropout-sector {
+    font-size: 0.78rem; font-weight: 700; color: #14315C;
+    margin: 12px 0 6px;
+}
+.dropout-sector:first-child { margin-top: 0; }
+.dropout-sector .dropout-count { font-weight: 400; color: #999; margin-left: 6px; }
 
 /* 데이터 테이블 (TOP10/섹터) */
 .today-table-wrap { overflow-x: auto; }

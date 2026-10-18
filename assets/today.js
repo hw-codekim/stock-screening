@@ -47,6 +47,7 @@ async function loadToday() {
     renderStockCards("upper-limit-cards", data.upper_limit);
     renderStockCards("bullish-cards", data.bullish_alignment);
     renderNewHighCards("low-mdd-cards", data.low_mdd);
+    renderMddDropouts(data.mdd_dropouts);
     renderDaily5Top10(data.top_mktcap);
     renderDaily5TradeValue(data.top_trade_value);
     renderDaily5Sectors(data.top_sectors, data.top_sectors_rate);
@@ -142,6 +143,31 @@ function renderNewHighCards(elId, rows) {
                 <span class="${r.high_type === "ath" ? "sc-high-ath" : ""}">${HIGH_TYPE_LABEL[r.high_type] || "-"}</span>
                 <span>${r.high_date ? `${r.high_date.slice(2).replace(/-/g, ".")} (${r.high_days}일)` : "-"}</span>
             </div>
+        </div>
+    `).join("");
+}
+
+// ── MDD -10% 탈락 종목 - 섹터별 카드 (탈락일·경과 거래일, 현재 MDD) ──
+function renderMddDropouts(d) {
+    const el = document.getElementById("mdd-dropout-groups");
+    if (!d || !d.groups || !d.groups.length) { el.innerHTML = '<p class="today-empty">해당 종목 없음</p>'; return; }
+    const total = d.groups.reduce((s, g) => s + g.items.length, 0);
+    document.getElementById("mdd-dropout-sub").textContent =
+        `최근 ${d.days}거래일(${d.start.slice(2).replace(/-/g, ".")}~) 중 MDD -10% 이내였다가 빠진 종목 ${total}개, 섹터별`;
+    el.innerHTML = d.groups.map(g => `
+        <div class="dropout-sector">${g.sector}<span class="dropout-count">${g.items.length}</span></div>
+        <div class="stock-cards">
+            ${g.items.map(r => `
+            <div class="stock-card">
+                <div class="sc-head">
+                    <span class="sc-name" title="${r.name}">${r.name}</span>
+                    <span class="sc-change" style="color:${tColor(r.change_rate)};">${tFmtPct(r.change_rate)}</span>
+                </div>
+                <div class="sc-meta">
+                    <span>탈락 ${r.drop_date.slice(2).replace(/-/g, ".")} (${r.drop_days}일)</span>
+                    <span style="color:#2F5FA3;">${r.mdd != null ? r.mdd.toFixed(1) + "%" : "-"}</span>
+                </div>
+            </div>`).join("")}
         </div>
     `).join("");
 }
