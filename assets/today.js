@@ -140,7 +140,7 @@ function renderNewHighCards(elId, rows) {
             </div>
             <div class="sc-meta">
                 <span class="${r.high_type === "ath" ? "sc-high-ath" : ""}">${HIGH_TYPE_LABEL[r.high_type] || "-"}</span>
-                <span>${r.high_date || "-"}</span>
+                <span>${r.high_date ? `${r.high_date.slice(2).replace(/-/g, ".")} (${r.high_days}일)` : "-"}</span>
             </div>
         </div>
     `).join("");
