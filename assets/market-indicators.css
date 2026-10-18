@@ -1,0 +1,50 @@
+/* 시장지표 (2026-10-18) — 지표마다 국장 | 미장 두 그래프, 모바일은 위아래 */
+.mi-note { font-size: 0.8rem; color: #888; margin: 0 0 10px; line-height: 1.5; }
+
+.mi-range { display: flex; gap: 6px; margin: 0 0 14px; }
+.mi-range button { border: 1px solid #D7E0EC; background: #fff; color: #14315C; padding: 5px 14px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.mi-range button.active { background: #14315C; color: #fff; border-color: #14315C; }
+
+.mi-sec { margin: 0 0 26px; }
+.mi-sec h2 { font-size: 1.02rem; color: #14315C; margin: 0 0 4px; }
+.mi-sec .desc { font-size: 0.78rem; color: #6B7280; margin: 0 0 10px; line-height: 1.5; }
+.mi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mi-card { border: 1px solid #D7E0EC; border-radius: 6px; background: #fff; padding: 8px 10px 4px; min-width: 0; }
+.mi-card .hd { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 0.82rem; font-weight: 700; color: #14151A; }
+.mi-card .hd small { font-weight: 500; color: #888; font-size: 0.74rem; text-align: right; }
+.mi-card .hd b.up { color: #B4342A; }
+.mi-card .hd b.down { color: #2E5FA3; }
+.mi-chart { width: 100%; height: 280px; }
+.mi-chart.tall { height: 340px; }
+.mi-empty { height: 120px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8rem; text-align: center; padding: 0 10px; }
+
+@media (max-width: 800px) {
+    .mi-grid { grid-template-columns: 1fr; }
+    .mi-chart { height: 250px; }
+    .mi-chart.tall { height: 320px; }
+    .mi-note, .mi-sec .desc { font-size: 0.74rem; }
+}
+
+/* 2026-10-18 지표 확장: 점수·책 해석·분위 표·요약 */
+.mi-sec .read { font-size: 0.76rem; color: #14315C; background: #F3F7FC; border-left: 3px solid #5B9BFF; padding: 5px 8px; margin: -4px 0 10px; }
+.mi-score { display: inline-block; min-width: 26px; text-align: center; padding: 1px 6px; border-radius: 10px; font-size: 0.74rem; font-weight: 800; margin-left: 4px; }
+.mi-score.bull { background: #FBE3E0; color: #A8281C; }
+.mi-score.mid { background: #EEF0F3; color: #555; }
+.mi-score.bear { background: #DCE7F7; color: #1F4E8C; }
+.mi-st { margin: 2px 0 6px; font-size: 0.74rem; }
+.mi-st summary { cursor: pointer; color: #14315C; font-weight: 600; padding: 4px 0; }
+.mi-st table, .mi-sum table { border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.mi-st th, .mi-st td { padding: 3px 8px 3px 0; border-bottom: 1px solid #F0F1F3; white-space: nowrap; text-align: left; }
+.mi-st th { color: #6B7280; font-weight: 600; }
+.mi-st td small { color: #888; margin-left: 3px; }
+.mi-st tr.now td { background: #FFF7E0; font-weight: 700; }
+.mi-st .up, .mi-sum .up { color: #B4342A; } .mi-st .down, .mi-sum .down { color: #2E5FA3; }
+.mi-sum { margin: 0 0 22px; overflow-x: auto; }
+.mi-sum table { font-size: 0.8rem; min-width: 420px; }
+.mi-sum th { font-size: 0.72rem; color: #6B7280; font-weight: 600; padding: 5px 10px; border-bottom: 1px solid #D7E0EC; text-align: center; }
+.mi-sum td { padding: 5px 10px; border-bottom: 1px solid #F0F1F3; text-align: center; white-space: nowrap; }
+.mi-sum td.nm { text-align: left; } .mi-sum td.nm a { color: #14315C; text-decoration: none; font-weight: 600; }
+.mi-sum td.na { color: #C5C9D0; }
+.mi-sum td.sp.ok { color: #1E7B3C; } .mi-sum td.sp.ng { color: #B4342A; }
+.mi-sum p { font-size: 0.72rem; color: #888; margin: 6px 0 0; line-height: 1.5; }
+.mi-sum b.bull { color: #A8281C; } .mi-sum b.bear { color: #1F4E8C; }

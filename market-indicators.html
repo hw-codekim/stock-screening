@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시장지표</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/market-indicators.css?v=2">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>시장지표</h1>
+            <div class="sub">오닐 시장 방향 지표 · 국장 / 미장 따로 · 지표별 점수(0~100)</div>
+        </div>
+        <nav class="site-nav"></nav>
+        <script src="assets/nav.js?v=3"></script>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="mi-note">각 그래프의 회색 선 = 같은 기간 지수(코스피 / S&amp;P500, 오른쪽 축) · 매 영업일 장마감 후 갱신 · <span id="mi-generated-at"></span></p>
+    <div class="mi-range" id="mi-range"></div>
+    <div id="mi-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script src="assets/market-indicators.js?v=2"></script>
+</body>
+</html>

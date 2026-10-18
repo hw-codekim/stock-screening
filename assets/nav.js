@@ -24,6 +24,7 @@
         { name: "지수", pages: [
             ["index-detail.html", "지수분석"],
             ["ma-breadth.html", "이평선"],
+            ["market-indicators.html", "시장지표"],
             ["option-pcr.html", "옵션PCR"],
         ] },
         { name: "기타", pages: [
