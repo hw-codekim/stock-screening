@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>옵션 PCR</title>
+<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/index-detail.css?v=1">
+<link rel="stylesheet" href="assets/option-pcr.css?v=1">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>옵션 PCR</h1>
+            <div class="sub">풋/콜 비율 · 코스피200 옵션 · 미국 CBOE</div>
+        </div>
+        <nav class="site-nav"></nav>
+        <script src="assets/nav.js?v=2"></script>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="id-note">코스피200 = KRX 옵션 일별매매정보(월물+위클리), 미국 = CBOE 일별 통계 · 매 영업일 장마감 후 갱신 · <span id="op-generated-at"></span></p>
+    <div class="id-tabs op-tabs" id="op-tabs"></div>
+    <div id="op-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <details class="id-help">
+        <summary>보는 법 · 계산 방법</summary>
+        <ul>
+            <li>PCR(풋/콜 비율) = 풋 ÷ 콜. 거래량 PCR은 그날 거래된 계약 수, 미결제 PCR은 장 마감 때 남아 있는 계약 수 기준.</li>
+            <li>거래대금 PCR(코스피200만) = 풋 거래대금 ÷ 콜 거래대금. 싼 외가격 옵션 투기 거래의 영향이 거래량 PCR보다 작다.</li>
+            <li>PCR이 높다 = 하락에 대비하는(풋) 거래가 많다 = 공포. 흔히 역발상 지표로 쓰여, 극단적으로 높을 때 이후 지수가 반등하는 경향이 있는지 아래 분위 표로 확인한다.</li>
+            <li>분위 표 = 전체 기간의 PCR 5일 평균을 낮은 순으로 5등분(1분위 = 가장 낮음 = 낙관, 5분위 = 가장 높음 = 공포)하고, 각 구간에 해당한 날로부터 5·20거래일 뒤 지수 수익률 평균과 상승 확률.</li>
+            <li>백분위 = 오늘 PCR 5일 평균이 전체 기간 중 아래에서 몇 % 위치인지.</li>
+            <li>미국 날짜는 미국 거래일 기준. 지수: 코스피200(^KS200), S&P500(^GSPC).</li>
+        </ul>
+    </details>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script src="assets/option-pcr.js?v=1"></script>
+</body>
+</html>

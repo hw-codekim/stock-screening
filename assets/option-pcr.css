@@ -1,0 +1,24 @@
+/* 옵션 PCR (2026-10-18) — 지수분석(index-detail.css) 표·탭 스타일을 그대로 쓰고 이 페이지 것만 추가 */
+.op-tabs { max-width: 720px; }
+.op-tabs button { font-size: 0.85rem; }
+
+.op-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin: 0 0 14px; }
+.op-card { border: 1px solid #D7E0EC; border-radius: 6px; padding: 9px 11px; background: #fff; }
+.op-card .l { font-size: 0.72rem; color: #6B7280; }
+.op-card .v { font-size: 1.2rem; font-weight: 800; color: #14151A; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.op-card .s { font-size: 0.72rem; color: #888; margin-top: 2px; }
+.op-card.hot { border-color: #E0A39C; background: #FDF4F2; }
+.op-card.cool { border-color: #A9C1E4; background: #F3F7FC; }
+
+.op-range { display: flex; gap: 6px; margin: 0 0 8px; }
+.op-range button { border: 1px solid #D7E0EC; background: #fff; color: #14315C; padding: 4px 12px; border-radius: 4px; font-size: 0.78rem; cursor: pointer; }
+.op-range button.active { background: #14315C; color: #fff; border-color: #14315C; }
+
+.op-chart { width: 100%; height: 480px; margin: 0 0 14px; }
+.op-stats tr.now td { background: #FFF7E0; font-weight: 700; }
+.op-empty { border: 1px dashed #D7E0EC; border-radius: 6px; padding: 18px; color: #666; font-size: 0.85rem; line-height: 1.6; }
+
+@media (max-width: 700px) {
+    .op-chart { height: 380px; }
+    .op-card .v { font-size: 1.05rem; }
+}
