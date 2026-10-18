@@ -97,10 +97,9 @@ function miRender() {
         if (p[m] && p[m].lines) miDaily(`d-${i}-${m}`, p[m], from, p, m);
     }));
     ["kr", "us"].forEach(m => (intra[m] || []).forEach((x, j) => miIntra(`i-${m}-${j}`, x)));
-    ["kr", "us"].forEach(m => {
-        const o = (miData.osc || {})[m];
-        if (o && o.lines) miDaily(`osc-${m}`, { ...o, refs: [{ y: 70, label: "강세 70" }, { y: 30, label: "약세 30" }] }, from, { step: false }, m);
-    });
+    const ok = (miData.osc || {}).kr, ou = (miData.osc || {}).us;
+    if (ok && ok.lines) miOscKr("osc-kr", ok, from);
+    if (ou && ou.lines) miDaily("osc-us", { ...ou, refs: [{ y: 70, label: "강세 70" }, { y: 30, label: "약세 30" }] }, from, { step: false }, "us");
 }
 
 // ── 종합 오실레이터 (맨 위) ─────────────────────────
@@ -118,7 +117,8 @@ function miOscHtml(osc) {
                 <span class="mk">${mk} 오실레이터</span>
                 <span class="big ${zc}">${o.value ?? "-"}</span>
                 <span class="zone ${zc}">${zl}</span>
-                <small>5일 평균 · 오늘 ${o.today ?? "-"} · ${o.date.slice(2).replace(/-/g, "/")}</small>
+                ${m === "kr" && o.risk ? `위험도 ${miRiskBadge(o.risk)}` : ""}
+                <small>5일 평균 · 오늘 ${o.today ?? "-"} · ${o.date.slice(2).replace(/-/g, "/")}${m === "kr" && o.risk_rows ? ` · 이평선 ${o.risk_rows[0].b}%` : ""}</small>
             </div>
             <div class="mi-chart" id="osc-${m}"></div>
             <div class="osc-comp">${o.components.map(c => `<a href="#sec-${c.key}" class="mi-score ${miScoreCls(c.score)}" title="${c.title}">${c.title.replace(/^[①-⑫]\s*/, "")} ${c.score}</a>`).join("")}</div>
@@ -130,9 +130,56 @@ function miOscHtml(osc) {
             <h2>종합 오실레이터</h2>
             <p class="desc">아래 지표들의 점수(0~100, 책 해석 방향 기준 — 높을수록 강세 쪽)를 시장별로 같은 비중으로 평균한 값의 5일 평균.
                지표마다 이력 시작이 달라(2010년~ / 2022년~ / 2024년~) 그날 점수가 있는 지표만 평균한다(최소 4개). 발표가 늦는 지표는 직전 점수를 5거래일까지 이어 쓴다.
-               70↑ 강세 · 30↓ 약세 · 그 사이 중립. 아래 칩 = 지금 구성 지표별 점수(누르면 해당 그래프로)</p>
-            <div class="mi-grid">${card("kr")}${card("us")}</div>
+               70↑ 강세 · 30↓ 약세 · 그 사이 중립. 아래 칩 = 지금 구성 지표별 점수(누르면 해당 그래프로).
+               국장 그래프 파란 선 = 이평선(코스피 시총 상위 200 중 200일선 위 종목 %, 오른쪽 눈금).
+               위험도 = 오실레이터 60↑ & 이평선 50%↑ 1 · 60↑ & 50%↓ 2 · 50~60 3 · 50↓ & 50%↓ 4 · 50↓ & 50%↑ 5(하락 초입)</p>
+            <div class="osc-kr-row">${card("kr")}${miRiskTable(osc.kr)}</div>
+            <div class="osc-us-row">${card("us")}</div>
         </section>`;
+}
+
+// ── 국장: 오실레이터 + 이평선(200일선 위 종목 %) 좌우 축 그래프, 오른쪽 위험도 표 (2026-10-18) ──
+const MI_RISK = { 1: ["매우 낮음", "r1"], 2: ["낮음", "r2"], 3: ["보통", "r3"], 4: ["높음", "r4"], 5: ["매우 높음", "r5"] };
+function miRiskBadge(r) { return r ? `<span class="risk ${MI_RISK[r][1]}">${r} ${MI_RISK[r][0]}</span>` : ""; }
+function miPct(v) { return v == null ? "-" : `<span class="${v > 0 ? "up" : v < 0 ? "down" : ""}">${v > 0 ? "+" : ""}${v.toFixed(2)}%</span>`; }
+
+function miRiskTable(o) {
+    if (!o || !o.risk_rows) return "";
+    return `<div class="mi-card osc-tbl"><div class="wrap"><table>
+        <thead><tr><th>날짜</th><th>코스피</th><th>등락률</th><th>코스닥</th><th>등락률</th><th>오실</th><th>이평선</th><th>위험도</th></tr></thead>
+        <tbody>${o.risk_rows.map(r => `<tr><td>${r.d.slice(2).replace(/-/g, "/")}</td><td>${(+r.kp).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td><td>${miPct(r.kpc)}</td>
+            <td>${(+r.kq).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td><td>${miPct(r.kqc)}</td><td>${r.o ?? "-"}</td><td>${r.b == null ? "-" : r.b + "%"}</td><td>${miRiskBadge(r.r)}</td></tr>`).join("")}</tbody>
+    </table></div></div>`;
+}
+
+function miOscKr(id, o, from) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const k0 = Math.max(0, o.dates.findIndex(d => d >= from));
+    const x = o.dates.slice(k0);
+    const ma5 = o.lines.find(l => !l.faint), day = o.lines.find(l => l.faint);
+    const c = echarts.init(el);
+    c.setOption({
+        animation: false,
+        tooltip: { trigger: "axis" },
+        legend: { top: 0, itemWidth: 14, textStyle: { fontSize: 10 } },
+        grid: { left: 40, right: 44, top: 30, bottom: 26 },
+        xAxis: { type: "category", data: x, axisLabel: { fontSize: 10, formatter: d => d.slice(2, 7).replace("-", "/") } },
+        yAxis: [
+            { type: "value", name: "오실레이터", min: 0, max: 100, nameTextStyle: { fontSize: 9 }, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
+            { type: "value", name: "이평선 %", min: 0, max: 100, position: "right", nameTextStyle: { fontSize: 9 }, axisLabel: { fontSize: 10, color: "#2E86C1" }, splitLine: { show: false } },
+        ],
+        dataZoom: [{ type: "inside" }],
+        series: [
+            { name: "오실레이터 5일", type: "line", data: ma5.values.slice(k0), symbol: "none", connectNulls: true, lineStyle: { width: 2, color: "#B4342A" }, itemStyle: { color: "#B4342A" },
+              markLine: { silent: true, symbol: "none", lineStyle: { color: "#999", type: "dashed" },
+                          data: [{ yAxis: 60, label: { formatter: "60", fontSize: 10, color: "#666", position: "insideStartTop" } },
+                                 { yAxis: 50, label: { formatter: "50", fontSize: 10, color: "#666", position: "insideStartTop" } }] } },
+            { name: "오실레이터 하루", type: "line", data: (day ? day.values : []).slice(k0), symbol: "none", lineStyle: { width: 1, color: MI_FAINT }, itemStyle: { color: MI_FAINT } },
+            { name: "이평선(200일선 위 %)", type: "line", yAxisIndex: 1, data: (o.breadth || []).slice(k0), symbol: "none", connectNulls: false, lineStyle: { width: 1.7, color: "#2E86C1" }, itemStyle: { color: "#2E86C1" } },
+        ],
+    });
+    miCharts.push(c);
 }
 
 function miLastTxt(side) {

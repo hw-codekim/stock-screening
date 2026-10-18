@@ -62,3 +62,23 @@
 .osc-hd .big.mid { color: #14151A; } .osc-hd .zone.mid { background: #EEF0F3; color: #555; }
 .osc-comp { display: flex; flex-wrap: wrap; gap: 4px; margin: 4px 0 2px; }
 .osc-comp .mi-score { margin: 0; font-weight: 600; text-decoration: none; font-size: 0.72rem; }
+
+/* 국장 한 줄: 왼쪽 오실레이터+이평선 그래프, 오른쪽 위험도 표 (2026-10-18) */
+.osc-kr-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; margin-bottom: 12px; }
+.osc-us-row .mi-chart { height: 260px; }
+.osc-kr-row .mi-chart { height: 360px; }
+.osc-tbl { position: relative; padding: 0; min-height: 300px; }
+.osc-tbl .wrap { position: absolute; inset: 0; overflow: auto; }
+.osc-tbl table { width: 100%; border-collapse: collapse; font-size: 0.74rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.osc-tbl th { position: sticky; top: 0; background: #FAFBFD; color: #6B7280; font-weight: 600; font-size: 0.7rem; padding: 6px 5px; border-bottom: 1px solid #D7E0EC; text-align: right; z-index: 1; }
+.osc-tbl td { padding: 4px 5px; border-bottom: 1px solid #F0F1F3; text-align: right; }
+.osc-tbl th:first-child, .osc-tbl td:first-child { text-align: left; }
+.osc-tbl .up { color: #B4342A; } .osc-tbl .down { color: #2E5FA3; }
+.risk { display: inline-block; padding: 1px 6px; border-radius: 9px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+.risk.r1 { background: #DCEFE2; color: #1E7B3C; } .risk.r2 { background: #EAF4E0; color: #4A7A1E; }
+.risk.r3 { background: #EEF0F3; color: #555; } .risk.r4 { background: #FDE8D7; color: #A65410; } .risk.r5 { background: #FBE3E0; color: #A8281C; }
+.osc-hd .risk { font-size: 0.8rem; }
+@media (max-width: 800px) {
+    .osc-kr-row { grid-template-columns: 1fr; }
+    .osc-tbl .wrap { position: static; max-height: 420px; }
+}
