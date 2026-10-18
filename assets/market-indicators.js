@@ -133,16 +133,19 @@ function miDaily(id, side, from, p, mkt) {
     if (k0 < 0) { el.outerHTML = '<div class="mi-empty">이 기간 데이터 없음</div>'; return; }
     const x = side.dates.slice(k0);
     let ci = 0;
+    // 기준선: 지표 공통(p.ref) + 시장별(side.refs, 이름표 포함)
+    const refs = [...(p.ref != null ? [{ y: p.ref }] : []), ...(side.refs || [])];
     const series = side.lines.map((l, k) => {
         const color = l.faint ? MI_FAINT : MI_COLORS[ci++ % MI_COLORS.length];
         return {
             name: l.name, type: "line", data: l.values.slice(k0), connectNulls: true, symbol: "none",
             step: p.step ? "end" : false, lineStyle: { width: l.faint ? 1 : 1.7, color }, itemStyle: { color },
-            ...(k === 0 && p.ref != null ? { markLine: { silent: true, symbol: "none", data: [{ yAxis: p.ref }], lineStyle: { color: "#999", type: "dashed" }, label: { show: false } } } : {}),
+            ...(k === 0 && refs.length ? { markLine: { silent: true, symbol: "none", lineStyle: { color: "#999", type: "dashed" },
+                data: refs.map(r => ({ yAxis: r.y, label: r.label ? { show: true, formatter: r.label, position: "insideEndTop", fontSize: 10, color: "#666" } : { show: false } })) } } : {}),
         };
     });
     series.push({ name: mkt === "kr" ? "코스피" : "S&P500", type: "line", yAxisIndex: 1, data: side.index.slice(k0), connectNulls: true, symbol: "none",
-                  lineStyle: { width: 1, color: "#9AA3B2", opacity: 0.7 }, itemStyle: { color: "#9AA3B2" }, z: 1 });
+                  lineStyle: { width: 1.2, color: "#14151A" }, itemStyle: { color: "#14151A" }, z: 1 });
     const c = echarts.init(el);
     c.setOption({
         animation: false,
@@ -152,7 +155,7 @@ function miDaily(id, side, from, p, mkt) {
         xAxis: { type: "category", data: x, axisLabel: { fontSize: 10, formatter: d => d.slice(2, 7).replace("-", "/") } },
         yAxis: [
             { type: "value", scale: true, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
-            { type: "value", scale: true, position: "right", splitLine: { show: false }, axisLabel: { fontSize: 9, color: "#9AA3B2" } },
+            { type: "value", scale: true, position: "right", splitLine: { show: false }, axisLabel: { fontSize: 9, color: "#14151A" } },
         ],
         dataZoom: [{ type: "inside" }],
         series,
