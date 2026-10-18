@@ -31,7 +31,7 @@ const MAJOR_INVESTOR_TYPES = new Set(["개인", "외국인"]);   // '기관계'�
 async function loadToday() {
     let data;
     try {
-        const res = await fetch("data/daily.json");
+        const res = await fetch("data/daily.json", { cache: "no-store" });
         if (!res.ok) throw new Error("not found");
         data = await res.json();
     } catch (e) {
