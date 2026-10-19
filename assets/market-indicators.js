@@ -96,7 +96,10 @@ function miRender() {
     panels.forEach((p, i) => ["kr", "us"].forEach(m => {
         if (p[m] && p[m].lines) miDaily(`d-${i}-${m}`, p[m], from, p, m);
     }));
-    ["kr", "us"].forEach(m => (intra[m] || []).forEach((x, j) => miIntra(`i-${m}-${j}`, x)));
+    // 시간대별 차트 하나가 실패해도 아래 오실레이터 그래프는 그리도록 따로 감싼다
+    ["kr", "us"].forEach(m => (intra[m] || []).forEach((x, j) => {
+        try { miIntra(`i-${m}-${j}`, x); } catch (e) { console.error("시간대별 차트 실패", x.label, e); }
+    }));
     const ok = (miData.osc || {}).kr, ou = (miData.osc || {}).us;
     if (ok && ok.lines) miOscKr("osc-kr", ok, from);
     if (ou && ou.lines) miDaily("osc-us", { ...ou, refs: [{ y: 70, label: "강세 70" }, { y: 30, label: "약세 30" }] }, from, { step: false }, "us");
@@ -292,7 +295,7 @@ function miIntra(id, x) {
             endLabel: { show: true, fontSize: 9, color: st.color, formatter: p => p.value == null ? "" : `${p.value > 0 ? "+" : ""}${p.value}%` } });
         series.push({ ...common, xAxisIndex: 1, yAxisIndex: 1, data: times.map(t => cm[t] == null ? null : +cm[t].toFixed(2)) });
     });
-    const hourOnly = (v, i) => v.endsWith(":00") || i === times.length - 1;
+    const hourOnly = (i, v) => v.endsWith(":00") || i === times.length - 1;   // ECharts interval 콜백 = (index, value)
     const c = echarts.init(el);
     c.setOption({
         animation: false,
