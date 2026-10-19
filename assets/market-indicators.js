@@ -83,8 +83,8 @@ function miRender() {
             </div>
         </section>`).join("") + `
         <section class="mi-sec" id="sec-intraday">
-            <h2>⑥ 시간대별 지수 · 거래량 (오늘 vs 전 거래일 같은 시각)</h2>
-            <p class="desc">위 = 전일 종가 대비 등락률, 아래 = 장 시작부터 누적 거래대금(국장)·거래량(미장). 빨간 선 = 최근 거래일, 점선 = 그 전 거래일. 국장 10분봉 · 미장 5분봉(미국 동부 시각)</p>
+            <h2>⑥ 시간대별 지수 · 거래량 (최근 3거래일 같은 시각)</h2>
+            <p class="desc">위 = 전일 종가 대비 등락률, 아래 = 장 시작부터 누적 거래대금(국장)·거래량(미장). <b style="color:#B4342A">빨강</b> = 최근 거래일 · <b style="color:#2E5FA3">파랑</b> = 전 거래일 · <b style="color:#9AA5B4">회색</b> = 그 전 거래일. 국장 10분봉 · 미장 5분봉(미국 동부 시각)</p>
             <p class="read">책 해석: 같은 시각 누적 거래가 전날보다 많은데 지수가 약하면 큰손 매도(분산), 거래가 늘면서 오르면 매수세 유입 · 점수 없음(하루 단위 비교)</p>
             <div class="mi-grid">
                 ${["kr", "us"].flatMap(m => (intra[m] || []).map((x, j) => miIntraCardHtml(`i-${m}-${j}`, m === "kr" ? "국장" : "미장", x))).join("")}
@@ -247,13 +247,18 @@ function miDaily(id, side, from, p, mkt) {
 }
 
 function miIntraSummary(x) {
-    const [a, b] = x.days.length === 2 ? [x.days[1], x.days[0]] : [x.days[0], null];
-    if (!a || !b) return "";
+    // 최근 거래일 마지막 시각의 누적 거래를 이전 거래일들의 같은 시각과 비교
+    const n = x.days.length;
+    if (n < 2) return "";
+    const a = x.days[n - 1];
     const t = a.t[a.t.length - 1];
-    const k = b.t.indexOf(t);
-    if (k < 0) return "";
-    const r = (a.cum[a.cum.length - 1] / b.cum[k] - 1) * 100;
-    return `${t} 기준 ${x.vol_label} 전일 대비 <b class="${r >= 0 ? "up" : "down"}">${r >= 0 ? "+" : ""}${r.toFixed(1)}%</b>`;
+    const parts = x.days.slice(0, n - 1).reverse().map((b, i) => {
+        const k = b.t.indexOf(t);
+        if (k < 0) return "";
+        const r = (a.cum[a.cum.length - 1] / b.cum[k] - 1) * 100;
+        return `${i === 0 ? "전일" : b.date.slice(5).replace("-", "/")} 대비 <b class="${r >= 0 ? "up" : "down"}">${r >= 0 ? "+" : ""}${r.toFixed(0)}%</b>`;
+    }).filter(Boolean);
+    return parts.length ? `${t} ${x.vol_label} ${parts.join(" · ")}` : "";
 }
 
 function miIntraCardHtml(id, mkt, x) {
@@ -262,37 +267,60 @@ function miIntraCardHtml(id, mkt, x) {
         <div class="mi-chart tall" id="${id}"></div></div>`;
 }
 
+const MI_INTRA_STYLE = [  // 오래된 날 → 최근 거래일 (모두 실선)
+    { color: "#9AA5B4", width: 1.3 },
+    { color: "#2E5FA3", width: 1.6 },
+    { color: "#B4342A", width: 2.2 },
+];
+
 function miIntra(id, x) {
     const el = document.getElementById(id);
     if (!el) return;
     const times = [...new Set(x.days.flatMap(d => d.t))].sort();
     const big = Math.max(...x.days.flatMap(d => d.cum));
-    const div = big >= 1e12 ? [1e12, "조"] : big >= 1e8 ? [1e8, "억"] : [1, ""];
+    const div = big >= 1e12 ? [1e12, "조"] : big >= 1e8 ? [1e8, "억"] : big >= 1e6 ? [1e6, "백만"] : [1, ""];
+    const styles = MI_INTRA_STYLE.slice(-x.days.length);
+    const names = x.days.map(d => d.date.slice(5).replace("-", "/"));
     const series = [];
     x.days.forEach((d, k) => {
-        const latest = k === x.days.length - 1;
-        const color = latest ? "#B4342A" : "#14315C";
-        const style = { width: latest ? 2 : 1.4, color, type: latest ? "solid" : "dashed" };
+        const st = styles[k];
+        const line = { width: st.width, color: st.color, type: "solid" };
         const pm = {}, cm = {};
         d.t.forEach((t, j) => { pm[t] = d.pct[j]; cm[t] = d.cum[j] / div[0]; });
-        const nm = d.date.slice(5).replace("-", "/");
-        series.push({ name: nm, type: "line", data: times.map(t => pm[t] ?? null), symbol: "none", lineStyle: style, itemStyle: { color } });
-        series.push({ name: nm, type: "line", xAxisIndex: 1, yAxisIndex: 1, data: times.map(t => cm[t] == null ? null : +cm[t].toFixed(2)), symbol: "none", lineStyle: style, itemStyle: { color } });
+        const common = { name: names[k], type: "line", symbol: "none", connectNulls: true, lineStyle: line, itemStyle: { color: st.color }, z: k + 1 };
+        series.push({ ...common, data: times.map(t => pm[t] ?? null),
+            endLabel: { show: true, fontSize: 9, color: st.color, formatter: p => p.value == null ? "" : `${p.value > 0 ? "+" : ""}${p.value}%` } });
+        series.push({ ...common, xAxisIndex: 1, yAxisIndex: 1, data: times.map(t => cm[t] == null ? null : +cm[t].toFixed(2)) });
     });
+    const hourOnly = (v, i) => v.endsWith(":00") || i === times.length - 1;
     const c = echarts.init(el);
     c.setOption({
         animation: false,
-        tooltip: { trigger: "axis" },
-        legend: { top: 0, itemWidth: 14, textStyle: { fontSize: 10 }, data: x.days.map(d => d.date.slice(5).replace("-", "/")) },
+        tooltip: {
+            trigger: "axis",
+            formatter: ps => {
+                const t = ps[0].axisValue;
+                const rows = names.map((nm, k) => {
+                    const p = ps.find(q => q.seriesName === nm && q.axisIndex === 0);
+                    const v = ps.find(q => q.seriesName === nm && q.axisIndex === 1);
+                    if (!p || p.value == null) return "";
+                    return `<span style="color:${styles[k].color}">●</span> ${nm} ${p.value > 0 ? "+" : ""}${p.value}% · ${v && v.value != null ? v.value.toLocaleString() + div[1] : "-"}`;
+                }).filter(Boolean).reverse();
+                return `${t}<br>${rows.join("<br>")}`;
+            },
+        },
+        legend: { top: 0, itemWidth: 16, itemHeight: 3, icon: "rect", textStyle: { fontSize: 10 }, data: names },
         axisPointer: { link: [{ xAxisIndex: "all" }] },
-        grid: [{ left: 50, right: 14, top: 28, height: "42%" }, { left: 50, right: 14, top: "62%", bottom: 24 }],
+        grid: [{ left: 46, right: 44, top: 26, height: "44%" }, { left: 46, right: 44, top: "64%", bottom: 22 }],
         xAxis: [
-            { type: "category", data: times, axisLabel: { show: false } },
-            { type: "category", data: times, gridIndex: 1, axisLabel: { fontSize: 10 } },
+            { type: "category", data: times, boundaryGap: false, axisTick: { show: false }, axisLabel: { show: false } },
+            { type: "category", data: times, gridIndex: 1, boundaryGap: false, axisTick: { show: false },
+              axisLabel: { fontSize: 10, interval: hourOnly, formatter: v => v.slice(0, 2) + "시" } },
         ],
         yAxis: [
-            { type: "value", scale: true, name: "%", nameTextStyle: { fontSize: 9 }, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
-            { type: "value", gridIndex: 1, name: x.vol_label + (div[1] ? `(${div[1]})` : ""), nameTextStyle: { fontSize: 9 }, axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
+            { type: "value", scale: true, axisLabel: { fontSize: 10, formatter: v => `${v}%` }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
+            { type: "value", gridIndex: 1, name: x.vol_label + (div[1] ? `(${div[1]})` : ""), nameTextStyle: { fontSize: 9, align: "left" },
+              axisLabel: { fontSize: 10 }, splitLine: { lineStyle: { color: "#F0F1F3" } } },
         ],
         series,
     });

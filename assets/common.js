@@ -63,9 +63,21 @@ function nextQuarterTitle(s) {
         `영업이익 ${fmtEok(s.next_op_income)} (YoY ${fmtYoy(s.next_op_income_yoy)})`;
 }
 
+function nextqOnly() {
+    const el = document.getElementById("nextq-only-toggle");
+    return !!(el && el.checked && listData && listData.next_quarter_short);
+}
+
+// '다음 분기 발표 기업만' 체크 시: 기준 분기 미발표 기업까지 합쳐서 다음 분기(잠정실적·분기보고서) 발표 기업만
 function activeItems() {
+    if (nextqOnly()) return reportedItems.concat(unreportedItems).filter(s => s.next_reported);
     const includeUnreported = document.getElementById("unreported-toggle").checked;
     return includeUnreported ? reportedItems.concat(unreportedItems) : reportedItems;
+}
+
+// 미발표 기업 포함(행 2500개↑) 모드에서만 클릭을 막는다. 다음 분기만 보기는 행이 적어 클릭 허용
+function rowsClickBlocked() {
+    return document.getElementById("unreported-toggle").checked && !nextqOnly();
 }
 
 // 대분류 그룹 안에서 다시 중분류(섹터 컬럼)별로 묶어 인접하게 정렬하고, 같은 중분류 안에서는 시총 내림차순.
@@ -131,6 +143,10 @@ async function loadList() {
     if (nextOpt) {
         if (nextQ) nextOpt.textContent = `${nextQ} 실적 발표 기업`;
         else nextOpt.remove();
+    }
+    if (nextQ) {
+        document.getElementById("nextq-only-text").textContent = nextQ;
+        document.getElementById("nextq-only-label").style.display = "";
     }
 
     populateLargeFilter();
@@ -313,9 +329,7 @@ function onLargeFilterChange() {
 }
 
 function onUnreportedToggleChange() {
-    document.getElementById("list-body").classList.toggle(
-        "unreported-noclick", document.getElementById("unreported-toggle").checked
-    );
+    document.getElementById("list-body").classList.toggle("unreported-noclick", rowsClickBlocked());
     populateLargeFilter();
     populateMidFilter();
     applyFilter();
@@ -519,7 +533,7 @@ function openRow(index) {
     if (!rowEls.length) return;
     // 미발표 기업 포함 체크 시에는 행이 2500개를 넘어가면서 차트를 여는 비용이 커져
     // 눈에 띄게 느려진다. 이 모드에서는 아예 클릭 동작을 막고 목록만 보여준다.
-    if (document.getElementById("unreported-toggle").checked) return;
+    if (rowsClickBlocked()) return;
     index = Math.max(0, Math.min(rowEls.length - 1, index));
     if (index === activeIndex) return;
 
@@ -697,6 +711,7 @@ document.getElementById("mid-filter").addEventListener("change", applyFilter);
 document.getElementById("quick-filter").addEventListener("change", applyFilter);
 document.getElementById("stock-search").addEventListener("input", applyFilter);
 document.getElementById("unreported-toggle").addEventListener("change", onUnreportedToggleChange);
+document.getElementById("nextq-only-toggle").addEventListener("change", onUnreportedToggleChange);
 document.querySelectorAll(".sr-header .sortable").forEach(el => el.addEventListener("click", onSortHeaderClick));
 
 const scrollTopBtn = document.getElementById("scroll-top-btn");

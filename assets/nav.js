@@ -7,7 +7,7 @@
     const NAV_GROUPS = [
         { name: "TODAY", href: "index.html", pages: [["index.html", "TODAY"]] },
         { name: "실적", pages: [
-            ["q2.html", "2Q26"],
+            ["q2.html", "분기실적"],
             ["forward.html", "포워드실적"],
             ["cashflow.html", "현금흐름"],
         ] },

@@ -75,6 +75,10 @@
         <label class="unreported-toggle">
             <input type="checkbox" id="chart-size-lock-toggle" checked> 그래프 사이즈 고정
         </label>
+        <label class="unreported-toggle" id="nextq-only-label" style="display:none;">
+            <input type="checkbox" id="nextq-only-toggle"> <span id="nextq-only-text">다음 분기</span> 발표 기업만
+            <span class="unreported-note">(잠정실적 또는 분기보고서 발표, 미발표 기업 포함 여부와 관계없이 전체에서 찾음)</span>
+        </label>
     </div>
 
     <div class="summary-line" id="summary-line">불러오는 중...</div>
@@ -109,6 +113,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/common.js?v=5"></script>
+<script src="assets/common.js?v=6"></script>
 </body>
 </html>
