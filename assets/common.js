@@ -57,10 +57,32 @@ const chartInstances = {};
 function isNewToday(s) {
     return s.report_date === TODAY_KST || s.next_report_date === TODAY_KST;
 }
+// 다음 분기 발표 기업은 행 숫자를 다음 분기로 바꿔 보여주므로, 마우스를 올리면 기준 분기(직전) 숫자를 보여준다
 function nextQuarterTitle(s) {
-    return `${listData.next_quarter_short} ${s.next_source || ""} (${s.next_report_date || "-"})&#10;` +
-        `매출 ${fmtEok(s.next_revenue)} (YoY ${fmtYoy(s.next_revenue_yoy)})&#10;` +
-        `영업이익 ${fmtEok(s.next_op_income)} (YoY ${fmtYoy(s.next_op_income_yoy)})`;
+    const base = s.base_q && s.base_q.revenue != null
+        ? `&#10;${listData.quarter_short}: 매출 ${fmtEok(s.base_q.revenue)} (YoY ${fmtYoy(s.base_q.revenue_yoy)}) · ` +
+          `영업이익 ${fmtEok(s.base_q.op_income)} (YoY ${fmtYoy(s.base_q.op_income_yoy)})`
+        : `&#10;${listData.quarter_short}: 실적 없음`;
+    return `${listData.next_quarter_short} ${s.next_source || ""} (${s.next_report_date || "-"})` + base;
+}
+
+// 행에 표시할 분기 (예: 3Q26 / 2Q26). 둘 다 없으면(미발표) 빈 값
+function rowQuarter(s) {
+    if (s.next_reported) return listData.next_quarter_short;
+    return s.revenue != null || s.op_income != null ? listData.quarter_short : "";
+}
+
+// 다음 분기(잠정실적·분기보고서) 발표 기업은 매출·영업이익·YoY·OPM을 다음 분기 값으로 바꾼다 (정렬·필터·엑셀도 같은 값)
+function applyNextQuarterValues(items) {
+    items.forEach(s => {
+        if (!s.next_reported || s.base_q) return;
+        s.base_q = { revenue: s.revenue, revenue_yoy: s.revenue_yoy, op_income: s.op_income, op_income_yoy: s.op_income_yoy, opm: s.opm };
+        s.revenue = s.next_revenue;
+        s.revenue_yoy = s.next_revenue_yoy;
+        s.op_income = s.next_op_income;
+        s.op_income_yoy = s.next_op_income_yoy;
+        s.opm = s.next_revenue && s.next_op_income != null ? +(s.next_op_income / s.next_revenue * 100).toFixed(1) : null;
+    });
 }
 
 function nextqOnly() {
@@ -134,6 +156,7 @@ async function loadList() {
 
     reportedItems   = listData.items || [];
     unreportedItems = listData.unreported_items || [];
+    applyNextQuarterValues(reportedItems.concat(unreportedItems));
 
     const nextQ = listData.next_quarter_short;
     document.getElementById("summary-line").innerHTML =
@@ -203,7 +226,7 @@ function renderList(sectors) {
         ${g.items.map((s, i) => `
         <div class="sr-row${isNewToday(s) ? " sr-row-today" : ""}${s.next_reported ? " sr-row-next" : ""}" data-code="${s.code}" data-name="${s.name}">
             <span class="sr-arrow">▶</span>
-            <span class="sr-name"${s.next_reported ? ` title="${nextQuarterTitle(s)}"` : ""}>${i + 1}. ${s.name}${s.next_reported ? `<span class="next-q-badge">${listData.next_quarter_short}</span>` : ""}${isNewToday(s) ? '<span class="new-badge">NEW</span>' : ""}</span>
+            <span class="sr-name"${s.next_reported ? ` title="${nextQuarterTitle(s)}"` : ""}>${i + 1}. ${s.name}${rowQuarter(s) ? `<span class="${s.next_reported ? "next-q-badge" : "base-q-badge"}">${rowQuarter(s)}</span>` : ""}${isNewToday(s) ? '<span class="new-badge">NEW</span>' : ""}</span>
             <span class="sr-sector" data-label="섹터" title="${s.sector_mid}">${stripMidPrefix(s.sector_mid)}</span>
             <span class="sr-market" data-label="시장">${s.market || "-"}</span>
             <span class="sr-mktcap" data-label="시총">${fmtMktcap(s.mktcap)}</span>
@@ -434,17 +457,17 @@ async function downloadListExcel() {
     await ensureXlsxLoaded();
 
     const rows = [[
-        "종목명", "종목코드", "섹터", "시장", "시가총액(억원)",
+        "종목명", "종목코드", "실적 분기", "섹터", "시장", "시가총액(억원)",
         "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "OPM(%)",
         "26E PER(배)", "현재가", "최근등락(%)", "YTD(%)", "MDD(%)",
-        ...(listData.next_quarter_short ? [`${listData.next_quarter_short} 매출YoY(%)`, `${listData.next_quarter_short} 영업이익YoY(%)`] : []),
+        ...(listData.next_quarter_short ? [`${listData.quarter_short} 매출(억원)`, `${listData.quarter_short} 영업이익(억원)`] : []),
     ]];
     lastFilteredItems.forEach(s => {
         rows.push([
-            s.name, s.code, stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
+            s.name, s.code, rowQuarter(s), stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
             s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.opm ?? "",
             s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", s.price_change ?? "", s.mdd ?? "",
-            ...(listData.next_quarter_short ? [s.next_revenue_yoy ?? "", s.next_op_income_yoy ?? ""] : []),
+            ...(listData.next_quarter_short ? (s.base_q ? [s.base_q.revenue ?? "", s.base_q.op_income ?? ""] : [s.revenue ?? "", s.op_income ?? ""]) : []),
         ]);
     });
 
