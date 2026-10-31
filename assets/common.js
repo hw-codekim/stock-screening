@@ -66,6 +66,11 @@ function nextQuarterTitle(s) {
     return `${listData.next_quarter_short} ${s.next_source || ""} (${s.next_report_date || "-"})` + base;
 }
 
+// 발표후 등락률 기준 발표일 (다음 분기 발표 기업은 다음 분기 발표일)
+function reportDateOf(s) {
+    return s.next_reported ? s.next_report_date : s.report_date;
+}
+
 // 행에 표시할 분기 (예: 3Q26 / 2Q26). 둘 다 없으면(미발표) 빈 값
 function rowQuarter(s) {
     if (s.next_reported) return listData.next_quarter_short;
@@ -238,6 +243,7 @@ function renderList(sectors) {
             <span class="sr-per" data-label="26E PER">${s.per_2026 != null ? s.per_2026.toFixed(1) + "배" : "-"}</span>
             <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
             <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtPct1(s.day_change_rate)}</span>
+            <span class="sr-rptchg" data-label="발표후" title="${reportDateOf(s) ? `발표일 ${reportDateOf(s)} 종가 대비` : ""}" style="color:${yoyColor(s.report_change)};">${fmtPct1(s.report_change)}</span>
             <span class="sr-chg" data-label="YTD" style="color:${yoyColor(s.price_change)};">${fmtYoy(s.price_change)}</span>
             <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd.toFixed(1) + "%" : "-"}</span>
         </div>
@@ -459,14 +465,14 @@ async function downloadListExcel() {
     const rows = [[
         "종목명", "종목코드", "실적 분기", "섹터", "시장", "시가총액(억원)",
         "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "OPM(%)",
-        "26E PER(배)", "현재가", "최근등락(%)", "YTD(%)", "MDD(%)",
+        "26E PER(배)", "현재가", "최근등락(%)", "실적발표일", "발표후(%)", "YTD(%)", "MDD(%)",
         ...(listData.next_quarter_short ? [`${listData.quarter_short} 매출(억원)`, `${listData.quarter_short} 영업이익(억원)`] : []),
     ]];
     lastFilteredItems.forEach(s => {
         rows.push([
             s.name, s.code, rowQuarter(s), stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
             s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.opm ?? "",
-            s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", s.price_change ?? "", s.mdd ?? "",
+            s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", reportDateOf(s) ?? "", s.report_change ?? "", s.price_change ?? "", s.mdd ?? "",
             ...(listData.next_quarter_short ? (s.base_q ? [s.base_q.revenue ?? "", s.base_q.op_income ?? ""] : [s.revenue ?? "", s.op_income ?? ""]) : []),
         ]);
     });

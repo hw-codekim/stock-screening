@@ -308,6 +308,7 @@ body {
 .sr-per { flex: 0 0 52px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-price { flex: 0 0 68px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 .sr-daychg { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-rptchg { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-chg { flex: 0 0 54px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
 .sr-mdd { flex: 0 0 52px; text-align: center; font-variant-numeric: tabular-nums; color: #2F5FA3; }
 
