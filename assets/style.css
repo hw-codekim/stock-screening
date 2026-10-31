@@ -290,6 +290,9 @@ body {
     vertical-align: middle;
 }
 .sr-arrow { flex: 0 0 14px; color: #14315C; font-size: 11px; text-align: center; }
+/* 분기실적은 컬럼이 많아 기본 폭(1100px)에선 종목명이 잘려서 이 페이지만 넓힌다 */
+.page-q2 .container { max-width: 1320px; }
+@media (min-width: 701px) { .page-q2 .sr-name { min-width: 170px; } }
 .sr-name {
     flex: 2 1 180px; font-weight: 500; color: #14213D;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -303,8 +306,10 @@ body {
 /* 매출/영업이익은 "1,714,995억"처럼 자릿수가 커서 줄어들면 두 줄로 줄바꿈되던 문제 -
    flex-shrink을 0으로 고정해서 다른 컬럼이 줄어들어도 이 컬럼만은 항상 폭을 유지 */
 .sr-num { flex: 0 0 92px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.sr-yoy { flex: 0 0 46px; text-align: center; font-variant-numeric: tabular-nums; }
+.sr-yoy { flex: 0 0 40px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-opm { flex: 0 0 50px; text-align: center; }
+.sr-cons { flex: 0 0 84px; text-align: center; font-variant-numeric: tabular-nums; white-space: nowrap; color: #5A6B85; }
+.sr-consdiff { flex: 0 0 54px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-per { flex: 0 0 52px; text-align: center; font-variant-numeric: tabular-nums; }
 .sr-price { flex: 0 0 68px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
 .sr-daychg { flex: 0 0 50px; text-align: center; font-variant-numeric: tabular-nums; }
