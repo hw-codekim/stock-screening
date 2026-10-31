@@ -227,7 +227,7 @@ body {
     border-bottom: 1px solid #D7E0EC;
     border-radius: 4px 4px 0 0;
     position: sticky;
-    top: 0;
+    top: var(--site-header-h, 0px);  /* 사이트 헤더(sticky) 바로 아래에 고정 - 값은 nav.js가 설정 */
     z-index: 10;
 }
 .sr-header .sortable { cursor: pointer; user-select: none; }

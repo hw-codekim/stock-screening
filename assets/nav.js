@@ -103,3 +103,14 @@
     });
     render(activeGroup);
 })();
+
+// 상단 사이트 헤더(sticky, top:0)의 실제 높이를 --site-header-h로 노출 - 표 헤더(.sr-header 등)를
+// top:0으로 고정하면 사이트 헤더 뒤에 가려지므로 그 바로 아래에 붙이기 위함. 메뉴 줄바꿈으로 높이가 바뀌어도 따라감
+(function () {
+    const h = document.querySelector(".site-header");
+    if (!h) return;
+    const set = () => document.documentElement.style.setProperty("--site-header-h", h.offsetHeight + "px");
+    set();
+    if (window.ResizeObserver) new ResizeObserver(set).observe(h);
+    else window.addEventListener("resize", set);
+})();
