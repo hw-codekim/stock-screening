@@ -1,0 +1,69 @@
+{
+  "days": [
+    {
+      "day": 1,
+      "paragraphs": [
+        [
+          {"en": "The very first thing I do every morning is drink some water because I always wake up feeling a bit dehydrated.",
+           "ko": "매일 아침 내가 제일 먼저 하는 일은 물을 마시는 거야. 항상 일어나면 몸에 수분이 좀 부족한 느낌이 들거든."},
+          {"en": "Then I squeeze some toothpaste onto my toothbrush and start brushing my teeth.",
+           "ko": "그다음 칫솔에 치약을 짜서 이를 닦기 시작해."},
+          {"en": "After I brush my teeth, I do some light stretching.",
+           "ko": "이를 닦고 나서 가볍게 스트레칭을 해."}
+        ],
+        [
+          {"en": "I usually do simple stretches in the morning, such as touching my toes or raising my arms above my head.",
+           "ko": "아침에는 보통 발끝 닿기나 팔을 머리 위로 들어 올리기 같은 간단한 스트레칭을 해."},
+          {"en": "After about five minutes of stretching, I sit on the ground with my legs crossed to meditate.",
+           "ko": "5분 정도 스트레칭을 한 뒤, 명상을 하려고 바닥에 책상다리를 하고 앉아."},
+          {"en": "While meditating, I close my eyes and rest my hands on my legs.",
+           "ko": "명상하는 동안에는 눈을 감고 두 손을 다리 위에 올려 둬."},
+          {"en": "I try to sit very still and focus on my breath.",
+           "ko": "최대한 가만히 앉아서 호흡에 집중하려고 해."}
+        ],
+        [
+          {"en": "After that, it's time to make my bed.",
+           "ko": "그다음엔 침대를 정리할 시간이야."},
+          {"en": "I grab the comforter and spread it evenly across the bed.",
+           "ko": "이불을 잡고 침대 위에 고르게 펴."},
+          {"en": "I put the pillows on top and smooth out the comforter as much as possible so there aren't any wrinkles.",
+           "ko": "베개를 위에 올리고, 주름이 하나도 없도록 이불을 최대한 반듯하게 펴."},
+          {"en": "Next, I take a hot shower.",
+           "ko": "다음으로 뜨거운 물로 샤워를 해."},
+          {"en": "I dry off and wrap myself in a towel before picking out my clothes.",
+           "ko": "몸의 물기를 닦고 수건으로 몸을 감싼 다음, 입을 옷을 골라."},
+          {"en": "I get dressed, and then it's finally time for my favorite part of my morning routine: eating breakfast and drinking coffee.",
+           "ko": "옷을 입고 나면, 드디어 아침 루틴 중 내가 제일 좋아하는 시간이야. 바로 아침을 먹고 커피를 마시는 거지."},
+          {"en": "Normally, I cook breakfast, but every once in a while, I order delivery from a local cafe in my neighborhood.",
+           "ko": "보통은 아침을 직접 해 먹지만, 가끔은 동네 카페에서 배달을 시켜."},
+          {"en": "While eating breakfast, I usually read my book.",
+           "ko": "아침을 먹으면서 보통 책을 읽어."}
+        ]
+      ],
+      "expressions": [
+        ["The very first thing I do every morning is ~", "매일 아침 제일 먼저 하는 건 ~이다"],
+        ["wake up feeling ~", "~한 상태로 일어나다"],
+        ["squeeze toothpaste onto my toothbrush", "칫솔에 치약을 짜다"],
+        ["such as ~", "예를 들면 ~ 같은"],
+        ["raise my arms above my head", "팔을 머리 위로 들다"],
+        ["after about five minutes of ~ing", "약 5분 동안 ~한 후에"],
+        ["with my legs crossed", "다리를 꼰 채로(책상다리로)"],
+        ["while ~ing", "~하는 동안"],
+        ["rest my hands on ~", "손을 ~ 위에 올려놓다"],
+        ["sit very still", "가만히 앉아 있다"],
+        ["focus on my breath", "호흡에 집중하다"],
+        ["it's time to ~", "~할 시간이다"],
+        ["make my bed", "침대를 정리하다"],
+        ["spread A evenly across ~", "A를 ~에 고르게 펴다"],
+        ["smooth out", "주름을 펴다"],
+        ["so there aren't any ~", "~가 하나도 없도록"],
+        ["dry off", "몸의 물기를 닦다"],
+        ["wrap myself in a towel", "수건으로 몸을 감싸다"],
+        ["pick out my clothes", "옷을 고르다"],
+        ["get dressed", "옷을 입다"],
+        ["every once in a while", "가끔, 이따금"],
+        ["order delivery", "배달을 시키다"]
+      ]
+    }
+  ]
+}

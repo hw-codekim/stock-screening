@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>English</title>
+<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/english.css?v=1">
+</head>
+<body>
+
+<!-- 개인 학습용 페이지: 상단 메뉴(nav.js NAV_GROUPS)에 넣지 않는다 - 주소로만 접근(2026-11-01 사용자 결정) -->
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>English</h1>
+            <div class="sub">매일 스크립트 · 한글 번역</div>
+        </div>
+        <nav class="site-nav"></nav>
+        <script src="assets/nav.js?v=4"></script>
+    </div>
+</header>
+
+<div class="container">
+    <div class="en-tabs" id="en-tabs"></div>
+    <div class="en-toolbar">
+        <label><input type="checkbox" id="en-hide-ko"> 한글 가리기</label>
+        <label><input type="checkbox" id="en-hide-en"> 영어 가리기</label>
+        <span class="en-hint">가린 문장은 누르면 보여요</span>
+    </div>
+    <div id="en-body"><p class="placeholder">불러오는 중...</p></div>
+</div>
+
+<script src="assets/english.js?v=1"></script>
+</body>
+</html>
