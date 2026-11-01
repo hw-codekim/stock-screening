@@ -26,7 +26,7 @@ async function trLoad() {
         return;
     }
     document.getElementById("tr-generated-at").textContent =
-        `최근월 ${trData.latest_month} · 업데이트 ${trData.generated_at}`;
+        `최근월 ${trData.latest_month} · 확인 ${trData.checked_at || trData.generated_at.slice(0, 10)}`;
 
     const sel = document.getElementById("tr-sector-filter");
     trData.sectors.forEach(s => {
@@ -75,7 +75,7 @@ function trRender() {
                 <table class="tr-table">
                     <thead><tr>
                         <th class="tr-left">기업</th><th class="tr-left">사업</th><th class="tr-left">국내 Peer</th>
-                        <th>${curLabel} 매출</th><th>MoM</th><th>YoY</th><th>누적 YoY</th><th>3개월 YoY</th>
+                        <th>${curLabel} 매출</th><th>MoM</th><th>YoY</th><th>누적 YoY</th><th>3개월 YoY</th><th>업데이트</th>
                     </tr></thead>
                     <tbody>${s.companies.map(c => trRow(c, last)).join("")}</tbody>
                 </table>
@@ -112,6 +112,12 @@ function trNameHtml(c) {
     return c.url ? `<a href="${trEsc(c.url)}" target="_blank" rel="noopener" title="회사 홈페이지">${name}</a>` : name;
 }
 
+// 기업별 업데이트: 마지막 공시월 + 그 달을 처음 확인한 날짜(export_tw_revenue.py가 기록)
+function trUpdated(c) {
+    if (!c.last_month) return "-";
+    return `${trMonthLabel(c.last_month)}<span class="tr-zh">${c.updated ? c.updated.slice(5).replace("-", "/") : ""}</span>`;
+}
+
 function trRow(c, last) {
     return `<tr>
         <td class="tr-left tr-name">${trNameHtml(c)}<span class="tr-zh">${trEsc(c.name_zh)} ${c.code}</span></td>
@@ -122,6 +128,7 @@ function trRow(c, last) {
         <td>${trPct(c.yoy[last])}</td>
         <td>${trPct(c.cum_yoy)}</td>
         <td>${trPct(trYoy3m(c, last))}</td>
+        <td class="tr-upd">${trUpdated(c)}</td>
     </tr>`;
 }
 
@@ -130,11 +137,12 @@ function trCard(c, last, id) {
     const stat = has
         ? `${trMonthLabel(trData.latest_month)} <b>${trFmtRev(c.rev[last])}억 NTD</b> · MoM ${trPct(c.mom[last])} · YoY ${trPct(c.yoy[last])}`
         : `${trMonthLabel(trData.latest_month)} 미공시`;
+    const upd = c.updated ? ` · 업데이트 ${c.updated}` : "";
     return `<div class="tr-card" data-idx="${id.slice(3)}">
         <div class="tr-card-head">
             <span class="tr-card-name">${trNameHtml(c)}</span>
             <span class="tr-card-meta">${trEsc(c.name_zh)} ${c.code} · ${trEsc(c.desc)}${c.peer ? " · 국내 Peer " + trEsc(c.peer) : ""}</span>
-            <span class="tr-card-stat">${stat}</span>
+            <span class="tr-card-stat">${stat}${upd}</span>
         </div>
         <div class="tr-charts">
             <div class="tr-chart tr-chart-rev"></div>
