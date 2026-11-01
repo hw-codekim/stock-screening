@@ -689,9 +689,8 @@ async function loadStockCharts(code, detail) {
 
         if (data.financial && data.financial.yoy_quarters && data.financial.yoy_quarters.length) {
             const d = data.financial;
-            // 적자 전환·흑자 전환처럼 기저가 작으면 YoY가 수천 %로 튀어 나머지 막대가 안 보이므로
-            // 막대는 ±OP_YOY_CAP%에서 자르고, 실제 값은 툴팁에 그대로 보여준다.
-            const clipped = d.op_yoy.map(v => v == null ? null : Math.max(-OP_YOY_CAP, Math.min(OP_YOY_CAP, v)));
+            // ±OP_YOY_CAP% 자르기는 해제(2026-11-01 사용자 요청: 실제 모양 확인). 다시 자르려면 아래 map에 clamp 복원
+            const clipped = d.op_yoy.map(v => v == null ? null : v);
             const yoyCanvas = document.getElementById(`chart-opyoy-${code}`);
             chartInstances[yoyCanvas.id] = new Chart(yoyCanvas, {
                 type: "bar",
