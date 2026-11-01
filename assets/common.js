@@ -248,7 +248,6 @@ function renderList(sectors) {
             <span class="sr-price" data-label="현재가">${fmtPrice(s.current_price)}</span>
             <span class="sr-daychg" data-label="최근등락" style="color:${yoyColor(s.day_change_rate)};">${fmtPct1(s.day_change_rate)}</span>
             <span class="sr-rptchg" data-label="발표후" title="${reportDateOf(s) ? `발표일 ${reportDateOf(s)} 종가 대비` : ""}" style="color:${yoyColor(s.report_change)};">${fmtPct1(s.report_change)}</span>
-            <span class="sr-mdd" data-label="MDD">${s.mdd != null ? s.mdd.toFixed(1) + "%" : "-"}</span>
         </div>
         <div class="sr-detail" id="sr-detail-${s.code}" style="display:none;"></div>
         `).join("")}
