@@ -61,7 +61,7 @@ function isNewToday(s) {
 function nextQuarterTitle(s) {
     const base = s.base_q && s.base_q.revenue != null
         ? `&#10;${listData.quarter_short}: 매출 ${fmtEok(s.base_q.revenue)} (YoY ${fmtYoy(s.base_q.revenue_yoy)}) · ` +
-          `영업이익 ${fmtEok(s.base_q.op_income)} (YoY ${fmtYoy(s.base_q.op_income_yoy)})`
+          `영업이익 ${fmtEok(s.base_q.op_income)} (YoY ${fmtYoy(s.base_q.op_income_yoy)}, QoQ ${fmtYoy(s.base_q.op_income_qoq)})`
         : `&#10;${listData.quarter_short}: 실적 없음`;
     return `${listData.next_quarter_short} ${s.next_source || ""} (${s.next_report_date || "-"})` + base;
 }
@@ -81,11 +81,12 @@ function rowQuarter(s) {
 function applyNextQuarterValues(items) {
     items.forEach(s => {
         if (!s.next_reported || s.base_q) return;
-        s.base_q = { revenue: s.revenue, revenue_yoy: s.revenue_yoy, op_income: s.op_income, op_income_yoy: s.op_income_yoy, opm: s.opm };
+        s.base_q = { revenue: s.revenue, revenue_yoy: s.revenue_yoy, op_income: s.op_income, op_income_yoy: s.op_income_yoy, op_income_qoq: s.op_income_qoq, opm: s.opm };
         s.revenue = s.next_revenue;
         s.revenue_yoy = s.next_revenue_yoy;
         s.op_income = s.next_op_income;
         s.op_income_yoy = s.next_op_income_yoy;
+        s.op_income_qoq = s.next_op_income_qoq;
         s.opm = s.next_revenue && s.next_op_income != null ? +(s.next_op_income / s.next_revenue * 100).toFixed(1) : null;
     });
 }
@@ -239,6 +240,7 @@ function renderList(sectors) {
             <span class="sr-yoy" data-label="매출YoY" style="color:${yoyColor(s.revenue_yoy)};">${fmtYoy(s.revenue_yoy)}</span>
             <span class="sr-num" data-label="영업이익">${fmtEok(s.op_income)}</span>
             <span class="sr-yoy" data-label="영업이익YoY" style="color:${yoyColor(s.op_income_yoy)};">${fmtYoy(s.op_income_yoy)}</span>
+            <span class="sr-yoy" data-label="영업이익QoQ" style="color:${yoyColor(s.op_income_qoq)};">${fmtYoy(s.op_income_qoq)}</span>
             <span class="sr-opm" data-label="OPM">${s.opm != null ? s.opm.toFixed(1) + "%" : "-"}</span>
             <span class="sr-cons" data-label="컨센">${fmtEok(s.cons_op)}</span>
             <span class="sr-consdiff" data-label="컨센대비" style="color:${yoyColor(s.cons_op_diff)};">${fmtPct1(s.cons_op_diff)}</span>
@@ -465,14 +467,14 @@ async function downloadListExcel() {
 
     const rows = [[
         "종목명", "종목코드", "실적 분기", "섹터", "시장", "시가총액(억원)",
-        "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "OPM(%)", "영업이익 컨센(억원)", "컨센대비(%)",
+        "매출(억원)", "매출YoY(%)", "영업이익(억원)", "영업이익YoY(%)", "영업이익QoQ(%)", "OPM(%)", "영업이익 컨센(억원)", "컨센대비(%)",
         "26E PER(배)", "현재가", "최근등락(%)", "실적발표일", "발표후(%)", "YTD(%)", "MDD(%)",
         ...(listData.next_quarter_short ? [`${listData.quarter_short} 매출(억원)`, `${listData.quarter_short} 영업이익(억원)`] : []),
     ]];
     lastFilteredItems.forEach(s => {
         rows.push([
             s.name, s.code, rowQuarter(s), stripMidPrefix(s.sector_mid), s.market || "-", s.mktcap ?? "",
-            s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.opm ?? "", s.cons_op ?? "", s.cons_op_diff ?? "",
+            s.revenue ?? "", s.revenue_yoy ?? "", s.op_income ?? "", s.op_income_yoy ?? "", s.op_income_qoq ?? "", s.opm ?? "", s.cons_op ?? "", s.cons_op_diff ?? "",
             s.per_2026 ?? "", s.current_price ?? "", s.day_change_rate ?? "", reportDateOf(s) ?? "", s.report_change ?? "", s.price_change ?? "", s.mdd ?? "",
             ...(listData.next_quarter_short ? (s.base_q ? [s.base_q.revenue ?? "", s.base_q.op_income ?? ""] : [s.revenue ?? "", s.op_income ?? ""]) : []),
         ]);
