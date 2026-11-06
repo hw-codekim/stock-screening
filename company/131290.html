@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>티에스이 기업분석 - 오늘의 시장</title>
+<style>
+/* Layout: 네이버 블로그 글 한 편처럼. 가운데 좁은 본문, ■ 소제목, 개조식 문장, 회색 테두리 표, 민트 형광펜 */
+:root{
+  --bg:#FFFFFF; --fg:#222222; --sub:#464646; --muted:#888888; --line:#E3E3E3; --cell:#F7F7F7;
+  --mark:#C2F4DB; --point:#00A36C; --warn:#D9534F;
+  --font:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.85}
+.post{max-width:760px;margin:0 auto;padding-block:36px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.cat{font-size:13px;color:var(--point)}
+h1{font-size:28px;font-weight:700;margin:6px 0 10px;line-height:1.4;text-wrap:balance}
+.meta{font-size:13px;color:var(--muted);padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:28px}
+p{margin:0 0 4px;color:var(--sub)}
+.gap{height:22px}
+h2{font-size:19px;font-weight:700;margin:34px 0 10px;color:var(--fg)}
+h3{font-size:16px;font-weight:700;margin:18px 0 4px;color:var(--fg)}
+.d{padding-left:12px;text-indent:-12px}
+.m{background:var(--mark);padding:0 2px}
+b{color:var(--fg)}
+.hr{width:120px;height:1px;background:#BBBBBB;margin:40px auto}
+.box{overflow-x:auto;margin:12px 0 6px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;line-height:1.6}
+th,td{border:1px solid #D6D6D6;padding:8px 10px;text-align:left;vertical-align:top;color:var(--sub)}
+th{background:var(--cell);color:var(--fg);font-weight:700;text-align:center}
+td.c{text-align:center}
+.flow{font-size:15px;border:1px solid #D6D6D6;padding:14px 16px;margin:12px 0;line-height:2.1;color:var(--sub);overflow-x:auto}
+.flow span{white-space:nowrap}
+.flow .me{background:var(--mark);font-weight:700;color:var(--fg);padding:0 3px}
+.quote{border-left:3px solid #BBBBBB;padding:4px 0 4px 14px;margin:14px 0;color:var(--sub);font-size:15px}
+a{color:#1F6FA8;text-decoration:underline;word-break:break-all}
+.chart{border:1px solid #D6D6D6;padding:12px;margin:12px 0 6px;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:500px;height:auto}
+.chart text{font-family:var(--font);font-size:12px;fill:#666666}
+.part{margin:44px 0 -18px;font-size:13px;font-weight:700;color:var(--point);letter-spacing:.5px;border-bottom:2px solid var(--point);padding-bottom:4px}
+.part span{font-weight:400;color:var(--muted);margin-left:6px}
+.note{background:#FFF9E6;border:1px dashed #E2C46B;padding:8px 12px;margin:14px 0 4px;font-size:14px;line-height:1.7;color:#5C4A16}
+.note .nt{display:block;font-size:12px;font-weight:700;color:#A67C00;margin-bottom:2px}
+.tog{display:inline-block;font-size:13px;color:var(--muted);margin:-14px 0 18px;cursor:pointer}
+body:has(#nt:not(:checked)) .note{display:none}
+.small{font-size:13px;color:var(--muted)}
+.end{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.7}
+.topbar{max-width:760px;margin:0 auto;padding:14px 16px 0;display:flex;gap:18px;font-size:13px}
+.topbar a{color:#888;text-decoration:none}
+.topbar a:hover{color:#1F6FA8;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../company.html">← 기업분석 목록</a><a href="../index.html">오늘의 시장 홈</a></div>
+<div class="post">
+
+<div class="cat">공부 노트 · 반도체 소부장</div>
+<h1>티에스이 공부 - 반도체 테스트 구조부터 경쟁사·멀티플·결론까지</h1>
+<div class="meta">2026. 11. 7. · 개인 공부 기록용이며, 매수/매도 추천 아닙니다.</div>
+<label class="tog"><input type="checkbox" id="nt" checked> 요약 보기 (화면 공유할 땐 끄기)</label>
+
+<p>티에스이가 올해 6배 가까이 올랐다가 한 달 만에 반토막이 남. 실적은 사상 최대인데 주가는 왜 이런지, 지금은 싼 건지 정리해 봄.</p>
+<p>반도체 "테스트"가 뭔지 모르는 사람 기준으로 최대한 쉽게 적어봄.</p>
+
+<div class="part">PART 0 · 결론 먼저</div>
+
+<div class="hr"></div>
+
+<h2>■ 한 줄 요약</h2>
+<p class="d">- 반도체는 만들고 나서 <b>불량인지 하나하나 검사</b>해야 팔 수 있음</p>
+<p class="d">- 티에스이는 그 검사에 쓰는 <span class="m">부품(프로브카드·인터페이스보드·테스트소켓)</span>을 만드는 회사</p>
+<p class="d">- 고객은 삼성전자·SK하이닉스·마이크론·CXMT(중국) 같은 메모리 회사 + AMD·인텔 같은 비메모리 회사</p>
+<p class="d">- 26년에 HBM·D램용 프로브카드가 본격적으로 팔리면서 영업이익이 25년 492억 → 26년 약 1,950억(예상)으로 4배</p>
+<p class="d">- 근데 주가는 10/13 최고가 32.9만 → 11/6 16.2만 원 (<b>-51%</b>). 회사 문제라기보다 <b>반도체 전체 급락</b> (하이닉스도 6월 고점 대비 -61%)</p>
+<p class="d">- <b>결론 먼저: 숫자로는 싸짐(27년 PER 9.7배, 해외 경쟁사 13~25배).</b> 다만 "이익 추정치가 맞다면"이라는 조건이 붙음. 3분기 보고서(11월 중순)로 수주잔고 확인하고 나눠서 매수, 13만 원대면 확인 전이라도 1차</p>
+<div class="note"><span class="nt">요약</span>결론부터. "실적은 좋고 가격은 싸졌다. 근데 시장은 '내년 이익이 꺾인다'에 베팅 중이다. 그래서 숫자 하나(수주잔고)만 확인하고 나눠서 산다." 이걸 산업 → 회사 → 경쟁사 → 주가 → 밸류에이션 순서로 설명.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 1 · 산업 이해</div>
+
+<div class="hr"></div>
+
+<h2>■ 반도체가 팔리기까지</h2>
+<div class="flow">
+<span>① 설계</span> → <span>② 웨이퍼에 회로 찍기 (전공정)</span> → <span class="me">③ 웨이퍼 테스트</span> → <span>④ 잘라서 포장 (패키징)</span> → <span class="me">⑤ 패키지 테스트</span> → <span>⑥ 출하</span>
+</div>
+<p class="d">- 반도체는 웨이퍼(동그란 판) 하나에 칩 수백~수천 개를 한꺼번에 찍어서 만듦</p>
+<p class="d">- 찍은 칩이 다 정상은 아님 → <b>두 번 검사</b>함. 잘라내기 전 웨이퍼 상태에서 한 번(③), 포장한 뒤 한 번(⑤)</p>
+<p class="d">- 검사는 큰 장비(테스터, 어드반테스트·테라다인이 만듦)가 함. 근데 장비랑 칩을 <b>연결해 주는 부품</b>이 따로 필요함 → 이게 티에스이가 만드는 것</p>
+
+<h2>■ 검사 부품은 뭐가 있나</h2>
+<div class="box"><table>
+<tr><th style="width:18%">부품</th><th style="width:16%">어디서 쓰나</th><th>뭐 하는 건가</th><th style="width:20%">티에스이 비중 (26 상반기)</th></tr>
+<tr><td><b>프로브카드</b></td><td class="c">③ 웨이퍼 테스트</td><td>머리카락보다 가는 바늘 수만 개가 달린 판. 웨이퍼 위 칩에 바늘을 꽂아 전기를 흘려 봄. <b>칩 설계마다 새로 만들어야 함</b></td><td class="c"><b>47.9%</b></td></tr>
+<tr><td><b>인터페이스보드</b></td><td class="c">⑤ 패키지 테스트</td><td>테스트 장비와 포장된 칩 사이를 이어주는 회로 기판</td><td class="c">33.5%</td></tr>
+<tr><td>테스트소켓</td><td class="c">⑤ 패키지 테스트</td><td>포장된 칩을 끼우는 자리. 수만 번 끼웠다 뺐다 하면 닳아서 교체</td><td class="c">10.3%</td></tr>
+<tr><td>OLED 검사장비</td><td class="c">디스플레이</td><td>OLED 패널 전기 검사 장비</td><td class="c">8.2%</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 (티에스이 별도 매출 2,466억 원 기준)</p>
+<p class="d">- 셋 다 <b>소모품 성격</b>. 장비는 한 번 사면 몇 년 쓰지만, 프로브카드·소켓은 닳거나 칩이 바뀌면 새로 사야 함</p>
+<p class="d">- 그래서 주문이 늘어나는 때: ① 메모리를 많이 찍을 때(생산량) ② <span class="m">새 제품이 나올 때</span>(DDR4→DDR5, HBM3E→HBM4 처럼 세대가 바뀔 때)</p>
+
+<h2>■ HBM이 왜 프로브카드를 더 쓰게 만드나</h2>
+<p class="d">- HBM은 D램 칩을 12~16장 쌓아서 하나로 만드는 메모리 (AI 칩 옆에 붙음)</p>
+<p class="d">- 16장 중 <b>1장만 불량이어도 HBM 전체가 버려짐</b> → 쌓기 전에 칩 하나하나를 웨이퍼 상태에서 더 꼼꼼히 검사해야 함</p>
+<p class="d">- 그래서 같은 D램이라도 HBM은 웨이퍼 테스트를 더 많이, 더 정밀하게 함 → <span class="m">프로브카드 수요 + 단가 둘 다 올라감</span></p>
+<p class="d">- 경쟁사 폼팩터도 26년 2분기 D램 프로브카드 매출의 약 3분의 2가 HBM에서 나왔다고 함</p>
+
+<h2>■ 이 산업은 크는 산업인가 (시장 규모)</h2>
+<div class="box"><table>
+<tr><th style="width:30%">항목</th><th>내용</th></tr>
+<tr><td>프로브카드 시장 (2025)</td><td><b>약 25~39억 달러</b> (약 3.4~5.3조 원) — 조사기관마다 차이 큼</td></tr>
+<tr><td>2030년 전망</td><td>약 41~60억 달러</td></tr>
+<tr><td>연 성장률</td><td><b>연 9~10%</b></td></tr>
+<tr><td>상위 업체 점유율</td><td>상위 3곳 약 57%, 상위 5곳 약 73% (폼팩터·테크노프로브·MJC·JEM 등)</td></tr>
+<tr><td>티에스이 위치 (대략)</td><td>25년 프로브카드 매출 1,434억 원 ≈ 1억 달러 → <b>점유율 3~4%</b>. 26년은 연 2,400억 원 페이스</td></tr>
+</table></div>
+<p class="small">출처: Mordor Intelligence(2025 25.4억→2030 40.6억 달러), 360iResearch(2025 38.7억→2030 60.4억 달러), QYResearch 점유율 요약. 숫자 편차가 커서 범위로만 봄</p>
+<p class="d">- 시장 자체는 연 10% 정도로 크는 "보통 성장" 산업</p>
+<p class="d">- 티에스이는 낸드 위주에서 <b>D램·HBM으로 넓히면서</b> 시장보다 훨씬 빨리 큼 (25년 프로브카드 +79%). 점유율이 아직 작아서 늘어날 자리가 많음</p>
+<div class="note"><span class="nt">요약</span>반도체는 두 번 검사하고, 그때 꽂는 소모품이 티에스이 제품. HBM은 쌓기 전에 더 꼼꼼히 검사해야 해서 프로브카드를 더 씀. 시장은 연 10% 성장, 티에스이는 점유율 3~4%에서 빠르게 올라가는 중. 여기까지 산업, 이제 회사로.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 2 · 회사</div>
+
+<div class="hr"></div>
+
+<h2>■ 기업 개요 (한눈에)</h2>
+<div class="box"><table>
+<tr><th style="width:22%">항목</th><th>내용</th></tr>
+<tr><td>시가총액</td><td><b>약 1조 7,920억 원</b> (16.2만 원 × 1,106만 주, 2026.11.6) · 코스닥<br>10/13 최고가 기준으로는 약 3조 6,450억 원이었음</td></tr>
+<tr><td>하는 일</td><td>반도체·디스플레이 검사 부품·장비 (프로브카드, 인터페이스보드, 테스트소켓, OLED 검사장비)</td></tr>
+<tr><td>설립 / 상장</td><td>1994.03 창업 (1995.08 법인) / 2011.01 코스닥 상장</td></tr>
+<tr><td>대표</td><td>김철호, 김명진 (각자 대표) · 창업자 권상준 회장 (삼성전자·슐럼버제·동화어드반테스트 출신)</td></tr>
+<tr><td>본사·공장</td><td>충남 천안 직산읍 (1~3사업장) + 중국 우한·허페이, 베트남</td></tr>
+<tr><td>매출 (연결)</td><td>2025년 4,289억 원 → 2026년 예상 7,203억 원 (+68%)</td></tr>
+<tr><td>수출 비중</td><td>프로브카드 68%, 인터페이스보드 85% (26 상반기) → <b>해외 고객이 더 큼</b></td></tr>
+<tr><td>재무</td><td>현금+단기금융 1,267억, 차입금 368억 + 전환사채 1,000억 (26.6월) → 순현금 거의 0, 빚 부담 낮음</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서, 컨센서스(2026.11.6), 시총은 종가 기준 직접 계산</p>
+
+<h3>대주주</h3>
+<div class="box"><table>
+<tr><th style="width:30%">주주</th><th>관계</th><th>지분율</th></tr>
+<tr><td><b>권상준</b></td><td class="c">최대주주 (창업자)</td><td class="c"><b>21.23%</b></td></tr>
+<tr><td><b>김철호</b></td><td class="c">대표이사</td><td class="c"><b>18.15%</b></td></tr>
+<tr><td>권유영 · 권은지 · 장향숙</td><td class="c">가족</td><td class="c">5.61% · 3.60% · 1.64%</td></tr>
+<tr><td>기타 특수관계인 16명</td><td class="c">친인척·임원</td><td class="c">0.10%</td></tr>
+<tr><td><b>합계</b></td><td class="c">-</td><td class="c"><b>50.33%</b></td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '최대주주 및 특수관계인의 주식소유 현황' (2026.06.30)</p>
+<p class="d">- 창업자 가족 + 대표가 절반을 가짐 → 시장에서 도는 주식은 약 50%. 시총 1.8조짜리 코스닥 종목이라 <b>수급에 따라 하루 ±15%씩</b> 움직임</p>
+
+<h3>자금 조달 이력 (희석될 수 있는 것)</h3>
+<div class="box"><table>
+<tr><th style="width:14%">시기</th><th style="width:20%">방식</th><th>내용</th></tr>
+<tr><td class="c">2025.10</td><td class="c">자사주 매각</td><td>가지고 있던 자사주 27.6만 주(2.5%) 전부를 Brookdale(미국 펀드) 등에 시간외 매각. 주당 50,540원, 139억 원. 운영·시설 자금</td></tr>
+<tr><td class="c"><b>2026.07</b></td><td class="c"><b>전환사채(CB)</b></td><td>상장 후 첫 CB. <b>1,000억 원, 이자 0%</b>, 만기 2031.7. 시설 500억 + 운영 500억<br><b>전환가 238,664원</b>, 전환되면 41.9만 주(3.65%). 전환 청구는 <b>2027.7.22부터</b>. 주가가 내려도 전환가를 낮추는 조항(리픽싱) 없음</td></tr>
+</table></div>
+<p class="small">출처: <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251015000417" target="_blank">자기주식처분결정 (2025.10.15)</a>, <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710000416" target="_blank">전환사채권 발행결정 (2026.07.10)</a>, <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260722900291" target="_blank">발행결과 (2026.07.22)</a></p>
+<p class="d">- 지금 주가(16.2만)가 전환가(23.9만)보다 32% 아래 → <b>당장 CB 물량이 나올 일은 없음</b>. 리픽싱도 없어서 주가가 빠질수록 희석이 커지는 구조도 아님</p>
+<p class="d">- 대신 27년 7월 이후 주가가 23.9만 위로 가면 그 근처에서 전환 매물이 나올 수 있음 → 위쪽 저항선 하나</p>
+
+<h3>주요 자회사</h3>
+<div class="box"><table>
+<tr><th style="width:20%">회사</th><th style="width:11%">지분</th><th>하는 일</th><th style="width:22%">26 상반기 매출</th></tr>
+<tr><td><b>타이거일렉</b> (상장)</td><td class="c">43.71%</td><td>프로브카드·테스트보드용 PCB(회로기판). 티에스이 제품의 핵심 재료를 직접 만듦</td><td class="c">603억 원</td></tr>
+<tr><td><b>메가터치</b> (상장)</td><td class="c">40.68%</td><td>포고핀(검사용 미세 핀), 배터리 핀. 폼팩터에도 납품</td><td class="c">411억 원</td></tr>
+<tr><td>지엠테스트</td><td class="c">82.02%</td><td>반도체 테스트 대행 (하나마이크론과 협력)</td><td class="c">90억 원</td></tr>
+<tr><td>엘디티</td><td class="c">43.78%</td><td>디스플레이 구동칩(IC) 설계. 25.12 유상증자 참여로 연결 편입</td><td class="c">-</td></tr>
+<tr><td>메가센</td><td class="c">52.37%</td><td>반도체 생산용 장비</td><td class="c">-</td></tr>
+<tr><td>TaiSi (우한·허페이)</td><td class="c">100%</td><td>중국 현지 검사 부품. 허페이는 CXMT 본사가 있는 곳 (25.01 설립)</td><td class="c">-</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '연결대상 종속회사 현황', '주요 제품 등의 현황'</p>
+<p class="d">- 프로브카드의 재료(PCB·핀)를 자회사가 직접 만듦 → <span class="m">재료부터 완제품까지 한 그룹 안에서</span>. 납기를 빨리 맞출 수 있는 게 경쟁력</p>
+<p class="d">- 반대로 자회사 지분이 40%대라 자회사 이익의 절반 이상은 다른 주주 몫 (연결 순이익 ≠ 티에스이 주주 몫)</p>
+
+<h3>고객은 누구인가</h3>
+<div class="box"><table>
+<tr><th style="width:20%">제품</th><th>국내 고객</th><th>해외 고객</th></tr>
+<tr><td><b>프로브카드</b></td><td>삼성전자, SK하이닉스, 삼성디스플레이</td><td><b>CXMT(중국 D램), 마이크론</b>, TaiSi(자회사)</td></tr>
+<tr><td>인터페이스보드</td><td>삼성전자, SK하이닉스, 코아텍</td><td><b>AMD, 샌디스크, 인텔</b></td></tr>
+<tr><td>테스트소켓</td><td>삼성전자, 에스알씨, 하나마이크론</td><td>YMTC(중국 낸드), AMD, 샌디스크</td></tr>
+<tr><td>OLED 검사장비</td><td>삼성디스플레이, 서브원</td><td>BOE 등 중국 패널사</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '주요 거래처'. 프로브카드는 이 밖에 SK하이닉스 다롄, YMTC, GigaDevice, MXIC, Winbond에도 공급</p>
+<p class="d">- <b>메모리 3사(삼성·하이닉스·마이크론) + 중국 CXMT</b>를 다 고객으로 가진 게 핵심. 26년 1분기부터 삼성 HBM4, 마이크론 HBM·DDR5 공급 시작</p>
+<p class="d">- 누가 이기든(한국이든 중국이든) 메모리를 많이 찍으면 팔리는 구조. 10월에 "CXMT 추격 우려"로 주가가 빠졌지만 CXMT는 오히려 고객</p>
+<div class="note"><span class="nt">요약</span>시총 1.8조 코스닥 회사, 창업자 쪽이 50%. 7월에 첫 CB 1,000억을 냈는데 전환가가 23.9만이라 지금은 부담 없음. 자회사가 재료(PCB·핀)를 직접 만들고, 고객은 메모리 4강(삼성·하이닉스·마이크론·CXMT) 전부.</div>
+
+<div class="hr"></div>
+
+<h2>■ 티에스이 히스토리</h2>
+<div class="box"><table>
+<tr><th style="width:16%">시기</th><th>내용</th></tr>
+<tr><td class="c">1994.03</td><td>권상준 창업. 반도체 검사장비·주변기기 (1995.08 법인 전환)</td></tr>
+<tr><td class="c">2005~2007</td><td>중국 법인(태사전자) 설립, 지엠테스트(테스트 대행) 인수</td></tr>
+<tr><td class="c">2008</td><td>메가터치(포고핀) 설립</td></tr>
+<tr><td class="c">2011.01</td><td><b>코스닥 상장</b> + 타이거일렉(PCB) 인수 → 재료~완제품 구조 완성</td></tr>
+<tr><td class="c">2017</td><td>인터페이스보드 세계일류상품 선정</td></tr>
+<tr><td class="c">2020</td><td>중국 우한 TaiSi 설립. 인터페이스보드·소켓 호황, 주가 1년 <b>+356%</b></td></tr>
+<tr><td class="c">2022~2023</td><td>메모리 불황. 22년 주가 -49%, <b>23년 영업적자(-24억)</b></td></tr>
+<tr><td class="c">2023.11</td><td>메가터치 코스닥 상장 (그해 폼팩터 공급업체로 선정)</td></tr>
+<tr><td class="c">2025</td><td>허페이(CXMT 소재지) 법인 설립. 낸드 프로브카드 급증 (매출 550억 → 약 1,000억). 10월 자사주 2.5% 매각</td></tr>
+<tr><td class="c">2025.12</td><td>엘디티(디스플레이 구동칩) 연결 편입</td></tr>
+<tr><td class="c"><b>2026.1Q</b></td><td><b>삼성 HBM4 프로브카드 공급 시작, 마이크론 HBM·DDR5 신규 공급</b>. 영업이익 420억(전년 31억)</td></tr>
+<tr><td class="c">2026.07</td><td>첫 CB 1,000억 원 (이자 0%, 전환가 238,664원)</td></tr>
+<tr><td class="c">2026.08</td><td>2분기 영업이익 525억, 증권사 목표가 40만 원까지</td></tr>
+<tr><td class="c">2026.10.13</td><td><b>사상 최고가 32.9만 원</b> → 이후 한 달 -51%</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '회사의 연혁', 증권사 리포트 요약</p>
+<div class="note"><span class="nt">요약</span>30년 된 테스트 부품 회사. 원래 낸드·비메모리 쪽이 강했는데, 26년에 D램·HBM으로 뚫고 들어가면서 실적이 레벨업. 과거엔 메모리 불황 때(2018, 2022) 주가가 반토막 이상 났던 회사라는 것도 기억.</div>
+
+<div class="hr"></div>
+
+<h2>■ 증설과 투자</h2>
+<div class="box"><table>
+<tr><th style="width:24%">항목</th><th>내용</th></tr>
+<tr><td>프로브카드 설비투자</td><td>25년 100~200억 원 → <b>26년 약 500억 원</b> (상반기에만 300억, 25년 1년치 초과)</td></tr>
+<tr><td>프로브카드 생산능력 (매출 기준)</td><td>26년 말 연 <b>3,000억 원 이상</b> → 27년 <b>최소 4,000억 원 이상</b> (회사 언급, 인력·장비 입고 속도에 따라 변동)</td></tr>
+<tr><td>CB 1,000억 쓰임새</td><td>시설 500억 (HBM·D램 프로브카드 장비, 26~28년 집행) + 운영 500억 (인건비 등)</td></tr>
+<tr><td>신제품</td><td>한국생산기술연구원과 HBM용 512개 동시 테스트 핸들러 개발 중 (27.3 완료 목표)</td></tr>
+</table></div>
+<p class="small">출처: <a href="https://www.bloter.net/news/articleView.html?idxno=668171" target="_blank">블로터 — 티에스이, 1000억 선투자…HBM 수요 잡을까</a>, <a href="https://www.newspim.com/news/view/20260921000574" target="_blank">뉴스핌 — 생산능력 확충 나선 소부장 (2026.09.21)</a></p>
+<p class="d">- 26년 프로브카드 매출이 연 2,400억 페이스 → 생산능력을 3,000억 → 4,000억으로 늘린다는 건 <b>27년에도 +30% 이상 팔 자신이 있다</b>는 뜻</p>
+<p class="d">- 반대로 메모리 투자가 꺾이면 새로 산 장비가 놀게 됨 (감가상각비는 그대로 나감) → 이익률이 빨리 떨어질 수 있음</p>
+<p class="d">- 제조 원가에서 중요한 건 <b>사람</b>(숙련 인력). 운영자금 500억을 인건비에 쓴다는 것도 이 때문</p>
+
+<h2>■ 수주잔고 (아직 안 만든 남은 일감)</h2>
+<div class="box"><table>
+<tr><th style="width:22%">품목</th><th>25년 말</th><th>26.1Q 말</th><th>26.2Q 말</th><th>비고</th></tr>
+<tr><td><b>프로브카드</b></td><td class="c">446억</td><td class="c">806억</td><td class="c"><b>845억</b></td><td>상반기 수주 1,878억, 납품 1,033억</td></tr>
+<tr><td>인터페이스보드</td><td class="c">63억</td><td class="c">-</td><td class="c"><b>170억</b></td><td>2.7배</td></tr>
+<tr><td>테스트소켓</td><td class="c">-</td><td class="c">-</td><td class="c">121억</td><td></td></tr>
+<tr><td>OLED 검사장비</td><td class="c">-</td><td class="c">-</td><td class="c">184억</td><td>27.1 납기</td></tr>
+<tr><td><b>합계</b></td><td class="c">-</td><td class="c">-</td><td class="c"><b>1,319억</b></td><td></td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '수주상황', 삼성증권 2Q 리뷰(25년 말·1Q 수치)</p>
+<p class="d">- 프로브카드는 주문 받고 몇 주~몇 달 안에 납품하는 단납기 제품 → 잔고 845억 = <b>약 1분기치 매출</b></p>
+<p class="d">- 그래서 <span class="m">잔고가 늘고 있는지 줄고 있는지가 다음 분기 실적의 제일 빠른 신호</span>. 3분기 보고서(11월 중순)에서 800억대 유지되는지가 핵심 체크포인트</p>
+
+<h2>■ 실적</h2>
+<h3>연간</h3>
+<div class="box"><table>
+<tr><th style="width:16%">연도</th><th>매출</th><th>성장률</th><th>영업이익</th><th>영업이익률</th><th>EPS</th></tr>
+<tr><td class="c">2021</td><td class="c">3,077억</td><td class="c">-</td><td class="c">546억</td><td class="c">17.8%</td><td class="c">4,204</td></tr>
+<tr><td class="c">2022</td><td class="c">3,393억</td><td class="c">+10%</td><td class="c">566억</td><td class="c">16.7%</td><td class="c">4,614</td></tr>
+<tr><td class="c">2023</td><td class="c">2,491억</td><td class="c">-27%</td><td class="c" style="color:#D9534F">-24억</td><td class="c">-1.0%</td><td class="c">11</td></tr>
+<tr><td class="c">2024</td><td class="c">3,481억</td><td class="c">+40%</td><td class="c">399억</td><td class="c">11.5%</td><td class="c">3,956</td></tr>
+<tr><td class="c"><b>2025</b></td><td class="c"><b>4,289억</b></td><td class="c"><b>+23%</b></td><td class="c"><b>492억</b></td><td class="c"><b>11.5%</b></td><td class="c"><b>3,526</b></td></tr>
+<tr><td class="c">2026 (예상)</td><td class="c">7,203억</td><td class="c">+68%</td><td class="c">1,951억</td><td class="c">27.1%</td><td class="c">13,332</td></tr>
+<tr><td class="c">2027 (예상)</td><td class="c">8,800억</td><td class="c">+22%</td><td class="c">2,435억</td><td class="c">27.7%</td><td class="c">16,752</td></tr>
+<tr><td class="c">2028 (예상)</td><td class="c">1조 268억</td><td class="c">+17%</td><td class="c">2,847억</td><td class="c">27.7%</td><td class="c">19,279</td></tr>
+</table></div>
+<p class="small">출처: DART 사업보고서 (연결). EPS는 지배주주 기준 기본주당이익. 예상치는 국내 컨센서스(2026.11.6)</p>
+
+<h3>분기</h3>
+<div class="chart"><svg viewBox="0 0 640 262" role="img" aria-label="티에스이 분기 매출과 영업이익. 매출 25년 1분기 830억에서 26년 2분기 1,888억. 영업이익률 4%에서 28%">
+<line x1="44" y1="230.0" x2="620" y2="230.0" stroke="#BBBBBB"/><line x1="44" y1="182.5" x2="620" y2="182.5" stroke="#E6E6E6"/><text x="40" y="186.5" text-anchor="end">500</text><line x1="44" y1="135.0" x2="620" y2="135.0" stroke="#E6E6E6"/><text x="40" y="139.0" text-anchor="end">1,000</text><line x1="44" y1="87.5" x2="620" y2="87.5" stroke="#E6E6E6"/><text x="40" y="91.5" text-anchor="end">1,500</text><line x1="44" y1="40.0" x2="620" y2="40.0" stroke="#E6E6E6"/><text x="40" y="44.0" text-anchor="end">2,000</text><rect x="60" y="151.2" width="46" height="78.8" fill="#7FB8A6"/><rect x="60" y="227.1" width="46" height="2.9" fill="#E8A87C"/><text x="83.0" y="145.2" text-anchor="middle" style="fill:#333;font-weight:700">830</text><text x="83.0" y="223.1" text-anchor="middle" style="fill:#C0753F;font-weight:700">4%</text><text x="83.0" y="246" text-anchor="middle">25.1Q</text><rect x="132" y="118.3" width="46" height="111.7" fill="#7FB8A6"/><rect x="132" y="215.9" width="46" height="14.1" fill="#E8A87C"/><text x="155.0" y="112.3" text-anchor="middle" style="fill:#333;font-weight:700">1,176</text><text x="155.0" y="211.9" text-anchor="middle" style="fill:#C0753F;font-weight:700">13%</text><text x="155.0" y="246" text-anchor="middle">25.2Q</text><rect x="204" y="130.8" width="46" height="99.2" fill="#7FB8A6"/><rect x="204" y="219.1" width="46" height="10.9" fill="#E8A87C"/><text x="227.0" y="124.8" text-anchor="middle" style="fill:#333;font-weight:700">1,044</text><text x="227.0" y="215.1" text-anchor="middle" style="fill:#C0753F;font-weight:700">11%</text><text x="227.0" y="246" text-anchor="middle">25.3Q</text><rect x="276" y="112.3" width="46" height="117.7" fill="#7FB8A6"/><rect x="276" y="211.2" width="46" height="18.8" fill="#E8A87C"/><text x="299.0" y="106.3" text-anchor="middle" style="fill:#333;font-weight:700">1,239</text><text x="299.0" y="225.2" text-anchor="middle" style="fill:#fff;font-weight:700">16%</text><text x="299.0" y="246" text-anchor="middle">25.4Q</text><rect x="348" y="86.8" width="46" height="143.2" fill="#7FB8A6"/><rect x="348" y="190.1" width="46" height="39.9" fill="#E8A87C"/><text x="371.0" y="80.8" text-anchor="middle" style="fill:#333;font-weight:700">1,507</text><text x="371.0" y="204.1" text-anchor="middle" style="fill:#fff;font-weight:700">28%</text><text x="371.0" y="246" text-anchor="middle">26.1Q</text><rect x="420" y="50.6" width="46" height="179.4" fill="#7FB8A6"/><rect x="420" y="180.1" width="46" height="49.9" fill="#E8A87C"/><text x="443.0" y="44.6" text-anchor="middle" style="fill:#333;font-weight:700">1,888</text><text x="443.0" y="194.1" text-anchor="middle" style="fill:#fff;font-weight:700">28%</text><text x="443.0" y="246" text-anchor="middle">26.2Q</text><rect x="492" y="52.7" width="46" height="177.3" fill="#D5E8E0" stroke="#7FB8A6" stroke-dasharray="3 3"/><rect x="492" y="180.0" width="46" height="50.0" fill="#F5D9C4"/><text x="515.0" y="46.7" text-anchor="middle" style="fill:#333;font-weight:700">1,866</text><text x="515.0" y="194.0" text-anchor="middle" style="fill:#fff;font-weight:700">28%</text><text x="515.0" y="246" text-anchor="middle">26.3Q(E)</text><rect x="564" y="45.5" width="46" height="184.5" fill="#D5E8E0" stroke="#7FB8A6" stroke-dasharray="3 3"/><rect x="564" y="184.5" width="46" height="45.5" fill="#F5D9C4"/><text x="587.0" y="39.5" text-anchor="middle" style="fill:#333;font-weight:700">1,942</text><text x="587.0" y="198.5" text-anchor="middle" style="fill:#fff;font-weight:700">25%</text><text x="587.0" y="246" text-anchor="middle">26.4Q(E)</text>
+<text x="50" y="18">(막대 위: 매출 억 원 · 주황 막대: 영업이익, 숫자는 영업이익률) · 연한 막대는 컨센서스 예상</text>
+<g transform="translate(470,30)"><rect x="0" y="-9" width="10" height="10" fill="#7FB8A6"/><text x="14" y="0">매출</text><rect x="54" y="-9" width="10" height="10" fill="#E8A87C"/><text x="68" y="0">영업이익</text></g>
+</svg></div>
+<p class="small">출처: DART 분기·반기보고서. 25.4Q는 연간 − 1~3분기 누계로 계산. 26.3Q·4Q는 컨센서스 (티에스이는 잠정실적 공시를 안 해서 분기보고서가 나와야 확인됨)</p>
+
+<h3>어디서 돈을 버나 (사업부문별, 상반기)</h3>
+<div class="box"><table>
+<tr><th style="width:30%">부문</th><th>25 상반기 매출 → 26 상반기</th><th>영업이익률</th></tr>
+<tr><td><b>반도체 검사장비</b> (프로브카드·보드·소켓·OLED)</td><td class="c">1,456억 → <b>2,571억</b> (+77%)</td><td class="c">14.2% → <b>30.5%</b></td></tr>
+<tr><td>전자제품 검사장치 (타이거일렉 PCB·메가터치 핀)</td><td class="c">624억 → 1,090억 (+75%)</td><td class="c">-1.0% → 16.7%</td></tr>
+<tr><td>검사용역 (지엠테스트)</td><td class="c">79억 → 90억</td><td class="c">적자 (-13%)</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 연결 주석 '영업부문' (내부거래 제거 전)</p>
+<p class="d">- 매출은 1년 만에 거의 2배, 영업이익률은 11% → 28%로 점프. 이유는 ① <b>마진 높은 D램·HBM 프로브카드 비중 상승</b>(2분기 프로브카드 중 D램 약 45%) ② 공장이 꽉 차서 고정비 효과 ③ 쌓아둔 충당금 환입</p>
+<p class="d">- 프로브카드 매출: 24년 803억 → 25년 1,434억(+79%) → 26 상반기만 1,182억</p>
+<p class="d">- 3·4분기 예상(526억, 479억)은 2분기(525억)와 비슷 → <span class="m">시장은 "26년 하반기부터 성장이 평평해진다"고 보고 있음</span>. 이게 주가가 실적보다 먼저 꺾인 이유 중 하나</p>
+<div class="note"><span class="nt">요약</span>23년 적자 회사가 26년 영업이익 2,000억 가까이. 이익률이 11% → 28%로 뛴 건 HBM·D램 프로브카드 덕분. 수주잔고 845억은 1분기치 매출이라, 11월 중순 3분기 보고서에서 잔고가 유지되는지가 제일 중요.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 3 · 경쟁 구도</div>
+
+<div class="hr"></div>
+
+<h2>■ 프로브카드 빅3 + 티에스이 비교</h2>
+<div class="box"><table>
+<tr><th style="width:20%">회사</th><th>나라</th><th>25년 매출</th><th>최근 4분기 매출</th><th>25년 영업이익률</th><th>최근 영업이익률</th><th>시총</th></tr>
+<tr><td><b>FormFactor</b></td><td class="c">미국</td><td class="c">약 1.07조</td><td class="c">약 1.34조</td><td class="c">7.6%</td><td class="c">31% (26.3Q)</td><td class="c">약 8.7조</td></tr>
+<tr><td><b>Technoprobe</b></td><td class="c">이탈리아</td><td class="c">약 9,540억</td><td class="c">약 1.17조</td><td class="c">21.7%</td><td class="c">37%</td><td class="c">약 20조</td></tr>
+<tr><td><b>MJC</b> (Micronics Japan)</td><td class="c">일본</td><td class="c">약 6,020억</td><td class="c">약 7,410억</td><td class="c">23.6%</td><td class="c">35%</td><td class="c">약 2.9조</td></tr>
+<tr><td>JEM</td><td class="c">일본</td><td colspan="5" class="c">비상장 (하이닉스 다롄·마이크론 등에서 경쟁)</td></tr>
+<tr><td><b>티에스이</b> (프로브카드만)</td><td class="c">한국</td><td class="c">1,434억</td><td class="c">약 2,400억 (연환산)</td><td class="c" colspan="2">연결 11.5% → 26E 27%</td><td class="c">약 1.8조</td></tr>
+</table></div>
+<p class="small">출처: 야후 파이낸스 재무제표·시세(2026.11.6), 원화 환산은 현재 환율(달러 1,364원·유로 1,519원·엔 8.58원). 폼팩터는 GAAP 기준이며 장비(시스템) 매출 포함</p>
+<p class="d">- 티에스이 프로브카드 매출은 1등 폼팩터의 약 1/5~1/7 수준. 아직 작음</p>
+<p class="d">- 대신 성장 속도가 제일 빠름 (25년 매출 성장: 티에스이 프로브카드 +79% vs 폼팩터 +3%, 테크노프로브 +16%, MJC +26%)</p>
+<p class="d">- 해외 경쟁사들도 26년 들어 이익률이 30%대로 올라옴 → <b>업계 전체가 HBM 덕에 좋은 시기</b>. 티에스이만 특별히 좋은 건 아님</p>
+
+<h2>■ 고객사별로 누구랑 싸우나</h2>
+<div class="box"><table>
+<tr><th style="width:20%">고객</th><th>국내 경쟁사</th><th>해외 경쟁사</th></tr>
+<tr><td>삼성전자</td><td>코리아인스트루먼트, 피엠티</td><td>MJC, JEM, 폼팩터</td></tr>
+<tr><td>SK하이닉스</td><td>에이엠에스티, 엠투엔, 에스엘디</td><td>폼팩터, 어드반테스트</td></tr>
+<tr><td>마이크론</td><td>-</td><td>MJC, JEM, 폼팩터</td></tr>
+<tr><td>CXMT</td><td>에스엘디</td><td>폼팩터</td></tr>
+<tr><td>YMTC (낸드)</td><td>-</td><td>DGT(홍콩), Twinsolution·Maxone(중국)</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '국내외 시장여건 및 경쟁상황' (프로브카드). 인터페이스보드는 어드반테스트와 주로 경쟁</p>
+<p class="d">- 고객 한 곳당 공급사 3~5곳이 나눠 먹는 구조 → 한 번 뚫으면 다른 제품으로 넓히기 쉬움 (낸드 → DDR5 → HBM)</p>
+<p class="d">- 미국 폼팩터가 모든 고객에 다 들어가 있는 1등. 티에스이는 <b>"폼팩터·일본 업체 자리를 조금씩 가져오는"</b> 구도</p>
+<div class="note"><span class="nt">요약</span>1등은 폼팩터, 티에스이 프로브카드 매출은 1등의 1/5. 대신 제일 빨리 크는 중. 경쟁사들도 이익률이 30%대로 다 같이 좋아진 시기라는 것도 같이 봐야 함.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 4 · 주가</div>
+
+<div class="hr"></div>
+
+<h2>■ 주가와 시총</h2>
+<p class="d">- 현재가 <b>162,000원</b>, 시총 <b>약 1.8조 원</b> (2026.11.6)</p>
+<p class="d">- 26년 초 57,600원 → 10/13 최고가 329,500원 (<b>+472%</b>) → 지금 최고가 대비 <b>-51%</b>. 그래도 연초 대비는 +181%</p>
+<p class="d">- 상장 후 2025년까지 15년 동안은 대체로 4만~8만 원 박스. 26년이 완전히 다른 레벨</p>
+<div class="chart"><svg viewBox="0 0 640 270" role="img" aria-label="티에스이 월말 주가 2011년 상장~2026년 11월. 2025년까지 4만~8만 원 박스, 2026년 10월 32.9만 원 고점, 11월 6일 16.2만 원">
+<g stroke="#E6E6E6"><line x1="50" y1="240.0" x2="626" y2="240.0"/><line x1="50" y1="208.6" x2="626" y2="208.6"/><line x1="50" y1="177.1" x2="626" y2="177.1"/><line x1="50" y1="145.7" x2="626" y2="145.7"/><line x1="50" y1="114.3" x2="626" y2="114.3"/><line x1="50" y1="82.9" x2="626" y2="82.9"/><line x1="50" y1="51.4" x2="626" y2="51.4"/><line x1="50" y1="20.0" x2="626" y2="20.0"/></g><g text-anchor="end"><text x="44" y="244.0">0</text><text x="44" y="212.6">5</text><text x="44" y="181.1">10</text><text x="44" y="149.7">15</text><text x="44" y="118.3">20</text><text x="44" y="86.9">25</text><text x="44" y="55.4">30</text><text x="44" y="24.0">35</text></g><g text-anchor="middle"><text x="50.0" y="256">11</text><text x="122.8" y="256">13</text><text x="195.5" y="256">15</text><text x="268.3" y="256">17</text><text x="341.0" y="256">19</text><text x="413.8" y="256">21</text><text x="486.5" y="256">23</text><text x="559.3" y="256">25</text></g>
+<polyline points="50.0,232.3 53.0,231.7 56.1,231.0 59.1,231.6 62.1,232.1 65.2,233.3 68.2,232.0 71.2,234.5 74.3,235.7 77.3,234.6 80.3,233.1 83.3,232.5 86.4,232.9 89.4,230.9 92.4,231.1 95.5,231.9 98.5,233.7 101.5,234.6 104.6,235.3 107.6,235.1 110.6,234.7 113.7,235.5 116.7,235.7 119.7,236.1 122.8,235.3 125.8,235.4 128.8,234.8 131.9,234.9 134.9,234.6 137.9,234.6 140.9,235.0 144.0,234.9 147.0,234.9 150.0,234.8 153.1,234.3 156.1,234.9 159.1,235.3 162.2,235.3 165.2,235.5 168.2,235.2 171.3,235.4 174.3,235.9 177.3,235.8 180.4,234.7 183.4,233.7 186.4,233.6 189.5,233.2 192.5,233.6 195.5,231.0 198.5,229.5 201.6,230.2 204.6,229.2 207.6,229.4 210.7,231.0 213.7,232.5 216.7,232.5 219.8,232.9 222.8,232.9 225.8,233.7 228.9,232.7 231.9,233.3 234.9,234.1 238.0,234.6 241.0,234.5 244.0,234.6 247.1,234.7 250.1,234.7 253.1,234.3 256.1,234.6 259.2,235.3 262.2,235.6 265.2,235.4 268.3,234.5 271.3,234.7 274.3,234.9 277.4,234.3 280.4,233.0 283.4,232.1 286.5,232.5 289.5,230.3 292.5,230.6 295.6,230.7 298.6,230.9 301.6,230.4 304.7,230.2 307.7,231.3 310.7,231.3 313.7,232.0 316.8,231.2 319.8,232.9 322.8,233.3 325.9,234.4 328.9,235.1 331.9,236.4 335.0,236.0 338.0,236.1 341.0,235.5 344.1,235.3 347.1,235.0 350.1,234.3 353.2,235.1 356.2,235.7 359.2,235.7 362.3,235.7 365.3,235.5 368.3,235.3 371.3,234.9 374.4,231.7 377.4,231.1 380.4,232.4 383.5,234.0 386.5,232.5 389.5,229.0 392.6,224.0 395.6,215.4 398.6,218.2 401.7,219.4 404.7,218.4 407.7,206.5 410.8,202.0 413.8,201.0 416.8,208.8 419.9,207.0 422.9,202.0 425.9,201.4 428.9,204.5 432.0,193.2 435.0,199.1 438.0,199.1 441.1,203.6 444.1,207.5 447.1,195.1 450.2,198.2 453.2,201.7 456.2,200.0 459.3,191.3 462.3,187.2 465.3,202.9 468.4,199.8 471.4,204.6 474.4,215.4 477.5,216.6 480.5,214.6 483.5,217.2 486.5,215.0 489.6,216.2 492.6,213.1 495.6,216.5 498.7,213.3 501.7,205.9 504.7,207.4 507.8,214.0 510.8,213.6 513.8,218.1 516.9,208.7 519.9,209.5 522.9,214.0 526.0,205.2 529.0,202.0 532.0,188.6 535.1,204.6 538.1,202.9 541.1,208.6 544.1,209.9 547.2,209.4 550.2,208.6 553.2,217.1 556.3,214.3 559.3,213.1 562.3,212.1 565.4,210.1 568.4,214.4 571.4,215.2 574.5,215.4 577.5,215.7 580.5,216.6 583.6,206.8 586.6,207.6 589.6,205.1 592.7,203.8 595.7,190.8 598.7,185.3 601.7,173.6 604.8,133.9 607.8,114.3 610.8,86.3 613.9,122.7 616.9,91.0 619.9,58.3 623.0,100.5 626.0,138.2" fill="none" stroke="#333" stroke-width="1.6"/><circle cx="410.8" cy="202.0" r="3.5" fill="#D9534F"/><text x="410.8" y="192.0" text-anchor="middle" style="fill:#C0392B">20년 비메모리 소켓·보드 붐</text><circle cx="483.5" cy="217.2" r="3.5" fill="#D9534F"/><text x="483.5" y="235.2" text-anchor="middle" style="fill:#C0392B">22년 메모리 불황</text><circle cx="623.0" cy="100.5" r="3.5" fill="#D9534F"/><text x="623.0" y="92.5" text-anchor="end" style="fill:#C0392B">26.10 고점 32.9만</text><circle cx="50.0" cy="232.3" r="3.5" fill="#D9534F"/><text x="50.0" y="222.3" text-anchor="start" style="fill:#C0392B">11년 상장</text>
+<text x="50" y="12">(단위: 만 원, 월말 종가 · 마지막 점은 11/6 종가)</text></svg></div>
+<p class="small">출처: 야후 파이낸스 월말 종가</p>
+<div class="box"><table>
+<tr><th>연도</th><th>티에스이</th><th>FormFactor</th><th>MJC</th><th>SK하이닉스</th><th>미국 반도체(SOX)</th></tr>
+<tr><td class="c">2018</td><td class="c" style="color:#D9534F"><b>-60%</b></td><td class="c">-10%</td><td class="c">-39%</td><td class="c">-19%</td><td class="c">-8%</td></tr>
+<tr><td class="c">2019</td><td class="c">+114%</td><td class="c">+84%</td><td class="c">+79%</td><td class="c">+57%</td><td class="c">+60%</td></tr>
+<tr><td class="c">2020</td><td class="c"><b>+356%</b></td><td class="c">+66%</td><td class="c">+8%</td><td class="c">+27%</td><td class="c">+51%</td></tr>
+<tr><td class="c">2021</td><td class="c">+18%</td><td class="c">+6%</td><td class="c">+48%</td><td class="c">+12%</td><td class="c">+41%</td></tr>
+<tr><td class="c">2022</td><td class="c" style="color:#D9534F"><b>-49%</b></td><td class="c">-51%</td><td class="c">-27%</td><td class="c">-42%</td><td class="c">-36%</td></tr>
+<tr><td class="c">2023</td><td class="c">+34%</td><td class="c">+88%</td><td class="c">+185%</td><td class="c">+91%</td><td class="c">+65%</td></tr>
+<tr><td class="c">2024</td><td class="c">-16%</td><td class="c">+5%</td><td class="c">+5%</td><td class="c">+23%</td><td class="c">+19%</td></tr>
+<tr><td class="c">2025</td><td class="c">+41%</td><td class="c">+27%</td><td class="c">+89%</td><td class="c">+278%</td><td class="c">+42%</td></tr>
+<tr><td class="c">2026 (~11/6)</td><td class="c"><b>+181%</b></td><td class="c">+45%</td><td class="c">+23%</td><td class="c">+74%</td><td class="c">+33%</td></tr>
+</table></div>
+<p class="small">현지 통화 기준 연간 수익률. 출처: 야후 파이낸스</p>
+<p class="d">- 오를 땐 남들보다 훨씬 많이(2020 +356%, 2026 +181%), 빠질 땐 남들보다 더 많이(2018 -60%, 2022 -49%) → <b>변동성이 큰 종목</b></p>
+<div class="note"><span class="nt">요약</span>15년 박스권 회사가 올해 6배 갔다가 반토막. 원래 반도체 경기에 따라 위아래로 크게 출렁이는 종목이라는 것.</div>
+
+<div class="hr"></div>
+
+<h2>■ 해외 경쟁사·고객과 주가 비교 (2026년)</h2>
+<div class="chart"><svg viewBox="0 0 680 262" role="img" aria-label="2026년 주가 비교, 2025년 말 100 기준. 티에스이는 10월 570까지 올랐다가 281. 해외 프로브카드 3사와 SK하이닉스는 6월 고점 후 하락">
+<line x1="50" y1="240.0" x2="560" y2="240.0" stroke="#E6E6E6"/><text x="44" y="244.0" text-anchor="end">0</text><line x1="50" y1="204.0" x2="560" y2="204.0" stroke="#BBBBBB"/><text x="44" y="208.0" text-anchor="end">100</text><line x1="50" y1="168.0" x2="560" y2="168.0" stroke="#E6E6E6"/><text x="44" y="172.0" text-anchor="end">200</text><line x1="50" y1="132.0" x2="560" y2="132.0" stroke="#E6E6E6"/><text x="44" y="136.0" text-anchor="end">300</text><line x1="50" y1="96.0" x2="560" y2="96.0" stroke="#E6E6E6"/><text x="44" y="100.0" text-anchor="end">400</text><line x1="50" y1="60.0" x2="560" y2="60.0" stroke="#E6E6E6"/><text x="44" y="64.0" text-anchor="end">500</text><line x1="50" y1="24.0" x2="560" y2="24.0" stroke="#E6E6E6"/><text x="44" y="28.0" text-anchor="end">600</text><text x="61.3" y="256" text-anchor="middle">1월</text><text x="163.3" y="256" text-anchor="middle">3월</text><text x="254.0" y="256" text-anchor="middle">5월</text><text x="356.0" y="256" text-anchor="middle">7월</text><text x="458.0" y="256" text-anchor="middle">9월</text><text x="560.0" y="256" text-anchor="middle">11월</text><polyline points="50.0,204.1 61.3,200.4 72.7,202.6 84.0,202.7 95.3,194.2 106.7,191.1 118.0,183.9 129.3,185.6 140.7,183.2 152.0,185.6 163.3,173.7 174.7,173.6 186.0,163.9 197.3,171.1 208.7,172.0 220.0,166.1 231.3,137.8 242.7,134.1 254.0,134.5 265.3,130.8 276.7,126.6 288.0,87.5 299.3,115.1 310.7,111.2 322.0,70.9 333.3,87.5 344.7,100.3 356.0,83.1 367.3,71.6 378.7,63.4 390.0,113.4 401.3,123.4 412.7,110.6 424.0,77.5 435.3,101.3 446.7,90.9 458.0,92.2 469.3,77.2 480.7,88.1 492.0,59.4 503.3,58.4 514.7,45.6 526.0,54.1 537.3,79.4 548.7,101.3 560.0,138.8" fill="none" stroke="#D9534F" stroke-width="2.4"/><polyline points="50.0,202.5 61.3,201.8 72.7,195.7 84.0,189.5 95.3,192.8 106.7,194.5 118.0,181.7 129.3,177.6 140.7,179.0 152.0,176.2 163.3,185.1 174.7,182.0 186.0,180.5 197.3,176.8 208.7,173.4 220.0,160.1 231.3,151.4 242.7,139.9 254.0,151.3 265.3,144.6 276.7,158.5 288.0,156.8 299.3,159.6 310.7,164.7 322.0,150.2 333.3,143.5 344.7,155.6 356.0,160.2 367.3,164.2 378.7,171.9 390.0,172.9 401.3,171.5 412.7,164.2 424.0,155.1 435.3,166.3 446.7,174.4 458.0,172.9 469.3,165.8 480.7,163.6 492.0,156.3 503.3,143.7 514.7,149.9 526.0,172.2 537.3,176.4 548.7,183.5 560.0,187.6" fill="none" stroke="#1F6FA8" stroke-width="1.4"/><polyline points="61.3,201.8 72.7,198.8 84.0,194.1 95.3,193.1 106.7,193.9 118.0,193.4 129.3,187.3 140.7,186.9 152.0,189.4 163.3,195.0 174.7,194.0 186.0,200.6 197.3,198.1 208.7,195.4 220.0,191.4 231.3,185.4 242.7,187.3 254.0,185.6 265.3,181.0 276.7,163.0 288.0,145.6 299.3,145.2 310.7,148.9 322.0,142.0 333.3,129.3 344.7,142.5 356.0,141.3 367.3,145.9 378.7,152.8 390.0,152.2 401.3,158.3 412.7,150.5 424.0,147.2 435.3,157.7 446.7,158.6 458.0,159.0 469.3,148.5 480.7,153.1 492.0,151.1 503.3,136.5 514.7,139.1 526.0,161.7 537.3,170.1 548.7,168.5 560.0,179.4" fill="none" stroke="#7FB8A6" stroke-width="1.4"/><polyline points="50.0,203.0 61.3,204.0 72.7,200.4 84.0,195.5 95.3,194.0 106.7,194.5 118.0,194.3 129.3,185.8 140.7,179.2 152.0,177.7 163.3,182.5 174.7,185.0 186.0,184.4 197.3,189.1 208.7,188.3 220.0,174.6 231.3,176.8 242.7,176.0 254.0,175.9 265.3,168.4 276.7,161.9 288.0,162.5 299.3,164.7 310.7,166.9 322.0,163.1 333.3,161.2 344.7,152.4 356.0,158.3 367.3,154.7 378.7,168.7 390.0,161.6 401.3,170.7 412.7,170.0 424.0,163.3 435.3,170.1 446.7,173.5 458.0,179.0 469.3,175.3 480.7,171.6 492.0,169.4 503.3,163.3 514.7,151.5 526.0,171.3 537.3,181.5 548.7,182.1 560.0,195.7" fill="none" stroke="#E8A87C" stroke-width="1.4"/><polyline points="50.0,206.9 61.3,202.6 72.7,198.9 84.0,198.2 95.3,197.6 106.7,189.7 118.0,193.6 129.3,191.3 140.7,187.5 152.0,181.2 163.3,188.8 174.7,189.6 186.0,184.2 197.3,188.3 208.7,191.5 220.0,183.1 231.3,177.5 242.7,172.3 254.0,168.8 265.3,146.6 276.7,139.2 288.0,132.5 299.3,110.7 310.7,125.3 322.0,120.9 333.3,86.8 344.7,91.9 356.0,105.6 367.3,119.2 378.7,137.9 390.0,142.5 401.3,144.8 412.7,161.2 424.0,148.8 435.3,144.1 446.7,148.4 458.0,148.7 469.3,139.6 480.7,137.1 492.0,136.8 503.3,138.0 514.7,146.8 526.0,169.5 537.3,169.2 548.7,161.4 560.0,177.3" fill="none" stroke="#8E6BB8" stroke-width="1.4"/><polyline points="50.0,203.4 61.3,202.6 72.7,201.2 84.0,199.7 95.3,199.6 106.7,199.3 118.0,199.1 129.3,198.6 140.7,198.0 152.0,198.8 163.3,201.8 174.7,201.1 186.0,201.0 197.3,202.1 208.7,200.2 220.0,194.8 231.3,191.4 242.7,186.6 254.0,186.1 265.3,180.2 276.7,181.1 288.0,178.0 299.3,174.8 310.7,177.9 322.0,172.0 333.3,167.1 344.7,172.9 356.0,175.8 367.3,174.1 378.7,180.7 390.0,179.9 401.3,182.5 412.7,177.2 424.0,176.9 435.3,180.3 446.7,181.7 458.0,180.4 469.3,179.9 480.7,179.4 492.0,175.6 503.3,173.2 514.7,176.1 526.0,183.4 537.3,185.2 548.7,185.7 560.0,192.3" fill="none" stroke="#999999" stroke-width="1.4"/><text x="566" y="142.8" style="fill:#D9534F;font-weight:700">티에스이 281</text><text x="566" y="181.3" style="fill:#8E6BB8;font-weight:700">SK하이닉스 174</text><text x="566" y="194.3" style="fill:#7FB8A6;font-weight:700">Technoprobe 168</text><text x="566" y="207.3" style="fill:#1F6FA8;font-weight:700">FormFactor 145</text><text x="566" y="220.3" style="fill:#999999;font-weight:700">미국 반도체(SOX) 133</text><text x="566" y="233.3" style="fill:#E8A87C;font-weight:700">MJC 123</text><text x="50" y="14">(2025년 말 = 100, 주간 종가, 현지 통화)</text></svg></div>
+<p class="small">출처: 야후 파이낸스 (Technoprobe는 11/5 종가)</p>
+<div class="box"><table>
+<tr><th style="width:22%">회사</th><th>26년 고점</th><th>고점 날짜</th><th>고점 대비 지금</th><th>연초 대비</th></tr>
+<tr><td><b>티에스이</b></td><td class="c">329,500원</td><td class="c"><b>10/13</b></td><td class="c"><b>-51%</b></td><td class="c">+181%</td></tr>
+<tr><td>FormFactor</td><td class="c">$159.9</td><td class="c">6/30</td><td class="c">-49%</td><td class="c">+45%</td></tr>
+<tr><td>Technoprobe</td><td class="c">€38.1</td><td class="c">6/22</td><td class="c">-46%</td><td class="c">+68%</td></tr>
+<tr><td>MJC</td><td class="c">¥17,650</td><td class="c">6/25</td><td class="c">-51%</td><td class="c">+23%</td></tr>
+<tr><td>SK하이닉스</td><td class="c">2,919,000원</td><td class="c">6/22</td><td class="c">-61%</td><td class="c">+74%</td></tr>
+<tr><td>삼성전자</td><td class="c">362,500원</td><td class="c">6/18</td><td class="c">-48%</td><td class="c">+57%</td></tr>
+<tr><td>ISC (테스트소켓)</td><td class="c">271,000원</td><td class="c">4/9</td><td class="c">-55%</td><td class="c">+9%</td></tr>
+<tr><td>미국 반도체(SOX)</td><td class="c">14,635</td><td class="c">6/22</td><td class="c">-36%</td><td class="c">+33%</td></tr>
+</table></div>
+<p class="small">출처: 야후 파이낸스, 국내 종목은 KRX 종가</p>
+<p class="d">- 반도체는 <b>6월 말이 고점</b>. 해외 프로브카드 3사도 6월 고점 후 반토막</p>
+<p class="d">- 티에스이만 7~10월에 혼자 더 올라감 (2분기 깜짝 실적 + HBM 고객 확대) → 10월에 뒤늦게 업종 하락을 한꺼번에 맞음</p>
+<p class="d">- 지금 고점 대비 낙폭(-51%)은 경쟁사(-46~-51%)와 비슷한 수준까지 따라 내려옴</p>
+
+<h2>■ 왜 한 달 만에 반토막이 났나</h2>
+<div class="box"><table>
+<tr><th style="width:15%">날짜</th><th>티에스이</th><th>무슨 일</th></tr>
+<tr><td class="c">7/2</td><td class="c">-10.9%</td><td>메타가 "남는 AI 연산 자원을 외부에 판다" 보도 → AI 공급과잉 우려, 코스피 -7.9%</td></tr>
+<tr><td class="c">7~10월</td><td class="c">+34%</td><td>그래도 티에스이는 2분기 실적(영업이익 +255%)과 HBM 고객 확대로 혼자 신고가</td></tr>
+<tr><td class="c">10/13</td><td class="c">+7.0%</td><td>최고가 32.9만. 같은 날 하이닉스 -10.1% → 반도체 대형주는 이미 무너지는 중</td></tr>
+<tr><td class="c">10/15</td><td class="c" style="color:#D9534F"><b>-15.6%</b></td><td>CXMT 차세대 D램 공개 → 중국 추격 우려 + 외국인 매도, 코스피 사이드카</td></tr>
+<tr><td class="c">10/30</td><td class="c" style="color:#D9534F"><b>-14.8%</b></td><td>반도체 재차 급락 (하이닉스 -7.1%)</td></tr>
+<tr><td class="c">11/5~6</td><td class="c" style="color:#D9534F"><b>-15.7%, -12.4%</b></td><td>미국 중간선거 민주당 상·하원 장악 → AI 데이터센터 규제 우려, 미국 반도체 지수 하루 -12.25%. 코스피 서킷브레이커</td></tr>
+</table></div>
+<p class="small">출처: KRX 종가, <a href="https://news.mtn.co.kr/news-detail/2026070217314287016" target="_blank">MTN (7/2)</a>, <a href="https://news.bizwatch.co.kr/article/market/2026/10/20/0031/" target="_blank">비즈워치 (10/20)</a>, <a href="https://www.g-enews.com/article/Securities/2026/11/20261106095122655544093b5d4e_1" target="_blank">글로벌이코노믹 (11/6)</a>, <a href="https://biz.sbs.co.kr/article/20000344838" target="_blank">SBS Biz (11/6)</a></p>
+<p class="d">- 회사에서 나쁜 뉴스(실적 하향, 고객 이탈 등)는 <b>하나도 없었음</b>. 전부 업종·시장 이슈</p>
+<p class="d">- 근데 이유가 다 "AI 투자가 꺾일 수 있다"는 쪽 → 메모리 투자 → 테스트 부품 주문으로 이어지는 얘기라 <b>티에스이 내년 이익에도 직접 연결</b>되는 걱정이긴 함</p>
+<p class="d">- 하루 -15%씩 빠지는 건 시총 1.8조 코스닥 소부장이 원래 그럼 (대형주가 -7% 빠지면 소부장은 -15%). 빚투(신용) 정리 매물도 같이 나옴</p>
+
+<h2>■ 테스트 부품주는 언제 오르고 언제 빠지나</h2>
+<div class="box"><table>
+<tr><th style="width:50%">오를 때</th><th>빠질 때</th></tr>
+<tr><td>
+- 메모리 가격 상승 → 메모리 회사 돈 많이 범<br>
+- 새 세대 제품 양산 (DDR5, HBM3E → HBM4 → HBM4E)<br>
+- 새 고객 퀄(품질 테스트) 통과 뉴스<br>
+- 분기 실적·수주잔고 증가 확인<br>
+- 증권사 목표가 상향 러시
+</td><td>
+- 메모리 가격 정점 신호 / AI 투자 의심 기사<br>
+- 반도체 대형주 외국인 대량 매도 (소부장은 2배로 빠짐)<br>
+- 메모리 회사 설비투자(Capex) 축소 발표<br>
+- 수주잔고 감소 → 다음 분기 실적 꺾임<br>
+- 과거: 2018 -60%, 2022 -49% (둘 다 메모리 불황)
+</td></tr>
+</table></div>
+<p class="d">- 프로브카드는 소모품이라 장비보다는 덜 출렁임 (생산량이 유지되면 교체 수요가 있음). 근데 주가는 그렇게 안 봐주고 <b>반도체 사이클 그대로</b> 움직임</p>
+<p class="d">- 결국 핵심 변수는 하나: <span class="m">"메모리 회사들이 내년에도 HBM·D램 투자를 늘리나"</span></p>
+
+<h2>■ 증권사 목표주가 변화</h2>
+<div class="chart"><svg viewBox="0 0 640 262" role="img" aria-label="티에스이 2026년 주가와 증권사 목표주가. 목표가는 1월 8만 1천원에서 8월 40만 원까지 상향만 있었음. 주가는 10월 13일 32.9만 고점 후 16.2만">
+<line x1="56" y1="228.0" x2="620" y2="228.0" stroke="#E6E6E6"/><text x="50" y="232.0" text-anchor="end">0</text><line x1="56" y1="204.4" x2="620" y2="204.4" stroke="#E6E6E6"/><text x="50" y="208.4" text-anchor="end">5</text><line x1="56" y1="180.9" x2="620" y2="180.9" stroke="#E6E6E6"/><text x="50" y="184.9" text-anchor="end">10</text><line x1="56" y1="157.3" x2="620" y2="157.3" stroke="#E6E6E6"/><text x="50" y="161.3" text-anchor="end">15</text><line x1="56" y1="133.7" x2="620" y2="133.7" stroke="#E6E6E6"/><text x="50" y="137.7" text-anchor="end">20</text><line x1="56" y1="110.1" x2="620" y2="110.1" stroke="#E6E6E6"/><text x="50" y="114.1" text-anchor="end">25</text><line x1="56" y1="86.6" x2="620" y2="86.6" stroke="#E6E6E6"/><text x="50" y="90.6" text-anchor="end">30</text><line x1="56" y1="63.0" x2="620" y2="63.0" stroke="#E6E6E6"/><text x="50" y="67.0" text-anchor="end">35</text><line x1="56" y1="39.4" x2="620" y2="39.4" stroke="#E6E6E6"/><text x="50" y="43.4" text-anchor="end">40</text><text x="61.4" y="244" text-anchor="middle">1월</text><text x="168.1" y="244" text-anchor="middle">3월</text><text x="278.3" y="244" text-anchor="middle">5월</text><text x="388.6" y="244" text-anchor="middle">7월</text><text x="500.7" y="244" text-anchor="middle">9월</text><text x="611.0" y="244" text-anchor="middle">11월</text><line x1="426.6" y1="115.5" x2="620" y2="115.5" stroke="#E8A87C" stroke-width="1.5" stroke-dasharray="5 4"/><text x="620" y="110.5" text-anchor="end" style="fill:#C0753F">전환사채 전환가 23.9만</text><polyline points="56.0,199.8 57.8,200.8 63.2,198.1 68.7,197.6 70.5,198.0 72.3,198.6 74.1,199.3 75.9,199.8 81.3,199.2 83.1,199.5 84.9,199.4 86.7,200.0 88.5,199.9 94.0,197.4 95.8,196.7 97.6,193.3 99.4,192.5 101.2,193.5 106.6,192.7 108.4,191.3 110.2,189.1 112.0,190.3 113.8,191.1 119.3,191.5 121.1,186.7 122.9,188.0 124.7,187.2 126.5,185.7 131.9,185.7 133.7,186.4 135.5,186.9 137.3,187.4 139.2,187.0 150.0,183.1 151.8,185.2 157.2,186.1 159.0,183.7 160.8,184.6 162.7,184.1 164.5,187.0 171.7,186.4 173.5,188.4 175.3,183.2 177.1,178.0 182.5,182.0 184.3,181.3 186.2,180.6 188.0,176.1 189.8,177.9 195.2,174.0 197.0,173.8 198.8,171.5 200.6,169.2 202.4,170.6 207.8,172.4 209.7,173.4 211.5,170.6 213.3,173.8 215.1,176.0 220.5,175.2 222.3,178.2 224.1,172.0 225.9,175.3 227.7,176.7 233.2,177.4 235.0,176.0 236.8,173.8 238.6,171.9 240.4,172.3 245.8,171.6 247.6,164.7 249.4,161.2 251.2,157.5 253.0,150.9 258.5,154.2 260.3,153.0 262.1,148.2 263.9,149.9 265.7,148.1 271.1,149.3 272.9,145.6 274.7,148.4 276.5,148.4 283.8,148.9 287.4,147.8 289.2,147.4 291.0,145.6 296.4,145.1 298.2,146.3 300.0,138.7 301.8,138.4 303.7,142.4 309.1,122.9 310.9,129.0 312.7,116.3 314.5,121.2 316.3,113.0 323.5,120.8 325.3,129.0 327.2,131.4 329.0,133.8 334.4,134.6 336.2,131.6 339.8,123.6 341.6,130.9 347.0,140.7 348.8,127.3 350.7,130.2 352.5,105.4 354.3,100.5 359.7,105.9 361.5,109.7 363.3,109.0 365.1,110.6 366.9,113.0 372.3,105.7 374.2,117.0 376.0,110.4 377.8,125.2 379.6,122.6 385.0,122.4 386.8,112.7 388.6,97.9 390.4,112.0 392.2,109.7 397.7,112.7 399.5,117.9 401.3,119.8 403.1,122.4 404.9,101.0 410.3,109.9 412.1,97.4 413.9,93.9 415.7,94.8 423.0,106.1 424.8,109.7 426.6,114.9 428.4,115.1 430.2,132.5 435.6,129.5 437.4,144.8 439.2,153.8 441.0,160.3 442.8,140.0 448.3,138.6 450.1,135.2 451.9,133.5 453.7,130.4 455.5,130.4 460.9,121.0 462.7,112.7 464.5,110.1 466.3,105.9 468.2,105.4 475.4,101.2 477.2,107.3 479.0,113.9 480.8,123.3 486.2,112.3 488.0,110.6 489.8,109.4 491.7,108.7 493.5,115.6 498.9,116.3 500.7,122.9 502.5,117.7 504.3,122.4 506.1,116.5 511.5,104.7 513.3,107.3 515.2,101.4 517.0,83.5 518.8,105.2 524.2,116.7 526.0,114.2 527.8,113.4 529.6,110.8 531.4,113.4 536.8,101.0 538.7,95.5 540.5,91.8 549.5,89.9 551.3,88.0 553.1,92.2 554.9,84.2 556.7,91.1 564.0,80.2 565.8,79.0 567.6,82.3 574.8,82.8 576.6,72.7 578.4,76.4 580.2,100.0 582.0,87.8 587.5,96.0 589.3,104.0 591.1,99.8 592.9,108.0 594.7,106.8 600.1,114.4 601.9,105.4 603.7,98.4 605.5,105.2 607.3,123.3 612.8,122.6 614.6,132.8 616.4,124.5 618.2,140.8 620.0,151.6" fill="none" stroke="#333" stroke-width="1.6"/><circle cx="94.0" cy="189.8" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="122.9" cy="176.1" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="160.8" cy="166.7" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="177.1" cy="162.0" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="258.5" cy="133.7" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="309.1" cy="100.7" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="309.1" cy="86.6" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="390.4" cy="58.3" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="475.4" cy="39.4" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="475.4" cy="58.3" r="4" fill="#D9534F" fill-opacity="0.8"/>
+<text x="56" y="16">(단위: 만 원) — 검은 선: 주가 · 빨간 점: 목표가 상향 (하향은 아직 0건)</text></svg></div>
+<p class="small">텔레그램 ked_epic_ai 채널 '목표주가 상향 리포트 요약' + DS투자증권 신규(뉴스핌 7/2). 목표가 유지 리포트는 안 잡힘</p>
+<div class="box"><table>
+<tr><th style="width:16%">날짜</th><th>증권사</th><th>목표가</th><th>이유</th></tr>
+<tr><td class="c">1/19</td><td class="c">신한</td><td class="c">6.1만 → 8.1만</td><td>낸드 프로브카드 +38% 전망, 자회사 개선</td></tr>
+<tr><td class="c">2/4, 2/25</td><td class="c">LS</td><td class="c">9만 → 11만 → 13만</td><td>D램 프로브카드 공급 본격화</td></tr>
+<tr><td class="c">3/6</td><td class="c">신한</td><td class="c">8.1만 → 14만</td><td>프로브카드 26년 2,104억(+47%) 전망</td></tr>
+<tr><td class="c">4/20</td><td class="c">LS</td><td class="c">13만 → 20만</td><td>삼성·마이크론 D램(HBM) 공급, 낸드 수요 급증</td></tr>
+<tr><td class="c">5/18</td><td class="c">LS · 신한</td><td class="c">→ 27만 · → 30만</td><td>1분기 깜짝 실적 (영업이익 420억)</td></tr>
+<tr><td class="c">7/2</td><td class="c">DS</td><td class="c">신규 36만</td><td>D램 2사 고객 확보, HBM4·4E 개발</td></tr>
+<tr><td class="c">8/18</td><td class="c">신한 · LS · 삼성</td><td class="c"><b>40만 · 40만 · 36만</b></td><td>2분기 영업이익 525억, 수주잔고 845억</td></tr>
+</table></div>
+<p class="d">- 올해 목표가는 <b>올리기만 함 (하향 0건)</b>. 8.1만 → 40만, 5배</p>
+<p class="d">- 지금 최신 목표가 평균 약 <b>38만 원</b> → 현재가 대비 +135%. 근데 이건 주가가 반토막 나기 전 숫자. 3분기 보고서 나오면 하향이 나올 가능성 높음</p>
+<p class="d">- 증권사들이 쓴 목표 PER: 24~30배 (LS는 해외 빅4 PER 54~70배를 근거로 듦). 지금 주가는 26년 기준 12배</p>
+<div class="note"><span class="nt">요약</span>반도체는 6월이 고점이었고, 티에스이만 10월까지 버티다 한꺼번에 빠짐. 회사 악재는 없고 전부 "AI 투자 꺾일까" 걱정. 증권사 목표가는 아직 40만 그대로라 의미가 약함.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 5 · 밸류에이션</div>
+
+<div class="hr"></div>
+
+<h2>■ 멀티플 (비싼가 싼가)</h2>
+<div class="box"><table>
+<tr><th style="width:22%">회사</th><th>26년 PER</th><th>27년 PER</th><th>27년 EPS 성장</th><th>PEG</th><th>최근 영업이익률</th></tr>
+<tr><td><b>티에스이</b></td><td class="c"><b>12.2</b></td><td class="c"><b>9.7</b></td><td class="c">+26%</td><td class="c"><b>0.38</b></td><td class="c">28%</td></tr>
+<tr><td>FormFactor</td><td class="c">23.9</td><td class="c">19.1</td><td class="c">+25%</td><td class="c">0.75</td><td class="c">31%</td></tr>
+<tr><td>Technoprobe</td><td class="c">38.2</td><td class="c">25.0</td><td class="c">+53%</td><td class="c">0.47</td><td class="c">37%</td></tr>
+<tr><td>MJC</td><td class="c">14.1</td><td class="c">13.0</td><td class="c">+9%</td><td class="c">1.44</td><td class="c">35%</td></tr>
+<tr><td>ISC (국내 소켓)</td><td class="c">29.9</td><td class="c">21.0</td><td class="c">+42%</td><td class="c">0.50</td><td class="c">-</td></tr>
+<tr><td>티에프이 (국내 소켓·보드)</td><td class="c">23.5</td><td class="c">15.5</td><td class="c">+51%</td><td class="c">0.30</td><td class="c">-</td></tr>
+</table></div>
+<p class="small">PER = 11/6 종가 ÷ 예상 EPS. 국내는 컨센서스(2026.11.6), 해외는 야후 파이낸스 애널리스트 평균. PEG = 27년 PER ÷ 27년 EPS 성장률(%), 1보다 낮을수록 성장 대비 쌈</p>
+<p class="d">- 프로브카드 업체 중 PER이 제일 낮음. 27년 기준 폼팩터의 절반</p>
+<p class="d">- 성장률은 폼팩터랑 비슷한데(+25~26%) PER은 절반 → PEG 0.38</p>
+
+<h3>티에스이 자기 과거와 비교</h3>
+<div class="box"><table>
+<tr><th style="width:22%">시점</th><th>주가</th><th>그해 EPS</th><th>PER</th><th>상황</th></tr>
+<tr><td class="c">2021년 말</td><td class="c">73,700</td><td class="c">4,204</td><td class="c">17.5</td><td>호황 끝물</td></tr>
+<tr><td class="c">2022년 말</td><td class="c">36,950</td><td class="c">4,614</td><td class="c"><b>8.0</b></td><td>메모리 불황 한가운데 (다음 해 적자)</td></tr>
+<tr><td class="c">2024년 말</td><td class="c">41,250</td><td class="c">3,956</td><td class="c">10.4</td><td>회복 초입</td></tr>
+<tr><td class="c">2025년 말</td><td class="c">57,600</td><td class="c">3,526</td><td class="c">16.3</td><td>D램 진입 기대</td></tr>
+<tr><td class="c">26.10.13 고점</td><td class="c">329,500</td><td class="c">13,332(E)</td><td class="c">24.7</td><td>HBM 기대 최고조</td></tr>
+<tr><td class="c"><b>지금</b></td><td class="c"><b>162,000</b></td><td class="c">13,332(E)</td><td class="c"><b>12.2</b></td><td>업종 급락</td></tr>
+</table></div>
+<p class="small">EPS는 DART 지배주주 기본주당이익. 증권사 참고: 21~25년 PER 고점 평균 20.2배(신한), 21~24년 평균 약 14배</p>
+<p class="d">- 지금 12배는 과거 평균(14배 안팎)보다 조금 낮은 정도. <b>바닥 멀티플(22년 불황 8배)까지는 아직 여유가 있음</b></p>
+<p class="d">- PBR로 보면 3.3배 (26년 예상 BPS 48,439원). 과거(22·24년 말 1.3~1.4배, 21년 말 3.4배) 중 높은 쪽 → 이익률(ROE 약 30%)이 올라가서 그런 거라, 이익이 꺾이면 PBR 부담이 다시 보이게 됨</p>
+<div class="note"><span class="nt">요약</span>PER로는 경쟁사 대비 절반, 성장 대비 PEG 0.38로 쌈. 자기 과거 평균 대비로는 약간 싼 정도. 다만 불황 때 8배까지 갔던 회사라, "이익이 유지된다"는 전제가 깨지면 더 싸질 여지도 있음.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 6 · 투자 판단</div>
+
+<div class="hr"></div>
+
+<h2>■ 투자 아이디어</h2>
+<h3>아이디어 1. HBM 세대교체 = 프로브카드 새로 사는 시기</h3>
+<p class="d">- HBM3E → HBM4(26년) → HBM4E(27년). 세대가 바뀔 때마다 프로브카드를 새로 사야 함</p>
+<p class="d">- 티에스이는 삼성 HBM4 공급 시작(26.1Q) + HBM4·4E 개발 진행 중. 메모리 3사(삼성·하이닉스·마이크론) HBM을 다 뚫음</p>
+<h3>아이디어 2. 점유율 3~4% → 늘어날 자리</h3>
+<p class="d">- 폼팩터·일본 업체 자리를 가져오는 중. 마이크론·CXMT처럼 해외 고객이 이미 매출의 2/3</p>
+<p class="d">- 생산능력을 26년 3,000억 → 27년 4,000억 원으로 늘리는 중 → 회사 스스로 27년 +30% 이상을 보고 있다는 뜻</p>
+<h3>아이디어 3. 같은 업종인데 PER은 절반</h3>
+<p class="d">- 27년 PER 9.7배 vs 폼팩터 19배, 테크노프로브 25배. 성장률은 비슷하거나 더 높음</p>
+<p class="d">- 재료(PCB·핀)를 자회사가 만드는 구조라 납기 경쟁력 있음. 이익률도 이미 경쟁사(30%대) 근처까지 올라옴</p>
+
+<h2>■ 리스크 (반대 논리)</h2>
+<p class="d">- <b>① 메모리 사이클 정점</b>: 하이닉스가 고점 대비 -61%. 시장은 "메모리 호황이 끝나간다"에 베팅 중. 그렇게 되면 27년 EPS 16,752원(+26%)은 크게 깎일 수 있음. 과거 2018·2022년에 주가 -50~-60%</p>
+<p class="d">- <b>② AI 투자 규제·축소</b>: 미국 민주당의 데이터센터 규제, 빅테크 투자 축소 → HBM 수요 성장률 둔화</p>
+<p class="d">- <b>③ 하반기 성장 정체</b>: 3·4분기 예상 영업이익이 2분기와 비슷. 성장주에서 "성장 멈춘 회사"로 보이면 멀티플이 내려감</p>
+<p class="d">- <b>④ 증설 부담</b>: 26~27년 생산능력을 크게 늘리는데 주문이 줄면 고정비가 이익률을 깎음 (23년 적자 때처럼)</p>
+<p class="d">- <b>⑤ 중국 비중</b>: CXMT·YMTC·중국 법인 매출 → 미국의 중국 반도체 제재가 세지면 영향</p>
+<p class="d">- <b>⑥ 수급·변동성</b>: 하루 ±15%. 시총 1.8조 코스닥 소부장이라 시장이 흔들리면 실적과 상관없이 더 빠짐</p>
+<p class="d">- <b>⑦ 희석</b>: CB 3.65% (전환가 23.9만, 27.7월부터). 자회사(메가터치·타이거일렉)도 3자배정·CB로 자금 조달 중</p>
+
+<h2>■ 그래서 살 이유가 되나? (4가지로 따져봄)</h2>
+<p>"좋은 회사"랑 "지금 살 이유"는 다른 얘기라, 살 이유가 되는 논리 4개를 하나씩 대봄.</p>
+
+<h3>① 경쟁사보다 싼가? → <span style="color:#00A36C">예</span></h3>
+<p class="d">- 27년 PER 9.7배. 폼팩터 19.1배, 테크노프로브 25.0배, MJC 13.0배보다 낮음</p>
+<p class="d">- 회사 크기(시총 1.8조)가 작고 코스닥이라 할인받는 건 있지만, 그걸 감안해도 절반은 과함</p>
+
+<h3>② 성장성에 비해 싼가? → <span style="color:#00A36C">예</span></h3>
+<p class="d">- PEG 0.38 (폼팩터 0.75, 테크노프로브 0.47, MJC 1.44)</p>
+<p class="d">- 단, <b>"27년 EPS +26%"가 맞다는 전제</b>. 3분기 보고서와 메모리 회사들 27년 투자계획으로 확인 필요</p>
+
+<h3>③ 자기 과거보다 싼가? → <span style="color:#E8A87C">조금</span></h3>
+<p class="d">- 26년 PER 12.2배 vs 과거 평균 14배 안팎. 약간 쌈</p>
+<p class="d">- 근데 불황 땐 8배까지 갔음. 사이클 꺾이면 아직 내려갈 자리가 있음</p>
+
+<h3>④ 손익비가 좋은 자리인가? → <span style="color:#E8A87C">보통, 13만 원대면 좋음</span></h3>
+<div class="box"><table>
+<tr><th style="width:20%">시나리오</th><th>가정</th><th>가격</th><th>16.2만 기준</th><th>13만 기준</th></tr>
+<tr><td><b>좋을 때</b></td><td>27년 EPS 16,752 × PER 15배 (과거 평균 약간 위)</td><td class="c">약 25만</td><td class="c" style="color:#00A36C"><b>+55%</b></td><td class="c" style="color:#00A36C"><b>+93%</b></td></tr>
+<tr><td>보통</td><td>27년 EPS × 12배</td><td class="c">약 20만</td><td class="c">+24%</td><td class="c">+55%</td></tr>
+<tr><td><b>나쁠 때</b></td><td>26년 EPS 13,332 × PER 8배 (22년 불황 멀티플)</td><td class="c">약 10.7만</td><td class="c" style="color:#D9534F"><b>-34%</b></td><td class="c" style="color:#D9534F"><b>-18%</b></td></tr>
+<tr><td><b>손익비</b></td><td></td><td></td><td class="c"><b>1.6 : 1</b></td><td class="c"><b>5 : 1</b></td></tr>
+</table></div>
+<p class="d">- 지금 가격도 삼성바이오(1.3 : 1)보다는 나음. 13만 원대로 오면 확실히 좋은 자리</p>
+<p class="d">- "나쁠 때"는 27년 이익이 26년 수준에서 멈추고 멀티플도 불황 수준으로 가는 경우. 23년처럼 적자까지 가면 더 아래</p>
+<div class="note"><span class="nt">요약</span>4개 중 2개(경쟁사 대비, 성장 대비)는 확실히 예. 과거 대비는 조금, 손익비는 지금 1.6 : 1이고 13만이면 5 : 1. 전부 "27년 이익이 유지된다"는 전제가 걸려 있어서 그걸 확인하는 게 다음 단계.</div>
+
+<h2>■ 체크리스트 (2026.11 기준)</h2>
+<div class="box"><table>
+<tr><th style="width:36%">질문</th><th style="width:12%">답</th><th>근거</th></tr>
+<tr><td>사업을 한 문장으로 설명할 수 있나</td><td class="c">O</td><td>반도체 검사할 때 꽂는 소모품(프로브카드·보드·소켓) 회사</td></tr>
+<tr><td>크는 산업인가</td><td class="c">O</td><td>프로브카드 시장 연 10%, HBM은 더 빠름</td></tr>
+<tr><td>점유율이 오르고 있나</td><td class="c">O</td><td>25년 프로브카드 +79% (시장 +10%), 메모리 3사 HBM 진입</td></tr>
+<tr><td>이익률이 좋아지고 있나</td><td class="c">O</td><td>11.5% → 27~28%</td></tr>
+<tr><td>빚이 적나</td><td class="c">O</td><td>순현금 거의 0, CB는 이자 0%</td></tr>
+<tr><td>희석 위험이 작나</td><td class="c">△</td><td>CB 3.65% (전환가 23.9만, 리픽싱 없음)</td></tr>
+<tr><td>수주잔고가 늘고 있나</td><td class="c">?</td><td>2분기까지 O (845억). <b>3분기 확인 필요</b></td></tr>
+<tr><td>경쟁사 대비 싼가</td><td class="c">O</td><td>27년 PER 9.7 vs 13~25</td></tr>
+<tr><td>추세가 살아 있나</td><td class="c">X</td><td>50일선(26.1만)·200일선(19.0만) 모두 아래</td></tr>
+<tr><td>업종 분위기</td><td class="c">X</td><td>반도체 6월 고점 후 하락 중, AI 투자 의심 국면</td></tr>
+</table></div>
+
+<h2>■ 결론 : 지금 살 때인가, 기다릴 때인가</h2>
+<p><b>내 결론은 "좋은 가격대에 들어옴. 숫자 하나 확인하고 나눠서 매수".</b></p>
+<p class="d">- 경쟁사 대비로도, 성장 대비로도 쌈. 회사 악재는 없고 업종 급락에 같이 빠진 것</p>
+<p class="d">- 근데 시장이 걱정하는 게 바로 "내년 메모리 투자" = 티에스이 내년 이익이라, <b>싼 이유가 아예 없는 건 아님</b></p>
+<p class="d">- 그리고 지금은 하루 -15%씩 빠지는 중. 50일선·200일선 다 깨짐 → 떨어지는 칼 잡는 자리</p>
+<p class="d">- 그래서 한 번에 사지 말고, <span class="m">3분기 보고서의 수주잔고로 "27년 이익이 유지되나"를 확인하고 나눠서</span></p>
+
+<h3>기다리면서 확인할 것 (순서대로)</h3>
+<div class="box"><table>
+<tr><th style="width:18%">시기</th><th>이벤트</th><th style="width:36%">좋은 신호</th></tr>
+<tr><td class="c">11월 중순<br>(~11/16)</td><td>3분기 분기보고서 (실적 + 수주상황)</td><td>영업이익 500억 이상, <b>프로브카드 수주잔고 800억대 유지·증가</b></td></tr>
+<tr><td class="c">11~12월</td><td>증권사 목표가 조정</td><td>목표가는 내려도 27년 EPS 추정은 유지</td></tr>
+<tr><td class="c">12월 중순</td><td>마이크론 분기 실적 (회계 1분기)</td><td>HBM·D램 설비투자 전망 유지·상향</td></tr>
+<tr><td class="c">27년 1월 말</td><td>삼성전자·SK하이닉스 4분기 실적 + 27년 투자계획</td><td>27년 메모리 Capex 증가, HBM4E 양산 일정</td></tr>
+<tr><td class="c">27년 3월</td><td>HBM 테스트 핸들러 개발 완료 목표</td><td>신제품 매출 시작</td></tr>
+<tr><td class="c">27.7.22~</td><td>CB 전환 청구 시작</td><td>(주가 23.9만 위면 전환 매물 주의)</td></tr>
+</table></div>
+
+<h3>가격으로 보면</h3>
+<p class="d">- <b>지금(16.2만)</b>: 3분기 수주잔고 800억대 확인되면 1차 매수 (손익비 1.6 : 1)</p>
+<p class="d">- <b>13만 원대</b> (26년 PER 약 10배): 확인 전이라도 1차 분할 매수 고려 (손익비 5 : 1)</p>
+<p class="d">- <b>10.7만 원 아래</b> (불황 멀티플 8배): 시장이 "이익 꺾임"을 다 반영한 가격. 수주잔고가 유지되면 적극 매수, 줄면 보류</p>
+<p class="d">- 증권사 목표가 38~40만 원은 주가 반토막 전 숫자라 참고만</p>
+<div class="note"><span class="nt">요약</span>"싸졌다, 근데 확인 하나 하고 산다." 확인 순서: 11월 중순 3분기 수주잔고 → 12월 마이크론 → 1월 말 삼성·하이닉스 27년 투자계획. 가격은 13만 원대면 확인 전이라도 1차.</div>
+
+<div class="quote">이익은 4배가 됐고 주가는 반토막. 싸진 건 맞는데, 시장은 "내년 이익이 꺾인다"에 걸고 있음. 수주잔고가 그 걱정을 깨 주는지 보고, 나눠서.</div>
+
+<div class="hr"></div>
+
+<div class="part">부록</div>
+<h2>■ 관련 기사·공시 링크</h2>
+<h3>티에스이 공시 (DART)</h3>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814002616" target="_blank">반기보고서 2026.06 (고객사·경쟁사·수주잔고·부문 실적)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260515001493" target="_blank">1분기 보고서 2026.03</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318000738" target="_blank">사업보고서 2025.12</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260710000416" target="_blank">전환사채권 발행결정 1,000억 원 (2026.07.10)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251015000417" target="_blank">자기주식 처분결정 27.6만 주 (2025.10.15 정정)</a></p>
+<h3>티에스이 기사</h3>
+<p class="d">- <a href="https://www.thelec.kr/news/articleView.html?idxno=51084" target="_blank">디일렉 — 티에스이, HBM 프로브카드 '메모리 3사' 뚫었다</a></p>
+<p class="d">- <a href="https://www.sisajournal-e.com/news/articleView.html?idxno=423618" target="_blank">시사저널e — 삼성전자·SK하이닉스 HBM4·4E 프로브카드 공급 가속</a></p>
+<p class="d">- <a href="https://www.market-ink.co.kr/news/articleView.html?idxno=12766" target="_blank">마켓잉크 — 낸드 넘어 HBM까지, 메모리 3사 고객 확보 (2026.10)</a></p>
+<p class="d">- <a href="https://www.bloter.net/news/articleView.html?idxno=668171" target="_blank">블로터 — 1000억 선투자…HBM 수요 잡을까 (CB·증설)</a></p>
+<p class="d">- <a href="https://www.newspim.com/news/view/20260921000574" target="_blank">뉴스핌 — 생산능력 확충 나선 반도체 소부장, 자금 조달안 갈렸다 (2026.09.21)</a></p>
+<p class="d">- <a href="https://www.newspim.com/news/view/20260702000071" target="_blank">뉴스핌 — DS투자 목표가 36만 원 (2026.07.02)</a></p>
+<p class="d">- <a href="https://v.daum.net/v/20260710060003675" target="_blank">'HBM 확대·고객사 증가'…티에스이, 구조적 성장 궤도 진입 (2026.07.10)</a></p>
+<p class="d">- <a href="https://www.joongangenews.com/news/articleView.html?idxno=559481" target="_blank">중앙이코노미뉴스 — 10/29 장중 -6.9%</a></p>
+<h3>반도체 급락 관련</h3>
+<p class="d">- <a href="https://news.mtn.co.kr/news-detail/2026070217314287016" target="_blank">MTN — SK하이닉스 역대 최대 폭락, 코스피 시총 534조 증발 (7/2)</a></p>
+<p class="d">- <a href="https://news.bizwatch.co.kr/article/market/2026/10/20/0031/" target="_blank">비즈워치 — 10월 중순 반도체 급락 (CXMT 추격 우려)</a></p>
+<p class="d">- <a href="https://www.g-enews.com/article/Securities/2026/11/20261106095122655544093b5d4e_1" target="_blank">글로벌이코노믹 — 삼성전자·SK하이닉스, 美 기술주 폭락에 동반 급락 (11/6)</a></p>
+<p class="d">- <a href="https://biz.sbs.co.kr/article/20000344838" target="_blank">SBS Biz — 이틀간 삼전 13%·닉스 18% 폭락 (11/6)</a></p>
+<p class="d">- <a href="https://newspim.com/news/view/20261106000831" target="_blank">뉴스핌 — 주가는 급락, 빚은 그대로…'빚투' 수급 비상 (11/6)</a></p>
+<h3>시장 규모·경쟁사</h3>
+<p class="d">- <a href="https://www.marketresearch.com/Mordor-Intelligence-LLP-v4018/Probe-Card-Size-Share-Growth-39650307" target="_blank">Mordor Intelligence — Probe Card Market (2025~2030)</a></p>
+<p class="d">- <a href="https://www.gii.tw/report/ires1717734-probe-cards-market-by-product-type-material-type.html" target="_blank">360iResearch — Probe Cards Market</a></p>
+<p class="d">- <a href="https://www.meticulousresearch.com/product/probe-cards-market-6920" target="_blank">Meticulous Research — 폼팩터·테크노프로브·MJC HBM 실적 요약</a></p>
+<p class="d">- 증권사 목표가: <a href="https://t.me/s/ked_epic_ai" target="_blank">텔레그램 ked_epic_ai</a></p>
+
+<div class="end">숫자는 2026.11.6 종가·컨센서스, 2026 반기보고서 기준. 3분기 보고서(11월 중순) 나오면 실적·수주잔고 업데이트 예정.<br>개인 공부 기록이며 투자 권유가 아닙니다.</div>
+</div>
+</body>
+</html>
