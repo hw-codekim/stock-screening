@@ -27,6 +27,7 @@
             ["market-indicators.html", "시장지표"],
             ["option-pcr.html", "옵션PCR"],
         ] },
+        { name: "기업분석", href: "company.html", pages: [["company.html", "기업분석"]] },
         { name: "기타", pages: [
             ["tw-revenue.html", "대만월매출"],
         ] },
@@ -37,6 +38,7 @@
     const path = location.pathname;
     let current = path.substring(path.lastIndexOf("/") + 1) || "index.html";
     if (/\/analysis\/[^/]+\.html$/.test(path)) current = "analysis.html";   // 종목분석 개별 페이지
+    if (/\/company\/[^/]+\.html$/.test(path)) current = "company.html";     // 기업분석 개별 페이지
 
     const activeGroup = NAV_GROUPS.findIndex(g => g.pages.some(p => p[0] === current));   // -1 = 메뉴에 없는 페이지
 

@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>삼성바이오로직스 기업분석 - 오늘의 시장</title>
+<style>
+/* Layout: 네이버 블로그 글 한 편처럼. 가운데 좁은 본문, ■ 소제목, 개조식 문장, 회색 테두리 표, 민트 형광펜 */
+:root{
+  --bg:#FFFFFF; --fg:#222222; --sub:#464646; --muted:#888888; --line:#E3E3E3; --cell:#F7F7F7;
+  --mark:#C2F4DB; --point:#00A36C; --warn:#D9534F;
+  --font:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",sans-serif;
+  color-scheme:light;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:16px;line-height:1.85}
+.post{max-width:760px;margin:0 auto;padding-block:36px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.cat{font-size:13px;color:var(--point)}
+h1{font-size:28px;font-weight:700;margin:6px 0 10px;line-height:1.4;text-wrap:balance}
+.meta{font-size:13px;color:var(--muted);padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:28px}
+p{margin:0 0 4px;color:var(--sub)}
+.gap{height:22px}
+h2{font-size:19px;font-weight:700;margin:34px 0 10px;color:var(--fg)}
+h3{font-size:16px;font-weight:700;margin:18px 0 4px;color:var(--fg)}
+.d{padding-left:12px;text-indent:-12px}
+.m{background:var(--mark);padding:0 2px}
+b{color:var(--fg)}
+.hr{width:120px;height:1px;background:#BBBBBB;margin:40px auto}
+.box{overflow-x:auto;margin:12px 0 6px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;line-height:1.6}
+th,td{border:1px solid #D6D6D6;padding:8px 10px;text-align:left;vertical-align:top;color:var(--sub)}
+th{background:var(--cell);color:var(--fg);font-weight:700;text-align:center}
+td.c{text-align:center}
+.flow{font-size:15px;border:1px solid #D6D6D6;padding:14px 16px;margin:12px 0;line-height:2.1;color:var(--sub);overflow-x:auto}
+.flow span{white-space:nowrap}
+.flow .me{background:var(--mark);font-weight:700;color:var(--fg);padding:0 3px}
+.quote{border-left:3px solid #BBBBBB;padding:4px 0 4px 14px;margin:14px 0;color:var(--sub);font-size:15px}
+a{color:#1F6FA8;text-decoration:underline;word-break:break-all}
+.chart{border:1px solid #D6D6D6;padding:12px;margin:12px 0 6px;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:500px;height:auto}
+.chart text{font-family:var(--font);font-size:12px;fill:#666666}
+.part{margin:44px 0 -18px;font-size:13px;font-weight:700;color:var(--point);letter-spacing:.5px;border-bottom:2px solid var(--point);padding-bottom:4px}
+.part span{font-weight:400;color:var(--muted);margin-left:6px}
+.note{background:#FFF9E6;border:1px dashed #E2C46B;padding:8px 12px;margin:14px 0 4px;font-size:14px;line-height:1.7;color:#5C4A16}
+.note .nt{display:block;font-size:12px;font-weight:700;color:#A67C00;margin-bottom:2px}
+.tog{display:inline-block;font-size:13px;color:var(--muted);margin:-14px 0 18px;cursor:pointer}
+body:has(#nt:not(:checked)) .note{display:none}
+.small{font-size:13px;color:var(--muted)}
+.end{margin-top:48px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.7}
+.topbar{max-width:760px;margin:0 auto;padding:14px 16px 0;display:flex;gap:18px;font-size:13px}
+.topbar a{color:#888;text-decoration:none}
+.topbar a:hover{color:#1F6FA8;text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../company.html">← 기업분석 목록</a><a href="../index.html">오늘의 시장 홈</a></div>
+<div class="post">
+
+<div class="cat">공부 노트 · 바이오</div>
+<h1>삼성바이오로직스 공부 - 약 산업 구조부터 경쟁사·멀티플·결론까지</h1>
+<div class="meta">2026. 11. 6. · 개인 공부 기록용이며, 매수/매도 추천 아닙니다.</div>
+<label class="tog"><input type="checkbox" id="nt" checked> 요약 보기 (화면 공유할 땐 끄기)</label>
+
+<p>삼성바이오로직스를 보려고 하는데, 막상 보니 CDMO, 바이오시밀러, 제네릭 같은 말부터 헷갈려서 산업 구조부터 정리함.</p>
+<p>제약 쪽을 전혀 모르는 사람 기준으로 최대한 쉽게 적어봄.</p>
+
+<div class="part">PART 0 · 결론 먼저 <span>약 30초</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 한 줄 요약</h2>
+<p class="d">- 약은 <b>개발하는 회사</b>, <b>파는 회사</b>, <b>대신 만들어 주는 회사</b>가 나눠서 일함</p>
+<p class="d">- 삼성바이오로직스는 <span class="m">남의 약을 대신 만들어 주는 공장(CDMO)</span></p>
+<p class="d">- 반도체로 치면 TSMC 같은 위치</p>
+<p class="d">- 실적은 좋은데 올해 주가는 약함. 상반기 수주 공백 + 새 공장(5공장) 가동률 70% 구간</p>
+<p class="d">- <b>결론 먼저: 좋은 회사지만 지금 가격(151.6만)은 "기다림".</b> 수주잔고가 다시 늘거나 120만 원 근처로 오면 나눠서 매수</p>
+<div class="note"><span class="nt">요약</span>결론부터 말하고 시작. "좋은 회사인데 지금 가격은 기다릴 자리다. 왜 그런지 산업 → 회사 → 경쟁사 → 주가 → 밸류에이션 순서로 설명하겠다."</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 1 · 산업 이해 <span>약 2분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 약이 환자한테 오기까지</h2>
+<div class="flow">
+<span>① 약 후보 발견</span> → <span>② 동물·사람 시험 (10년 가까이)</span> → <span class="me">③ 공장에서 대량 생산</span> → <span>④ 허가 받고 판매</span> → <span>⑤ 병원·환자</span>
+</div>
+<div class="box"><table>
+<tr><th style="width:22%">구분</th><th>하는 일</th><th style="width:34%">대표 회사</th></tr>
+<tr><td><b>신약 개발사</b><br>(바이오텍)</td><td>새로운 약 후보를 찾음. 보통 작은 회사라 큰 회사에 기술을 팔거나 같이 개발함</td><td>Alnylam, 국내 바이오벤처들</td></tr>
+<tr><td><b>빅파마</b></td><td>개발 + 임상 + 판매까지 다 함. 공장도 있지만 모자라면 외주를 줌</td><td>일라이 릴리, J&amp;J, 화이자, 머크, 노보 노디스크</td></tr>
+<tr><td><span class="m"><b>CDMO</b></span></td><td>빅파마·바이오텍의 약을 대신 개발(생산 방법 설계)하고 대신 만들어 줌. 약의 특허는 고객 것</td><td>삼성바이오로직스, Lonza, WuXi Biologics</td></tr>
+<tr><td><b>장비·소재</b></td><td>공장에 배양기, 배지, 필터 같은 기계·재료를 팜</td><td>Thermo Fisher, Sartorius, Danaher</td></tr>
+</table></div>
+<p class="small">* 빅파마 = 애플·엔비디아(설계하고 파는 곳), CDMO = TSMC(대신 만드는 곳)라고 생각하면 편함</p>
+
+<h3>용어 정리</h3>
+<p class="d">- CMO : 생산만 대신 해줌 (= 위탁생산)</p>
+<p class="d">- CDMO : 개발 + 생산 (= 위탁개발생산). 삼성바이오로직스는 CMO로 시작해서 지금은 CDMO</p>
+<p class="d">- 공시에는 여전히 "의약품 위탁생산계약"이라고 나옴. 같은 말로 봐도 무방</p>
+<div class="note"><span class="nt">요약</span>약은 개발·생산·판매가 나뉘어 있고 삼성은 그중 <b>생산만</b> 한다는 것만 기억시키면 됨. 반도체의 TSMC 비유. 신약 개발 실패 위험을 직접 지지 않는다는 점이 포인트.</div>
+
+<div class="hr"></div>
+
+<h2>■ 약은 어떻게 구분하나</h2>
+<p>크게 보면 <span class="m">화학으로 만드느냐, 세포로 만드느냐</span> 차이.</p>
+<p class="d">- <b>화학 합성</b> : 화학 물질을 반응시켜서 조립. 작고 단순해서 똑같이 따라 만들기 쉬움</p>
+<p class="d">- <b>세포 배양</b> : 살아있는 세포를 큰 탱크(배양기)에서 키우면 세포가 약(단백질)을 만들어 냄. 크고 복잡해서 똑같이 만들기 매우 어려움</p>
+<div class="box"><table>
+<tr><th style="width:17%">종류</th><th style="width:15%">만드는 방법</th><th>대표 약</th><th style="width:32%">만드는 곳 (CDMO)</th></tr>
+<tr><td><b>합성의약품</b></td><td class="c">화학 합성</td><td>아스피린, 타이레놀, 대부분의 알약</td><td>WuXi AppTec, Asymchem, SK팜테코</td></tr>
+<tr><td><b>바이오의약품</b></td><td class="c">세포 배양</td><td>키트루다(항암), 휴미라(자가면역)</td><td><span class="m">삼성바이오로직스</span>, Lonza, WuXi Biologics, Fujifilm</td></tr>
+<tr><td><b>펩타이드</b></td><td class="c">화학 합성</td><td>위고비, 마운자로 (비만약)</td><td>Bachem, PolyPeptide</td></tr>
+<tr><td><b>올리고</b></td><td class="c">화학 합성</td><td>레크비오, 스핀라자 (유전자 조절)</td><td>에스티팜, Agilent</td></tr>
+<tr><td><b>백신</b></td><td class="c">세포·mRNA 등</td><td>독감·코로나·폐렴구균 백신</td><td>SK바이오사이언스, Lonza</td></tr>
+</table></div>
+<p class="small">* 펩타이드는 바이오처럼 보이지만 대부분 화학으로 만듦. 그래서 원래 비만약은 삼성바이오로직스와 거리가 있었는데, 2026년 7월 펩타이드 CDMO PolyPeptide 인수를 결정함</p>
+
+<h3>만드는 방법 ≠ 약 모양</h3>
+<p>헷갈리기 쉬운 부분. <span class="m">약은 모양(알약·주사)이 아니라 만드는 방법으로 나뉨.</span> 둘은 따로 놂.</p>
+<div class="box"><table>
+<tr><th style="width:22%"></th><th>알약</th><th>주사</th></tr>
+<tr><td><b>화학 합성 약</b></td><td>대부분 여기 (엘리퀴스, 타이레놀, 고혈압약)</td><td>있음 (항암 화학요법, 주사 항생제, 마취제)</td></tr>
+<tr><td><b>바이오 약</b></td><td>거의 없음</td><td>대부분 여기 (휴미라, 키트루다, 인슐린)</td></tr>
+<tr><td><b>펩타이드</b> (중간)</td><td>일부 있음 (먹는 비만약 리벨서스)</td><td>대부분 여기 (위고비, 마운자로)</td></tr>
+</table></div>
+<p class="d">- 바이오 약은 단백질이라 먹으면 위에서 고기처럼 소화돼 버림 → 그래서 주사로 바로 넣음 (집에서 놓는 피하주사, 병원에서 맞는 정맥주사)</p>
+<p class="d">- 펩타이드는 소화를 막는 첨가제를 넣어 알약으로 만든 사례가 생기는 중 → 요즘 "먹는 비만약" 경쟁 뉴스가 이것</p>
+<p class="d">- 알약·주사 말고도 흡입(천식약), 패치(니코틴), 연고·안약·좌약 같은 모양이 있음</p>
+<div class="note"><span class="nt">요약</span>화학 합성 약은 공장 짓기 쉽고, 바이오 약(세포로 키움)은 어렵다 → 진입장벽. 삼성은 바이오 약만 만든다. 약은 모양(알약·주사)이 아니라 만드는 방법으로 나뉘고, 바이오 약은 먹으면 소화돼서 거의 다 주사.</div>
+
+<div class="hr"></div>
+
+<h2>■ 공장(CDMO)은 언제 정하나</h2>
+<p>처음엔 약 개발이 끝나고 팔 수 있게 되면 공장에 맡기는 줄 알았는데 아니었음.</p>
+<p class="d">- <span class="m">출시 2~4년 전에 이미 공장을 정함</span></p>
+<p class="d">- 허가 심사 때 "어느 공장에서 어떻게 만드는지"까지 같이 심사하기 때문</p>
+<p class="d">- 나중에 공장을 바꾸면 다시 검증·승인 받아야 해서 1~2년 걸림 → 한 번 정하면 오래 같이 감 (그래서 장기계약 구조)</p>
+<div class="box"><table>
+<tr><th style="width:22%">단계</th><th style="width:20%">출시까지</th><th>CDMO가 하는 일</th><th style="width:18%">계약 규모</th></tr>
+<tr><td>동물 실험</td><td class="c">7~10년 전</td><td>생산 방법(공정) 설계</td><td class="c">작음</td></tr>
+<tr><td>임상 1~2상</td><td class="c">4~7년 전</td><td>임상 시험용 약 생산</td><td class="c">작음~중간</td></tr>
+<tr><td>임상 3상</td><td class="c">2~4년 전</td><td>대량 생산 준비(기술 이전)</td><td class="c">중간</td></tr>
+<tr><td>허가 심사</td><td class="c">0~2년 전</td><td>검증용 생산, 규제기관 공장 실사</td><td class="c"><b>큼 (5~10년 계약)</b></td></tr>
+<tr><td>판매 중</td><td class="c">출시 후</td><td>상업 물량 생산, 증량</td><td class="c"><b>가장 큼</b></td></tr>
+</table></div>
+<div class="note"><span class="nt">요약</span>공장은 임상 3상쯤 정하고, 한 번 정하면 바꾸기 어렵다 → 그래서 10년짜리 장기계약이 되고, <b>수주잔고</b>가 이 회사의 핵심 숫자가 된다. 뒤의 수주잔고 얘기로 연결.</div>
+
+<div class="hr"></div>
+
+<h2>■ 특허가 끝나면 → 복제약</h2>
+<p>빅파마는 특허로 출시 후 대략 10~12년 혼자 팜. 특허가 끝나면 다른 회사도 만들 수 있음.</p>
+<p>어떤 복제약이 나오는지는 <b>원래 약을 어떻게 만들었는지</b>에 따라 정해짐.</p>
+<div class="box"><table>
+<tr><th style="width:20%"></th><th>제네릭</th><th>바이오시밀러</th></tr>
+<tr><td><b>원래 약</b></td><td>합성의약품 (화학)</td><td>바이오의약품 (세포)</td></tr>
+<tr><td><b>얼마나 같나</b></td><td>구조가 완전히 똑같음</td><td>똑같이는 못 만들고 매우 비슷함</td></tr>
+<tr><td><b>개발 비용·기간</b></td><td>수억~수십억 원, 1~3년</td><td>수천억 원, 5~8년</td></tr>
+<tr><td><b>경쟁 회사 수</b></td><td>수십 곳</td><td>몇 곳</td></tr>
+<tr><td><b>가격 (원래 약 = 100)</b></td><td class="c"><b>10~20</b></td><td class="c"><b>50~70</b></td></tr>
+<tr><td><b>대표 회사</b></td><td>Teva, Sandoz, 국내 제약사 다수</td><td>셀트리온, 삼성에피스, Sandoz, Amgen</td></tr>
+</table></div>
+<p class="d">- 제네릭이 나오면 빅파마는 미국에선 값을 거의 안 내리고 시장을 내줌 (1년 안에 물량 대부분 잃음)</p>
+<p class="d">- 바이오는 경쟁자가 적어서 보험사에 리베이트를 주며 버팀. 휴미라는 바이오시밀러 나온 뒤에도 한동안 점유율 대부분 유지</p>
+<p class="d">- 한국은 건강보험 제도로 오리지널 약값이 자동으로 내려감</p>
+
+<h3>앞으로 특허 끝나는 큰 약들 (대략)</h3>
+<div class="box"><table>
+<tr><th style="width:14%">약</th><th style="width:22%">어떤 약</th><th style="width:16%">회사</th><th style="width:11%">종류</th><th>미국 복제약</th></tr>
+<tr><td>휴미라</td><td>자가면역(류마티스 관절염) 주사</td><td>애브비</td><td class="c">바이오</td><td>2023년 출시</td></tr>
+<tr><td>스텔라라</td><td>건선·크론병 주사</td><td>J&amp;J</td><td class="c">바이오</td><td>2025년 출시</td></tr>
+<tr><td>키트루다</td><td>면역항암제</td><td>머크</td><td class="c">바이오</td><td><b>2028년 전후</b> (세계 매출 1위 약)</td></tr>
+<tr><td>옵디보</td><td>면역항암제</td><td>BMS</td><td class="c">바이오</td><td>2028년 전후</td></tr>
+<tr><td>엘리퀴스</td><td>혈전 예방(피 굳는 것 막는 알약)</td><td>BMS·화이자</td><td class="c">합성</td><td>2028년 전후</td></tr>
+</table></div>
+
+<h3>특허 끝나면 회사 매출은 어떻게 되나</h3>
+<p><b>이미 끝난 약 (실제 결과)</b></p>
+<div class="box"><table>
+<tr><th style="width:24%">약 / 회사</th><th>약 매출</th><th>회사 전체 매출</th></tr>
+<tr><td>휴미라 / 애브비</td><td>2022년 212억$ → 2023년 144억$ → 2024년 90억$ <b>(2년 만에 -58%)</b></td><td>581억$ → 543억$ → 563억$ → 612억$(2025). 1년 빠졌다가 회복</td></tr>
+<tr><td>스텔라라 / J&amp;J</td><td>2023년 109억$ 정점 → 2025년 복제약 출시 후 분기 매출 -30~40%대 감소</td><td>852억$ → 888억$ → 942억$(2025). 오히려 계속 늘어남</td></tr>
+</table></div>
+<p class="d">- 약 하나 매출은 복제약 나오고 <b>2년 안에 반 토막</b> 나는 게 보통</p>
+<p class="d">- 그래도 회사 전체 매출이 크게 안 빠진 건 <span class="m">미리 다음 약을 키워놨기 때문</span> (애브비는 스카이리치·린버크, J&amp;J는 항암제·트렘피어)</p>
+
+<p style="margin-top:14px"><b>앞으로 끝날 약 (회사 매출에서 차지하는 비중, 2024년)</b></p>
+<div class="box"><table>
+<tr><th style="width:24%">약 / 회사</th><th>약 매출</th><th>회사 매출 중 비중</th></tr>
+<tr><td>키트루다 / 머크</td><td>약 295억$</td><td class="c"><b>약 46%</b> (매출 642억$)</td></tr>
+<tr><td>엘리퀴스 / BMS</td><td>약 133억$</td><td class="c">약 28% (매출 483억$)</td></tr>
+<tr><td>옵디보 / BMS</td><td>약 93억$</td><td class="c">약 19%</td></tr>
+<tr><td>엘리퀴스 / 화이자</td><td>약 74억$</td><td class="c">약 12% (매출 636억$)</td></tr>
+</table></div>
+<p class="small">회사 전체 매출: 야후 파이낸스 연간 재무제표. 약별 매출: 각 사 연간 실적 발표 기준 대략값</p>
+<p class="d">- 머크는 매출 절반이 키트루다 하나라 2028년이 제일 큰 고비. 그래서 빅파마들이 신약·M&amp;A를 서두르는 중</p>
+<p class="d">- 삼성 입장에선: 오리지널 물량은 줄 수 있지만, <b>바이오시밀러 물량 + 빅파마가 새로 미는 신약 물량</b>이 생김 → 고객이 누구냐가 중요</p>
+<div class="note"><span class="nt">요약</span>특허 끝나면 바이오시밀러가 나오는데, 삼성 입장에선 오리지널이든 복제약이든 둘 다 일감. 휴미라 예시 하나만: "약 매출은 2년 만에 -58%인데 애브비 전체 매출은 1년 뒤 회복 — 다음 약을 미리 키워놔서." 머크는 키트루다가 매출의 46%라 2028년이 고비.</div>
+
+<div class="hr"></div>
+
+<h2>■ 삼성바이오로직스는 뭘 만들 수 있나</h2>
+<p>기준은 하나. <span class="m">세포로 키우는 약이면 만들 수 있음.</span> 새 약이든 복제약이든 상관없음.</p>
+<p class="d">- 빅파마의 새 바이오 약 → 가능 (매출 대부분이 여기)</p>
+<p class="d">- 바이오시밀러 → 가능</p>
+<p class="d">- ADC(항체에 항암 약 붙인 것) → 가능, 2025년 3월 전용 시설 가동</p>
+<p class="d">- 화학 합성 약, 제네릭 → 불가</p>
+<p class="d">- 비만약(펩타이드) → 지금은 아님. PolyPeptide 인수(26년 말 완료 예정) 후 시작 = 처음으로 합성 쪽 진출</p>
+<p class="d">- 결과적으로 삼성이 만드는 약은 거의 다 주사제. 원료를 키우는 것 + 주사기·병에 담는 것(완제)까지 함</p>
+<div class="note"><span class="nt">요약</span>"세포로 키우는 약이면 다 된다, 화학 합성 약은 안 한다." 그래서 만드는 약은 거의 다 주사제. PolyPeptide 인수 후엔 펩타이드(합성)도 시작.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 2 · 회사 <span>약 2분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 기업 개요 (한눈에)</h2>
+<div class="box"><table>
+<tr><th style="width:22%">항목</th><th>내용</th></tr>
+<tr><td>시가총액</td><td><b>약 70.2조 원</b> (151.6만 원 × 4,629만 주, 2026.11.6) · 코스피 보통주 5위<br>11/30 신주 상장 후 주식 4,856만 주 → 같은 가격이면 약 73.6조 원</td></tr>
+<tr><td>하는 일</td><td>바이오 의약품 위탁개발·생산(CDMO). 매출의 97.6%가 생산, 2.4%가 개발 서비스</td></tr>
+<tr><td>설립 / 상장</td><td>2011.04 설립 / 2016.11 유가증권시장 상장</td></tr>
+<tr><td>대표</td><td>존 림</td></tr>
+<tr><td>공장</td><td>인천 송도 1~5공장 + 미국 메릴랜드 Rockville (총 84.5만 L)</td></tr>
+<tr><td>매출</td><td>2025년 4조 5,570억 원 → 2026년 회사 전망 5조 4,684억 원 (+20%)</td></tr>
+<tr><td>지역별 매출 (26 상반기)</td><td>유럽 59.3% · 미국 23.1% · 국내 16.7% · 기타 0.9%</td></tr>
+<tr><td>신용등급</td><td>AA (한국신용평가·한국기업평가·NICE)</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서, 2026.10.21 매출 전망 공시, 시총은 종가 기준 직접 계산</p>
+
+<h3>대주주</h3>
+<div class="box"><table>
+<tr><th style="width:30%">주주</th><th>관계</th><th>주식 수</th><th>지분율</th></tr>
+<tr><td><b>삼성물산</b></td><td class="c">최대주주</td><td class="c">1,993만 주</td><td class="c"><b>43.06%</b></td></tr>
+<tr><td><b>삼성전자</b></td><td class="c">계열회사</td><td class="c">1,445만 주</td><td class="c"><b>31.22%</b></td></tr>
+<tr><td>삼성생명(특별계정)</td><td class="c">계열회사</td><td class="c">1.1만 주</td><td class="c">0.03%</td></tr>
+<tr><td>임원 3명 (존 림 외)</td><td class="c">임원</td><td class="c">450주</td><td class="c">0.00%</td></tr>
+<tr><td><b>합계</b></td><td class="c">-</td><td class="c">3,439만 주</td><td class="c"><b>74.30%</b></td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '최대주주 및 특수관계인의 주식소유 현황' (2026.06.30)</p>
+<p class="d">- 삼성 계열사가 74% → 시장에서 실제로 사고팔리는 주식은 약 26%뿐. 그래서 대형주인데도 수급에 따라 주가가 크게 움직이는 편</p>
+<p class="d">- 삼성물산·삼성전자 둘 다 이번 유상증자 참여를 이사회에서 결의함 (10/28, 10/29) → 대주주 지분율은 그대로 유지될 듯</p>
+
+<h3>유상증자 내용</h3>
+<div class="box"><table>
+<tr><th style="width:26%">항목</th><th>내용</th></tr>
+<tr><td>목적</td><td><b>PolyPeptide 인수 자금</b> (타법인 증권 취득 2조 6,650억 원)</td></tr>
+<tr><td>신주 수</td><td>227만 주 (기존 4,629만 주의 약 4.9%)</td></tr>
+<tr><td>발행가</td><td><b>117.4만 원</b> 확정 (기준주가에서 15% 할인)</td></tr>
+<tr><td>방식</td><td>주주배정 후 실권주 일반공모. 1주당 신주 0.0393주 배정, 우리사주 20% 우선배정</td></tr>
+<tr><td>일정</td><td>배정기준일 10/6 → 구주주 청약 11/9~10 → 일반공모 11/12~13 → 납입 11/17 → <b>신주 상장 11/30</b></td></tr>
+<tr><td>주관사</td><td>신한투자·NH투자·한국투자·KB증권</td></tr>
+</table></div>
+<p class="small">출처: <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105000355" target="_blank">주요사항보고서(유상증자결정) 2026.11.05 정정</a></p>
+<p class="d">- 왜 빚 대신 증자? 키움증권 설명으론 3조 원을 빌리면 부채비율이 50%대 → 80%대 후반으로 올라가서 증자를 택함</p>
+<p class="d">- 지금 주가(151.6만)가 발행가보다 29% 높음 → 신주를 받은 사람은 상장일에 바로 차익 실현할 수 있음 = 11월 말 매물 부담</p>
+
+<h3>주요 자회사</h3>
+<div class="box"><table>
+<tr><th style="width:30%">회사</th><th style="width:12%">지분</th><th>하는 일</th></tr>
+<tr><td>Human Genome Sciences, Inc. (미국)</td><td class="c">100%</td><td><b>Rockville 공장</b>(GSK에서 인수, 6만 L). 2026.3.31 인수, 3분기부터 매출 반영. 상반기는 매출 0, 순손실 123억 원 (준비 비용)</td></tr>
+<tr><td>Samsung Biologics America, Inc. (미국)</td><td class="c">100%</td><td>미국 영업·고객 대응 법인</td></tr>
+<tr><td><b>PolyPeptide Group AG</b> (스위스)</td><td class="c">97.98% → 100% 예정</td><td>펩타이드 CDMO (비만약 원료 등). 공개매수 완료, 2026년 말 결제·편입 예정. 약 2.7조 원</td></tr>
+<tr><td>SVIC 54호·64호 신기술투자조합</td><td class="c">33% / 24.8%</td><td>삼성벤처투자가 굴리는 바이오 벤처 투자 펀드</td></tr>
+<tr><td style="color:#888">(분할로 나감) 삼성바이오에피스</td><td class="c" style="color:#888">-</td><td style="color:#888">바이오시밀러 회사. 2025.11 인적분할로 삼성에피스홀딩스 밑으로 → 이제 자회사 아님</td></tr>
+</table></div>
+<p class="small">출처: 2026 반기보고서 '연결대상 종속회사 현황'·'타법인출자 현황', PolyPeptide 공개매수 결과 공시(2026.11.06)</p>
+
+<h3>고객은 대체로 누구인가</h3>
+<p>계약 공시에 고객 이름을 쓰기도 하고, "유럽 소재 제약사"처럼 숨기기도 함. 공개된 것만 모아보면,</p>
+<div class="box"><table>
+<tr><th style="width:24%">고객</th><th style="width:22%">어떤 회사</th><th style="width:12%">공시 건수</th><th style="width:16%">첫 공시</th><th>공시 중 최대 금액</th></tr>
+<tr><td>화이자</td><td>미국 빅파마</td><td class="c">3</td><td class="c">2023.03</td><td class="c">9,227억</td></tr>
+<tr><td>GSK</td><td>영국 빅파마</td><td class="c">14</td><td class="c">2020.05</td><td class="c">7,257억</td></tr>
+<tr><td>로슈</td><td>스위스 빅파마</td><td class="c">8</td><td class="c">2021.01</td><td class="c">6,053억</td></tr>
+<tr><td>일라이 릴리</td><td>미국 빅파마</td><td class="c">5</td><td class="c">2020.10</td><td class="c">5,841억</td></tr>
+<tr><td>노바티스</td><td>스위스 빅파마</td><td class="c">1</td><td class="c">2023.07</td><td class="c">5,111억</td></tr>
+<tr><td>아스트라제네카</td><td>영국 빅파마</td><td class="c">3</td><td class="c">2020.09</td><td class="c">4,393억</td></tr>
+<tr><td>J&amp;J (Cilag)</td><td>미국 빅파마</td><td class="c">4</td><td class="c">2016.11</td><td class="c">4,360억</td></tr>
+<tr><td>UCB</td><td>벨기에 제약사</td><td class="c">4</td><td class="c">2022.12</td><td class="c">4,270억</td></tr>
+<tr><td>BMS</td><td>미국 빅파마</td><td class="c">2</td><td class="c">2023.09</td><td class="c">3,593억</td></tr>
+<tr><td>MSD (머크)</td><td>미국 빅파마</td><td class="c">4</td><td class="c">2022.07</td><td class="c">3,412억</td></tr>
+<tr><td>길리어드</td><td>미국 빅파마</td><td class="c">2</td><td class="c">2018.09</td><td class="c">3,006억</td></tr>
+<tr><td>박스터</td><td>미국 의료기업</td><td class="c">1</td><td class="c">2024.06</td><td class="c">2,509억</td></tr>
+<tr><td>그 외 바이오텍</td><td>Kiniksa, 썬파마, Checkpoint, TG, Immunovant, 룬드벡 등</td><td class="c">-</td><td class="c">-</td><td class="c">수십~2,000억</td></tr>
+</table></div>
+<p class="small">출처: DART 단일판매·공급계약 공시 160건(2016~2026) 직접 집계. 금액은 정정 공시 포함 해당 고객 공시 중 가장 큰 금액</p>
+<p class="d">- 고객은 <span class="m">글로벌 빅파마 대부분 + 일부 중소 바이오텍.</span> 빅파마 위주라 돈 떼일 걱정은 거의 없음</p>
+<p class="d">- 대신 매출이 몇 곳에 몰려 있음. 26년 상반기 매출 상위 고객 비중: A 15.0%, B 14.3%, C 14.0%, D 7.7% → <b>상위 4곳이 매출의 51%</b> (이름은 비공개)</p>
+<p class="d">- 2025년부터는 신규 계약 고객 이름을 <b>전부 숨김</b>. 큰 계약들(25.1 유럽 2조 747억, 25.9 미국 1조 8,001억, 24.10 아시아 1조 7,028억)도 이름 없음</p>
+<p class="d">- 국내 매출 16.7%는 분할 전 같은 회사였던 삼성바이오에피스 물량으로 보임 ("아시아 소재 제약사" 공시가 25건으로 가장 많음, 내 추정)</p>
+<div class="note"><span class="nt">요약</span>시총 70조, 코스피 5위. 삼성물산 43% + 삼성전자 31% = 삼성 계열이 74%. 유상증자는 PolyPeptide 인수 자금 2.7조, 11/30 신주 상장. 자회사는 미국 Rockville 공장, PolyPeptide(연말 편입). 고객은 화이자·GSK·로슈·릴리 같은 빅파마 대부분이고 상위 4곳이 매출 절반.</div>
+
+<div class="hr"></div>
+
+<h2>■ 삼성바이오로직스 히스토리</h2>
+<div class="box"><table>
+<tr><th style="width:16%">시기</th><th>내용</th></tr>
+<tr><td class="c">2011.04</td><td>삼성 + 미국 Biogen 합작으로 설립. 송도에 공장 부지</td></tr>
+<tr><td class="c">2013</td><td>1공장 가동 (3만 리터)</td></tr>
+<tr><td class="c">2015</td><td>2공장 가동 (15.4만 리터)</td></tr>
+<tr><td class="c">2016.11</td><td>유가증권시장 상장</td></tr>
+<tr><td class="c">2018.10</td><td>3공장 완공 (18만 리터). 당시 세계 최대 단일 공장</td></tr>
+<tr><td class="c">2018.11</td><td><b>회계 처리 문제(바이오에피스 지분 평가)로 증선위 제재, 약 3주 거래정지.</b> 주가 고점 대비 -57%까지 빠짐</td></tr>
+<tr><td class="c">2021.05</td><td>모더나 코로나 mRNA 백신 완제 생산 계약</td></tr>
+<tr><td class="c">2022.04</td><td>Biogen 보유 삼성바이오에피스 지분 인수, 100% 자회사로. 유상증자 3조 원대</td></tr>
+<tr><td class="c">2023.06</td><td>4공장 전체 가동 (24만 리터). 총 60.4만 리터</td></tr>
+<tr><td class="c">2023~2025</td><td>화이자, 노바티스, MSD, 일라이 릴리 등 빅파마와 대형 계약 연속. 1조 원 넘는 계약만 여러 건</td></tr>
+<tr><td class="c">2025.03</td><td>ADC 전용 생산시설 가동</td></tr>
+<tr><td class="c">2025.04</td><td>5공장 가동 (18만 리터). 총 78.5만 리터</td></tr>
+<tr><td class="c">2025.11</td><td><b>인적분할</b>: 바이오시밀러 쪽(삼성에피스홀딩스)을 떼어냄 → 삼성바이오로직스는 <span class="m">순수 CDMO 회사</span>가 됨</td></tr>
+<tr><td class="c">2025.11</td><td>송도 제3바이오캠퍼스 부지 계약 (추가 증설 준비)</td></tr>
+<tr><td class="c">2026.03</td><td>미국 메릴랜드 GSK 공장 인수 완료 (6만 리터, 약 0.5조 원). <b>첫 미국 생산 거점</b>. 총 84.5만 리터</td></tr>
+<tr><td class="c">2026.05</td><td><b>창사 첫 노조 파업</b>. 약 20개 배치 생산 차질, 약 1,500억 원 매출 이연</td></tr>
+<tr><td class="c">2026.07</td><td><b>스위스 펩타이드 CDMO PolyPeptide 인수 결정</b> (약 2.7조 원, 전액 현금). 11월 공개매수 97.98% 확보, 12월 말 완료 예정</td></tr>
+<tr><td class="c">2026.08</td><td><b>유상증자 결정</b> 227만 주(기존 주식의 약 4.9%), 인수자금 2.66조 원. 발행가 117.4만 원 확정, 신주 상장 11월 30일</td></tr>
+<tr><td class="c">2026.10</td><td>3분기 매출 1조 4,903억(+18.5%), 영업이익 6,401억(+1.0%). 연간 매출 가이던스 +20%로 상향. 노조 2차 파업 예고 → 법원 가처분 후 무기한 연기</td></tr>
+</table></div>
+<p class="small">출처: 삼성바이오로직스 사업보고서 '회사의 연혁', 분기보고서. 2011~2018년 일부는 일반 공개 정보</p>
+<div class="note"><span class="nt">요약</span>공장 하나씩 늘려온 역사 + 2018년 회계 이슈(-57%) + 2025년 분할로 순수 위탁생산 회사가 됨. <b>올해 굵직한 일 4개</b>(파업, 펩타이드 인수, 유상증자, 3분기 실적)를 짚고 넘어가기.</div>
+
+<div class="hr"></div>
+
+<h2>■ 증설과 가동률</h2>
+<h3>공장 늘어난 순서</h3>
+<div class="box"><table>
+<tr><th style="width:22%">공장</th><th style="width:18%">가동</th><th style="width:20%">규모</th><th>누적 생산능력</th></tr>
+<tr><td>1공장</td><td class="c">2013</td><td class="c">3만 L</td><td class="c">3만 L</td></tr>
+<tr><td>2공장</td><td class="c">2015</td><td class="c">15.4만 L</td><td class="c">18.4만 L</td></tr>
+<tr><td>3공장</td><td class="c">2018.10</td><td class="c">18만 L</td><td class="c">36.4만 L</td></tr>
+<tr><td>4공장</td><td class="c">2023.06</td><td class="c">24만 L</td><td class="c">60.4만 L</td></tr>
+<tr><td>5공장</td><td class="c">2025.04</td><td class="c">18만 L</td><td class="c">78.5만 L</td></tr>
+<tr><td>미국 Rockville (인수)</td><td class="c">2026.03</td><td class="c">6만 L</td><td class="c"><b>84.5만 L (세계 최대)</b></td></tr>
+</table></div>
+<p class="d">- 회사 설명으로는 30만 리터 넘는 CDMO는 삼성, Lonza, WuXi Biologics, Fujifilm 4곳뿐이고, 그중 삼성이 가장 큼</p>
+<p class="d">- 다음은 송도 제2바이오캠퍼스(6~8공장 부지), 제3바이오캠퍼스 부지까지 확보해 둔 상태</p>
+
+<h3>가동률 (공장이 얼마나 바쁜가)</h3>
+<div class="chart"><svg viewBox="0 0 640 250" role="img" aria-label="연도별 가동률. 2017년 98.9%, 3공장 완공 후 2019년 41.6%, 2021년 80.7%, 2025년 70.9%, 2026년 상반기 69.9%"><g stroke="#E6E6E6"><line x1="46" y1="210.0" x2="626" y2="210.0"/><line x1="46" y1="163.5" x2="626" y2="163.5"/><line x1="46" y1="117.0" x2="626" y2="117.0"/><line x1="46" y1="70.5" x2="626" y2="70.5"/><line x1="46" y1="24.0" x2="626" y2="24.0"/></g><g><text x="40" y="214.0" text-anchor="end">0</text><text x="40" y="167.5" text-anchor="end">25</text><text x="40" y="121.0" text-anchor="end">50</text><text x="40" y="74.5" text-anchor="end">75</text><text x="40" y="28.0" text-anchor="end">100</text></g><rect x="55.2" y="64.9" width="30" height="145.1" fill="#7FB8A6"/><text x="70.2" y="59.9" text-anchor="middle" style="fill:#333;font-weight:700">78</text><text x="70.2" y="226" text-anchor="middle">15</text><rect x="103.5" y="32.2" width="30" height="177.8" fill="#7FB8A6"/><text x="118.5" y="27.2" text-anchor="middle" style="fill:#333;font-weight:700">96</text><text x="118.5" y="226" text-anchor="middle">16</text><rect x="151.8" y="26.0" width="30" height="184.0" fill="#7FB8A6"/><text x="166.8" y="21.0" text-anchor="middle" style="fill:#333;font-weight:700">99</text><text x="166.8" y="226" text-anchor="middle">17</text><rect x="200.2" y="78.9" width="30" height="131.1" fill="#E8A87C"/><text x="215.2" y="73.9" text-anchor="middle" style="fill:#333;font-weight:700">70</text><text x="215.2" y="226" text-anchor="middle">18</text><rect x="248.5" y="132.6" width="30" height="77.4" fill="#E8A87C"/><text x="263.5" y="127.6" text-anchor="middle" style="fill:#333;font-weight:700">42</text><text x="263.5" y="226" text-anchor="middle">19</text><rect x="296.8" y="97.5" width="30" height="112.5" fill="#7FB8A6"/><text x="311.8" y="92.5" text-anchor="middle" style="fill:#333;font-weight:700">60</text><text x="311.8" y="226" text-anchor="middle">20</text><rect x="345.2" y="59.9" width="30" height="150.1" fill="#7FB8A6"/><text x="360.2" y="54.9" text-anchor="middle" style="fill:#333;font-weight:700">81</text><text x="360.2" y="226" text-anchor="middle">21</text><rect x="393.5" y="64.2" width="30" height="145.8" fill="#7FB8A6"/><text x="408.5" y="59.2" text-anchor="middle" style="fill:#333;font-weight:700">78</text><text x="408.5" y="226" text-anchor="middle">22</text><rect x="441.8" y="77.2" width="30" height="132.8" fill="#E8A87C"/><text x="456.8" y="72.2" text-anchor="middle" style="fill:#333;font-weight:700">71</text><text x="456.8" y="226" text-anchor="middle">23</text><rect x="490.2" y="70.1" width="30" height="139.9" fill="#7FB8A6"/><text x="505.2" y="65.1" text-anchor="middle" style="fill:#333;font-weight:700">75</text><text x="505.2" y="226" text-anchor="middle">24</text><rect x="538.5" y="78.1" width="30" height="131.9" fill="#E8A87C"/><text x="553.5" y="73.1" text-anchor="middle" style="fill:#333;font-weight:700">71</text><text x="553.5" y="226" text-anchor="middle">25</text><rect x="586.8" y="80.0" width="30" height="130.0" fill="#E8A87C"/><text x="601.8" y="75.0" text-anchor="middle" style="fill:#333;font-weight:700">70</text><text x="601.8" y="226" text-anchor="middle">26상</text><text x="46" y="12">(%, 배치 기준 · 주황 = 새 공장이 들어온 해)</text></svg></div>
+<p class="small">출처: 사업보고서 '생산능력, 생산실적, 가동률'. 생산 가능 배치 수 대비 실제 생산 배치 수</p>
+<p class="d">- <span class="m">새 공장이 들어오면 가동률이 먼저 떨어지고, 일감이 차면서 다시 올라가는 패턴</span></p>
+<p class="d">- 3공장 완공 후 2019년 41.6%까지 떨어졌다가 2021년 80.7%로 회복</p>
+<p class="d">- 지금은 5공장(2025)이 들어와서 70% 근처. 2026년 상반기 69.9%</p>
+<p class="d">- 5공장이 얼마나 빨리 차는지 = 앞으로 1~2년 실적 성장 속도</p>
+<div class="note"><span class="nt">요약</span>제일 중요한 패턴: 공장 지으면 가동률이 떨어졌다가, 일감이 차면서 이익이 크게 늘어난다. 2019년 41% → 2021년 81%. <b>지금은 5공장 때문에 70%, 다시 채우는 구간.</b></div>
+
+<div class="hr"></div>
+
+<h2>■ 수주잔고 (아직 안 만든 남은 일감)</h2>
+<p>계약 금액은 <b>최소 구매 보장 물량</b> 기준. 고객이 안 가져가도 돈은 내야 하는 구조라 계약 취소 걱정은 적음.</p>
+<p class="d">- DART 공시 2016~2026년 160건 중 <b>"해지" 공시는 0건</b></p>
+<p class="d">- 정정 공시는 대부분 "고객사 요청에 따른 계약금액 증가". 감액된 경우도 있긴 함 (2023년 2,708억 → 2,195억)</p>
+<div class="chart">
+<svg viewBox="0 0 640 270" role="img" aria-label="삼성바이오로직스 최소보장 수주잔고, 억 달러. 2019년 말 25.5에서 2025년 말 107.0까지 늘었다가 2026년 6월 99.2로 줄었다">
+<g stroke="#E6E6E6" stroke-width="1"><line x1="40" y1="230" x2="620" y2="230"/><line x1="40" y1="180" x2="620" y2="180"/><line x1="40" y1="130" x2="620" y2="130"/><line x1="40" y1="80" x2="620" y2="80"/><line x1="40" y1="30" x2="620" y2="30"/></g>
+<g text-anchor="end"><text x="34" y="234">0</text><text x="34" y="184">30</text><text x="34" y="134">60</text><text x="34" y="84">90</text><text x="34" y="34">120</text></g>
+<g fill="#7FB8A6"><rect x="54" y="187.5" width="36" height="42.5"/><rect x="119" y="164.2" width="36" height="65.8"/><rect x="183" y="157.5" width="36" height="72.5"/><rect x="247" y="146.5" width="36" height="83.5"/><rect x="312" y="131.2" width="36" height="98.8"/><rect x="376" y="92.2" width="36" height="137.8"/><rect x="441" y="51.7" width="36" height="178.3"/></g>
+<g fill="#E8A87C"><rect x="505" y="58.8" width="36" height="171.2"/><rect x="569" y="64.7" width="36" height="165.3"/></g>
+<g text-anchor="middle"><text x="72" y="181" style="fill:#333;font-weight:700">25.5</text><text x="137" y="158" style="fill:#333;font-weight:700">39.5</text><text x="201" y="151" style="fill:#333;font-weight:700">43.5</text><text x="265" y="140" style="fill:#333;font-weight:700">50.1</text><text x="330" y="125" style="fill:#333;font-weight:700">59.3</text><text x="394" y="86" style="fill:#333;font-weight:700">82.7</text><text x="459" y="45" style="fill:#333;font-weight:700">107.0</text><text x="523" y="52" style="fill:#333;font-weight:700">102.7</text><text x="587" y="58" style="fill:#333;font-weight:700">99.2</text></g>
+<g text-anchor="middle"><text x="72" y="250">19.12</text><text x="137" y="250">20.12</text><text x="201" y="250">21.12</text><text x="265" y="250">22.12</text><text x="330" y="250">23.12</text><text x="394" y="250">24.12</text><text x="459" y="250">25.12</text><text x="523" y="250">26.03</text><text x="587" y="250">26.06</text></g>
+<text x="40" y="16">(단위: 억 달러, 최소보장 기준)</text>
+</svg>
+</div>
+<p class="small">출처: 삼성바이오로직스 분기·반기·사업보고서 '수주상황' (DART)</p>
+<p class="d">- 6년 동안 4배 늘어남</p>
+<p class="d">- 근데 <span class="m">26년 상반기는 신규 수주가 적어서 잔고가 2분기 연속 감소</span> (분기당 신규 수주가 25년 9~14억 달러 → 26년 2~3억 달러)</p>
+<p class="d">- 9월~11월에 신규 계약 약 8,800억 원이 다시 나옴 → 11월 중순 3분기 보고서에서 잔고가 다시 늘어나는지 확인 예정</p>
+<div class="note"><span class="nt">요약</span>6년 동안 4배로 늘었고 해지는 0건이라 받은 일감은 단단함. 그런데 <b>올해 2분기 연속 감소</b> → 이게 주가 약세 1번 원인. 11월 중순 3분기 보고서에서 다시 늘었는지가 첫 확인 포인트.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 3 · 경쟁 구도 <span>약 1분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 위탁생산 빅4 비교 (매출·이익률)</h2>
+<p>바이오 의약품 위탁생산은 사실상 이 4곳이 큰 판을 나눠 먹는 구조.</p>
+<div class="box"><table>
+<tr><th style="width:17%">회사</th><th>최근 연매출</th><th>달러 환산(대략)</th><th>영업이익률</th><th>EBITDA 마진</th><th style="width:28%">최근 실적</th></tr>
+<tr><td><b>삼성바이오</b> (한국)</td><td class="c">4.56조 원 (2025)</td><td class="c">약 32억 달러</td><td class="c"><b>45%</b></td><td class="c"><b>61%</b></td><td>26.3Q 매출 +18.5%, 영업이익률 43% (5공장·미국 공장 초기 비용)</td></tr>
+<tr><td>Lonza (스위스)</td><td class="c">65억 프랑 (2025)</td><td class="c">약 78억 달러</td><td class="c">22%</td><td class="c">32%</td><td>26.상반기 매출 +16%(현지 통화), CORE EBITDA 마진 34.8%</td></tr>
+<tr><td>WuXi Biologics (중국)</td><td class="c">218억 위안 (2025)</td><td class="c">약 30억 달러</td><td class="c">33%</td><td class="c">40%</td><td>26.상반기 매출 +18.4%, 수주잔고 251억 달러</td></tr>
+<tr><td>Fujifilm 바이오 CDMO (일본)</td><td class="c">2,541억 엔 (FY24)</td><td class="c">약 17억 달러</td><td class="c">미공개</td><td class="c">-</td><td>그룹 전체 영업이익률 10%. FY25 목표 3,000억 엔</td></tr>
+</table></div>
+<p class="small">출처: 각 사 연간 재무제표(야후 파이낸스), Lonza·WuXi 2026 상반기 발표, Fujifilm은 바이오 CDMO 매출만 별도 공개(phirda). Lonza는 그룹 전체(소분자·세포치료 포함). 환율은 2025년 평균 근처로 대충 계산</p>
+<p class="d">- 매출 규모는 Lonza가 1등, 삼성·WuXi가 비슷한 2등</p>
+<p class="d">- <span class="m">이익률은 삼성이 압도적.</span> 한 곳(송도)에 초대형 공장을 몰아 짓는 방식이라 고정비 효율이 좋음</p>
+<p class="d">- 대신 성장률은 이제 네 회사가 다 비슷하게 15~20%대. 삼성만 빠르게 크던 시기는 지남</p>
+<div class="note"><span class="nt">요약</span>매출은 Lonza 1등, 이익률은 삼성이 압도적(45%). 대신 성장률은 이제 네 회사가 다 15~20%대로 비슷해졌다 → 나중에 멀티플 얘기로 연결.</div>
+
+<div class="hr"></div>
+
+<h2>■ 경쟁사들 증설 현황</h2>
+<p>CDMO 주가에서 제일 무서운 건 "다 같이 공장을 너무 많이 짓는 것". 그래서 경쟁사가 어디에 얼마나 짓는지 정리.</p>
+<div class="box"><table>
+<tr><th style="width:17%">회사</th><th>주요 증설·인수</th><th style="width:22%">가동 시점</th></tr>
+<tr><td><b>삼성바이오</b></td><td>5공장 18만 L / 미국 Rockville 6만 L 인수 / 6공장(착공 약 2년 지연) / 제3바이오캠퍼스 부지 / <b>PolyPeptide 인수(펩타이드)</b> / ADC 시설</td><td>5공장 25.4, Rockville 26.3, PolyPeptide 26.12 완료 예정</td></tr>
+<tr><td>Lonza</td><td>미국 Vacaville 공장 인수(제넨텍, 약 33만 L) / 스위스 Visp 대형 공장 / 캡슐 사업(CHI) 매각, 바이오에 집중</td><td>Visp 26 상반기 상업 가동, Vacaville 새 고객 생산 <b>2028</b>로 늦춰짐</td></tr>
+<tr><td>WuXi Biologics</td><td>중국·싱가포르·미국 증설, 일부 자산 인수. "수요 보고 천천히" 방침</td><td>순차</td></tr>
+<tr><td>Fujifilm</td><td>미국 Holly Springs(2만 L × 8기, 약 2조 원대) / 덴마크 Hillerød 확장 / 리제네론 10년 30억 달러 계약</td><td>Holly Springs 1단계 매진, 2단계 2028 / Hillerød 2026</td></tr>
+<tr><td>그 외</td><td>셀트리온 미국 공장 인수(일라이 릴리 뉴저지 공장) / 롯데바이오 미국 Syracuse + 송도 / 릴리·노보 등 빅파마 자체 공장</td><td>25~28년</td></tr>
+</table></div>
+<p class="small">출처: Lonza 26 상반기 발표, WuXi 26 상반기 발표, Fujifilm·Regeneron 보도자료. 셀트리온·롯데·빅파마 자체 공장은 일반 공개 정보</p>
+<p class="d">- 2026~2028년에 <span class="m">미국 안에 새 공장이 한꺼번에 많이 생김</span>. 미국 관세·리쇼어링 때문에 다들 미국으로 감</p>
+<p class="d">- 삼성은 미국 공장이 Rockville 6만 L 하나뿐이라 아직 작음. 대신 송도에서 싸고 크게 만드는 게 강점</p>
+<p class="d">- Lonza Vacaville이 2028년으로 늦어진 것, Fujifilm 1단계 매진 → 지금 당장은 공급 과잉보다는 "공장 준비 기간" 구간으로 보임</p>
+<div class="note"><span class="nt">요약</span>다들 미국에 공장을 짓는 중. 2028년쯤 공급이 늘어나는 게 장기 리스크. 빠르게 넘어가도 됨.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 4 · 주가 <span>약 2분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 주가와 시총</h2>
+<p class="d">- 현재가 <b>1,516,000원</b>, 시총 <b>약 70.2조 원</b> (2026.11.6)</p>
+<p class="d">- 최고가 1,965,000원 (2026.1.15) 대비 <b>-22.8%</b></p>
+<p class="d">- 상장 후 가장 크게 빠졌던 건 2018.4 → 2019.8, <b>-57%</b> (회계 이슈 + 3공장 가동 초기)</p>
+<div class="chart"><svg viewBox="0 0 640 280" role="img" aria-label="삼성바이오로직스 월말 주가 2016년 11월~2026년 11월"><g stroke="#E6E6E6"><line x1="46" y1="240.0" x2="626" y2="240.0"/><line x1="46" y1="185.0" x2="626" y2="185.0"/><line x1="46" y1="130.0" x2="626" y2="130.0"/><line x1="46" y1="75.0" x2="626" y2="75.0"/><line x1="46" y1="20.0" x2="626" y2="20.0"/></g><g><text x="40" y="244.0" text-anchor="end">0</text><text x="40" y="189.0" text-anchor="end">50</text><text x="40" y="134.0" text-anchor="end">100</text><text x="40" y="79.0" text-anchor="end">150</text><text x="40" y="24.0" text-anchor="end">200</text><text x="55.7" y="258" text-anchor="middle">17</text><text x="113.7" y="258" text-anchor="middle">18</text><text x="171.7" y="258" text-anchor="middle">19</text><text x="229.7" y="258" text-anchor="middle">20</text><text x="287.7" y="258" text-anchor="middle">21</text><text x="345.7" y="258" text-anchor="middle">22</text><text x="403.7" y="258" text-anchor="middle">23</text><text x="461.7" y="258" text-anchor="middle">24</text><text x="519.7" y="258" text-anchor="middle">25</text><text x="577.7" y="258" text-anchor="middle">26</text></g><path d="M46.0,214.2 L50.8,214.7 L55.7,213.1 L60.5,212.5 L65.3,211.0 L70.2,210.7 L75.0,203.2 L79.8,191.1 L84.7,194.5 L89.5,192.6 L94.3,183.5 L99.2,175.7 L104.0,182.7 L108.8,177.9 L113.7,166.6 L118.5,164.7 L123.3,158.5 L128.2,158.3 L133.0,167.2 L137.8,170.2 L142.7,177.6 L147.5,162.5 L152.3,150.6 L157.2,175.2 L162.0,184.0 L166.8,175.3 L171.7,173.2 L176.5,177.1 L181.3,186.5 L186.2,183.1 L191.0,189.8 L195.8,186.4 L200.7,193.1 L205.5,195.0 L210.3,188.5 L215.2,173.3 L220.0,174.1 L224.8,167.5 L229.7,158.9 L234.5,162.4 L239.3,159.3 L244.2,142.8 L249.0,135.9 L253.8,110.3 L258.7,117.3 L263.5,109.8 L268.3,124.5 L273.2,125.9 L278.0,108.5 L282.8,101.8 L287.7,107.3 L292.5,114.5 L297.3,114.8 L302.2,105.4 L307.0,98.6 L311.8,99.3 L316.7,91.1 L321.5,78.5 L326.3,93.7 L331.2,94.2 L336.0,91.2 L340.8,88.9 L345.7,116.3 L350.5,111.3 L355.3,100.1 L360.2,98.3 L365.0,96.7 L369.8,106.4 L374.7,93.7 L379.5,98.8 L384.3,103.5 L389.2,91.7 L394.0,90.0 L398.8,101.1 L403.7,105.7 L408.5,109.3 L413.3,106.7 L418.2,107.9 L423.0,107.4 L427.8,114.2 L432.7,110.4 L437.5,115.4 L442.3,124.8 L447.2,120.1 L452.0,117.4 L456.8,111.5 L461.7,97.9 L466.5,109.1 L471.3,99.5 L476.2,107.9 L481.0,116.5 L485.8,117.0 L490.7,81.4 L495.5,74.3 L500.3,74.8 L505.2,70.5 L510.0,75.1 L514.8,79.5 L519.7,57.2 L524.5,51.3 L529.3,68.5 L534.2,62.1 L539.0,65.5 L543.8,72.2 L548.7,59.5 L553.5,70.7 L558.3,71.4 L563.2,33.5 L568.0,63.2 L572.8,53.5 L577.7,48.0 L582.5,44.4 L587.3,74.6 L592.2,78.3 L597.0,90.1 L601.8,87.0 L606.7,76.6 L611.5,73.0 L616.3,88.0 L621.2,76.4 L626.0,73.2" fill="none" stroke="#2F6F5E" stroke-width="2"/><circle cx="162.0" cy="184.0" r="3.5" fill="#D9534F"/><text x="162.0" y="202.0" text-anchor="middle" style="fill:#333">회계 이슈</text><circle cx="253.8" cy="110.3" r="3.5" fill="#D9534F"/><text x="253.8" y="100.3" text-anchor="middle" style="fill:#333">코로나 랠리</text><circle cx="490.7" cy="81.4" r="3.5" fill="#D9534F"/><text x="490.7" y="71.4" text-anchor="end" style="fill:#333">BIOSECURE·대형 수주</text><circle cx="568.0" cy="63.2" r="3.5" fill="#D9534F"/><text x="568.0" y="51.2" text-anchor="middle" style="fill:#333">인적분할</text><circle cx="597.0" cy="90.1" r="3.5" fill="#D9534F"/><text x="597.0" y="108.1" text-anchor="middle" style="fill:#333">수주 공백</text><text x="46" y="12">(만원, 월말 종가 · 수정주가)</text></svg></div>
+<p class="small">출처: 야후 파이낸스 수정주가(2025.11 분할 이전 가격은 분할 비율로 조정). 빨간 점은 큰 이벤트</p>
+<div class="box"><table>
+<tr><th>연도</th><th>삼성바이오</th><th>Lonza</th><th>WuXi Bio</th><th>Fujifilm</th><th>미국 바이오 지수(XBI)</th><th>코스피</th></tr>
+<tr><td class="c">2017</td><td class="c"><b>+146%</b></td><td class="c">+61%</td><td class="c">-</td><td class="c">+6%</td><td class="c">+44%</td><td class="c">+22%</td></tr>
+<tr><td class="c">2018</td><td class="c">+4%</td><td class="c">-2%</td><td class="c">+15%</td><td class="c">-6%</td><td class="c">-15%</td><td class="c">-17%</td></tr>
+<tr><td class="c">2019</td><td class="c">+12%</td><td class="c">+40%</td><td class="c">+97%</td><td class="c">+25%</td><td class="c">+33%</td><td class="c">+8%</td></tr>
+<tr><td class="c">2020</td><td class="c"><b>+91%</b></td><td class="c">+62%</td><td class="c">+210%</td><td class="c">+6%</td><td class="c">+48%</td><td class="c">+31%</td></tr>
+<tr><td class="c">2021</td><td class="c">+9%</td><td class="c">+35%</td><td class="c">-9%</td><td class="c">+59%</td><td class="c">-20%</td><td class="c">+4%</td></tr>
+<tr><td class="c">2022</td><td class="c">-8%</td><td class="c">-40%</td><td class="c">-35%</td><td class="c">-21%</td><td class="c">-26%</td><td class="c">-25%</td></tr>
+<tr><td class="c">2023</td><td class="c">-7%</td><td class="c">-21%</td><td class="c">-51%</td><td class="c">+30%</td><td class="c">+8%</td><td class="c">+19%</td></tr>
+<tr><td class="c">2024</td><td class="c"><b>+25%</b></td><td class="c">+53%</td><td class="c">-41%</td><td class="c">+19%</td><td class="c">+1%</td><td class="c">-10%</td></tr>
+<tr><td class="c">2025</td><td class="c">+16%</td><td class="c">+1%</td><td class="c">+79%</td><td class="c">+3%</td><td class="c">+36%</td><td class="c">+76%</td></tr>
+<tr><td class="c">2026 (~11/5)</td><td class="c"><b>-11%</b></td><td class="c">+23%</td><td class="c">+51%</td><td class="c">+1%</td><td class="c">+22%</td><td class="c">+20%</td></tr>
+</table></div>
+<p class="small">현지 통화 기준 연간 수익률. 출처: 야후 파이낸스</p>
+<div class="note"><span class="nt">요약</span>시총 70조, 1월 최고가 대비 -23%. 상장 후 최악은 2018~2019년 -57%였다는 것 정도.</div>
+
+<div class="hr"></div>
+
+<h2>■ 고객(빅파마)·경쟁사와 주가 비교</h2>
+<p>위탁생산 회사의 고객이 바로 빅파마. 고객이 잘 나가는데 삼성만 빠지는 건지, 업계 전체가 안 좋은 건지 보려고 같이 비교.</p>
+<h3>1년 주가</h3>
+<div class="chart"><svg viewBox="0 0 640 384" role="img" aria-label="1년 주가 수익률 비교: 빅파마 대부분 상승, 삼성바이오 -19%로 최하위권">
+<line x1="300" y1="30" x2="300" y2="368" stroke="#999" stroke-width="1"/>
+<text x="120" y="48" text-anchor="end" style="">MSD(머크)</text><rect x="300.0" y="37" width="219.4" height="15" fill="#7A9CC6"/><text x="524.4" y="48" text-anchor="start" style="fill:#333">+76%</text><text x="120" y="70" text-anchor="end" style="">암젠</text><rect x="300.0" y="59" width="143.4" height="15" fill="#7A9CC6"/><text x="448.4" y="70" text-anchor="start" style="fill:#333">+50%</text><text x="120" y="92" text-anchor="end" style="">J&J</text><rect x="300.0" y="81" width="140.7" height="15" fill="#7A9CC6"/><text x="445.7" y="92" text-anchor="start" style="fill:#333">+49%</text><text x="120" y="114" text-anchor="end" style="">로슈</text><rect x="300.0" y="103" width="140.3" height="15" fill="#7A9CC6"/><text x="445.3" y="114" text-anchor="start" style="fill:#333">+49%</text><text x="120" y="136" text-anchor="end" style="">일라이 릴리</text><rect x="300.0" y="125" width="133.7" height="15" fill="#7A9CC6"/><text x="438.7" y="136" text-anchor="start" style="fill:#333">+46%</text><text x="120" y="158" text-anchor="end" style="">WuXi Bio</text><rect x="300.0" y="147" width="103.7" height="15" fill="#E8A87C"/><text x="408.7" y="158" text-anchor="start" style="fill:#333">+36%</text><text x="120" y="180" text-anchor="end" style="">애브비</text><rect x="300.0" y="169" width="102.2" height="15" fill="#7A9CC6"/><text x="407.2" y="180" text-anchor="start" style="fill:#333">+36%</text><text x="120" y="202" text-anchor="end" style="">노바티스</text><rect x="300.0" y="191" width="93.9" height="15" fill="#7A9CC6"/><text x="398.9" y="202" text-anchor="start" style="fill:#333">+33%</text><text x="120" y="224" text-anchor="end" style="">화이자</text><rect x="300.0" y="213" width="82.4" height="15" fill="#7A9CC6"/><text x="387.4" y="224" text-anchor="start" style="fill:#333">+29%</text><text x="120" y="246" text-anchor="end" style="">Lonza</text><rect x="300.0" y="235" width="71.1" height="15" fill="#E8A87C"/><text x="376.1" y="246" text-anchor="start" style="fill:#333">+25%</text><text x="120" y="268" text-anchor="end" style="">Thermo Fisher</text><rect x="300.0" y="257" width="57.6" height="15" fill="#E8A87C"/><text x="362.6" y="268" text-anchor="start" style="fill:#333">+20%</text><text x="120" y="290" text-anchor="end" style="">아스트라제네카</text><rect x="300.0" y="279" width="36.5" height="15" fill="#7A9CC6"/><text x="341.5" y="290" text-anchor="start" style="fill:#333">+13%</text><text x="120" y="312" text-anchor="end" style="">Fujifilm</text><rect x="296.1" y="301" width="3.9" height="15" fill="#E8A87C"/><text x="291.1" y="312" text-anchor="end" style="fill:#333">-1%</text><text x="120" y="334" text-anchor="end" style="">노보 노디스크</text><rect x="274.9" y="323" width="25.1" height="15" fill="#7A9CC6"/><text x="269.9" y="334" text-anchor="end" style="fill:#333">-9%</text><text x="120" y="356" text-anchor="end" style="fill:#333;font-weight:700">삼성바이오</text><rect x="244.7" y="345" width="55.3" height="15" fill="#D9534F"/><text x="239.7" y="356" text-anchor="end" style="fill:#333">-19%</text>
+<text x="10" y="16">1년 주가 수익률 (2025.11.6 → 2026.11.6, 현지 통화)</text>
+<g transform="translate(400,378)"><rect x="0" y="-9" width="10" height="10" fill="#D9534F"/><text x="14" y="0">삼성바이오</text><rect x="84" y="-9" width="10" height="10" fill="#E8A87C"/><text x="98" y="0">위탁생산</text><rect x="160" y="-9" width="10" height="10" fill="#7A9CC6"/><text x="174" y="0">빅파마</text></g>
+</svg></div>
+<p class="d">- <span class="m">올해는 빅파마가 훨씬 강했음.</span> MSD +76%, 암젠 +50%, J&amp;J·로슈 +49%, 릴리 +47%. 빠진 건 노보 노디스크(-9%, 비만약 경쟁)뿐</p>
+<p class="d">- 위탁생산은 WuXi +36%, Lonza +25%, Thermo +20%로 나쁘지 않음. 삼성(-19%)만 따로 약함</p>
+<p class="d">- 고객사 주가·실적이 좋은데 삼성만 빠짐 → <b>업황 문제라기보다 삼성 자체 이슈</b>(수주 공백, 증자, 파업)로 보는 게 맞을 듯</p>
+<h3>5년 주가 (그룹 평균)</h3>
+<div class="chart"><svg viewBox="0 0 640 275" role="img" aria-label="5년 주가 2021년 11월=100: 빅파마 평균, 위탁생산 평균, 삼성바이오 비교">
+<g stroke="#E6E6E6" stroke-width="1"><line x1="50" y1="240.0" x2="540" y2="240.0"/><line x1="50" y1="187.5" x2="540" y2="187.5"/><line x1="50" y1="135.0" x2="540" y2="135.0"/><line x1="50" y1="82.5" x2="540" y2="82.5"/><line x1="50" y1="30.0" x2="540" y2="30.0"/></g><g text-anchor="end"><text x="44" y="244.0">40</text><text x="44" y="191.5">80</text><text x="44" y="139.0">120</text><text x="44" y="86.5">160</text><text x="44" y="34.0">200</text></g><g text-anchor="middle"><text x="50.0" y="258">21.11</text><text x="148.0" y="258">22.11</text><text x="246.0" y="258">23.11</text><text x="344.0" y="258">24.11</text><text x="442.0" y="258">25.11</text><text x="540.0" y="258">26.11</text></g>
+<polyline points="50.0,161.2 58.2,159.2 66.3,183.4 74.5,179.0 82.7,169.1 90.8,167.5 99.0,166.1 107.2,174.6 115.3,163.4 123.5,167.9 131.7,172.1 139.8,161.6 148.0,160.2 156.2,170.0 164.3,174.0 172.5,177.2 180.7,174.9 188.8,176.0 197.0,175.5 205.2,181.5 213.3,178.2 221.5,182.5 229.7,190.9 237.8,186.7 246.0,184.3 254.2,179.1 262.3,167.2 270.5,177.0 278.7,168.5 286.8,176.0 295.0,183.6 303.2,184.0 311.3,152.5 319.5,146.3 327.7,146.7 335.8,143.0 344.0,147.0 352.2,150.9 360.3,131.2 368.5,126.0 376.7,141.2 384.8,135.5 393.0,138.5 401.2,144.5 409.3,133.3 417.5,143.1 425.7,143.7 433.8,110.3 442.0,136.6 450.2,128.0 458.3,123.2 466.5,120.0 474.7,146.5 482.8,149.8 491.0,160.2 499.2,157.5 507.3,148.4 515.5,145.2 523.7,158.4 531.8,148.2 540.0,145.4" fill="none" stroke="#D9534F" stroke-width="2.4"/><polyline points="50.0,161.2 58.2,164.3 66.3,183.0 74.5,189.6 82.7,184.3 90.8,193.2 99.0,193.2 107.2,192.6 115.3,184.8 123.5,193.1 131.7,205.2 139.8,206.5 148.0,198.8 156.2,200.5 164.3,194.1 172.5,198.8 180.7,197.9 188.8,198.0 197.0,196.0 205.2,197.7 213.3,196.6 221.5,195.5 229.7,200.1 237.8,209.0 246.0,205.2 254.2,207.7 262.3,203.3 270.5,200.0 278.7,194.8 286.8,196.9 295.0,196.4 303.2,194.7 311.3,189.3 319.5,187.0 327.7,188.0 335.8,192.3 344.0,197.4 352.2,197.4 360.3,189.4 368.5,197.2 376.7,200.3 384.8,202.1 393.0,199.4 401.2,200.9 409.3,195.1 417.5,189.5 425.7,186.9 433.8,184.1 442.0,187.2 450.2,188.4 458.3,190.4 466.5,190.0 474.7,198.1 482.8,200.8 491.0,193.6 499.2,188.7 507.3,179.4 515.5,177.9 523.7,172.8 531.8,170.1 540.0,172.3" fill="none" stroke="#E8A87C" stroke-width="1.8"/><polyline points="50.0,161.2 58.2,149.7 66.3,152.3 74.5,152.8 82.7,141.2 90.8,141.3 99.0,139.4 107.2,141.2 115.3,141.5 123.5,149.5 131.7,154.0 139.8,140.3 148.0,129.3 156.2,130.1 164.3,137.1 172.5,140.1 180.7,132.9 188.8,127.3 197.0,133.2 205.2,132.3 213.3,130.6 221.5,127.2 229.7,127.9 237.8,132.7 246.0,128.8 254.2,122.7 262.3,113.1 270.5,112.2 278.7,105.0 286.8,108.0 295.0,101.5 303.2,95.1 311.3,92.7 319.5,84.0 327.7,97.3 335.8,103.2 344.0,112.3 352.2,123.9 360.3,116.2 368.5,105.8 376.7,112.9 384.8,121.7 393.0,124.0 401.2,124.9 409.3,127.7 417.5,115.2 425.7,112.8 433.8,113.0 442.0,93.9 450.2,92.6 458.3,82.8 466.5,68.9 474.7,80.9 482.8,86.9 491.0,83.0 499.2,67.7 507.3,66.6 515.5,58.2 523.7,62.0 531.8,39.3 540.0,42.9" fill="none" stroke="#7A9CC6" stroke-width="1.8"/><text x="546" y="46.9" style="fill:#7A9CC6;font-weight:700">빅파마 평균(릴리 제외) 190</text><text x="546" y="149.4" style="fill:#D9534F;font-weight:700">삼성바이오 112</text><text x="546" y="176.3" style="fill:#E8A87C;font-weight:700">위탁생산 평균 92</text>
+<text x="50" y="16">2021.11 = 100, 월말 기준, 단순 평균 · 릴리는 574이라 차트 밖</text>
+</svg></div>
+<p class="d">- 5년으로 보면 빅파마 평균(릴리 제외)이 위탁생산 평균보다 앞섬. 2022~2023년 금리 급등 때 위탁생산 쪽이 크게 빠졌고 (WuXi -53%가 평균을 끌어내림)</p>
+<p class="d">- 릴리는 비만약(마운자로·젭바운드) 하나로 5년 +474%. 이런 대박 약이 나오면 위탁생산 회사보다 빅파마가 훨씬 많이 먹음</p>
+<p class="d">- 반대로 노보(-17%), 화이자(-21%)처럼 약 하나 흔들리면 빅파마는 크게 빠짐. 위탁생산은 어느 약이 이기든 만들어 주니까 이 위험이 작음</p>
+<h3>5년, 위탁생산 회사끼리</h3>
+<div class="chart"><svg viewBox="0 0 640 280" role="img" aria-label="2021년 11월=100 기준 5년 주가: 삼성바이오 112, Fujifilm 121, Lonza 92, WuXi Biologics 45"><g stroke="#E6E6E6"><line x1="46" y1="240.0" x2="566" y2="240.0"/><line x1="46" y1="185.0" x2="566" y2="185.0"/><line x1="46" y1="130.0" x2="566" y2="130.0"/><line x1="46" y1="75.0" x2="566" y2="75.0"/><line x1="46" y1="20.0" x2="566" y2="20.0"/></g><line x1="46" y1="102.5" x2="566" y2="102.5" stroke="#999" stroke-dasharray="4 3"/><g><text x="40" y="244.0" text-anchor="end">0</text><text x="40" y="189.0" text-anchor="end">40</text><text x="40" y="134.0" text-anchor="end">80</text><text x="40" y="79.0" text-anchor="end">120</text><text x="40" y="24.0" text-anchor="end">160</text><text x="63.3" y="258" text-anchor="middle">2022</text><text x="167.3" y="258" text-anchor="middle">2023</text><text x="271.3" y="258" text-anchor="middle">2024</text><text x="375.3" y="258" text-anchor="middle">2025</text><text x="479.3" y="258" text-anchor="middle">2026</text></g><path d="M46.0,102.5 L54.7,100.3 L63.3,125.7 L72.0,121.1 L80.7,110.7 L89.3,109.0 L98.0,107.6 L106.7,116.5 L115.3,104.8 L124.0,109.5 L132.7,113.9 L141.3,102.9 L150.0,101.4 L158.7,111.7 L167.3,115.9 L176.0,119.2 L184.7,116.8 L193.3,117.9 L202.0,117.5 L210.7,123.7 L219.3,120.3 L228.0,124.8 L236.7,133.6 L245.3,129.2 L254.0,126.7 L262.7,121.2 L271.3,108.7 L280.0,119.0 L288.7,110.1 L297.3,117.9 L306.0,125.9 L314.7,126.4 L323.3,93.4 L332.0,86.8 L340.7,87.3 L349.3,83.4 L358.0,87.6 L366.7,91.7 L375.3,71.0 L384.0,65.6 L392.7,81.5 L401.3,75.6 L410.0,78.7 L418.7,84.9 L427.3,73.2 L436.0,83.5 L444.7,84.2 L453.3,49.1 L462.0,76.6 L470.7,67.7 L479.3,62.6 L488.0,59.2 L496.7,87.1 L505.3,90.6 L514.0,101.4 L522.7,98.6 L531.3,89.0 L540.0,85.7 L548.7,99.5 L557.3,88.8 L566.0,85.9" fill="none" stroke="#2F6F5E" stroke-width="2"/><path d="M46.0,102.5 L54.7,99.1 L63.3,122.8 L72.0,122.0 L80.7,115.6 L89.3,133.0 L98.0,132.6 L106.7,145.3 L115.3,132.8 L124.0,142.6 L132.7,149.5 L141.3,144.1 L150.0,148.8 L158.7,155.7 L167.3,143.3 L176.0,135.6 L184.7,138.1 L193.3,137.0 L202.0,133.4 L210.7,140.1 L219.3,145.4 L228.0,148.5 L236.7,160.3 L245.3,180.7 L254.0,176.6 L262.7,173.8 L271.3,160.5 L280.0,153.5 L288.7,138.9 L297.3,144.4 L306.0,148.2 L314.7,147.5 L323.3,129.2 L332.0,135.2 L340.7,139.2 L349.3,139.5 L358.0,140.7 L366.7,138.9 L375.3,130.2 L384.0,132.7 L392.7,137.7 L401.3,129.0 L410.0,131.9 L418.7,132.7 L427.3,131.3 L436.0,132.3 L444.7,139.9 L453.3,134.7 L462.0,135.5 L470.7,137.8 L479.3,140.3 L488.0,138.1 L496.7,144.1 L505.3,149.0 L514.0,143.9 L522.7,135.2 L531.3,132.1 L540.0,129.3 L548.7,129.6 L557.3,116.3 L566.0,114.2" fill="none" stroke="#4A78C2" stroke-width="2"/><path d="M46.0,102.5 L54.7,120.2 L63.3,142.1 L72.0,156.8 L80.7,155.8 L89.3,162.3 L98.0,164.9 L106.7,147.0 L115.3,143.5 L124.0,149.8 L132.7,178.6 L141.3,194.0 L150.0,175.1 L158.7,162.5 L167.3,155.5 L176.0,169.2 L184.7,177.1 L193.3,179.9 L202.0,188.1 L210.7,191.4 L219.3,182.9 L228.0,182.8 L236.7,180.9 L245.3,177.1 L254.0,183.7 L262.7,201.7 L271.3,213.5 L280.0,215.3 L288.7,221.5 L297.3,222.2 L306.0,225.6 L314.7,225.1 L323.3,225.1 L332.0,225.5 L340.7,217.3 L349.3,218.8 L358.0,220.6 L366.7,217.2 L375.3,216.2 L384.0,210.9 L392.7,205.0 L401.3,210.5 L410.0,207.7 L418.7,206.8 L427.3,198.3 L436.0,197.0 L444.7,186.9 L453.3,193.1 L462.0,199.7 L470.7,199.3 L479.3,192.1 L488.0,187.9 L496.7,197.2 L505.3,197.2 L514.0,196.8 L522.7,195.2 L531.3,189.8 L540.0,176.8 L548.7,167.4 L557.3,182.4 L566.0,178.3" fill="none" stroke="#D9534F" stroke-width="2"/><path d="M46.0,102.5 L54.7,108.7 L63.3,122.5 L72.0,128.2 L80.7,123.7 L89.3,128.8 L98.0,129.8 L106.7,127.1 L115.3,122.8 L124.0,129.7 L132.7,136.6 L141.3,133.3 L150.0,125.5 L158.7,136.3 L167.3,133.0 L176.0,140.6 L184.7,134.1 L193.3,128.3 L202.0,105.0 L210.7,104.9 L219.3,109.6 L228.0,103.8 L236.7,102.0 L245.3,109.2 L254.0,101.9 L262.7,104.9 L271.3,90.0 L280.0,88.2 L288.7,77.2 L297.3,77.2 L306.0,67.5 L314.7,58.6 L323.3,67.4 L332.0,51.7 L340.7,60.8 L349.3,61.2 L358.0,76.1 L366.7,79.2 L375.3,72.6 L384.0,92.9 L392.7,100.2 L401.3,95.7 L410.0,78.5 L418.7,85.5 L427.3,84.8 L436.0,67.4 L444.7,57.3 L453.3,62.3 L462.0,73.2 L470.7,74.0 L479.3,86.8 L488.0,79.0 L496.7,91.0 L505.3,94.9 L514.0,73.2 L522.7,65.1 L531.3,50.6 L540.0,69.8 L548.7,70.0 L557.3,62.1 L566.0,73.0" fill="none" stroke="#E0A040" stroke-width="2"/><text x="570" y="77.0" style="fill:#E0A040;font-weight:700">Fujifilm 121</text><text x="570" y="91.0" style="fill:#2F6F5E;font-weight:700">삼성바이오 112</text><text x="570" y="118.2" style="fill:#4A78C2;font-weight:700">Lonza 92</text><text x="570" y="182.3" style="fill:#D9534F;font-weight:700">WuXi Bio 45</text><text x="46" y="12">(2021년 11월 말 = 100, 현지 통화)</text></svg></div>
+<p class="d">- 1년만 보면 삼성이 제일 약해 보이는데, <span class="m">5년으로 보면 삼성(112)이 Lonza(92), WuXi(45)보다 나음</span></p>
+<p class="d">- WuXi는 2021~2024년 미국 견제로 -90% 가까이 빠졌다가 반등 중. 그 기간 삼성은 반사이익(2024년 +25%)</p>
+<p class="d">- 삼성 주가와 같이 움직이는 건 Lonza(상관 0.53), Thermo Fisher(0.41). WuXi와는 거의 상관 없음(-0.04)</p>
+<div class="note"><span class="nt">요약</span>이 파트 핵심 문장: <b>"고객인 빅파마는 올해 대부분 올랐는데 삼성만 빠졌다 → 업황 문제가 아니라 회사 이슈."</b> 5년으로 보면 삼성이 Lonza·WuXi보다 낫다는 것도 같이.</div>
+
+<div class="hr"></div>
+
+<h2>■ 그럼 올해 삼성만 약한 이유는? (내 생각)</h2>
+<p class="d">1. <b>수주 공백</b> : 26년 신규 수주 약 1.2조 원, 25년(약 6.5조)의 20% 수준. 항체 대형 신규 수주가 25년 9월 이후 한동안 없었음</p>
+<p class="d">2. <b>파업</b> : 5월 창사 첫 파업으로 1,500억 원 차질, 10월 2차 파업 예고까지 (지금은 연기)</p>
+<p class="d">3. <b>유상증자</b> : PolyPeptide 인수 자금으로 약 4.9% 신주 발행 → 주당 가치 희석, 신주 물량 부담</p>
+<p class="d">4. <b>새 공장 비용</b> : 5공장·미국 공장 초기 비용으로 이익률 47% → 43%</p>
+<p class="d">5. WuXi가 살아나면서 "중국 대신 삼성" 기대가 약해짐 + 원화 강세</p>
+<div class="note"><span class="nt">요약</span>회사 이슈 5개: 수주 공백, 파업, 유상증자, 새 공장 비용, WuXi 회복. 이 중 제일 큰 건 수주 공백.</div>
+
+<div class="hr"></div>
+
+<h2>■ 제약·CDMO 주가는 언제 오르고 언제 빠지나</h2>
+<p>2016~2026년 월별 데이터로 확인해본 것.</p>
+<div class="box"><table>
+<tr><th style="width:34%">상황</th><th>삼성바이오 월평균</th><th>미국 바이오 지수(XBI)</th></tr>
+<tr><td>미국 10년 금리 크게 <b>하락</b>한 달 (23번)</td><td class="c"><b>+2.5%</b></td><td class="c">+0.8%</td></tr>
+<tr><td>미국 10년 금리 크게 <b>상승</b>한 달 (31번)</td><td class="c">-0.2%</td><td class="c">-2.6%</td></tr>
+<tr><td>미국 바이오 지수 +5% 넘게 오른 달 (34번)</td><td class="c"><b>+6.4%</b></td><td class="c">-</td></tr>
+<tr><td>미국 바이오 지수 -5% 넘게 빠진 달 (28번)</td><td class="c">-0.1%</td><td class="c">-</td></tr>
+</table></div>
+<p class="small">금리 크게 = 한 달에 0.15%p 넘게 변한 달. 출처: 야후 파이낸스 월말 종가로 직접 계산</p>
+<p class="d">- <b>금리가 내려갈 때</b> 오름. 바이오는 미래 이익을 보고 사는 업종이라 금리에 민감 (2021년 이후 금리 변화와 상관 -0.31)</p>
+<p class="d">- <b>바이오 투자가 살아날 때</b> 오름. 바이오텍이 돈을 많이 모으면 신약 개발 → 위탁 생산 일감이 늘어남</p>
+<p class="d">- 반대로 바이오 지수가 빠질 때 삼성은 거의 안 빠짐. 이미 계약된 일감이 있어서 상대적으로 방어적</p>
+<div class="box"><table>
+<tr><th style="width:30%">오르는 재료</th><th>빠지는 재료</th></tr>
+<tr><td>금리 인하</td><td>금리 인상 (2022~2023년 -8%, -7%)</td></tr>
+<tr><td>대형 수주 공시, 증액 정정</td><td>수주 공백, 감액 정정</td></tr>
+<tr><td>미국의 중국 바이오 견제 강화 (BIOSECURE)</td><td>견제 완화, WuXi 회복</td></tr>
+<tr><td>빅파마 신약 성공·블록버스터 출시</td><td>고객 약 임상 실패, 빅파마 자체 생산 확대</td></tr>
+<tr><td>팬데믹 같은 생산 수요 급증 (2020년 +91%)</td><td>미국 약가 인하 정책, 의약품 관세</td></tr>
+<tr><td>가동률 상승 (새 공장이 차는 시기)</td><td>증설 직후 가동률 하락, 회계·지배구조 이슈 (2018년)</td></tr>
+</table></div>
+<div class="note"><span class="nt">요약</span>금리 내릴 때, 바이오 투자 살아날 때 오른다. 바이오 지수 빠질 땐 덜 빠지는 방어적 성격. 빠르게.</div>
+
+<div class="hr"></div>
+
+<h2>■ 증권사 목표주가 변화</h2>
+<div class="chart"><svg viewBox="0 0 640 275" role="img" aria-label="삼성바이오로직스 주가와 증권사 목표주가 변경. 목표주가는 1월 210만~230만에서 10월 180만~210만으로 낮아짐. 주가는 10월 14일 117만9천원 저점 후 151만6천원">
+<g stroke="#E6E6E6" stroke-width="1"><line x1="56" y1="223.8" x2="620" y2="223.8"/><line x1="56" y1="191.5" x2="620" y2="191.5"/><line x1="56" y1="159.2" x2="620" y2="159.2"/><line x1="56" y1="126.9" x2="620" y2="126.9"/><line x1="56" y1="94.6" x2="620" y2="94.6"/><line x1="56" y1="62.3" x2="620" y2="62.3"/><line x1="56" y1="30.0" x2="620" y2="30.0"/></g>
+<g text-anchor="end"><text x="50" y="227.8">120</text><text x="50" y="195.5">140</text><text x="50" y="163.2">160</text><text x="50" y="130.9">180</text><text x="50" y="98.6">200</text><text x="50" y="66.3">220</text><text x="50" y="34.0">240</text></g>
+<g text-anchor="middle"><text x="56.0" y="258">25.12</text><text x="157.7" y="258">26.02</text><text x="254.4" y="258">26.04</text><text x="354.4" y="258">26.06</text><text x="454.4" y="258">26.08</text><text x="554.4" y="258">26.10</text></g>
+<line x1="56" y1="228.0" x2="620" y2="228.0" stroke="#E8A87C" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="60" y="242.0" style="fill:#C0753F">유상증자 발행가 117.4만</text>
+<polyline points="56.0,151.3 57.6,150.5 59.3,150.5 60.9,146.3 62.6,152.6 67.5,154.5 69.1,149.5 70.8,148.7 72.4,148.1 74.0,144.4 79.0,131.4 80.6,128.5 82.2,135.0 83.9,136.9 85.5,137.7 90.4,139.2 92.1,139.8 93.7,144.5 97.0,144.4 101.9,142.1 103.5,143.9 108.5,145.8 113.4,141.0 115.0,139.7 116.7,132.3 118.3,113.2 119.9,114.3 124.9,117.4 126.5,109.5 128.1,106.4 129.8,100.3 131.4,103.2 136.3,107.4 138.0,107.5 139.6,115.1 141.3,130.5 142.9,126.6 147.8,125.8 149.5,128.5 151.1,128.4 152.7,130.8 154.4,135.8 159.3,141.3 160.9,135.2 162.6,133.5 164.2,143.1 165.8,148.2 170.8,144.0 172.4,141.5 174.0,141.1 175.7,140.0 177.3,141.5 187.2,139.8 188.8,137.3 193.7,140.3 195.4,139.4 197.0,138.6 198.6,132.4 200.3,130.5 206.8,146.1 208.5,172.8 210.1,151.6 211.8,152.1 216.7,162.6 218.3,160.5 220.0,150.0 221.6,155.2 223.2,160.5 228.2,164.4 229.8,161.3 231.4,155.0 233.1,161.7 234.7,159.1 239.6,171.7 241.3,167.8 242.9,161.7 244.5,161.7 246.2,158.3 251.1,170.5 252.7,174.7 254.4,163.8 256.0,161.7 257.7,166.7 262.6,166.5 264.2,161.5 265.9,159.6 267.5,162.5 269.1,163.9 274.1,167.3 275.7,169.6 277.3,158.9 279.0,156.6 280.6,159.1 285.5,158.4 287.2,161.2 288.8,165.5 290.5,173.1 292.1,170.9 297.0,173.9 298.7,174.7 300.3,179.7 301.9,180.2 308.5,177.8 311.8,178.6 313.4,180.6 315.0,179.9 320.0,182.2 321.6,184.6 323.2,189.9 324.9,183.6 326.5,188.5 331.4,193.8 333.1,200.3 334.7,201.7 336.4,192.3 338.0,189.1 344.6,187.5 346.2,194.1 347.8,195.9 349.5,197.5 354.4,195.3 356.0,196.9 359.3,199.6 361.0,201.2 365.9,216.9 367.5,208.3 369.2,208.0 370.8,210.0 372.4,208.5 377.3,202.5 379.0,202.4 380.6,196.4 382.3,186.7 383.9,195.7 388.8,208.5 390.5,212.1 392.1,194.0 393.7,193.8 395.4,200.7 400.3,183.8 401.9,193.0 403.6,192.2 405.2,190.6 406.9,188.1 411.8,190.7 413.4,188.0 415.1,197.5 416.7,203.7 418.3,192.3 423.3,191.5 424.9,196.7 426.5,194.3 428.2,192.2 434.7,200.4 436.4,192.3 438.0,196.1 439.7,194.9 441.3,172.5 446.2,168.1 447.8,167.5 449.5,178.8 451.1,171.0 452.8,177.8 457.7,187.8 459.3,179.3 461.0,176.8 462.6,173.1 464.2,166.3 469.2,164.2 470.8,157.8 472.4,167.5 474.1,165.0 475.7,167.6 482.3,170.4 483.9,168.3 485.6,163.4 487.2,167.1 492.1,163.6 493.8,161.7 495.4,159.4 497.0,160.2 498.7,177.6 503.6,172.5 505.2,172.2 506.9,175.2 508.5,179.1 510.2,183.9 515.1,180.9 516.7,185.1 518.3,183.1 520.0,187.8 521.6,189.1 526.5,191.2 528.2,190.1 529.8,190.6 531.5,192.2 533.1,192.0 538.0,191.2 539.7,193.0 541.3,197.0 549.5,191.5 551.1,194.0 552.8,193.0 554.4,186.9 556.1,199.0 562.6,206.1 564.3,211.4 565.9,220.8 572.5,223.7 574.1,222.9 575.7,227.2 577.4,216.3 579.0,208.0 583.9,187.2 585.6,193.0 587.2,188.8 588.8,197.8 590.5,180.9 595.4,183.1 597.0,195.7 598.7,196.1 600.3,197.0 602.0,177.5 606.9,188.0 608.5,183.1 610.2,176.2 611.8,172.2 613.4,172.8" fill="none" stroke="#333333" stroke-width="1.8"/>
+<circle cx="60.9" cy="78.5" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="90.4" cy="62.3" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="115.0" cy="78.5" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="116.7" cy="78.5" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="116.7" cy="86.5" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="119.9" cy="46.2" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="136.3" cy="46.2" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="139.6" cy="62.3" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="288.8" cy="78.5" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="288.8" cy="78.5" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="288.8" cy="110.8" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="334.7" cy="126.9" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="400.3" cy="78.5" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="401.9" cy="126.9" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="439.7" cy="102.7" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="439.7" cy="94.6" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="439.7" cy="110.8" r="4" fill="#D9534F" fill-opacity="0.8"/><circle cx="439.7" cy="78.5" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="439.7" cy="94.6" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="502.0" cy="118.8" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="502.0" cy="126.9" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="502.0" cy="94.6" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="561.0" cy="94.6" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="561.0" cy="102.7" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="562.6" cy="78.5" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="562.6" cy="94.6" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="562.6" cy="110.8" r="4" fill="#5B8DB8" fill-opacity="0.8"/><circle cx="587.2" cy="126.9" r="4" fill="#5B8DB8" fill-opacity="0.8"/>
+<text x="56" y="16">(단위: 만원) — 검은 선: 주가 · 빨간 점: 목표가 상향 · 파란 점: 목표가 하향</text>
+</svg></div>
+<p class="small">텔레그램 ked_epic_ai 채널 '목표주가 상향/하향 리포트 요약'에서 추출 (목표가 유지 리포트는 안 잡힘). 25.12~26.4 일부는 분할 재상장 전후 기준이 섞여 150만 원 미만은 차트에서 뺌</p>
+<p class="d">- 1월: 210만~230만 원까지 올라감 (25년 실적 + GSK 미국 공장 인수)</p>
+<p class="d">- 5월 이후: 상향 1건, <b>하향 16건</b>. 이유는 거의 같음 → 수주 공백, 파업, 유상증자 희석(약 5%), 멀티플 하향</p>
+<p class="d">- 지금 증권사 14곳 최신 목표가 평균 약 <b>198만 원</b> → 현재가 대비 +31%. 전부 '매수' 의견 유지</p>
+<p class="d">- 제일 낮은 곳: 신영·삼성·신한 180만 원. 신영은 "5공장 매출 시작까지 1년 6개월(보통 9개월~1년), 6공장 착공 2년 지연" 지적</p>
+<div class="box"><table>
+<tr><th style="width:10%">날짜</th><th style="width:16%">증권사</th><th style="width:22%">목표가</th><th>리포트 제목</th></tr>
+<tr><td class="c">10.21</td><td>신영증권</td><td class="c">210만 → <b>180만</b> ▼</td><td>성장한 것처럼 보이지만</td></tr>
+<tr><td class="c">10.06</td><td>현대차증권</td><td class="c">200만 → <b>190만</b> ▼</td><td>3Q26 Preview: 파업과 환율 영향에도 선방하는 실적 예상</td></tr>
+<tr><td class="c">10.06</td><td>IBK투자증권</td><td class="c">209만 → <b>200만</b> ▼</td><td>신규 공장이 채운 실적, 수주가 더할 모멘텀</td></tr>
+<tr><td class="c">10.06</td><td>DB증권</td><td class="c">220만 → <b>210만</b> ▼</td><td>3분기 달러 환율 하락의 우려도 없다</td></tr>
+<tr><td class="c">10.05</td><td>하나증권</td><td class="c">205만 → <b>195만</b> ▼</td><td>환율도 꺾지 못한 성장세 (3Q26 Preview)</td></tr>
+<tr><td class="c">10.05</td><td>유안타증권</td><td class="c">210만 → <b>200만</b> ▼</td><td>환율 하락에도 견조한 흐름</td></tr>
+<tr><td class="c">08.30</td><td>키움증권</td><td class="c">210만 → <b>200만</b> ▼</td><td>실탄 확보로 인수와 증설 본격화</td></tr>
+<tr><td class="c">08.30</td><td>삼성증권</td><td class="c">190만 → <b>180만</b> ▼</td><td>항체를 넘어 펩타이드로, 지정학 리스크에 대응</td></tr>
+<tr><td class="c">08.30</td><td>DS투자증권</td><td class="c">195만 → <b>185만</b> ▼</td><td>유상증자, 기존 주주 가치 희석 제한적</td></tr>
+<tr><td class="c">07.23</td><td>현대차증권</td><td class="c">210만 → <b>200만</b> ▼</td><td>2Q26 Review: 신규 수주만 나오면 딱</td></tr>
+<tr><td class="c">07.23</td><td>상상인증권</td><td class="c">230만 → <b>210만</b> ▼</td><td>5공장 및 락빌 공장 반영은 3분기부터</td></tr>
+<tr><td class="c">07.23</td><td>삼성증권</td><td class="c">180만 → <b>190만</b> ▲</td><td>지정학적 리스크 속에서도 완성되는 CDMO 확장 로드맵</td></tr>
+<tr><td class="c">07.23</td><td>메리츠증권</td><td class="c">230만 → <b>200만</b> ▼</td><td>2Q26P Review: 펩타이드 공장 인수는 긍정적, 수주는 확인 필요</td></tr>
+<tr><td class="c">07.23</td><td>DS투자증권</td><td class="c">210만 → <b>195만</b> ▼</td><td>2Q26 Re: 3분기부터 시작될 성장 랠리</td></tr>
+<tr><td class="c">06.30</td><td>신한투자증권</td><td class="c">190만 → <b>180만</b> ▼</td><td>큰 파도를 지나는 중</td></tr>
+<tr><td class="c">06.29</td><td>다올투자증권</td><td class="c">220만 → <b>210만</b> ▼</td><td>방향성은 유지, 불확실성은 진행형</td></tr>
+<tr><td class="c">05.20</td><td>삼성증권</td><td class="c">210만 → <b>180만</b> ▼</td><td>불확실성 해소가 관건</td></tr>
+<tr><td class="c">04.22</td><td>신한투자증권</td><td class="c">135만 → <b>190만</b> ▲</td><td>록빌로 매출 성장 빌드업</td></tr>
+<tr><td class="c">04.22</td><td>삼성증권</td><td class="c">220만 → <b>210만</b> ▼</td><td>실적은 견고, 시장의 시선은 수주로</td></tr>
+<tr><td class="c">04.22</td><td>DS투자증권</td><td class="c">130만 → <b>210만</b> ▲</td><td>1Q26 Re: 든든한 로직스</td></tr>
+</table></div>
+<p class="small">2026년 4월 이후, 같은 날 중복 리포트는 하나만</p>
+<div class="note"><span class="nt">요약</span>5월 이후 목표가 하향 16건, 상향 1건. 이유는 대부분 증자 희석과 수주 공백이고 <b>이익 추정치 자체는 거의 안 꺾였다.</b> 평균 목표가 약 198만.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 5 · 밸류에이션 <span>약 1분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 멀티플 (비싼가 싼가)</h2>
+<p>주식이 비싼지 싼지 볼 때 쓰는 숫자들. 간단히 정리하면,</p>
+<p class="d">- <b>PER</b> = 시총 ÷ 순이익. "이익의 몇 년치 값을 주고 사나"</p>
+<p class="d">- <b>EV/EBITDA</b> = (시총 + 순부채) ÷ 감가상각 전 이익. 공장 많이 짓는 회사는 감가상각이 커서 이걸 더 많이 씀. 증권사들도 삼성바이오는 주로 이걸로 목표가 계산</p>
+<div class="box"><table>
+<tr><th style="width:34%">기준</th><th>배수</th><th>메모</th></tr>
+<tr><td>26년 예상 PER</td><td class="c">38.4배</td><td>EPS 39,538원 (컨센서스)</td></tr>
+<tr><td>27년 예상 PER</td><td class="c"><b>33.5배</b></td><td>EPS 45,407원</td></tr>
+<tr><td>28년 예상 PER</td><td class="c">30.8배</td><td>EPS 49,350원</td></tr>
+<tr><td>EV/EBITDA (12개월 예상)</td><td class="c"><b>24.5배</b></td><td>야후 파이낸스</td></tr>
+<tr><td>최근 3년 평균 EV/EBITDA</td><td class="c">약 32배</td><td>현대차증권 리포트에서 쓴 기준</td></tr>
+<tr><td>증권사들이 쓰는 목표 배수</td><td class="c">21~32배</td><td>DS 21.1배, 교보 24.5배, 현대차 32배, 메리츠는 Lonza·Thermo 평균</td></tr>
+</table></div>
+<p class="small">출처: 국내 컨센서스(2026.11.6 수집), 야후 파이낸스, 증권사 리포트 요약(텔레그램 ked_epic_ai)</p>
+<p class="d">- <span class="m">자기 과거(EV/EBITDA 30배대) 기준으론 싼 편, 경쟁사(Lonza 21배, WuXi 22배) 기준으론 아직 비싼 편</span></p>
+<p class="d">- 삼성이 경쟁사보다 비싸게 거래된 이유 = 이익률 1등 + 성장률 1등. 근데 올해는 성장률 우위가 줄어서 프리미엄이 빠지는 중</p>
+<p class="d">- 결국 "수주가 다시 나와서 27~28년 성장이 20% 이상 유지되느냐"가 멀티플을 다시 올릴지 결정</p>
+<p class="d">- 이익 추정치 자체는 크게 안 꺾였음. 26년 영업이익 추정 7월 2.51조 → 지금 2.46조(-2%). 27년 EPS 48,518 → 45,407(-6%)은 대부분 신주 발행 희석분</p>
+<h3>빅파마·위탁생산 15곳과 비교</h3>
+
+<div class="box"><table>
+<tr><th style="width:14%">회사</th><th>구분</th><th>예상 PER</th><th>EV/EBITDA</th><th>PBR</th><th>영업이익률</th><th>내년 매출 성장</th><th>내년 EPS 성장</th><th>PEG</th><th>1년</th><th>5년</th></tr>
+<tr><td><b>삼성바이오</b></td><td class="c">CDMO</td><td class="c">33.5</td><td class="c">24.5</td><td class="c">6.1</td><td class="c">44%</td><td class="c">+16%</td><td class="c">+15%</td><td class="c">2.3</td><td class="c">-19%</td><td class="c">+15%</td></tr>
+<tr><td>Lonza</td><td class="c">CDMO</td><td class="c">29.2</td><td class="c">21.2</td><td class="c">5.6</td><td class="c">23%</td><td class="c">+12%</td><td class="c">+20%</td><td class="c">1.5</td><td class="c">+25%</td><td class="c">-4%</td></tr>
+<tr><td>Thermo Fisher</td><td class="c">CDMO</td><td class="c">24.4</td><td class="c">23.6</td><td class="c">4.6</td><td class="c">20%</td><td class="c">+5%</td><td class="c">+10%</td><td class="c">2.5</td><td class="c">+20%</td><td class="c">+11%</td></tr>
+<tr><td>WuXi Bio</td><td class="c">CDMO</td><td class="c">21.8</td><td class="c">21.7</td><td class="c">3.5</td><td class="c">32%</td><td class="c">+20%</td><td class="c">+20%</td><td class="c">1.1</td><td class="c">+36%</td><td class="c">-53%</td></tr>
+<tr><td>Fujifilm</td><td class="c">CDMO</td><td class="c">11.0</td><td class="c">10.1</td><td class="c">1.0</td><td class="c">6%</td><td class="c">+5%</td><td class="c">+14%</td><td class="c">0.8</td><td class="c">-1%</td><td class="c">+16%</td></tr>
+<tr><td>일라이 릴리</td><td class="c">빅파마</td><td class="c">27.2</td><td class="c">27.1</td><td class="c">30.2</td><td class="c">54%</td><td class="c">+15%</td><td class="c">+42%</td><td class="c">0.6</td><td class="c">+46%</td><td class="c">+439%</td></tr>
+<tr><td>J&J</td><td class="c">빅파마</td><td class="c">23.4</td><td class="c">19.8</td><td class="c">8.0</td><td class="c">26%</td><td class="c">+6%</td><td class="c">+4%</td><td class="c">5.2</td><td class="c">+49%</td><td class="c">+92%</td></tr>
+<tr><td>암젠</td><td class="c">빅파마</td><td class="c">18.6</td><td class="c">16.4</td><td class="c">17.3</td><td class="c">36%</td><td class="c">+3%</td><td class="c">+6%</td><td class="c">3.3</td><td class="c">+50%</td><td class="c">+152%</td></tr>
+<tr><td>로슈</td><td class="c">빅파마</td><td class="c">17.8</td><td class="c">17.0</td><td class="c">9.6</td><td class="c">36%</td><td class="c">+5%</td><td class="c">+7%</td><td class="c">2.4</td><td class="c">+49%</td><td class="c">+40%</td></tr>
+<tr><td>애브비</td><td class="c">빅파마</td><td class="c">17.8</td><td class="c">18.2</td><td class="c">-</td><td class="c">40%</td><td class="c">+9%</td><td class="c">+16%</td><td class="c">1.1</td><td class="c">+36%</td><td class="c">+194%</td></tr>
+<tr><td>아스트라제네카</td><td class="c">빅파마</td><td class="c">16.5</td><td class="c">14.9</td><td class="c">5.6</td><td class="c">30%</td><td class="c">+6%</td><td class="c">+12%</td><td class="c">1.4</td><td class="c">+13%</td><td class="c">+63%</td></tr>
+<tr><td>MSD(머크)</td><td class="c">빅파마</td><td class="c">16.3</td><td class="c">13.8</td><td class="c">8.1</td><td class="c">35%</td><td class="c">+3%</td><td class="c">왜곡</td><td class="c">-</td><td class="c">+76%</td><td class="c">+110%</td></tr>
+<tr><td>노바티스</td><td class="c">빅파마</td><td class="c">15.9</td><td class="c">12.2</td><td class="c">8.1</td><td class="c">34%</td><td class="c">+7%</td><td class="c">+11%</td><td class="c">1.5</td><td class="c">+33%</td><td class="c">+120%</td></tr>
+<tr><td>노보 노디스크</td><td class="c">빅파마</td><td class="c">12.0</td><td class="c">7.1</td><td class="c">5.4</td><td class="c">40%</td><td class="c">+1%</td><td class="c">+1%</td><td class="c">-</td><td class="c">-9%</td><td class="c">-17%</td></tr>
+<tr><td>화이자</td><td class="c">빅파마</td><td class="c">10.2</td><td class="c">8.8</td><td class="c">1.9</td><td class="c">33%</td><td class="c">-4%</td><td class="c">-3%</td><td class="c">-</td><td class="c">+29%</td><td class="c">-21%</td></tr>
+<tr style="background:#F4F4F4"><td><b>CDMO 중앙값</b></td><td class="c">-</td><td class="c">24.4</td><td class="c">21.7</td><td class="c">-</td><td class="c">23%</td><td class="c">+12%</td><td class="c">-</td><td class="c">1.5</td><td class="c">+20%</td><td class="c">+11%</td></tr>
+<tr style="background:#F4F4F4"><td><b>빅파마 중앙값</b></td><td class="c">-</td><td class="c">17.2</td><td class="c">15.6</td><td class="c">-</td><td class="c">36%</td><td class="c">+5%</td><td class="c">-</td><td class="c">1.5</td><td class="c">+41%</td><td class="c">+101%</td></tr>
+</table></div>
+<p class="small">예상 PER·EV/EBITDA·이익률·성장률: 야후 파이낸스 12개월 예상·애널리스트 평균(2026.11.6). 삼성은 국내 컨센서스 27년 기준. PEG = PER ÷ 내년 EPS 성장률(%). MSD는 26년 일회성 비용으로 EPS 성장률이 왜곡돼서 제외. 애브비 PBR은 자본이 마이너스라 -</p>
+<h3>성장 대비 얼마나 비싼가</h3>
+<div class="chart"><svg viewBox="0 0 640 285" role="img" aria-label="내년 EPS 성장률과 예상 PER 비교. 삼성바이오는 성장률 15%에 PER 33.5로 가장 비싼 쪽">
+<g stroke="#EEEEEE" stroke-width="1"><line x1="56" y1="250.0" x2="610" y2="250.0"/><line x1="56" y1="214.5" x2="610" y2="214.5"/><line x1="56" y1="179.0" x2="610" y2="179.0"/><line x1="56" y1="143.5" x2="610" y2="143.5"/><line x1="56" y1="108.1" x2="610" y2="108.1"/><line x1="56" y1="72.6" x2="610" y2="72.6"/><line x1="56" y1="37.1" x2="610" y2="37.1"/><line x1="111.4" y1="30" x2="111.4" y2="250"/><line x1="222.2" y1="30" x2="222.2" y2="250"/><line x1="333.0" y1="30" x2="333.0" y2="250"/><line x1="443.8" y1="30" x2="443.8" y2="250"/><line x1="554.6" y1="30" x2="554.6" y2="250"/></g><text x="50" y="254.0" text-anchor="end">5</text><text x="50" y="218.5" text-anchor="end">10</text><text x="50" y="183.0" text-anchor="end">15</text><text x="50" y="147.5" text-anchor="end">20</text><text x="50" y="112.1" text-anchor="end">25</text><text x="50" y="76.6" text-anchor="end">30</text><text x="50" y="41.1" text-anchor="end">35</text><text x="111.4" y="266" text-anchor="middle">0%</text><text x="222.2" y="266" text-anchor="middle">10%</text><text x="333.0" y="266" text-anchor="middle">20%</text><text x="443.8" y="266" text-anchor="middle">30%</text><text x="554.6" y="266" text-anchor="middle">40%</text><line x1="166.8" y1="250.0" x2="510.3" y2="30.0" stroke="#999" stroke-dasharray="4 4"/><text x="506.3" y="44.0" text-anchor="end" style="fill:#999">PEG 1 (성장률만큼 PER)</text><circle cx="275.4" cy="47.7" r="6" fill="#D9534F"/><text x="281.4" y="51.7" style="fill:#333;font-weight:700">삼성바이오</text><circle cx="332.7" cy="78.0" r="5" fill="#E8A87C"/><text x="338.7" y="82.0" style="fill:#333">Lonza</text><circle cx="333.8" cy="130.7" r="5" fill="#E8A87C"/><text x="339.8" y="142.7" style="fill:#333">WuXi Bio</text><circle cx="265.6" cy="207.3" r="5" fill="#E8A87C"/><text x="271.6" y="211.3" style="fill:#333">Fujifilm</text><circle cx="221.0" cy="112.6" r="5" fill="#E8A87C"/><text x="227.0" y="124.6" style="fill:#333">Thermo Fisher</text><circle cx="575.3" cy="92.4" r="5" fill="#7A9CC6"/><text x="581.3" y="96.4" style="fill:#333">일라이 릴리</text><circle cx="124.5" cy="200.1" r="5" fill="#7A9CC6"/><text x="130.5" y="204.1" style="fill:#333">노보 노디스크</text><circle cx="161.0" cy="119.1" r="5" fill="#7A9CC6"/><text x="167.0" y="131.1" style="fill:#333">J&J</text><circle cx="284.9" cy="159.1" r="5" fill="#7A9CC6"/><text x="290.9" y="153.1" style="fill:#333">애브비</text><circle cx="74.3" cy="212.7" r="5" fill="#7A9CC6"/><text x="80.3" y="216.7" style="fill:#333">화이자</text><circle cx="242.4" cy="168.3" r="5" fill="#7A9CC6"/><text x="248.4" y="162.3" style="fill:#333">아스트라제네카</text><circle cx="192.3" cy="159.1" r="5" fill="#7A9CC6"/><text x="198.3" y="153.1" style="fill:#333">로슈</text><circle cx="232.8" cy="172.5" r="5" fill="#7A9CC6"/><text x="238.8" y="184.5" style="fill:#333">노바티스</text><circle cx="173.2" cy="153.2" r="5" fill="#7A9CC6"/><text x="179.2" y="165.2" style="fill:#333">암젠</text>
+<text x="56" y="16">세로: 예상 PER · 가로: 내년 EPS 성장률 · 점선 왼쪽 위일수록 성장 대비 비쌈</text>
+<text x="333" y="282" text-anchor="middle">내년 EPS 성장률 (애널리스트 평균)</text>
+</svg></div>
+<p class="d">- 빅파마 PER 중앙값 17배, 위탁생산 중앙값 24배. <b>위탁생산이 더 비싸게 거래됨</b></p>
+<p class="d">- 이유: 위탁생산은 특허 만료 걱정이 없고, 어떤 약이 성공하든 일감이 생김 (금광에서 금 캐는 사람 말고 곡괭이 파는 사람). 그래서 매출이 더 안정적이라는 프리미엄</p>
+<p class="d">- 그런데 그중에서도 <span class="m">삼성은 PER 33.5배로 15개 회사 중 1등</span>. 성장률(15%)은 중간이라 PEG 2.3로 비싼 쪽</p>
+<p class="d">- 성장 대비 제일 싼 건 릴리(PER 27배인데 EPS +42%, PEG 0.6)와 WuXi(PEG 1.1)</p>
+<p class="d">- 결국 삼성에 프리미엄을 주는 근거는 <b>"이익률 1등(44%) + 수주잔고 장기계약"</b>. 수주가 꺾이면 이 프리미엄이 더 빠질 수 있고, 수주가 살아나면 지켜질 수 있음 → 앞의 결론(수주 확인 후)이랑 같은 얘기</p>
+<div class="note"><span class="nt">요약</span>PER·EV/EBITDA 한 줄 설명 후 결론만: 위탁생산은 빅파마보다 비싸게 거래되고(특허 걱정 없음), 그중 삼성이 15곳 중 제일 비쌈. 자기 과거보단 싸지만 경쟁사·성장 대비론 비쌈.</div>
+
+<div class="hr"></div>
+
+<div class="part">PART 6 · 투자 판단 <span>약 2분</span></div>
+
+<div class="hr"></div>
+
+<h2>■ 투자 아이디어</h2>
+<h3>1. 세계 최대 + 최고 이익률 항체 공장</h3>
+<p class="d">- 생산능력 84.5만 L로 1등, EBITDA 마진 61% (Lonza 32%, WuXi 40%)</p>
+<p class="d">- 1~4공장은 풀가동. 5공장·미국 공장이 차는 만큼 이익이 거의 그대로 늘어남 (가동률 70% → 80%만 돼도 큰 차이)</p>
+<p class="d">- 계약이 "최소 구매 보장"이라 이미 받은 일감(약 99억 달러)은 꽤 단단함. 해지 0건</p>
+<h3>2. 항체 → 펩타이드·ADC로 확장</h3>
+<p class="d">- PolyPeptide 인수로 펩타이드(비만약 GLP-1 계열 원료) 진출. 지금 제일 수요가 큰 약 쪽</p>
+<p class="d">- ADC 전용 시설도 가동 중. "항체 하나만 하는 회사" 디스카운트를 줄일 수 있음</p>
+<p class="d">- 대신 처음 1~2년은 이익률이 낮아지는 구간 (인수 회사 이익률이 낮음)</p>
+<h3>3. 미국 견제·관세 대응 카드</h3>
+<p class="d">- 미국 Rockville 공장 + 중국 업체가 아닌 대형 CDMO → BIOSECURE·관세 이슈가 다시 커지면 수혜</p>
+<p class="d">- 하반기 관세 불확실성 완화로 수주 문의가 회복 중이라는 회사 코멘트 (2분기 실적 발표)</p>
+<h3>4. 밸류에이션 하단 근처</h3>
+<p class="d">- EV/EBITDA 24.5배, 자기 3년 평균(32배)보다 낮음</p>
+<p class="d">- 10월 14일 저점 117.9만 원 = 유상증자 발행가 117.4만 원 근처에서 멈추고 반등</p>
+<div class="note"><span class="nt">요약</span>사고 싶은 이유 4개: 최대·최고 이익률 공장, 펩타이드·ADC 확장, 미국 견제 수혜, 밸류에이션 하단 근처.</div>
+
+<div class="hr"></div>
+
+<h2>■ 리스크 (반대 논리)</h2>
+<p class="d">- <b>수주 둔화</b> : 26년 상반기처럼 신규 계약이 끊기면 잔고가 바로 줄어듦</p>
+<p class="d">- <b>업계 공급 과잉</b> : Fujifilm·Lonza·롯데 증설 + 릴리·노보 같은 빅파마 자체 공장. 몇 년 뒤 공장이 남아돌 수 있음</p>
+<p class="d">- <b>가동률</b> : 5공장에 이어 6공장 이후까지 계속 지으면 가동률이 70% 아래로 내려갈 수 있음</p>
+<p class="d">- <b>미국 정책</b> : 의약품 관세, 약가 인하. 미국 공장(Rockville) 인수가 이 대응으로 보임</p>
+<p class="d">- <b>BIOSECURE 약화</b> : 중국 견제가 약해지면 WuXi로 일감이 돌아갈 수 있음</p>
+<p class="d">- <b>환율</b> : 매출 대부분이 달러·유로. 원화 강세면 원화 매출 감소</p>
+<p class="d">- <b>밸류에이션</b> : 예상 PER 30배대. 성장이 조금만 꺾여도 주가가 크게 반응</p>
+<p class="d">- <b>노사 갈등</b> : 5월 파업 1,500억 차질. 2차 파업은 법원 결정 후 연기됐지만 임금 협상은 아직 안 끝남</p>
+<p class="d">- <b>신주 물량</b> : 11월 30일 유상증자 신주 227만 주 상장. 발행가 117.4만 원이라 지금 가격이면 약 29% 차익 → 단기 매물 가능</p>
+<p class="d">- <b>PolyPeptide 인수</b> : 삼성보다 이익률이 낮은 회사라 합치면 연결 이익률이 내려감 + 인수가 배분(PPA) 상각 비용</p>
+<p class="d">- <b>특허 절벽</b> : 2028년 전후 키트루다 등 큰 약 특허 만료 → 오리지널 물량 감소 가능 (대신 바이오시밀러 물량은 생김)</p>
+<div class="note"><span class="nt">요약</span>반대 논리: 수주 둔화, 업계 증설, 파업, 신주 물량(11/30), 인수 비용. 단기 이벤트가 몰려 있다는 것 강조.</div>
+
+<div class="hr"></div>
+
+<h2>■ 그래서 살 이유가 되나? (4가지로 따져봄)</h2>
+<p>"좋은 회사"랑 "지금 살 이유"는 다른 얘기라, 살 이유가 되는 논리 4개를 하나씩 대봄.</p>
+
+<h3>① 경쟁사보다 싼가? → <span style="color:#D9534F">아니오</span></h3>
+<div class="box"><table>
+<tr><th style="width:22%">회사</th><th>예상 PER</th><th>EV/EBITDA</th><th>영업이익률</th></tr>
+<tr><td><b>삼성바이오</b></td><td class="c"><b>33.5</b></td><td class="c"><b>24.5</b></td><td class="c"><b>45%</b></td></tr>
+<tr><td>Lonza</td><td class="c">29.2</td><td class="c">21.2</td><td class="c">22%</td></tr>
+<tr><td>WuXi Biologics</td><td class="c">21.8</td><td class="c">21.7</td><td class="c">33%</td></tr>
+<tr><td>Thermo Fisher</td><td class="c">24.4</td><td class="c">23.6</td><td class="c">18%</td></tr>
+</table></div>
+<p class="d">- PER, EV/EBITDA 둘 다 삼성이 제일 비쌈. 이익률이 제일 높으니 비싼 게 이상하진 않지만, <b>"경쟁사 대비 저평가"는 아님</b></p>
+
+<h3>② 성장성에 비해 싼가? → <span style="color:#D9534F">아니오</span></h3>
+<div class="box"><table>
+<tr><th style="width:22%">회사</th><th>27년 EPS 성장</th><th>27년 매출 성장</th><th>PER</th><th>PEG (PER ÷ EPS 성장률)</th></tr>
+<tr><td><b>삼성바이오</b></td><td class="c">+14.8%</td><td class="c">+16.4%</td><td class="c">33.5</td><td class="c"><b>2.3</b></td></tr>
+<tr><td>Lonza</td><td class="c">+20.0%</td><td class="c">+11.5%</td><td class="c">29.2</td><td class="c">1.5</td></tr>
+<tr><td>WuXi Biologics</td><td class="c">+20.1%</td><td class="c">+19.6%</td><td class="c">21.8</td><td class="c"><b>1.1</b></td></tr>
+<tr><td>Thermo Fisher</td><td class="c">+9.9%</td><td class="c">+5.3%</td><td class="c">24.4</td><td class="c">2.5</td></tr>
+</table></div>
+<p class="small">PEG는 1에 가까울수록 성장 대비 싸다는 뜻. 삼성은 국내 컨센서스(27년 EPS 45,407 / 26년 39,538), 나머지는 야후 파이낸스 애널리스트 평균</p>
+<p class="d">- 27년 EPS 성장률은 오히려 삼성이 Lonza·WuXi보다 낮게 추정됨 (신주 희석 + 새 공장 비용 + PolyPeptide 저마진)</p>
+<p class="d">- <b>"성장성 대비 싸다"도 아님.</b> 성장 대비로는 WuXi가 제일 쌈 (대신 미국 견제 리스크 할인)</p>
+
+<h3>③ 자기 과거보다 싼가? → <span style="color:#2E8B57">예</span></h3>
+<p class="d">- EV/EBITDA 24.5배, 최근 3년 평균 약 32배보다 25% 정도 낮음</p>
+<p class="d">- 하지만 과거 32배는 "매년 25~30% 성장 + 대형 수주 연속" 때 값. 성장이 15%대로 내려오면 과거 배수로 돌아갈 근거가 약함</p>
+<p class="d">- 그래서 이건 <b>수주가 회복된다는 조건이 붙은 저평가</b></p>
+
+<h3>④ 손익비가 좋은 자리인가? → <span style="color:#E08A2E">지금은 보통, 120만 원 근처면 좋음</span></h3>
+<p>27년 예상 EBITDA 약 3.4조 원(교보증권 3.43조)에 배수만 바꿔서 계산. 주식 수는 신주 포함 4,856만 주.</p>
+<div class="box"><table>
+<tr><th style="width:26%">시나리오</th><th>가정</th><th>주당 가치</th><th>지금(151.6만)에서</th><th>120만에서 사면</th></tr>
+<tr><td>좋을 때</td><td>수주 회복, EV/EBITDA 28배</td><td class="c">약 198만</td><td class="c">+30%</td><td class="c"><b>+65%</b></td></tr>
+<tr><td>지금 그대로</td><td>24배</td><td class="c">약 170만</td><td class="c">+11%</td><td class="c">+41%</td></tr>
+<tr><td>나쁠 때</td><td>수주 부진, EBITDA -10% + 18배 (경쟁사 수준 이하)</td><td class="c">약 115만</td><td class="c"><b>-24%</b></td><td class="c">-4%</td></tr>
+</table></div>
+<p class="small">순부채는 유상증자 대금으로 인수대금을 내면 거의 0이라 보고 단순화. 대략적인 계산</p>
+<p class="d">- 지금 가격: 위로 +30%, 아래로 -24% → <b>손익비 약 1.3 : 1</b>. 굳이 지금 들어갈 만큼 좋진 않음</p>
+<p class="d">- 120만 원 근처: 위로 +65%, 아래로 -4% → 손익비가 확 좋아짐. 마침 유상증자 발행가(117.4만)·10월 저점(117.9만)이랑 같은 자리</p>
+
+<h3>정리</h3>
+<div class="box"><table>
+<tr><th style="width:40%">논리</th><th>판단</th></tr>
+<tr><td>경쟁사 대비 저평가</td><td class="c">✕</td></tr>
+<tr><td>성장성 대비 저평가</td><td class="c">✕</td></tr>
+<tr><td>자기 과거 대비 저평가</td><td class="c">△ (수주 회복 조건부)</td></tr>
+<tr><td>손익비 (지금 가격)</td><td class="c">△ (1.3 : 1)</td></tr>
+<tr><td>손익비 (120만 원 근처)</td><td class="c">○</td></tr>
+</table></div>
+<p class="d">- 지금 가격에서 살 논리는 <span class="m">"수주가 돌아온다"에 거는 것 하나뿐</span>. 그래서 수주 확인 전에는 살 이유가 약함</p>
+<div class="note"><span class="nt">요약</span><b>발표에서 제일 중요한 장.</b> 경쟁사 대비 싸서도, 성장 대비 싸서도 아니다. 자기 과거 대비 싼 건 "수주가 돌아온다"는 조건부. 손익비는 지금 +30% / -24%로 1.3:1, 120만이면 +65% / -4%.</div>
+
+<div class="hr"></div>
+
+<h2>■ 체크리스트 (2026.11 기준)</h2>
+<div class="box"><table>
+<tr><th style="width:36%">확인할 것</th><th style="width:14%">지금</th><th>근거</th></tr>
+<tr><td>1. 바이오 공장이 모자란가?</td><td class="c">△</td><td>삼성 가동률 70%로 여유 있음. 업계도 증설 중이라 "모자라다"고 보긴 어려움</td></tr>
+<tr><td>2. 신규 계약이 계속 나오는가?</td><td class="c">△ → ○</td><td>26년 신규 수주 약 1.2조(25년의 20%). 9~11월 약 8,800억 원 재개. 3분기 보고서로 확인 필요</td></tr>
+<tr><td>3. 감액 정정이 연속으로 나오는가?</td><td class="c">○</td><td>최근 정정은 대부분 증액·기간 연장. 해지 0건</td></tr>
+<tr><td>4. 빅파마 자체 공장 속도</td><td class="c">△</td><td>릴리·노보 대규모 증설 진행 중. 장기 리스크</td></tr>
+<tr><td>5. 큰 약 특허 만료</td><td class="c">-</td><td>2028년 전후. 영향은 고객 구성에 따라 다름 (공시에 고객 이름 비공개가 많음)</td></tr>
+<tr><td>6. 왜 삼성만 주가가 약한가</td><td class="c">-</td><td>1년은 약하지만 5년은 경쟁사보다 나음. 올해는 수주 공백 + 가동률 + WuXi 회복 영향으로 봄</td></tr>
+</table></div>
+<div class="note"><span class="nt">요약</span>6개 항목 현재 상태만 훑고 결론으로.</div>
+
+<div class="hr"></div>
+
+<h2>■ 결론 : 지금 살 때인가, 기다릴 때인가</h2>
+<p><b>내 결론은 "지금은 기다림, 조건 보이면 나눠서 매수".</b></p>
+<p class="d">- 지금 가격은 경쟁사 대비로도, 성장성 대비로도 싸지 않음. 손익비도 1.3 : 1로 보통</p>
+<p class="d">- 회사 자체(이익률·생산능력·수주잔고)는 여전히 좋음. 길게 보면 사고 싶은 회사인 건 맞음</p>
+<p class="d">- 근데 지금 가격 151.6만 원은 <b>10월 저점(117.9만)에서 3주 만에 +29%</b> 오른 자리. 쫓아가서 살 자리는 아닌 듯</p>
+<p class="d">- 주가를 다시 올릴 핵심 재료(신규 수주 회복)가 아직 숫자로 확인이 안 됨</p>
+<p class="d">- 11월 말 신주 227만 주 상장, 연말 PolyPeptide 인수 마무리, 임금 협상 → 이벤트가 몰려 있음</p>
+
+<h3>기다리면서 확인할 것 (순서대로)</h3>
+<div class="box"><table>
+<tr><th style="width:18%">시기</th><th>이벤트</th><th style="width:34%">좋은 신호</th></tr>
+<tr><td class="c">11월 중순</td><td>3분기 분기보고서 '수주상황'</td><td>최소보장 수주잔고가 3분기 연속 감소 멈추고 증가 (9~10월 계약 반영)</td></tr>
+<tr><td class="c">11.30</td><td>유상증자 신주 227만 주 상장</td><td>상장 후 1~2주 매물 소화하고 50일선(약 141만 원) 위 유지</td></tr>
+<tr><td class="c">수시</td><td>단일판매·공급계약 공시</td><td>항체 대형(5,000억 원 이상) 신규 계약, 특히 5공장·미국 공장 물량</td></tr>
+<tr><td class="c">수시</td><td>노사 임금 협상</td><td>타결</td></tr>
+<tr><td class="c">12월 말</td><td>PolyPeptide 인수 완료</td><td>인수 후 펩타이드 수주 소식</td></tr>
+<tr><td class="c">27년 1월 말</td><td>4분기 실적 + 27년 가이던스</td><td>27년 매출 성장 +15% 이상 제시</td></tr>
+</table></div>
+
+<h3>가격으로 보면</h3>
+<p class="d">- <b>120만 원 근처</b>(유상증자 발행가·10월 저점)까지 다시 오면 → 위험 대비 매력 큼, 1차 분할 매수 고려</p>
+<p class="d">- <b>지금 가격대</b>에서 사려면 → 위 이벤트 중 수주잔고 증가 확인 후</p>
+<p class="d">- 증권사 평균 목표가 약 198만 원은 수주가 돌아온다는 가정. 수주 확인 전엔 반쯤만 믿기</p>
+<div class="note"><span class="nt">요약</span>"지금은 기다림." 확인 순서: 11월 중순 수주잔고 → 11/30 신주 상장 소화 → 신규 수주 공시·노사 타결 → 1월 말 27년 가이던스. 가격은 120만 근처면 1차 분할.</div>
+
+<div class="quote">좋은 회사인 건 맞는데, 좋은 가격인지는 아직. 수주잔고가 다시 늘어나는 걸 확인하거나 120만 원 근처로 다시 오면 그때 나눠서. 그 전엔 공부하면서 관찰.</div>
+
+<div class="hr"></div>
+
+<div class="part">부록</div>
+<h2>■ 관련 기사·공시 링크</h2>
+<h3>삼성바이오로직스 공시 (DART)</h3>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021800344" target="_blank">3분기 잠정실적 (2026.10.21)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021800395" target="_blank">26년 매출 전망 상향 +20% (2026.10.21)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261105000355" target="_blank">유상증자 결정·발행가 확정 117.4만 원 (2026.11.05 정정)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261106000001" target="_blank">PolyPeptide 인수 공개매수 97.98% (2026.11.06 정정)</a></p>
+<p class="d">- <a href="https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814003375" target="_blank">반기보고서 (수주잔고·가동률) 2026.06</a></p>
+<h3>삼성바이오 기사</h3>
+<p class="d">- <a href="https://www.newsis.com/view/NISX20260430_0003613694" target="_blank">뉴시스 — 삼성바이오, 사상 첫 파업 (2026.04.30)</a></p>
+<p class="d">- <a href="https://news.mtn.co.kr/news-detail/2026100212530517887" target="_blank">MTN — 삼성바이오 2차 파업 예고…손실 확대 불가피 (2026.10.02)</a></p>
+<p class="d">- <a href="https://news.mtn.co.kr/article/2026101621120618276" target="_blank">MTN — 삼성바이오 파업에 법원 제동, 노조 총파업 연기 검토 (2026.10.16)</a></p>
+<p class="d">- <a href="https://khan.co.kr/article/202610162134001" target="_blank">경향신문 — 파업 관련 (2026.10.16)</a></p>
+<p class="d">- <a href="https://economist.co.kr/article/view/ecn202610210051" target="_blank">이코노미스트 — 3분기 실적 (2026.10.21)</a></p>
+<p class="d">- <a href="https://m.dailypharm.com/user/news/343665" target="_blank">데일리팜 — 파업 여파? 이익률 2분기 연속 뒷걸음질</a></p>
+<h3>경쟁사</h3>
+<p class="d">- <a href="https://www.lonza.com/news/2026-07-22-06-30" target="_blank">Lonza — 2026 상반기 실적 발표 (Vacaville 2028, Visp 가동)</a></p>
+<p class="d">- <a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0825/2026082500945.pdf" target="_blank">WuXi Biologics — 2026 중간 실적 (홍콩거래소 원문)</a></p>
+<p class="d">- <a href="https://www.pharmamanufacturing.com/sector/contract-manufacturing/article/55401151/wuxi-biologics-revenue-jumps-in-h1-2026-as-it-accelerates-capacity-expansion" target="_blank">Pharma Manufacturing — WuXi 상반기 매출 증가·증설 가속</a></p>
+<p class="d">- <a href="https://www.dcatvci.org/?p=32681" target="_blank">DCAT — Fujifilm Diosynth 대규모 증설 (Holly Springs·Hillerød)</a></p>
+<p class="d">- <a href="https://www.businesswire.com/news/home/20250422165205/en/FUJIFILM-Diosynth-Biotechnologies-and-Regeneron-Sign-a-10-Year-U.S.-Manufacturing-Agreement-Valued-at-Over-3-Billion" target="_blank">BusinessWire — Fujifilm·리제네론 10년 30억 달러 계약 (2025.04)</a></p>
+<p class="d">- <a href="https://www.phirda.com/artilce_43238.html" target="_blank">phirda — Fujifilm 바이오 CDMO 매출 (중국어)</a></p>
+<p class="d">- 증권사 목표가: <a href="https://t.me/s/ked_epic_ai" target="_blank">텔레그램 ked_epic_ai</a></p>
+
+<div class="end">
+약값 비율, 특허 기간, 계약 시점은 일반적인 대략값이고 나라·약마다 다름.<br>
+수주잔고·가동률·연혁·계약은 DART 원문 기준. 주가·경쟁사 수치는 야후 파이낸스(2026.11.5~6) 기준.<br>
+개인 공부 기록용이며, 매수/매도 추천 아닙니다.
+</div>
+
+</div>
+</body>
+</html>
