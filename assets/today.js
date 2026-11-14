@@ -276,6 +276,7 @@ function renderSentimentCharts(sentiment) {
         { field: "customer_deposit", containerId: "sent-customer_deposit", color: "#14315C", unit: "억원" },
         { field: "credit_balance",   containerId: "sent-credit_balance",   color: "#9B59B6", unit: "억원" },
         { field: "us10y_yield",      containerId: "sent-us10y_yield",      color: "#2F6B4F", unit: "%" },
+        { field: "btc",              containerId: "sent-btc",              color: "#E8871E", unit: "$" },
     ];
 
     specs.forEach(spec => {
@@ -283,6 +284,7 @@ function renderSentimentCharts(sentiment) {
         if (!container) return;
 
         const series = sentiment[spec.field];
+        if (!series) return;
         let lastValue = null, lastIdx = -1;
         for (let i = series.length - 1; i >= 0; i--) {
             if (series[i] != null) { lastValue = series[i]; lastIdx = i; break; }
