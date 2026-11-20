@@ -62,3 +62,16 @@ table.mb-table td.a50 b { font-weight: 800; }
 .mb-help { margin-top: 16px; font-size: 0.8rem; color: #666; }
 .mb-help summary { cursor: pointer; color: #14315C; font-weight: 600; padding: 6px 0; }
 .mb-help ul { margin: 6px 0 0; padding-left: 18px; line-height: 1.6; }
+
+/* 최근일 50일선 위 종목 목록 (표 아래) */
+.mb-a50 { margin: 10px 0 26px; padding: 10px 12px; border: 1px solid #E1E9F3; border-radius: 8px; background: #FAFBFD; }
+.mb-a50-title { font-size: 13px; font-weight: 600; color: #14315C; margin-bottom: 8px; }
+.mb-a50-title b { color: #C0392B; }
+.mb-a50-note { display: block; font-weight: 400; font-size: 11px; color: #888; margin-top: 2px; }
+.mb-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.mb-chip { display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; padding: 3px 8px; border: 1px solid #E1E9F3; border-radius: 999px; background: #fff; white-space: nowrap; }
+.mb-chip small { color: #C0392B; font-size: 11px; }
+.mb-ma { font-size: 10px; font-weight: 700; color: #fff; border-radius: 4px; padding: 0 4px; line-height: 16px; }
+.mb-ma.ma10 { background: #C0392B; }
+.mb-ma.ma20 { background: #E67E22; }
+.mb-ma.ma50 { background: #9B59B6; }

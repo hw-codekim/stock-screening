@@ -65,6 +65,7 @@ function mbRender(body, data) {
                     </tbody>
                 </table>
             </div>
+            ${mbA50List(u, r0)}
         </div>`;
     }).join("");
 
@@ -83,6 +84,19 @@ function mbChg(p) {
     if (p === null || p === undefined) return '<td class="na">-</td>';
     const cls = p > 0 ? "up" : p < 0 ? "down" : "";
     return `<td class="${cls}">${p > 0 ? "+" : ""}${p.toFixed(2)}%</td>`;
+}
+
+// 최근일 '50일 합계'(10·20·50일 칸) 종목 — 시총 순, 칸 표시 + 50일선 대비 괴리율
+function mbA50List(u, r0) {
+    const list = u.above50 || [];
+    if (!r0) return "";
+    const items = list.map(x =>
+        `<span class="mb-chip"><span class="mb-ma ma${x.ma}">${x.ma}</span>${x.name}<small>${x.pct50 > 0 ? "+" : ""}${x.pct50}%</small></span>`).join("");
+    return `<div class="mb-a50">
+        <div class="mb-a50-title">${r0.date.slice(5).replace("-", "/")} 50일선 위 종목 <b>${list.length}</b>
+            <span class="mb-a50-note">50일 합계 칸 기준(200일선 위) · 숫자 = 처음 위에 있는 이평선(10·20·50일) · % = 50일선 대비 · 시총 순</span></div>
+        ${list.length ? `<div class="mb-chips">${items}</div>` : '<p class="na">없음</p>'}
+    </div>`;
 }
 
 // 칸끼리 중복이 없어(합계 = 대상 종목 수) 비율이 클수록 진하게. 이평선 위 칸은 빨강, 200일선 아래는 파랑
