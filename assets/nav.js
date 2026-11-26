@@ -15,6 +15,7 @@
             ["us-charts.html", "미장"],
             ["kr-charts.html", "국장"],
             ["commodities.html", "원자재"],
+            ["etf-charts.html", "ETF"],
         ] },
         { name: "종목서칭", pages: [
             ["buy-candidates.html", "매수후보"],

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ETF 차트</title>
+<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/kr-charts.css?v=6">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-left">
+        <div>
+            <h1>ETF 차트</h1>
+            <div class="sub">섹터별 대표 ETF(국장·미장) + 액티브 ETF 캔들 + 거래량</div>
+        </div>
+        <nav class="site-nav"></nav>
+        <script src="assets/nav.js?v=6"></script>
+    </div>
+    <div class="header-right">
+        <div class="header-contact">소통: <a href="mailto:codekim@naver.com">codekim@naver.com</a></div>
+    </div>
+</header>
+
+<div class="container">
+    <p class="kc-note">섹터별 대표 ETF(국장·미장)와 액티브 ETF · 최근 6개월 캔들+거래량 · 10·50일선 · 미장은 달러 · <span id="kc-generated-at"></span></p>
+
+    <div class="search-bar">
+        <select id="kc-market-filter">
+            <option value="">전체 시장</option>
+            <option value="KR">국장</option>
+            <option value="US">미장</option>
+        </select>
+        <select id="kc-large-filter">
+            <option value="">전체 섹터</option>
+        </select>
+        <input type="text" id="kc-search" placeholder="ETF명 또는 코드 검색">
+    </div>
+    <div class="summary-line" id="kc-count-line">불러오는 중...</div>
+
+    <div id="kc-body">
+        <p class="placeholder">불러오는 중...</p>
+    </div>
+    <div class="site-footer">데이터는 매 영업일 장마감 후 갱신됩니다.</div>
+</div>
+
+<button id="scroll-top-btn" class="scroll-top-btn" title="맨 위로">▲ 최상위</button>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="assets/etf-charts.js?v=1"></script>
+</body>
+</html>
