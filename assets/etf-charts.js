@@ -1,4 +1,4 @@
-// ETF 차트: 액티브 ETF(맨 위, 구성종목 비중 변화 표) + 섹터별 대표 ETF(국장·미장), 최근 6개월 캔들 + 10·50일선 + 거래량
+// ETF 차트: 액티브 ETF(맨 위) + 섹터별 대표 ETF(국장·미장), 국장은 상장좌수 변화·구성종목 비중 변화 표, 최근 6개월 캔들 + 10·50일선 + 거래량
 // 데이터: data/etf_charts.json (collector/export_etf_charts.py) · 스타일은 kr-charts.css 재사용
 let EC_DATA = null;
 const EC_CHART_INSTANCES = new Map(); // key -> echarts instance
@@ -92,6 +92,7 @@ function ecRender() {
                     </div>
                     <div class="kc-card-price">${ecLastPriceText(it)}</div>
                     <div class="kc-chart" data-key="${ecKey(g.sector, it)}"></div>
+                    ${ecUnitsHtml(it)}
                     ${ecHoldingsHtml(it)}
                 </div>
                 `).join("")}
@@ -114,6 +115,31 @@ function ecShortDate(d) {
     if (!d) return '';
     const [, m, dd] = d.split('-').map(Number);
     return `${m}/${dd}`;
+}
+
+// 상장좌수·순자산 + 1일·1주·1개월 전 대비 좌수 증감률 (좌수↑ = 설정, 돈이 들어옴)
+function ecFmtUnits(u) {
+    if (u >= 1e8) return `${(u / 1e8).toFixed(2)}억좌`;
+    if (u >= 1e4) return `${Math.round(u / 1e4).toLocaleString()}만좌`;
+    return `${u.toLocaleString()}좌`;
+}
+
+function ecUnitsHtml(it) {
+    const u = it.units;
+    if (!u) return '';
+    const c = u.chg || {};
+    const cell = (k, label) => {
+        const v = c[k];
+        if (v === undefined || v === null) return `<span class="ec-u-c">${label} <i>-</i></span>`;
+        const color = v > 0 ? '#B4342A' : (v < 0 ? '#2E5FA3' : '#999');
+        return `<span class="ec-u-c" title="${(u.cmp || {})[k] || ''} 대비">${label} <b style="color:${color};">${v > 0 ? '+' : ''}${v.toFixed(1)}%</b></span>`;
+    };
+    const na = u.net_asset ? ` · 순자산 ${Number(u.net_asset).toLocaleString()}억` : '';
+    return `
+        <div class="ec-units">
+            <div class="ec-u-top">상장좌수 <b>${ecFmtUnits(u.units)}</b>${na}</div>
+            <div class="ec-u-chg">좌수 ${cell('d1', '1일')}${cell('w1', '1주')}${cell('m1', '1개월')}</div>
+        </div>`;
 }
 
 function ecHoldingsHtml(it) {
