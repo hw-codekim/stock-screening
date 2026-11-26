@@ -1,4 +1,4 @@
-// ETF 차트: 섹터별 대표 ETF(국장·미장) + 액티브 ETF, 최근 6개월 캔들 + 10·50일선 + 거래량
+// ETF 차트: 액티브 ETF(맨 위, 구성종목 비중 변화 표) + 섹터별 대표 ETF(국장·미장), 최근 6개월 캔들 + 10·50일선 + 거래량
 // 데이터: data/etf_charts.json (collector/export_etf_charts.py) · 스타일은 kr-charts.css 재사용
 let EC_DATA = null;
 const EC_CHART_INSTANCES = new Map(); // key -> echarts instance
@@ -92,6 +92,7 @@ function ecRender() {
                     </div>
                     <div class="kc-card-price">${ecLastPriceText(it)}</div>
                     <div class="kc-chart" data-key="${ecKey(g.sector, it)}"></div>
+                    ${ecHoldingsHtml(it)}
                 </div>
                 `).join("")}
             </div>
@@ -99,6 +100,45 @@ function ecRender() {
     ).join("");
 
     ecSetupLazyRender();
+}
+
+// 액티브 ETF 구성종목 비중 + 1일·1주·1개월 전 대비 증감(%p)
+function ecDeltaCell(v) {
+    if (v === null || v === undefined) return '<td class="ec-h-d">-</td>';
+    if (Math.abs(v) < 0.005) return '<td class="ec-h-d">0.00</td>';
+    const color = v > 0 ? '#B4342A' : '#2E5FA3';
+    return `<td class="ec-h-d" style="color:${color};">${v > 0 ? '+' : ''}${v.toFixed(2)}</td>`;
+}
+
+function ecShortDate(d) {
+    if (!d) return '';
+    const [, m, dd] = d.split('-').map(Number);
+    return `${m}/${dd}`;
+}
+
+function ecHoldingsHtml(it) {
+    const h = it.holdings;
+    if (!h || !h.top || h.top.length === 0) return '';
+    const c = h.cmp || {};
+    const rows = h.top.map(r => `
+        <tr><td class="ec-h-n" title="${r.name}">${r.name}</td><td class="ec-h-w">${r.w.toFixed(2)}</td>
+        ${ecDeltaCell(r.d1)}${ecDeltaCell(r.w1)}${ecDeltaCell(r.m1)}</tr>`).join("");
+    const chip = (arr, cls) => arr.map(x => `<span class="ec-h-chip ${cls}">${x.name} ${x.w.toFixed(1)}</span>`).join("");
+    const moves = (h.added && h.added.length) || (h.removed && h.removed.length)
+        ? `<div class="ec-h-moves">
+              ${h.added && h.added.length ? `<div><b>1주 신규</b> ${chip(h.added, 'ec-h-add')}</div>` : ''}
+              ${h.removed && h.removed.length ? `<div><b>1주 제외</b> ${chip(h.removed, 'ec-h-rm')}</div>` : ''}
+           </div>` : '';
+    return `
+        <div class="ec-holdings">
+            <div class="ec-h-title">구성종목 비중 <span>${ecShortDate(h.date)} 기준 · 증감 %p</span></div>
+            <table class="ec-h-table">
+                <thead><tr><th>종목</th><th>비중</th>
+                    <th title="${c.d1 || ''}">1일</th><th title="${c.w1 || ''}">1주</th><th title="${c.m1 || ''}">1개월</th></tr></thead>
+                <tbody>${rows}</tbody>
+            </table>
+            ${moves}
+        </div>`;
 }
 
 function ecFmtPrice(v, market) {

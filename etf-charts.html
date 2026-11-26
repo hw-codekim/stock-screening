@@ -6,6 +6,23 @@
 <title>ETF 차트</title>
 <link rel="stylesheet" href="assets/style.css?v=9">
 <link rel="stylesheet" href="assets/kr-charts.css?v=6">
+<style>
+.ec-holdings { margin-top: 6px; border-top: 1px solid #EEF1F5; padding-top: 6px; font-size: 11.5px; }
+.ec-h-title { font-weight: 600; color: #333; margin-bottom: 3px; }
+.ec-h-title span { font-weight: 400; color: #999; font-size: 11px; margin-left: 4px; }
+.ec-h-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.ec-h-table th { color: #888; font-weight: 500; text-align: right; padding: 2px 3px; border-bottom: 1px solid #EEF1F5; }
+.ec-h-table th:first-child { text-align: left; width: 38%; }
+.ec-h-table td { padding: 2px 3px; text-align: right; font-variant-numeric: tabular-nums; }
+.ec-h-table td.ec-h-n { text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ec-h-table td.ec-h-w { font-weight: 600; }
+.ec-h-table td.ec-h-d { color: #999; }
+.ec-h-moves { margin-top: 5px; line-height: 1.8; color: #555; }
+.ec-h-moves b { font-weight: 600; margin-right: 3px; }
+.ec-h-chip { display: inline-block; padding: 0 5px; margin: 0 3px 2px 0; border-radius: 3px; font-size: 11px; line-height: 17px; }
+.ec-h-add { background: #FBECEA; color: #B4342A; }
+.ec-h-rm { background: #EAF0F8; color: #2E5FA3; }
+</style>
 </head>
 <body>
 
@@ -13,7 +30,7 @@
     <div class="header-left">
         <div>
             <h1>ETF 차트</h1>
-            <div class="sub">섹터별 대표 ETF(국장·미장) + 액티브 ETF 캔들 + 거래량</div>
+            <div class="sub">액티브 ETF(구성종목 비중 변화) + 섹터별 대표 ETF(국장·미장) 캔들 + 거래량</div>
         </div>
         <nav class="site-nav"></nav>
         <script src="assets/nav.js?v=6"></script>
@@ -24,7 +41,7 @@
 </header>
 
 <div class="container">
-    <p class="kc-note">섹터별 대표 ETF(국장·미장)와 액티브 ETF · 최근 6개월 캔들+거래량 · 10·50일선 · 미장은 달러 · <span id="kc-generated-at"></span></p>
+    <p class="kc-note">액티브 ETF(맨 위 · 구성종목 비중과 1일·1주·1개월 전 대비 증감, 주가 변동 효과 포함)와 섹터별 대표 ETF(국장·미장) · 최근 6개월 캔들+거래량 · 10·50일선 · 미장은 달러 · <span id="kc-generated-at"></span></p>
 
     <div class="search-bar">
         <select id="kc-market-filter">
@@ -49,6 +66,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 <script data-goatcounter="https://stock-screening.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<script src="assets/etf-charts.js?v=1"></script>
+<script src="assets/etf-charts.js?v=2"></script>
 </body>
 </html>
